@@ -1,0 +1,33 @@
+name: Unity Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Unity
+      uses: actions/setup-unity@v1
+      with:
+        unityVersion: 2020.3.13f1
+        serial: ${{ secrets.UNITY_SERIAL }}
+        modules: "Unity,Unity" # Replace with the modules you need
+
+    - name: Run tests
+      run: |
+        # Run Unity tests here
+        # Example command: unity -runTests -projectPath ./MyUnityProject -testPlatform playmode
+
+    - name: Check test results
+      if: ${{ failure() }}
+      run: |
+        # If tests failed, block the pull request
+        echo "Tests failed, blocking the pull request"
+        # Add commands to block the pull request, e.g., close the pull request automatically
