@@ -22,10 +22,9 @@ public class M_PlayerMove : MonoBehaviour
     {
         // キーボード入力を受け取る
         float fHorizontalInput = Input.GetAxis("Horizontal");
-        float fVerticalInput = Input.GetAxis("Vertical");
 
         // 入力に基づいて移動する
-        Vector2 vecMoveDirection = new Vector2(fHorizontalInput, fVerticalInput);
-        rbPlayer.velocity = vecMoveDirection.normalized * fMoveSpeed;
+        Vector2 vecMoveDirection = new Vector2(fHorizontalInput * fMoveSpeed, rbPlayer.velocity.y);
+        rbPlayer.velocity = vecMoveDirection;
     }
 }
