@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 //プレイヤーをサーチする処理
 //Tagを自由に設定して追跡するオブジェクトを変えるとかもできるようにしたい
@@ -15,6 +16,9 @@ public class MPlayerSearch : MonoBehaviour
 
     [Header("移動速度"), SerializeField]
     private float fMoveSpeed;
+
+    [Header("視野範囲内用レイの数（多いほどキレイに描画）"), SerializeField]
+    private int nNumRays = 3;
 
     /// <summary>
     /// 元々のマテリアル
@@ -47,10 +51,7 @@ public class MPlayerSearch : MonoBehaviour
         //元々のマテリアルを保存
         MTDefault = GetComponent<SpriteRenderer>().material; 
         
-        lineRenderer = GetComponent<LineRenderer>();
-
-        //頂点数設定
-        lineRenderer.positionCount = 3;
+        lineRenderer = GetComponent<LineRenderer>();       
 
         // 線の太さを設定
         lineRenderer.startWidth = 0.05f; // 線の始点の太さ
@@ -140,22 +141,81 @@ public class MPlayerSearch : MonoBehaviour
     //視野範囲内を表示する
     void DrawFieldOfView()
     {
-        Vector3[] vecPositions = new Vector3[3]; // ラインの頂点座標の配列
+        // ラインの頂点座標のリスト
+        List<Vector3> vecPositions = new List<Vector3>();
 
-        // ラインの始点を設定（敵キャラクターの位置）
-        vecPositions[0] = transform.position;
+        //ラインの始点
+        vecPositions.Add(transform.position);
 
-        // 視野範囲の端点を計算
-        Vector3 vecEndPositionRight = transform.position + Quaternion.Euler(0, 0, fEnemyAngle * 0.5f) * transform.right * ColSearch.radius;
-        Vector3 vecEndPositionLeft = transform.position + Quaternion.Euler(0, 0, -fEnemyAngle * 0.5f) * transform.right * ColSearch.radius;
+        //レイの角度間隔
+        float fStepAngleSize = fEnemyAngle / nNumRays;
 
-        // ラインの端点を設定
-        vecPositions[1] = vecEndPositionRight;
-        vecPositions[2] = vecEndPositionLeft;
+        for(int i = 0; i <= nNumRays; i++)
+        {
+            // レイの角度を計算
+            float angle = transform.eulerAngles.z - fEnemyAngle / 2 + fStepAngleSize * i;
+            Vector3 dir = Quaternion.Euler(0, 0, angle) * transform.right; // レイの方向を計算
 
-        lineRenderer.SetPositions(vecPositions);
-        lineRenderer.loop = true; // 三角形を閉じる
+            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, ColSearch.radius);
+
+            if (rayHit.collider != null)
+            {
+                // 障害物に当たった場合、障害物までの距離までの点を追加
+                vecPositions.Add(rayHit.point);
+            }
+            else
+            {
+                // 障害物に当たらなかった場合、視野の端までの点を追加
+                vecPositions.Add(transform.position + dir * ColSearch.radius);
+            }
+        }
+
+        //最後に視野範囲内の形状に閉じる
+        vecPositions.Add(transform.position);
+
+        lineRenderer.positionCount = vecPositions.Count;
+        lineRenderer.SetPositions(vecPositions.ToArray());
+      
+        //範囲内を塗りつぶす       
+        DrawFieldFill(vecPositions);
     }
+
+    //範囲内を塗りつぶす処理
+    void DrawFieldFill(List<Vector3> vertices)
+    {
+        if (vertices.Count < 3) return; // 頂点数が3未満の場合は描画しない
+        
+        // メッシュを作成
+        Mesh mesh = new Mesh();
+
+        // 2Dの頂点座標に変換
+        Vector3[] vecVertices = new Vector3[vertices.Count];
+        for (int i = 0; i < vertices.Count; i++)
+        {
+            vecVertices[i] = new Vector3(vertices[i].x, vertices[i].y, 0);
+        }
+
+        // メッシュに頂点を設定
+        mesh.vertices = vecVertices;
+
+        // 頂点インデックスを生成して設定する
+        int[] triangles = new int[(vertices.Count - 2) * 3];
+        for (int i = 0, count = 0; i < vertices.Count - 2; i++, count += 3)
+        {
+            triangles[count] = 0;
+            triangles[count + 1] = i + 2;
+            triangles[count + 2] = i + 1;
+        }
+
+        // メッシュに三角形のインデックスを設定
+        mesh.triangles = triangles;
+
+        mesh.RecalculateNormals();
+
+        // メッシュを描画
+        Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, MTDefault, 0);
+    }
+
 
     //追跡処理（簡易版）
     void Chase()
