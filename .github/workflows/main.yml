@@ -16,18 +16,25 @@ jobs:
     - name: Set up Unity
       uses: actions/setup-unity@v1
       with:
-        unityVersion: 2020.3.13f1
+        unityVersion: 2021.3.27f1
         serial: ${{ secrets.UNITY_SERIAL }}
-        modules: "Unity,Unity" # Replace with the modules you need
+        modules: "Unity,Windows Build Support" # Windows Build Support を追加
 
     - name: Run tests
-      run: |
-        # Run Unity tests here
-        # Example command: unity -runTests -projectPath ./MyUnityProject -testPlatform playmode
+      run: unity -runTests -projectPath ./work/CaseStudy -testPlatform playmode
 
     - name: Check test results
-      if: ${{ failure() }}
-      run: |
-        # If tests failed, block the pull request
-        echo "Tests failed, blocking the pull request"
-        # Add commands to block the pull request, e.g., close the pull request automatically
+      if: failure()
+      uses: actions/github-script@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const github = context.repo;
+          const prNumber = context.payload.pull_request.number;
+          github.pulls.update({
+            owner: github.owner,
+            repo: github.repo,
+            pull_number: prNumber,
+            body: "Tests failed. Please fix the issues before merging.",
+            state: "closed"
+          });
