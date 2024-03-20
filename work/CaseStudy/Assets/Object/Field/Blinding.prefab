@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4073776558554491815}
   - component: {fileID: -7558042366340281657}
   - component: {fileID: 4374262341477643273}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Blinding
-  m_TagString: Untagged
+  m_TagString: Blinding
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fDelay: 1
-  fDeleteTime: 0.5
+  fDeleteTime: 0.1
 --- !u!58 &-7558042366340281657
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +138,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 0.5
 --- !u!58 &4374262341477643273
 CircleCollider2D:
   m_ObjectHideFlags: 0
