@@ -44,6 +44,13 @@ public class MPlayerSearch : MonoBehaviour
     /// ターゲットの座標
     /// </summary>
     private Transform TargetTransform;
+
+    /// <summary>
+    /// どちらを向いているか
+    /// </summary>
+    private Vector3 isRight;
+
+    private Rigidbody2D rbEnemy;
    
     // Start is called before the first frame update
     void Start()
@@ -59,6 +66,11 @@ public class MPlayerSearch : MonoBehaviour
 
         CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
 
+        rbEnemy = GetComponent<Rigidbody2D>();
+
+        //向きを取得
+        isRight = transform.right;
+
         foreach(CircleCollider2D col in colliders)
         {
             if(col.isTrigger)
@@ -70,9 +82,7 @@ public class MPlayerSearch : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        Debug.Log(isSearch);
-
+    {        
         //見つかっている
         if(isSearch)
         {
@@ -84,6 +94,16 @@ public class MPlayerSearch : MonoBehaviour
         {            
             //見つかっていないならデフォルト
             this.GetComponent<SpriteRenderer>().material = this.MTDefault;
+        }
+
+        //velocityからどちらの方向を向いているか判断
+        if(rbEnemy.velocity.x < 0.0f && !isSearch)
+        {            
+            isRight = transform.right * -1;
+        }
+        else if(rbEnemy.velocity.x > 0.0f && !isSearch)
+        {          
+            isRight = transform.right;
         }
 
         // 視野範囲を描画する
@@ -102,7 +122,7 @@ public class MPlayerSearch : MonoBehaviour
             Vector2 vecPos = _collision.transform.position - this.transform.position;
 
             //前向きベクトルとvecPosの角度を求める
-            float fPlayerAngle = Vector2.Angle(this.transform.right, vecPos);
+            float fPlayerAngle = Vector2.Angle(isRight, vecPos);
 
             //fPlayerAngleが視野角内に収まっているか
             if (fPlayerAngle < fEnemyAngle * 0.5f)
@@ -111,7 +131,7 @@ public class MPlayerSearch : MonoBehaviour
                 float selfColliderRadius = GetComponent<CircleCollider2D>().radius;
 
                 //間に壁がないか
-                RaycastHit2D RayHit = Physics2D.Raycast(transform.position + transform.right * (selfColliderRadius + 0.1f), vecPos.normalized, vecPos.magnitude);
+                RaycastHit2D RayHit = Physics2D.Raycast(transform.position + isRight * (selfColliderRadius + 0.1f), vecPos.normalized, vecPos.magnitude);
                
                 if (RayHit.collider != null && RayHit.collider.CompareTag("Player"))
                 {
@@ -154,7 +174,7 @@ public class MPlayerSearch : MonoBehaviour
         {
             // レイの角度を計算
             float angle = transform.eulerAngles.z - fEnemyAngle / 2 + fStepAngleSize * i;
-            Vector3 dir = Quaternion.Euler(0, 0, angle) * transform.right; // レイの方向を計算
+            Vector3 dir = Quaternion.Euler(0, 0, angle) * isRight; // レイの方向を計算
 
             RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, ColSearch.radius);
 
