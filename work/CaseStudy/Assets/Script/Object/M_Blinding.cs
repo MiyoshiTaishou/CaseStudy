@@ -39,7 +39,7 @@ public class M_Blinding : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerStay2D(Collider2D _collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {        
         if (_collision.gameObject.CompareTag("Player"))
         {
@@ -59,19 +59,29 @@ public class M_Blinding : MonoBehaviour
 
         //エネミーの当たり判定
         if(_collision.gameObject.CompareTag("Enemy"))
-        {
-            //自分とプレイヤーのベクトルを求める
+        {            
+            //自分とエネミーのベクトルを求める
             UnityEngine.Vector2 vecPos = _collision.transform.position - this.transform.position;
 
             // 自身のコライダーの半径を取得
             float selfColliderRadius = GetComponent<CircleCollider2D>().radius;
 
             //間に壁がないか
-            RaycastHit2D RayHit = Physics2D.Raycast(transform.position + transform.right * (selfColliderRadius + 0.1f), vecPos.normalized, vecPos.magnitude);
-            
+            RaycastHit2D RayHit = Physics2D.Raycast(transform.position, vecPos.normalized, vecPos.magnitude);
+           
             if (RayHit.collider == null)
             {
                 Debug.Log("エネミーヒット");
+
+                //エネミーの目くらまし変数をtrueにする
+                _collision.gameObject.GetComponent<M_BlindingMove>().SetIsBlinding(true);
+
+                //エネミーから自身の向きを取得
+                UnityEngine.Vector2 vecDir = this.transform.position - _collision.transform.position;
+                vecDir.Normalize();
+
+                //向きを設定する                
+                _collision.gameObject.GetComponent<M_BlindingMove>().SetVecDirBlinding(vecDir);
             }
         }
     }
