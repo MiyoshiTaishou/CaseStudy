@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 565255783036250434}
   - component: {fileID: 565255783036250437}
   - component: {fileID: 565255783036250436}
+  - component: {fileID: 4399568859996352524}
   m_Layer: 2
   m_Name: Enemy
   m_TagString: Enemy
@@ -257,3 +258,17 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &4399568859996352524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565255783036250435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dabe63c877e3b84da011ff59ff1f32f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fMoveSpeed: 3
+  fBlindingTime: 1
