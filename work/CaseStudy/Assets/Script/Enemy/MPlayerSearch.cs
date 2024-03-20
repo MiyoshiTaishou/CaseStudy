@@ -150,7 +150,47 @@ public class MPlayerSearch : MonoBehaviour
             {
                 isSearch = false;
             }
-        }       
+        }
+
+        if (_collision.gameObject.CompareTag("Blinding"))
+        {
+            //当たり判定がオンなら
+            if (_collision.gameObject.GetComponent<M_Blinding>().GetIsEnable())
+            {
+                //視界の範囲内に収まっているか
+
+                //自分と目くらましのベクトルを求める
+                Vector2 vecPos = _collision.transform.position - this.transform.position;
+
+                //前向きベクトルとvecPosの角度を求める
+                float fPlayerAngle = Vector2.Angle(isRight, vecPos);
+
+                //fPlayerAngleが視野角内に収まっているか
+                if (fPlayerAngle < fEnemyAngle * 0.5f)
+                {
+                    // 自身のコライダーの半径を取得
+                    float selfColliderRadius = GetComponent<CircleCollider2D>().radius;
+
+                    //間に壁がないか
+                    RaycastHit2D RayHit = Physics2D.Raycast(transform.position + isRight * (selfColliderRadius + 0.1f), vecPos.normalized, vecPos.magnitude);
+
+                    if (RayHit.collider != null && RayHit.collider.CompareTag("Blinding"))
+                    {
+                        Debug.Log("フラッシュ");
+
+                        //エネミーの目くらまし変数をtrueにする
+                        GetComponent<M_BlindingMove>().SetIsBlinding(true);
+
+                        //エネミーから目くらましの向きを取得
+                        UnityEngine.Vector2 vecDir = _collision.transform.position - this.transform.position;
+                        vecDir.Normalize();
+
+                        //向きを設定する                
+                        GetComponent<M_BlindingMove>().SetVecDirBlinding(vecDir);
+                    }
+                }
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

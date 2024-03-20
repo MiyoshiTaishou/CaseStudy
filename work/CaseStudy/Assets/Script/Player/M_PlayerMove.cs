@@ -5,7 +5,6 @@ using UnityEngine;
 //プレイヤーの移動関連の処理
 public class M_PlayerMove : MonoBehaviour
 {
-
     [Header("移動速度"), SerializeField]
     private float fMoveSpeed = 10.0f;
 

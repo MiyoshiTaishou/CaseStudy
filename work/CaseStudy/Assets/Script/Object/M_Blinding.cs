@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using UnityEditor.U2D.Path;
 using UnityEngine;
 
 public class M_Blinding : MonoBehaviour
@@ -9,17 +10,22 @@ public class M_Blinding : MonoBehaviour
     private float fDelay = 2.0f;
 
     [Header("消えるまでの時間"), SerializeField]
-    private float fDeleteTime = 1.0f;
+    private float fDeleteTime = 0.1f;
+
+    /// <summary>
+    /// 目くらまし起動しているか
+    /// </summary>
+    private bool isEnable = false;
    
-    private SpriteRenderer spriteRenderer;
-    private CircleCollider2D circleCollider;
+    private SpriteRenderer spriteRenderer;   
+    private CircleCollider2D[] colliders;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
-        circleCollider = GetComponent<CircleCollider2D>();
-        circleCollider.enabled = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();        
 
+        colliders = GetComponents<CircleCollider2D>();
+       
         // 一定時間後に当たり判定を有効にするコルーチンを開始
         StartCoroutine(EnableColliderAfterDelay());
     }
@@ -28,9 +34,9 @@ public class M_Blinding : MonoBehaviour
     {
         // 光るまでの時間待機
         yield return new WaitForSeconds(fDelay);
-
-        // 当たり判定を有効にする
-        circleCollider.enabled = true;
+        
+        //光の判定をオン
+        isEnable = true;
 
         // 消えるまでの時間待機
         yield return new WaitForSeconds(fDeleteTime);
@@ -57,32 +63,37 @@ public class M_Blinding : MonoBehaviour
         }
 
 
-        //エネミーの当たり判定
-        if(_collision.gameObject.CompareTag("Enemy"))
-        {            
-            //自分とエネミーのベクトルを求める
-            UnityEngine.Vector2 vecPos = _collision.transform.position - this.transform.position;
+        ////エネミーの当たり判定
+        //if(_collision.gameObject.CompareTag("Enemy"))
+        //{            
+        //    //自分とエネミーのベクトルを求める
+        //    UnityEngine.Vector2 vecPos = _collision.transform.position - this.transform.position;
 
-            // 自身のコライダーの半径を取得
-            float selfColliderRadius = GetComponent<CircleCollider2D>().radius;
+        //    // 自身のコライダーの半径を取得
+        //    float selfColliderRadius = GetComponent<CircleCollider2D>().radius;
 
-            //間に壁がないか
-            RaycastHit2D RayHit = Physics2D.Raycast(transform.position, vecPos.normalized, vecPos.magnitude);
+        //    //間に壁がないか
+        //    RaycastHit2D RayHit = Physics2D.Raycast(transform.position, vecPos.normalized, vecPos.magnitude);
            
-            if (RayHit.collider == null)
-            {
-                Debug.Log("エネミーヒット");
+        //    if (RayHit.collider == null)
+        //    {
+        //        Debug.Log("エネミーヒット");
 
-                //エネミーの目くらまし変数をtrueにする
-                _collision.gameObject.GetComponent<M_BlindingMove>().SetIsBlinding(true);
+        //        //エネミーの目くらまし変数をtrueにする
+        //        _collision.gameObject.GetComponent<M_BlindingMove>().SetIsBlinding(true);
 
-                //エネミーから自身の向きを取得
-                UnityEngine.Vector2 vecDir = this.transform.position - _collision.transform.position;
-                vecDir.Normalize();
+        //        //エネミーから自身の向きを取得
+        //        UnityEngine.Vector2 vecDir = this.transform.position - _collision.transform.position;
+        //        vecDir.Normalize();
 
-                //向きを設定する                
-                _collision.gameObject.GetComponent<M_BlindingMove>().SetVecDirBlinding(vecDir);
-            }
-        }
+        //        //向きを設定する                
+        //        _collision.gameObject.GetComponent<M_BlindingMove>().SetVecDirBlinding(vecDir);
+        //    }
+        //}
+    }
+
+    public bool GetIsEnable()
+    {
+        return isEnable;
     }
 }
