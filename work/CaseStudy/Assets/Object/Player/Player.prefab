@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4799414907199749194}
   - component: {fileID: 4799414907199749193}
   - component: {fileID: -4355744935626807316}
+  - component: {fileID: 1219616102165025831}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -165,3 +166,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlindingObj: {fileID: 8866717144761918295, guid: 09a50c0354c4b2244b20968e4eed4455, type: 3}
   fThrowPower: 5
+--- !u!114 &1219616102165025831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799414907199749199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e9d76fa8f75e64393a6dbabbe1f565, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
