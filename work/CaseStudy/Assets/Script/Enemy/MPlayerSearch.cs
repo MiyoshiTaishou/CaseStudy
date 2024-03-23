@@ -20,6 +20,9 @@ public class MPlayerSearch : MonoBehaviour
     [Header("視野範囲内用レイの数（多いほどキレイに描画）"), SerializeField]
     private int nNumRays = 3;
 
+    [Header("視野範囲の広さ（何故かコライダーのサイズと対応できなかったのでこちらでコライダーのサイズに合わせてほしい）"), SerializeField]
+    private float fMaxDistance = 5.0f;
+
     /// <summary>
     /// 元々のマテリアル
     /// </summary>
@@ -29,6 +32,8 @@ public class MPlayerSearch : MonoBehaviour
     /// 見つかっているか
     /// </summary>
     private bool isSearch = false;
+
+    public bool GetIsSearch(){ return isSearch; }
 
     /// <summary>
     /// 視野範囲内を表示するレンダラ
@@ -132,7 +137,10 @@ public class MPlayerSearch : MonoBehaviour
 
                 //間に壁がないか
                 RaycastHit2D RayHit = Physics2D.Raycast(transform.position + isRight * (selfColliderRadius + 0.1f), vecPos.normalized, vecPos.magnitude);
-               
+
+                Debug.DrawRay(transform.position + isRight * (selfColliderRadius + 0.1f), vecPos.normalized * vecPos.magnitude, Color.red);
+
+
                 if (RayHit.collider != null && RayHit.collider.CompareTag("Player"))
                 {
                     Debug.Log("視認中");
@@ -210,13 +218,13 @@ public class MPlayerSearch : MonoBehaviour
         //レイの角度間隔
         float fStepAngleSize = fEnemyAngle / nNumRays;
 
-        for(int i = 0; i <= nNumRays; i++)
+        for (int i = 0; i <= nNumRays; i++)
         {
             // レイの角度を計算
             float angle = transform.eulerAngles.z - fEnemyAngle / 2 + fStepAngleSize * i;
-            Vector3 dir = Quaternion.Euler(0, 0, angle) * isRight; // レイの方向を計算
+            Vector3 dir = Quaternion.Euler(0, 0, angle) * isRight; // レイの方向を計算            
 
-            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, ColSearch.radius);
+            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, fMaxDistance);
 
             if (rayHit.collider != null)
             {
@@ -226,7 +234,8 @@ public class MPlayerSearch : MonoBehaviour
             else
             {
                 // 障害物に当たらなかった場合、視野の端までの点を追加
-                vecPositions.Add(transform.position + dir * ColSearch.radius);
+                // コライダーの半径を視野範囲の距離とする
+                vecPositions.Add(transform.position + dir * fMaxDistance);
             }
         }
 
@@ -235,10 +244,11 @@ public class MPlayerSearch : MonoBehaviour
 
         lineRenderer.positionCount = vecPositions.Count;
         lineRenderer.SetPositions(vecPositions.ToArray());
-      
+
         //範囲内を塗りつぶす       
         DrawFieldFill(vecPositions);
     }
+
 
     //範囲内を塗りつぶす処理
     void DrawFieldFill(List<Vector3> vertices)
