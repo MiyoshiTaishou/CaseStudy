@@ -43,13 +43,18 @@ public class SEnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(this.GetComponent<MPlayerSearch>().GetIsSearch())
+        {
+            return;
+        }     
+
         rb.AddForce(MoveSpeed);
 
         //以下から現在位置がゴール位置を越えているかを判定し、
         //越えていれば待機したのち進行方向を反転する処理
         if(transform.position.x>GallPos.x&&
             !IsReflectionX) 
-        {
+        {            
             IsReflectionX = true;
             GallPos.x = defaultPos.x - MoveDistance.x;
             MoveSpeed.x = -MoveSpeed.x;
@@ -58,6 +63,7 @@ public class SEnemyMove : MonoBehaviour
         else if(transform.position.x<GallPos.x&&
             IsReflectionX) 
         {
+            Debug.Log("ムーブ");
             IsReflectionX = false;
             GallPos.x = defaultPos.x + MoveDistance.x;
             MoveSpeed.x = -MoveSpeed.x;
