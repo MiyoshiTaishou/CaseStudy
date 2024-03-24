@@ -1,0 +1,4 @@
+敵スタン
+動き止まるとかはない(他メンバーのスクリプトを弄る必要があるため)
+"iStunSistance"　マス以上の高さから落下したら　"fStunTime"　秒間　"IsSttuned"　がtrueになる
+"IsSttuned"のゲッター作っといた
