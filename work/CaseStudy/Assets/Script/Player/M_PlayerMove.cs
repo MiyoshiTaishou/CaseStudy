@@ -8,7 +8,15 @@ public class M_PlayerMove : MonoBehaviour
     [Header("移動速度"), SerializeField]
     private float fMoveSpeed = 10.0f;
 
-    private Rigidbody2D rbPlayer; 
+    private Rigidbody2D rbPlayer;
+
+    /// <summary>
+    /// 移動可能か
+    /// </summary>
+    private bool isMove = true;
+
+    public bool GetIsMove() { return isMove; }
+    public void SetIsMove(bool _move) { isMove = _move; }
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +26,12 @@ public class M_PlayerMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+        if(!isMove)
+        {
+            return;
+        }
+
         // キーボード入力を受け取る
         float fHorizontalInput = Input.GetAxis("Horizontal");
 
