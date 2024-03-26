@@ -42,7 +42,7 @@ public class M_BlindingMove : MonoBehaviour
         {
             //ŽžŠÔŒv‘ª
             fTime += Time.deltaTime;
-
+            Debug.Log("‚Ý‚¦‚È‚¢‚¢‚¢‚¢‚¢‚¢‚¢‚¢‚¢");
             BlindingMove();
         }
         else
