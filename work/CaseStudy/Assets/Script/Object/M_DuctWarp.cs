@@ -112,14 +112,16 @@ public class M_DuctWarp : MonoBehaviour
         if(isInDuct)
         {
             //Œ©‚¦‚È‚¢
-            //PlayerObj.GetComponent<SpriteRenderer>().enabled = false;
+            PlayerObj.GetComponent<SpriteRenderer>().enabled = false;
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
         }
         else
         {
             //Œ©‚¦‚È‚¢
             PlayerObj.GetComponent<SpriteRenderer>().enabled = true;
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
         }
     }
 

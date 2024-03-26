@@ -10,11 +10,20 @@ public class M_PlayerThrow : MonoBehaviour
 
     [Header("“Š‚°‚é—Í"), SerializeField]
     private float fThrowPower = 5.0f;
-    
+
+    /// <summary>
+    /// “Š‚°‚ê‚é‚©
+    /// </summary>
+    private bool isThrow = true;
+
+    public bool GetIsThrow() { return isThrow; }
+
+    public void SetIsThrow(bool isThrow) {  this.isThrow = isThrow; }
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && isThrow)
         {
             Throw();
         }
