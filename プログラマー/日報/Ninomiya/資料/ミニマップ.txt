@@ -1,0 +1,26 @@
+参考資料
+https://i-school.memo.wiki/d/%A1%DA%A3%B2%A3%C4%A1%DB%A5%DF%A5%CB%A5%DE%A5%C3%A5%D7%B5%A1%C7%BD%A4%CE%BC%C2%C1%F5%CE%E3
+
+ミニマップ関係のオブジェクト置き場(置き場)
+　Assets > Object > Camera > Minimap
+
+ミニマップ使い方
+　①置き場にあるプレハブ [CanvasWithMinimap] と [MinimapCamera]をヒエラルキービューにドラッグアンドドロップ
+
+　②[MinimapCamera]をステージ全体が映るように配置　※[CanvasWithMinimap] はいじる必要なし
+
+　③置き場 > Markerフォルダにミニマップに表示するアイコン用のプレハブがあるので
+　　ミニマップに表示させたいオブジェクトの子オブジェクトにする
+
+　④Main CameraのCameraコンポーネント > Rendering > Culling Maskで[GroundDetector]のチェックを外す
+　　※設定済みなら飛ばしていい
+
+　⑤完成
+
+ミニマップに必要なものが映らない時
+　・映らないもののインスペクター内のレイヤーチェック
+　　地形用のレイヤー[Ground]、ゲーム画面に映らないようにし、ミニマップに映るようにするレイヤー[GroundDetector]
+　　の２つをを新規に作成した。これが未設定の可能性あり
+
+現在ワールドマップ状のミニマップだが、プレイヤー追跡型のミニマップにもできるはず。
+　試したかったら[MinimapCamera]をプレイヤーか[MainCamera]の子オブジェクトにしてみて
