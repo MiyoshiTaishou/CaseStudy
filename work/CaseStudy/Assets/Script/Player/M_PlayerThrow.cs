@@ -9,7 +9,7 @@ public class M_PlayerThrow : MonoBehaviour
     private GameObject BlindingObj;
 
     [Header("ìäÇ∞ÇÈóÕ"), SerializeField]
-    private float fThrowPower = 5.0f;
+    private float fThrowPower = 5.0f;    
 
     /// <summary>
     /// ìäÇ∞ÇÍÇÈÇ©
@@ -19,7 +19,7 @@ public class M_PlayerThrow : MonoBehaviour
     public bool GetIsThrow() { return isThrow; }
 
     public void SetIsThrow(bool isThrow) {  this.isThrow = isThrow; }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -32,13 +32,13 @@ public class M_PlayerThrow : MonoBehaviour
     //ìäÇ∞ÇÈèàóù
     void Throw()
     {
-        Vector3 vecInstacePos = new Vector3(transform.position.x + transform.right.x, transform.position.y, transform.position.z);
+        Vector3 vecInstacePos = new Vector3(transform.position.x + GetComponent<M_PlayerMove>().GetDir().x, transform.position.y, transform.position.z);
         //ÉvÉåÉnÉuÇ©ÇÁê∂ê¨Ç∑ÇÈ
         GameObject blinding = Instantiate(BlindingObj, vecInstacePos, Quaternion.identity);
 
         Rigidbody2D rb = blinding.GetComponent<Rigidbody2D>();
 
         // éŒÇﬂè„Ç…óÕÇâ¡Ç¶ÇÈ
-        rb.AddForce(new Vector2(transform.right.x,1.0f) * fThrowPower, ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(GetComponent<M_PlayerMove>().GetDir().x,1.0f) * fThrowPower, ForceMode2D.Impulse);
     }
 }
