@@ -11,6 +11,14 @@ public class M_PlayerMove : MonoBehaviour
     private Rigidbody2D rbPlayer;
 
     /// <summary>
+    /// ‚Ç‚¿‚ç‚ðŒü‚¢‚Ä‚¢‚é‚©
+    /// </summary>
+    private Vector3 vecDir;
+
+    public Vector3 GetDir() { return vecDir; }
+    public void SetDir(Vector3 _dir) { vecDir = _dir; }
+
+    /// <summary>
     /// ˆÚ“®‰Â”\‚©
     /// </summary>
     private bool isMove = true;
@@ -22,6 +30,7 @@ public class M_PlayerMove : MonoBehaviour
     void Start()
     {
         rbPlayer = GetComponent<Rigidbody2D>();
+        vecDir = transform.right;
     }
 
     // Update is called once per frame
@@ -38,5 +47,14 @@ public class M_PlayerMove : MonoBehaviour
         // “ü—Í‚ÉŠî‚Ã‚¢‚ÄˆÚ“®‚·‚é
         Vector2 vecMoveDirection = new Vector2(fHorizontalInput * fMoveSpeed, rbPlayer.velocity.y);
         rbPlayer.velocity = vecMoveDirection;
+
+        if(fHorizontalInput > 0.0f)
+        {
+            vecDir = transform.right;
+        }
+        else if(fHorizontalInput < 0.0f)
+        {
+            vecDir = -transform.right;
+        }
     }
 }
