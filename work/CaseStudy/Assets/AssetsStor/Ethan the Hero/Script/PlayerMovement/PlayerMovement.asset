@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c4f370c30404d47be6a93e5bc23b17, type: 3}
+  m_Name: PlayerMovement
+  m_EditorClassIdentifier: 
+  runMaxSpeed: 6
+  runAcceleration: 2
+  runAccelAmount: 16.666666
+  runDecceleration: 1
+  runDeccelAmount: 8.333333
+  accelInAir: 0.5
+  deccelInAir: 0.5
+  doConserveMomentum: 1
+  jumpHeight: 8
+  dashPower: 15
+  dashingCoolDown: 0.5
+  dashingTime: 0.2
+  wallDistance: 0.03
+  wallJumpTime: 0.2
+  wallSlideSpeed: 0.5
+  wallJumpingYPower: 9
+  wallJumpingXPower: 8
+  WallJumpTimeInSecond: 0.1
