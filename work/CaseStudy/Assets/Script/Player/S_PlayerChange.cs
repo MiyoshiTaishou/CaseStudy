@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class S_PlayerChange : MonoBehaviour
 {
-    ///Bボタンが押されたかどうか
-    private bool isBDown = false;
+    ///ボタンが押されたかどうか
+    private bool isButtonDown = false;
 
     //敵が視界内にいるかどうか
     private bool isSerch = false;
+
+    [Header("KeyType"),SerializeField]
+    KeyCode playerChangeKey = KeyCode.C;
 
     [Header("変身時間"), SerializeField]
     float fWaitTime = 10.0f;
@@ -27,7 +31,10 @@ public class S_PlayerChange : MonoBehaviour
 
     private SpriteRenderer srPlayer = null;
 
-    private Collider2D colEnemy;
+    //変身の当たり判定内にいる敵のリスト
+    private List<GameObject> colList= new List<GameObject>();
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,29 +50,53 @@ public class S_PlayerChange : MonoBehaviour
     void Update()
     {
         //変身ボタンが押されたかどうか判定
-        isBDown = Input.GetKeyDown(KeyCode.C);//ここでキー指定してね
-        Debug.Log("ボタン押下状況=" + isBDown);
-        if (isBDown&&isSerch) 
+        isButtonDown = Input.GetKeyDown(playerChangeKey);
+        Debug.Log("ボタン押下状況=" + isButtonDown);
+        
+        if (isButtonDown &&colList.Count != 0) 
         {
-            srEnemy = colEnemy.GetComponent<SpriteRenderer>();
+            Debug.Log("へんしんしたい");
+            //変身の条件を満たしている敵の中で一番距離が近い敵を探す
+            float distance = 0.0f;
+            for(int i=0;i< colList.Count;i++)
+            {
+                float temp = Vector2.Distance(transform.root.position , colList[i].transform.position);
+                if (distance > temp||distance == 0.0f) 
+                {
+                    distance = temp;
+                    srEnemy = colList[i].GetComponent<SpriteRenderer>();
+                }
+            }
             EnemySprite = srEnemy.sprite;
             StartCoroutine(Change());
         }
     }
 
-    private void OnTriggerStay2D(Collider2D _collision)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        //敵に接触していればその敵の盲目状態と見た目の情報を取得
-        if(_collision.tag=="Enemy")
+        //接触したものが敵かつめくらまし状態であればリストに追加
+        if(other.tag=="Enemy")
         {
-            M_BlindingMove blindingMove =_collision.GetComponent<M_BlindingMove>();
-            isSerch=blindingMove.GetIsBlinding();
-            colEnemy = _collision;
+            M_BlindingMove blindingMove = other.GetComponent<M_BlindingMove>();
+            isSerch = blindingMove.GetIsBlinding();
+
+            //リストに追加したことがないものだけリストに追加
+            GameObject collidedObject = other.gameObject;
+            if (!colList.Contains(collidedObject) && isSerch)
+            {
+                colList.Add(collidedObject);
+                Debug.Log("Object追加"+colList.Count);
+            }
         }
     }
-    private void OnTriggerExit2D(Collider2D _collision)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        isSerch = false;
+        //リストから取り除く
+        GameObject collidedObject = other.gameObject;
+        if(colList.Contains(collidedObject))
+        {
+            colList.Remove(collidedObject);
+        }
     }
 
     //コルーチン。
