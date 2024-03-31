@@ -34,7 +34,8 @@ public class M_DuctWarp : MonoBehaviour
     /// プレイヤー
     /// </summary>
     private GameObject PlayerObj;
-   
+    private GameObject PlayerImage;
+
     /// <summary>
     /// ダクトに入っているか
     /// </summary>
@@ -79,6 +80,8 @@ public class M_DuctWarp : MonoBehaviour
         {
             Debug.Log("右ダクトが見つかりません");
         }
+        // 子オブジェクトを取得
+        PlayerImage = GameObject.Find("PlayerImage").gameObject;
 
         //UI非表示
         UIObj.SetActive(false);
@@ -111,15 +114,15 @@ public class M_DuctWarp : MonoBehaviour
         
         if(isInDuct)
         {
-            //見えない
-            PlayerObj.GetComponent<SpriteRenderer>().enabled = false;
+            //見えないようにする
+            PlayerImage.GetComponent<SpriteRenderer>().enabled = false;
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
             PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
         }
         else
         {
-            //見えない
-            PlayerObj.GetComponent<SpriteRenderer>().enabled = true;
+            //見えるようにする
+            PlayerImage.GetComponent<SpriteRenderer>().enabled = true;
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
             PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
         }
