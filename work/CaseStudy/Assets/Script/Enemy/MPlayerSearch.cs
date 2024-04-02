@@ -290,11 +290,13 @@ public class MPlayerSearch : MonoBehaviour
     //追跡処理（簡易版）
     void Chase()
     {
-        if(TargetTransform != null)
+        if (TargetTransform != null)
         {
-            //ターゲットに向かって移動するだけ
-            Vector2 vecDir = (TargetTransform.position - transform.position).normalized;
-            transform.Translate(vecDir * Time.deltaTime * fMoveSpeed);
+            // ターゲットへの方向ベクトルを計算
+            Vector2 direction = (TargetTransform.position - transform.position).normalized;
+
+            // Rigidbody2D の速度を設定
+            GetComponent<Rigidbody2D>().AddForce(direction * fMoveSpeed);
         }
     }
 }
