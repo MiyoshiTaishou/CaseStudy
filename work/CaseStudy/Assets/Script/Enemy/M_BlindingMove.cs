@@ -65,7 +65,10 @@ public class M_BlindingMove : MonoBehaviour
     {       
         //“®‚­—Íİ’è
         Vector2 vecMoveDirection = new Vector2(vecDirBlinding.x * fMoveSpeed, rbEnemy.velocity.y);
-        rbEnemy.velocity = vecMoveDirection;
+        //rbEnemy.velocity = vecMoveDirection;
+
+        // Rigidbody2D ‚Ì‘¬“x‚ğİ’è
+        GetComponent<Rigidbody2D>().AddForce(vecMoveDirection);
     }
 
     public void SetIsBlinding(bool _isBlinding)

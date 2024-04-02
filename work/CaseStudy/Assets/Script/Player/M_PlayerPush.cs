@@ -1,0 +1,132 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class M_PlayerPush : MonoBehaviour
+{
+    /// <summary>
+    /// どの状態の時に押せるようにするか
+    /// </summary>
+    enum MODE
+    {
+        Back,
+        Blinding,
+        None,
+    }
+
+    [Header("押せる条件"),SerializeField]
+    MODE mode;
+
+    [Header("押す力"), SerializeField]
+    float fPower = 5.0f;
+
+    /// <summary>
+    /// プレイヤー
+    /// </summary>
+    GameObject PlayerObj;
+
+    /// <summary>
+    /// 押すオブジェクト
+    /// </summary>
+    GameObject PushObj;
+
+    /// <summary>
+    /// 押せるかどうか
+    /// </summary>
+    private bool isPush = false;
+   
+    // Start is called before the first frame update
+    void Start()
+    {
+        PlayerObj = GameObject.Find("Player");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(PlayerObj.GetComponent<M_PlayerMove>().GetDir().x > 0.0f)
+        {
+            transform.eulerAngles = Vector3.zero;
+        }
+        else if(PlayerObj.GetComponent<M_PlayerMove>().GetDir().x < 0.0f)
+        {
+            transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+        }   
+        
+        if(isPush && PushObj)
+        {
+            Push(PushObj);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.isTrigger)
+        {            
+            if (collision.tag == "Enemy")
+            {
+                isPush = true;
+
+                //押すオブジェクト代入
+                PushObj = collision.gameObject;
+            }
+        }       
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.isTrigger)
+        {
+            if (collision.tag == "Enemy")
+            {
+                isPush = false;
+
+                PushObj = null;
+            }
+        }
+    }
+
+    //押す処理
+    void Push(GameObject push)
+    {
+        //押せる条件
+        switch (mode)
+        {
+            //条件なし
+            case MODE.None:
+
+                if (Input.GetKeyDown(KeyCode.P))
+                {
+                    Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
+
+                    push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
+                }
+
+                break;
+
+            //目くらまし中
+            case MODE.Blinding:
+               
+                if (Input.GetKeyDown(KeyCode.P) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
+                {
+                    Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
+
+                    push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
+                }
+
+                break;
+
+            //バレていない時
+            case MODE.Back:
+
+                if (Input.GetKeyDown(KeyCode.P) && !push.GetComponent<MPlayerSearch>().GetIsSearch())
+                {
+                    Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
+
+                    push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
+                }
+
+                break;
+        }       
+    }
+}
