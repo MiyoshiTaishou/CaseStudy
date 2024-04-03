@@ -100,6 +100,7 @@ public class M_PlayerPush : MonoBehaviour
                     Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
 
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
+                    push.GetComponent<S_EnemyBall>().SetisPushing(true);
                 }
 
                 break;
@@ -112,6 +113,7 @@ public class M_PlayerPush : MonoBehaviour
                     Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
 
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
+                    push.GetComponent<S_EnemyBall>().SetisPushing(true);
                 }
 
                 break;
@@ -124,6 +126,7 @@ public class M_PlayerPush : MonoBehaviour
                     Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
 
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
+                    push.GetComponent<S_EnemyBall>().SetisPushing(true);
                 }
 
                 break;
