@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class K_UIManager : MonoBehaviour
+public class K_UIEnemyStikCount : MonoBehaviour
 {
     [Header("UI Textw’è—p"), SerializeField]
     private Text EnemyCountTextFrame;
@@ -19,6 +19,7 @@ public class K_UIManager : MonoBehaviour
     void Update()
     {
         EnemyCountTextFrame.text = string.Format("Šª‚«‚ñ‚¾“GF{0:0} ", nEnemyNum);
+        nEnemyNum = 0;
     }
 
     public void SetEnemyNum(int _nEnemyNum)
