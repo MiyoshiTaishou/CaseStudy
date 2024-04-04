@@ -1,0 +1,6 @@
+S-EnemyBallのGetStickCountという関数でまとめた敵の数を取得できます。
+
+
+敵をまとめる処理の実装にあたって敵のプレハブを更新しました。
+
+Asset>Object>Enemyに「SEnemy」を追加したので確認しておいてください
