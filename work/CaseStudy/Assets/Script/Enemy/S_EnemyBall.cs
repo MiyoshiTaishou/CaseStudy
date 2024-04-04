@@ -26,7 +26,11 @@ public class S_EnemyBall : MonoBehaviour
 
     private Vector3 defaultScale;
 
-    public float GetStickCount() { return fStickCnt; }
+    public int GetStickCount() 
+    {
+        int temp = 0;
+        temp = Mathf.FloorToInt(fStickCnt);
+        return temp; }
 
     // Start is called before the first frame update
     void Start()
