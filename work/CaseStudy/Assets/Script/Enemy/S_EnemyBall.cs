@@ -22,11 +22,11 @@ public class S_EnemyBall : MonoBehaviour
     public void SetisPushing(bool _flg) { isPushing = _flg; }
     private GameObject ColObject;
 
-    private float nStickCnt = 0;
+    private float fStickCnt = 0;
 
     private Vector3 defaultScale;
 
-
+    public float GetStickCount() { return fStickCnt; }
 
     // Start is called before the first frame update
     void Start()
@@ -39,8 +39,8 @@ public class S_EnemyBall : MonoBehaviour
     {
         //ãzé˚ÇµÇΩìGÇÃêîÇ…âûÇ∂ÇƒãêëÂâª
         Vector3 temp= defaultScale;
-        temp.x -= nStickCnt / 5;
-        temp.y += nStickCnt / 5;
+        temp.x -= fStickCnt / 5;
+        temp.y += fStickCnt / 5;
         transform.localScale = temp;
         if(isPushing)
         {
@@ -59,7 +59,7 @@ public class S_EnemyBall : MonoBehaviour
         {
             if (!ColObject.GetComponent<S_EnemyBall>().GetisPushing())
             {
-                nStickCnt++;
+                fStickCnt++;
                 Destroy(ColObject);
                 GetComponent<Rigidbody2D>().AddForce(GetComponent<Rigidbody2D>().velocity*fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
