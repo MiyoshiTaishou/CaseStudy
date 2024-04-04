@@ -57,6 +57,10 @@ public class S_EnemyBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _collision)
     {
+        if(!isPushing)
+        {
+            return;
+        }
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject= _collision.gameObject;
         if(ColObject.tag=="Enemy")
