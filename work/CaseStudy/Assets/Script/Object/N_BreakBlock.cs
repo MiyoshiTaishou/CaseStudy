@@ -8,9 +8,6 @@ public class N_BreakBlock : MonoBehaviour
     [Header("壊せるようになる敵の数"), SerializeField]
     private int iBreakNum = 3;
 
-    [Header("テスト用　敵塊の数"), SerializeField]
-    private int iTestNum = 1;
-
     /// <summary>
     /// 自身のオブジェクトを破壊するオブジェクトが持つタグ名
     /// </summary>
@@ -19,16 +16,18 @@ public class N_BreakBlock : MonoBehaviour
 
     private Animator animator;
 
+    private S_EnemyBall enemyBall;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        // 最初だけスクリプト取得
+        enemyBall = collision.GetComponent<S_EnemyBall>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -36,8 +35,11 @@ public class N_BreakBlock : MonoBehaviour
         // 指定したタグをもったオブジェクトがぶつかってきたら
         if(collision.collider.tag == sBreakTag)
         {
+            // ぶつかってきた敵塊の数を取得
+            int checkNum = (int)enemyBall.GetStickCount();
+
             // 指定値以上の塊がぶつかってきたら
-            if(iTestNum >= iBreakNum)
+            if (checkNum >= iBreakNum)
             {
                 animator.SetBool("break", true);
             }
