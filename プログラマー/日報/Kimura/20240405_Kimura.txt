@@ -1,0 +1,16 @@
+敵頭上に巻き込んだ数表示
+
+使い方あ
+
+①CanvasにK_DisplayStickEnemyNumVer2を付ける(Assets/Script/Objectにある)
+
+②CanvasのTextPrefabにK_UIStickEnemyNumTextを付ける(Assets/Object/UIにある)
+
+③完成
+
+
+
+昨日追加したK_UIEnemyStikCount、K_DisplayStickEnemyNum、K_UIEnemyStikCountは消してもいいです。
+プロトシーンで不具合起こしそうなので消してません
+
+わからないことがあったら呼んでください。多分朝方まで起きてます
