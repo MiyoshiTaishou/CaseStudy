@@ -47,16 +47,19 @@ public class K_DisplayStickEnemyNumVer2 : MonoBehaviour
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(enemies[i].transform.position);
                 Texts[i].transform.position = new Vector3(screenPos.x, screenPos.y + 50, screenPos.z); // 適切なオフセットを持たせる
                 
-                // テキストに反映
+                //巻き込み数取得
                 int StickEnemyNum = enemies[i].GetComponent<S_EnemyBall>().GetStickCount();
+
+                // テキストに反映
                 if(StickEnemyNum==0)
-                {
-                    Texts[i].text = null;
+                {//0だったら表示しない
+                    Texts[i].text = null; 
                 }
                 else
-                {
+                {//1以上だったら表示する
                     Texts[i].text = StickEnemyNum.ToString();
                 }
+
                 //サイズ変える
                 Texts[i].fontSize = 30 + StickEnemyNum * 10;
             }
