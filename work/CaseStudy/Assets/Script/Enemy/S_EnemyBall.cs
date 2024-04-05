@@ -16,6 +16,9 @@ public class S_EnemyBall : MonoBehaviour
     [Header("ヒットストップ"), SerializeField]
     float fHitStop = 0;
 
+    [Header("制限速度(x)"), SerializeField]
+    float fLimitSpeedx = 15.0f;
+
     //押されているかどうか
     private bool isPushing = false;
     public bool GetisPushing() { return isPushing; }
@@ -79,6 +82,10 @@ public class S_EnemyBall : MonoBehaviour
     {
         //速度を保存し、0にする
         Vector2 vel=GetComponent<Rigidbody2D>().velocity;
+        if(vel.x>fLimitSpeedx)
+        {
+            vel.x = fLimitSpeedx;
+        }
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         //指定のフレーム待つ
         yield return new WaitForSeconds(fHitStop/60);
