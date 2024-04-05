@@ -440,6 +440,7 @@ MonoBehaviour:
   fBoost: 3
   audioclip: {fileID: 8300000, guid: a7cec79ac3b51bb48bd4539366407033, type: 3}
   fHitStop: 3
+  fLimitSpeedx: 20
 --- !u!114 &-2972839679515131284
 MonoBehaviour:
   m_ObjectHideFlags: 0
