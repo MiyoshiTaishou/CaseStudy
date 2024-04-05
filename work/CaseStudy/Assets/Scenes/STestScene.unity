@@ -272,6 +272,7 @@ MonoBehaviour:
   fBoost: 0
   audioclip: {fileID: 0}
   fHitStop: 0
+  fLimitSpeedx: 15
 --- !u!1 &743771904
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,6 +947,7 @@ MonoBehaviour:
   fBoost: 0
   audioclip: {fileID: 0}
   fHitStop: 0
+  fLimitSpeedx: 15
 --- !u!1 &1872260117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1189,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1748775138385781367, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: fLimitSpeedx
+      value: 11.65
+      objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818158, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: m_RootOrder
       value: 1
