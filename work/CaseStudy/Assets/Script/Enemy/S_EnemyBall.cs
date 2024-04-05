@@ -53,6 +53,7 @@ public class S_EnemyBall : MonoBehaviour
         {
             GetComponent<SEnemyMove>().enabled = false;
             GetComponent<M_BlindingMove>().enabled = false;
+            GetComponent<MPlayerSearch>().enabled = false;
         }
     }
 
