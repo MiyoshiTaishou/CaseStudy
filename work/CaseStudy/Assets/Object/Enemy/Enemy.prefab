@@ -165,7 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fEnemyAngle: 45
   MTSearch: {fileID: 2100000, guid: b054dca7b905af04ab29199bc748a6f7, type: 2}
-  fMoveSpeed: 3
+  fMoveSpeed: 15
   nNumRays: 20
   fMaxDistance: 5
 --- !u!120 &7564613837830818144
