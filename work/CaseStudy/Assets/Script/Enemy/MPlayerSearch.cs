@@ -145,7 +145,7 @@ public class MPlayerSearch : MonoBehaviour
                 {
                     Debug.Log("視認中");
                     isSearch = true;
-
+                   
                     //ターゲットの座標を保存
                     TargetTransform = _collision.transform;
                 }
