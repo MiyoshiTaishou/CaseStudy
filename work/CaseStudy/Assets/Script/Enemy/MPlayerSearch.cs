@@ -138,8 +138,7 @@ public class MPlayerSearch : MonoBehaviour
                 //ŠÔ‚É•Ç‚ª‚È‚¢‚©
                 RaycastHit2D RayHit = Physics2D.Raycast(transform.position + isRight * (selfColliderRadius + 0.1f), vecPos.normalized, vecPos.magnitude);
 
-                Debug.DrawRay(transform.position + isRight * (selfColliderRadius + 0.1f), vecPos.normalized * vecPos.magnitude, Color.red);
-
+                Debug.DrawRay(transform.position + isRight * (selfColliderRadius + 0.1f), vecPos.normalized * vecPos.magnitude, Color.red);                
 
                 if (RayHit.collider != null && RayHit.collider.CompareTag("Player"))
                 {
@@ -224,7 +223,7 @@ public class MPlayerSearch : MonoBehaviour
             float angle = transform.eulerAngles.z - fEnemyAngle / 2 + fStepAngleSize * i;
             Vector3 dir = Quaternion.Euler(0, 0, angle) * isRight; // ƒŒƒC‚Ì•ûŒü‚ðŒvŽZ            
 
-            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, fMaxDistance);
+            RaycastHit2D rayHit = Physics2D.Raycast(transform.position, dir, fMaxDistance);           
 
             if (rayHit.collider != null)
             {
@@ -243,7 +242,7 @@ public class MPlayerSearch : MonoBehaviour
         vecPositions.Add(transform.position);
 
         lineRenderer.positionCount = vecPositions.Count;
-        lineRenderer.SetPositions(vecPositions.ToArray());
+        lineRenderer.SetPositions(vecPositions.ToArray());       
 
         //”ÍˆÍ“à‚ð“h‚è‚Â‚Ô‚·       
         DrawFieldFill(vecPositions);
