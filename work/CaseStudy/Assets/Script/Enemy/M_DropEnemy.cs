@@ -32,7 +32,7 @@ public class M_DropEnemy : MonoBehaviour
             isGround = false; // 地面に接地していない
         }
 
-        Debug.Log(isGround);
+        //Debug.Log(isGround);
 
         // 地面に接地していなければドロップ状態に設定
         m_Animator.SetBool("isDrop", !isGround);
