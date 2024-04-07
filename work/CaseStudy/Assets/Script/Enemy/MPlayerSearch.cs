@@ -142,7 +142,7 @@ public class MPlayerSearch : MonoBehaviour
 
                 if (RayHit.collider != null && RayHit.collider.CompareTag("Player"))
                 {
-                    Debug.Log("視認中");
+                    //Debug.Log("視認中");
                     isSearch = true;
                    
                     //ターゲットの座標を保存

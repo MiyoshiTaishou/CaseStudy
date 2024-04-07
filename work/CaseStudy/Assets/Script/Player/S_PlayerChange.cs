@@ -51,7 +51,6 @@ public class S_PlayerChange : MonoBehaviour
     {
         //変身ボタンが押されたかどうか判定
         isButtonDown = Input.GetKeyDown(playerChangeKey);
-        Debug.Log("ボタン押下状況=" + isButtonDown);
         
         if (isButtonDown &&colList.Count != 0) 
         {
