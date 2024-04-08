@@ -39,7 +39,7 @@ public class M_DuctWarp : MonoBehaviour
     /// <summary>
     /// ダクトに入っているか
     /// </summary>
-    static bool isInDuct;   
+    static bool isInDuct;
 
     /// <summary>
     /// ダクトに触れている
@@ -51,12 +51,18 @@ public class M_DuctWarp : MonoBehaviour
     /// </summary>
     private bool isMoveDuct;
 
+    // 20240407 二宮追記
+    /// <summary>
+    /// 対象追跡カメラスクリプト
+    /// </summary>
+    private N_TrackingPlayer trackingPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerObj = GameObject.Find("Player");
 
-        if(!PlayerObj)
+        if (!PlayerObj)
         {
             Debug.Log("プレイヤーが見つかりません");
         }
@@ -85,6 +91,9 @@ public class M_DuctWarp : MonoBehaviour
 
         //UI非表示
         UIObj.SetActive(false);
+
+        // 20240407 二宮追記
+        trackingPlayer = GameObject.Find("Main Camera").GetComponent<N_TrackingPlayer>();
     }
 
     // Update is called once per frame
@@ -107,12 +116,12 @@ public class M_DuctWarp : MonoBehaviour
 
         //触れているダクトの移動処理
         if (isInDuct && isTouch)
-        {            
+        {
             //入っている間の処理
             InDuctMove();
         }
-        
-        if(isInDuct)
+
+        if (isInDuct)
         {
             //見えないようにする
             PlayerImage.GetComponent<SpriteRenderer>().enabled = false;
@@ -129,13 +138,13 @@ public class M_DuctWarp : MonoBehaviour
     }
 
     private void OnTriggerStay2D(Collider2D collision)
-    {        
-        if(collision.gameObject.CompareTag("Player"))
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
             isTouch = true;
 
             UIObj.SetActive(true);
-        }        
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -149,11 +158,11 @@ public class M_DuctWarp : MonoBehaviour
 
     //ダクト同士を移動する
     void InDuctMove()
-    {        
+    {
         //上ダクトに移動
-        if(Input.GetKeyDown(KeyCode.W) && UpDuct)
+        if (Input.GetKeyDown(KeyCode.W) && UpDuct)
         {
-            StartCoroutine(IEMoveDuct(fMoveTime,UpDuct));            
+            StartCoroutine(IEMoveDuct(fMoveTime, UpDuct));
         }
 
         //下ダクトに移動
@@ -176,9 +185,12 @@ public class M_DuctWarp : MonoBehaviour
     }
 
     //ダクトに移動するメソッド
-    IEnumerator IEMoveDuct(float _waitTime,GameObject _obj)
+    IEnumerator IEMoveDuct(float _waitTime, GameObject _obj)
     {
         isMoveDuct = true;
+
+        // 20240407 二宮追記
+        trackingPlayer.SetWarpInfo(_waitTime, _obj);
 
         // 待機時間
         yield return new WaitForSeconds(_waitTime);
