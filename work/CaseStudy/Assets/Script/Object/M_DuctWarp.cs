@@ -2,58 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//ƒ_ƒNƒg‚ÌˆÚ“®ˆ—
+//ãƒ€ã‚¯ãƒˆã®ç§»å‹•å‡¦ç†
 public class M_DuctWarp : MonoBehaviour
 {
-    //İ’è‚µ‚½ƒ_ƒNƒg‚ÉˆÚ“®‚·‚é
-    [Header("ãƒ_ƒNƒg"), SerializeField]
+    //è¨­å®šã—ãŸãƒ€ã‚¯ãƒˆã«ç§»å‹•ã™ã‚‹
+    [Header("ä¸Šãƒ€ã‚¯ãƒˆ"), SerializeField]
     private GameObject UpDuct;
 
-    [Header("‰ºƒ_ƒNƒg"), SerializeField]
+    [Header("ä¸‹ãƒ€ã‚¯ãƒˆ"), SerializeField]
     private GameObject DownDuct;
 
-    [Header("¶ƒ_ƒNƒg"), SerializeField]
+    [Header("å·¦ãƒ€ã‚¯ãƒˆ"), SerializeField]
     private GameObject LeftDuct;
 
-    [Header("‰Eƒ_ƒNƒg"), SerializeField]
+    [Header("å³ãƒ€ã‚¯ãƒˆ"), SerializeField]
     private GameObject RightDuct;
 
-    [Header("ˆÚ“®‚É‚©‚©‚éŠÔ"), SerializeField]
+    [Header("ç§»å‹•ã«ã‹ã‹ã‚‹æ™‚é–“"), SerializeField]
     private float fMoveTime = 1.0f;
 
-    [Header("•\¦‚·‚éUI"), SerializeField]
+    [Header("è¡¨ç¤ºã™ã‚‹UI"), SerializeField]
     private GameObject UIObj;
 
-    [Header("“ü‚é‚É–Â‚ç‚·SE"), SerializeField]
+    [Header("å…¥ã‚‹æ™‚ã«é³´ã‚‰ã™SE"), SerializeField]
     private AudioSource SEDuctEnter;
 
-    [Header("ˆÚ“®‚É–Â‚ç‚·SE"), SerializeField]
+    [Header("ç§»å‹•æ™‚ã«é³´ã‚‰ã™SE"), SerializeField]
     private AudioSource SEDuctMove;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
     /// </summary>
     private GameObject PlayerObj;
-    private GameObject PlayerImage;
 
     /// <summary>
-    /// ƒ_ƒNƒg‚É“ü‚Á‚Ä‚¢‚é‚©
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæŒã£ã¦ã„ã‚‹ãƒ¬ãƒ³ãƒ€ãƒ©
+    /// </summary>
+    private List<SpriteRenderer> renderers = new List<SpriteRenderer>();
+
+    /// <summary>
+    /// ãƒ€ã‚¯ãƒˆã«å…¥ã£ã¦ã„ã‚‹ã‹
     /// </summary>
     static bool isInDuct;
 
     /// <summary>
-    /// ƒ_ƒNƒg‚ÉG‚ê‚Ä‚¢‚é
+    /// ãƒ€ã‚¯ãƒˆã«è§¦ã‚Œã¦ã„ã‚‹
     /// </summary>
     private bool isTouch;
 
     /// <summary>
-    /// ˆÚ“®’†
+    /// ç§»å‹•ä¸­
     /// </summary>
     private bool isMoveDuct;
 
-    // 20240407 “ñ‹{’Ç‹L
+    // 20240407 äºŒå®®è¿½è¨˜
     /// <summary>
-    /// ‘ÎÛ’ÇÕƒJƒƒ‰ƒXƒNƒŠƒvƒg
+    /// å¯¾è±¡è¿½è·¡ã‚«ãƒ¡ãƒ©ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
     /// </summary>
     private N_TrackingPlayer trackingPlayer;
 
@@ -64,76 +68,105 @@ public class M_DuctWarp : MonoBehaviour
 
         if (!PlayerObj)
         {
-            Debug.Log("ƒvƒŒƒCƒ„[‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.Log("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
 
         if (!UpDuct)
         {
-            Debug.Log("ãƒ_ƒNƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.Log("ä¸Šãƒ€ã‚¯ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
 
         if (!DownDuct)
         {
-            Debug.Log("‰ºƒ_ƒNƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.Log("ä¸‹ãƒ€ã‚¯ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
 
         if (!LeftDuct)
         {
-            Debug.Log("¶ƒ_ƒNƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.Log("å·¦ãƒ€ã‚¯ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
 
         if (!RightDuct)
         {
-            Debug.Log("‰Eƒ_ƒNƒg‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.Log("å³ãƒ€ã‚¯ãƒˆãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
-        // qƒIƒuƒWƒFƒNƒg‚ğæ“¾
-        PlayerImage = GameObject.Find("PlayerImage").gameObject;
 
-        //UI”ñ•\¦
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒæŒã£ã¦ã„ã‚‹SpriteRendererã‚’å…¨ã¦å–å¾—
+        SpriteRenderer[] spriteRenderers = PlayerObj.GetComponentsInChildren<SpriteRenderer>();
+
+        if(spriteRenderers.Length==0)
+        {
+            Debug.Log("æŒã£ã¦ã¾ã›ã‚“");
+        }
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            renderers.Add(spriteRenderer);
+        }
+
+        //UIéè¡¨ç¤º
         UIObj.SetActive(false);
 
-        // 20240407 “ñ‹{’Ç‹L
+        // 20240407 äºŒå®®è¿½è¨˜
         trackingPlayer = GameObject.Find("Main Camera").GetComponent<N_TrackingPlayer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ƒ_ƒNƒgˆÚ“®’†‚Íˆ—‚µ‚È‚¢
+        //ãƒ€ã‚¯ãƒˆç§»å‹•ä¸­ã¯å‡¦ç†ã—ãªã„
         if (isMoveDuct)
         {
             return;
         }
 
-        //G‚ê‚Ä‚¢‚éŠÔ‚Í‰Ÿ‚·‚½‚Ñ‚É“ü‚Á‚½‚èo‚½‚è‚·‚é
+        //è§¦ã‚Œã¦ã„ã‚‹é–“ã¯æŠ¼ã™ãŸã³ã«å…¥ã£ãŸã‚Šå‡ºãŸã‚Šã™ã‚‹
         if (Input.GetKeyDown(KeyCode.V) && isTouch)
         {
-            Debug.Log("ƒ_ƒNƒg‚É“ü‚Á‚½");
+            Debug.Log("ãƒ€ã‚¯ãƒˆã«å…¥ã£ãŸ");
             isInDuct = !isInDuct;
+
+            if (isInDuct)
+            {
+                // ãƒ€ã‚¯ãƒˆã«å…¥ã£ãŸã‚‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¤‰æ›´
+                PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");
+            }
+            else
+            {
+                // ãƒ€ã‚¯ãƒˆã‹ã‚‰å‡ºãŸã‚‰ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å…ƒã®ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«æˆ»ã™
+                PlayerObj.layer = LayerMask.NameToLayer("PlayerLayer"); ;
+            }
+
             PlayerObj.transform.position = transform.position;
             PlayerObj.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
 
-        //G‚ê‚Ä‚¢‚éƒ_ƒNƒg‚ÌˆÚ“®ˆ—
+        //è§¦ã‚Œã¦ã„ã‚‹ãƒ€ã‚¯ãƒˆã®ç§»å‹•å‡¦ç†
         if (isInDuct && isTouch)
         {
-            //“ü‚Á‚Ä‚¢‚éŠÔ‚Ìˆ—
+            //å…¥ã£ã¦ã„ã‚‹é–“ã®å‡¦ç†
             InDuctMove();
         }
 
-        if (isInDuct)
-        {
-            //Œ©‚¦‚È‚¢‚æ‚¤‚É‚·‚é
-            PlayerImage.GetComponent<SpriteRenderer>().enabled = false;
+        if(isInDuct)
+        {            
+            //è¦‹ãˆãªã„ã‚ˆã†ã«ã™ã‚‹
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                renderers[i].enabled = false;
+            }           
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);            
         }
         else
         {
-            //Œ©‚¦‚é‚æ‚¤‚É‚·‚é
-            PlayerImage.GetComponent<SpriteRenderer>().enabled = true;
+            //è¦‹ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                renderers[i].enabled = true;
+            }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);                        
         }
     }
 
@@ -156,43 +189,43 @@ public class M_DuctWarp : MonoBehaviour
         }
     }
 
-    //ƒ_ƒNƒg“¯m‚ğˆÚ“®‚·‚é
+    //ãƒ€ã‚¯ãƒˆåŒå£«ã‚’ç§»å‹•ã™ã‚‹
     void InDuctMove()
     {
-        //ãƒ_ƒNƒg‚ÉˆÚ“®
+        //ä¸Šãƒ€ã‚¯ãƒˆã«ç§»å‹•
         if (Input.GetKeyDown(KeyCode.W) && UpDuct)
         {
             StartCoroutine(IEMoveDuct(fMoveTime, UpDuct));
         }
 
-        //‰ºƒ_ƒNƒg‚ÉˆÚ“®
+        //ä¸‹ãƒ€ã‚¯ãƒˆã«ç§»å‹•
         if (Input.GetKeyDown(KeyCode.S) && DownDuct)
         {
             StartCoroutine(IEMoveDuct(fMoveTime, DownDuct));
         }
 
-        //¶ƒ_ƒNƒg‚ÉˆÚ“®
+        //å·¦ãƒ€ã‚¯ãƒˆã«ç§»å‹•
         if (Input.GetKeyDown(KeyCode.A) && LeftDuct)
         {
             StartCoroutine(IEMoveDuct(fMoveTime, LeftDuct));
         }
 
-        //‰Eƒ_ƒNƒg‚ÉˆÚ“®
+        //å³ãƒ€ã‚¯ãƒˆã«ç§»å‹•
         if (Input.GetKeyDown(KeyCode.D) && RightDuct)
         {
             StartCoroutine(IEMoveDuct(fMoveTime, RightDuct));
         }
     }
 
-    //ƒ_ƒNƒg‚ÉˆÚ“®‚·‚éƒƒ\ƒbƒh
+    //ãƒ€ã‚¯ãƒˆã«ç§»å‹•ã™ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰
     IEnumerator IEMoveDuct(float _waitTime, GameObject _obj)
     {
         isMoveDuct = true;
 
-        // 20240407 “ñ‹{’Ç‹L
+        // 20240407 äºŒå®®è¿½è¨˜
         trackingPlayer.SetWarpInfo(_waitTime, _obj);
 
-        // ‘Ò‹@ŠÔ
+        // å¾…æ©Ÿæ™‚é–“
         yield return new WaitForSeconds(_waitTime);
 
         PlayerObj.transform.position = _obj.transform.position;
