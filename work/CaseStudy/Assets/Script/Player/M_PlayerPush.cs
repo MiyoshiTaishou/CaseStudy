@@ -95,7 +95,7 @@ public class M_PlayerPush : MonoBehaviour
             //èåèÇ»Çµ
             case MODE.None:
 
-                if (Input.GetKeyDown(KeyCode.P))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush"))
                 {
                     Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
 
@@ -108,7 +108,7 @@ public class M_PlayerPush : MonoBehaviour
             //ñ⁄Ç≠ÇÁÇ‹ÇµíÜ
             case MODE.Blinding:
                
-                if (Input.GetKeyDown(KeyCode.P) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
+                if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("EnemyPush")) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
                 {
                     Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
 
@@ -121,7 +121,7 @@ public class M_PlayerPush : MonoBehaviour
             //ÉoÉåÇƒÇ¢Ç»Ç¢éû
             case MODE.Back:
 
-                if (Input.GetKeyDown(KeyCode.P) && !push.GetComponent<MPlayerSearch>().GetIsSearch())
+                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<MPlayerSearch>().GetIsSearch())
                 {
                     Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
 
