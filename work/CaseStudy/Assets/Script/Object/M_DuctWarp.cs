@@ -34,7 +34,11 @@ public class M_DuctWarp : MonoBehaviour
     /// プレイヤー
     /// </summary>
     private GameObject PlayerObj;
-    private GameObject PlayerImage;
+
+    /// <summary>
+    /// プレイヤーが持っているレンダラ
+    /// </summary>
+    private List<SpriteRenderer> renderers = new List<SpriteRenderer>();
 
     /// <summary>
     /// ダクトに入っているか
@@ -80,8 +84,19 @@ public class M_DuctWarp : MonoBehaviour
         {
             Debug.Log("右ダクトが見つかりません");
         }
-        // 子オブジェクトを取得
-        PlayerImage = GameObject.Find("PlayerImage").gameObject;
+
+        // プレイヤーが持っているSpriteRendererを全て取得
+        SpriteRenderer[] spriteRenderers = PlayerObj.GetComponentsInChildren<SpriteRenderer>();
+
+        if(spriteRenderers.Length==0)
+        {
+            Debug.Log("持ってません");
+        }
+
+        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+        {
+            renderers.Add(spriteRenderer);
+        }
 
         //UI非表示
         UIObj.SetActive(false);
@@ -101,6 +116,18 @@ public class M_DuctWarp : MonoBehaviour
         {
             Debug.Log("ダクトに入った");
             isInDuct = !isInDuct;
+
+            if (isInDuct)
+            {
+                // ダクトに入ったらプレイヤーのレイヤーを変更
+                PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");
+            }
+            else
+            {
+                // ダクトから出たらプレイヤーの元のレイヤーに戻す
+                PlayerObj.layer = LayerMask.NameToLayer("PlayerLayer"); ;
+            }
+
             PlayerObj.transform.position = transform.position;
             PlayerObj.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
@@ -113,18 +140,24 @@ public class M_DuctWarp : MonoBehaviour
         }
         
         if(isInDuct)
-        {
+        {            
             //見えないようにする
-            PlayerImage.GetComponent<SpriteRenderer>().enabled = false;
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                renderers[i].enabled = false;
+            }           
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);            
         }
         else
         {
             //見えるようにする
-            PlayerImage.GetComponent<SpriteRenderer>().enabled = true;
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                renderers[i].enabled = true;
+            }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);                        
         }
     }
 
