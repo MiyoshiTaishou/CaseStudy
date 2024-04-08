@@ -14,7 +14,10 @@ public class M_SwitchBGM : MonoBehaviour
     private float fRate = 0.0f; // フェード時間                                 
 
     [Header("曲の切り替え速度"), SerializeField]
-    private float fSpeed = 1.0f; // フェード時間              
+    private float fSpeed = 1.0f; // フェード時間
+                                 // 
+    [Header("音量"), SerializeField,]
+    private float fVolume = 0.1f;
 
     /// <summary>
     /// 時間計測
@@ -45,8 +48,8 @@ public class M_SwitchBGM : MonoBehaviour
         //}       
 
         //BGMのミックス
-        bgmSource1.volume = 1 - fRate;
-        bgmSource2.volume = fRate;
+        bgmSource1.volume = (1 - fRate) * fVolume;
+        bgmSource2.volume = fRate * fVolume;
     }
 
     public void ChangeBGM()
