@@ -1,0 +1,13 @@
+ホログラム導入手順
+
+①Script > Player の[N_GenerateHologram]をプレイヤーにアタッチ
+
+②アタッチした[N_GenerateHologram]のインスペクターにそれぞれプレハブを割り当て（現時点で3つ）
+  Object > Field > Hologram > (Holo_Floor、Holo_Payer、Holo_Wall)
+
+③[N_GenerateHologram]のインスペクター内のタイルサイズはいじらんといてください。
+  「bGenerationMethod」をオンオフすると範囲選択したときの床と壁の生成方法が変わります
+
+④完成...のはず
+
+生成したオブジェクトの削除までの時間は②のプレハブたちの[N_DestroyTimer]のインスペクターの中で変更できます(初期 5)
