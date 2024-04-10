@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 4866237347069420182}
   m_Layer: 0
   m_Name: Duct
-  m_TagString: Untagged
+  m_TagString: Duct
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,6 +234,8 @@ MonoBehaviour:
   RightDuct: {fileID: 0}
   fMoveTime: 1
   UIObj: {fileID: 1819633652518326455}
+  SEDuctEnter: {fileID: 0}
+  SEDuctMove: {fileID: 0}
 --- !u!82 &6704668891544293357
 AudioSource:
   m_ObjectHideFlags: 0
