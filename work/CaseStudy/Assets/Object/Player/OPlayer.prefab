@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6336587647645303317}
   - component: {fileID: 6336587647645303318}
   - component: {fileID: 3424376335874709191}
+  - component: {fileID: 8925823462861846450}
   m_Layer: 3
   m_Name: OPlayer
   m_TagString: Player
@@ -197,6 +198,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8925823462861846450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336587648020932168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6182aa2b6eb3a2f43bf37b7df5e98cf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Holo_Player: {fileID: 392718627150799720, guid: dd81cf2fab2f620489a615625495ecd6, type: 3}
+  Holo_Wall: {fileID: 806074594693296770, guid: be4101a1eed5aae4098f365085e80191, type: 3}
+  Holo_Floor: {fileID: 3770925614584002175, guid: 10814aed2fabbac4a85c0d9bb6fd9841, type: 3}
+  fTileScale: 1
+  bGenerationMethosd: 1
 --- !u!1 &6336587649174639115
 GameObject:
   m_ObjectHideFlags: 0

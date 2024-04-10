@@ -464,6 +464,8 @@ MonoBehaviour:
   RightDpwn: {fileID: 1535360902}
   Target: {fileID: 1116161661}
   fViewSize: 6
+  isAreaCheck: 1
+  warpTrackTime: 0.5
 --- !u!1001 &142781160
 PrefabInstance:
   m_ObjectHideFlags: 0
