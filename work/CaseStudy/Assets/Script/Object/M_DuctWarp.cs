@@ -29,32 +29,22 @@ public class M_DuctWarp : MonoBehaviour
 
     [Header("移動時に鳴らすSE"), SerializeField]
     private AudioSource SEDuctMove;
-
-    /// <summary>
-    /// プレイヤー
-    /// </summary>
-    private GameObject PlayerObj;
-
-    /// <summary>
-    /// プレイヤーが持っているレンダラ
-    /// </summary>
-    private List<SpriteRenderer> renderers = new List<SpriteRenderer>();
-
-    /// <summary>
-    /// ダクトに入っているか
-    /// </summary>
-    static bool isInDuct;
-
+   
     /// <summary>
     /// ダクトに触れている
     /// </summary>
     private bool isTouch;
 
     /// <summary>
+    /// ダクトマネージャ
+    /// </summary>
+    private GameObject DuctManager;
+
+    /// <summary>
     /// 移動中
     /// </summary>
     private bool isMoveDuct;
-
+  
     // 20240407 二宮追記
     /// <summary>
     /// 対象追跡カメラスクリプト
@@ -64,12 +54,7 @@ public class M_DuctWarp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerObj = GameObject.Find("Player");
-
-        if (!PlayerObj)
-        {
-            Debug.Log("プレイヤーが見つかりません");
-        }
+        DuctManager = GameObject.Find("DuctManager");
 
         if (!UpDuct)
         {
@@ -89,21 +74,8 @@ public class M_DuctWarp : MonoBehaviour
         if (!RightDuct)
         {
             Debug.Log("右ダクトが見つかりません");
-        }
-
-        // プレイヤーが持っているSpriteRendererを全て取得
-        SpriteRenderer[] spriteRenderers = PlayerObj.GetComponentsInChildren<SpriteRenderer>();
-
-        if(spriteRenderers.Length==0)
-        {
-            Debug.Log("持ってません");
-        }
-
-        foreach (SpriteRenderer spriteRenderer in spriteRenderers)
-        {
-            renderers.Add(spriteRenderer);
-        }
-
+        }      
+       
         //UI非表示
         UIObj.SetActive(false);
 
@@ -120,60 +92,23 @@ public class M_DuctWarp : MonoBehaviour
             return;
         }
 
-        //触れている間は押すたびに入ったり出たりする
+        //入る処理
         if (Input.GetKeyDown(KeyCode.V) && isTouch)
+        {           
+            //マネージャに自身のダクトにプレイヤーが入ったことを知らせる
+            DuctManager.GetComponent<M_DuctManager>().SetContains(this.gameObject, true);
+        }      
+        
+        if(DuctManager.GetComponent<M_DuctManager>().GetValue(gameObject))
         {
-            Debug.Log("ダクトに入った");
-            isInDuct = !isInDuct;
-
-            if (isInDuct)
-            {
-                // ダクトに入ったらプレイヤーのレイヤーを変更
-                PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");
-            }
-            else
-            {
-                // ダクトから出たらプレイヤーの元のレイヤーに戻す
-                PlayerObj.layer = LayerMask.NameToLayer("PlayerLayer"); ;
-            }
-
-            PlayerObj.transform.position = transform.position;
-            PlayerObj.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        }
-
-        //触れているダクトの移動処理
-        if (isInDuct && isTouch)
-        {
-            //入っている間の処理
             InDuctMove();
-        }
-
-        if(isInDuct)
-        {            
-            //見えないようにする
-            for (int i = 0; i < renderers.Count; i++)
-            {
-                renderers[i].enabled = false;
-            }           
-            PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);            
-        }
-        else
-        {
-            //見えるようにする
-            for (int i = 0; i < renderers.Count; i++)
-            {
-                renderers[i].enabled = true;
-            }
-            PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);                        
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
+        {            
             isTouch = true;
 
             UIObj.SetActive(true);
@@ -192,6 +127,8 @@ public class M_DuctWarp : MonoBehaviour
     //ダクト同士を移動する
     void InDuctMove()
     {
+        Debug.Log(gameObject);
+
         //上ダクトに移動
         if (Input.GetKeyDown(KeyCode.W) && UpDuct)
         {
@@ -228,7 +165,8 @@ public class M_DuctWarp : MonoBehaviour
         // 待機時間
         yield return new WaitForSeconds(_waitTime);
 
-        PlayerObj.transform.position = _obj.transform.position;
+        //ダクトマネージャのワープ処理を呼ぶ
+        DuctManager.GetComponent<M_DuctManager>().DuctWarp(_obj, this.gameObject);
 
         isMoveDuct = false;
     }

@@ -31,8 +31,7 @@ public class M_SwitchBGM : MonoBehaviour
 
     private void Start()
     {
-        bgmSource1.Play();
-        bgmSource2.Play();
+        bgmSource1.Play();                
     }
 
     private void Update()
@@ -57,10 +56,14 @@ public class M_SwitchBGM : MonoBehaviour
         if(isPlayingBGM1)
         {
             fRate = 1.0f;
+            bgmSource2.Play();
+            bgmSource1.Stop();
         }
         else
         {
             fRate = 0.0f;
+            bgmSource1.Play();
+            bgmSource2.Stop();
         }
 
         isPlayingBGM1 = !isPlayingBGM1;
