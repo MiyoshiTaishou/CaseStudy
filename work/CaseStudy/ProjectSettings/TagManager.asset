@@ -10,6 +10,8 @@ TagManager:
   - TileMap
   - Collider
   - Duct
+  - Hologram
+  - Decoy
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - UI
   - Ground
   - EnemyLayer
-  - 
+  - Hologram
   - 
   - 
   - 
