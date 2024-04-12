@@ -2217,16 +2217,20 @@ PrefabInstance:
       value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: isRayDraw
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fDirection
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: MoveSpeed.x
-      value: 80
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: MoveDistance.x
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fGroundDistance
@@ -2238,11 +2242,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818158, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.9800005
+      value: 13.67
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818158, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.15
+      value: 3.47
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818158, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: m_LocalPosition.z
