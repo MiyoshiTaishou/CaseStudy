@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using static UnityEngine.UI.Image;
 
@@ -66,6 +67,12 @@ public class SEnemyMove : MonoBehaviour
     private Vector2 slopeGup2=Vector2.zero;
 
     private float frictionCoefficient = 0.5f; // 摩擦係数
+    //坂道上にいるか
+    private bool isSlope = false;
+
+    //地に足ついてるか
+    private bool isGround = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -109,15 +116,17 @@ public class SEnemyMove : MonoBehaviour
             float slopeAngle= Mathf.Atan2(point2.y-point1.y, point2.x-point1.x) * Mathf.Rad2Deg;
             int isRight = IsReflectionX ? -1 : 1;
 
-            if (slopeAngle > 170 && slopeAngle < 90)
+            if (slopeAngle < 170 && slopeAngle > 10)
             {
                 Vector2 vel=rb.velocity;
                 vel.x = fLimitSpeed*isRight;
                 rb.velocity = vel;
+                isSlope = true;
             }
             else
             {
                 rb.drag = 1;
+                isSlope= false;
             }
             //傾斜の角度が一定以上なら傾いていると判断
 
@@ -156,7 +165,10 @@ public class SEnemyMove : MonoBehaviour
         }
 
         //壁判定用のRayがタイルマップに接触しているか、足元のRayが何も情報を得られなければ方向を切り替える
-        if (hitWall.collider!=null&&hitWall.collider.CompareTag("TileMap")||hitGround.collider==null)
+        if (GroundCheck()&&
+            hitWall.collider!=null&&hitWall.collider.CompareTag("TileMap")||
+            hitWall.collider!=null&&hitWall.collider.CompareTag("Hologram")||
+            hitGround.collider==null)
         {
             IsReflectionX= !IsReflectionX;
             if(IsReflectionX) 
@@ -229,12 +241,50 @@ public class SEnemyMove : MonoBehaviour
             vel.x = 0;
             vel.y = 0;
             rb.velocity = vel;
-            rb.isKinematic = true;
+            if (isSlope)
+            {
+                rb.isKinematic = true;
+            }
         }
         //指定の秒数待つ
         yield return new WaitForSeconds(fWaitTime);
         //再開してから実行したい処理を書く
         this.enabled = true;
-        rb.isKinematic = false;
+        if(isSlope)
+        {
+            rb.isKinematic = false;
+        }
+    }
+
+    private bool GroundCheck()
+    {
+        Vector2 origin = transform.position;
+        origin.y -= 0.7f;
+        RaycastHit2D hit=Physics2D.Raycast(origin, Vector2.down,0.2f);
+        Debug.DrawRay(origin,Vector2.down*0.2f, Color.yellow);
+        if(hit.collider != null && hit.collider.CompareTag("TileMap")) 
+        {
+            //ホロ床すり抜けなどで位置が大きく変わった場合に目標位置等の更新を行う
+            if(!isGround) 
+            {
+                if (IsReflectionX)
+                {
+                    GallPos.x = defaultPos.x - MoveDistance.x;
+                    StartCoroutine(Gall());
+                }
+                else if (!IsReflectionX)
+                {
+                    GallPos.x = defaultPos.x + MoveDistance.x;
+                    StartCoroutine(Gall());
+                }
+                defaultPos = transform.position;
+            }
+          isGround= true;
+        }
+        else
+        {
+            isGround= false;
+        }
+        return isGround;
     }
 }
