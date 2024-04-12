@@ -119,8 +119,8 @@ public class MPlayerSearch : MonoBehaviour
     private void OnTriggerStay2D(Collider2D _collision)
     {
         //視界の範囲の当たり判定
-        if (_collision.gameObject.CompareTag("Player"))
-        {            
+        if (_collision.gameObject.CompareTag("Player") || _collision.gameObject.tag == "Decoy")
+        {
             //視界の範囲内に収まっているか
 
             //自分とプレイヤーのベクトルを求める
@@ -140,7 +140,7 @@ public class MPlayerSearch : MonoBehaviour
 
                 Debug.DrawRay(transform.position + isRight * (selfColliderRadius + 0.1f), vecPos.normalized * vecPos.magnitude, Color.red);                
 
-                if (RayHit.collider != null && RayHit.collider.CompareTag("Player"))
+                if (RayHit.collider != null && (RayHit.collider.CompareTag("Player") || RayHit.collider.CompareTag("Decoy")))
                 {
                     Debug.Log("視認中");
                     isSearch = true;
