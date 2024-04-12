@@ -230,6 +230,24 @@ public class SEnemyMove : MonoBehaviour
         }
     }
 
+      private void OnCollisionEnter2D(Collision2D _collision)
+    {
+        if(_collision.transform.CompareTag("Enemy")/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
+        {
+            IsReflectionX = !IsReflectionX;
+            if (IsReflectionX)
+            {
+                GallPos.x = defaultPos.x - MoveDistance.x;
+                MoveSpeed.x = -MoveSpeed.x;
+            }
+            else if (!IsReflectionX)
+            {
+                GallPos.x = defaultPos.x + MoveDistance.x;
+                MoveSpeed.x = -MoveSpeed.x;
+            }
+        }
+    }
+
     //コルーチンで待機処理
     IEnumerator Gall()
     {
