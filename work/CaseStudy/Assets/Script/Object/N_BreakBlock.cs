@@ -27,7 +27,6 @@ public class N_BreakBlock : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 最初だけスクリプト取得
-        enemyBall = collision.GetComponent<S_EnemyBall>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -35,6 +34,8 @@ public class N_BreakBlock : MonoBehaviour
         // 指定したタグをもったオブジェクトがぶつかってきたら
         if(collision.collider.tag == sBreakTag)
         {
+            enemyBall = collision.gameObject.GetComponent<S_EnemyBall>();
+
             // ぶつかってきた敵塊の数を取得
             int checkNum = (int)enemyBall.GetStickCount();
 
