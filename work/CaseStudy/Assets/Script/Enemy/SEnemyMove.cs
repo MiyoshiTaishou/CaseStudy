@@ -168,6 +168,7 @@ public class SEnemyMove : MonoBehaviour
         if (GroundCheck()&&
             hitWall.collider!=null&&hitWall.collider.CompareTag("TileMap")||
             hitWall.collider!=null&&hitWall.collider.CompareTag("Hologram")||
+            hitWall.collider!=null&&hitWall.collider.CompareTag("Ground")||
             hitGround.collider==null)
         {
             IsReflectionX= !IsReflectionX;
