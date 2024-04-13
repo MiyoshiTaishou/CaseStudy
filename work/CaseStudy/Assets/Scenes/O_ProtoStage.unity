@@ -682,7 +682,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -100
+  m_SortingOrder: -999
   m_TargetDisplay: 0
 --- !u!224 &127789865
 RectTransform:
@@ -1027,7 +1027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &305554919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,8 +1428,20 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 538019055}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9032567230447829896, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 517734169}
+    - target: {fileID: 9032567230447829896, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9032567230447829896, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
+      propertyPath: m_SortingOrder
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 9032567230447829897, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1440,7 +1452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9032567230447829897, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9032567230447829897, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1564,7 +1576,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 632535885}
   - {fileID: 871022775}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1654,11 +1665,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
---- !u!224 &632535885 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 9032567230447829897, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
-  m_PrefabInstance: {fileID: 530322680}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &642988812 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 117817261664437955, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
@@ -2426,7 +2432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 172465874}
   color: {r: 1, g: 0, b: 0, a: 0.28235295}
-  fColorSpeed: 0.01
+  fColorSpeed: 1
 --- !u!4 &1133960781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1497359285853439718, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
