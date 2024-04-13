@@ -1190,12 +1190,28 @@ PrefabInstance:
       value: 1.0230955
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: fGup
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: isStop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fDistance
-      value: 0.5
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: MoveSpeed.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: MoveDistance.x
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fGroundDistance
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818158, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: m_RootOrder
@@ -2223,12 +2239,28 @@ PrefabInstance:
       value: 1.0230955
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: fGup
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: isStop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fDistance
-      value: 0.5
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: MoveSpeed.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: MoveDistance.x
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fGroundDistance
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818158, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: m_RootOrder
@@ -2791,12 +2823,28 @@ PrefabInstance:
       value: 1.0230955
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: fGup
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: isStop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fDistance
-      value: 0.5
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: MoveSpeed.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: MoveDistance.x
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fGroundDistance
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818158, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: m_RootOrder
@@ -7745,12 +7793,28 @@ PrefabInstance:
       value: 1.0230955
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: fGup
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: isStop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fDistance
-      value: 0.5
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: MoveSpeed.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
+      propertyPath: MoveDistance.x
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818146, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: fGroundDistance
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7564613837830818158, guid: d9f31c0702a681f418252f5622c3136b, type: 3}
       propertyPath: m_RootOrder
