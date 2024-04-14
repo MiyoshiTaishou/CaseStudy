@@ -43,16 +43,7 @@ public class M_PlayerPush : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(PlayerObj.GetComponent<M_PlayerMove>().GetDir().x > 0.0f)
-        {
-            transform.eulerAngles = Vector3.zero;
-        }
-        else if(PlayerObj.GetComponent<M_PlayerMove>().GetDir().x < 0.0f)
-        {
-            transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
-        }   
-        
+    {      
         if(isPush && PushObj)
         {
             Push(PushObj);
@@ -97,7 +88,16 @@ public class M_PlayerPush : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush"))
                 {
-                    Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
+                    Vector3 dir;
+
+                    if (this.transform.eulerAngles.y == 180.0f)
+                    {
+                        dir = transform.right;
+                    }
+                    else
+                    {
+                        dir = -transform.right;
+                    }
 
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
                     push.GetComponent<S_EnemyBall>().SetisPushing(true);
@@ -110,7 +110,16 @@ public class M_PlayerPush : MonoBehaviour
                
                 if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("EnemyPush")) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
                 {
-                    Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
+                    Vector3 dir;
+
+                    if (this.transform.eulerAngles.y == 180.0f)
+                    {
+                        dir = transform.right;
+                    }
+                    else
+                    {
+                        dir = -transform.right;
+                    }
 
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
                     push.GetComponent<S_EnemyBall>().SetisPushing(true);
@@ -123,7 +132,16 @@ public class M_PlayerPush : MonoBehaviour
 
                 if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<MPlayerSearch>().GetIsSearch())
                 {
-                    Vector3 dir = PlayerObj.GetComponent<M_PlayerMove>().GetDir();
+                    Vector3 dir;
+
+                    if (this.transform.eulerAngles.y == 180.0f)
+                    {
+                        dir = transform.right;
+                    }     
+                    else
+                    {
+                        dir = -transform.right;
+                    }
 
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
                     push.GetComponent<S_EnemyBall>().SetisPushing(true);
