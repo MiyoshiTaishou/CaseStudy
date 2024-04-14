@@ -47,26 +47,34 @@ public class M_SwitchBGM : MonoBehaviour
         //}       
 
         //BGMのミックス
-        bgmSource1.volume = (1 - fRate) * fVolume;
-        bgmSource2.volume = fRate * fVolume;
+        //bgmSource1.volume = (1 - fRate) * fVolume;
+        //bgmSource2.volume = fRate * fVolume;
     }
 
-    public void ChangeBGM()
+    /// <summary>
+    /// 引数trueは緊急,falseは通常
+    /// </summary>
+    /// <param name="_bgm"></param>
+    public void ChangeBGM(bool _bgm)
     {
-        if(isPlayingBGM1)
+        if(_bgm)
         {
-            fRate = 1.0f;
-            bgmSource2.Play();
-            bgmSource1.Stop();
+            //fRate = 1.0f;
+            if(!bgmSource2.isPlaying)
+            {
+                bgmSource2.Play();
+                bgmSource1.Stop();
+            }           
         }
         else
         {
-            fRate = 0.0f;
-            bgmSource1.Play();
-            bgmSource2.Stop();
-        }
-
-        isPlayingBGM1 = !isPlayingBGM1;
+            if(!bgmSource1.isPlaying)
+            {
+                //fRate = 0.0f;
+                bgmSource1.Play();
+                bgmSource2.Stop();
+            }           
+        }        
     }
 
     /// <summary>
