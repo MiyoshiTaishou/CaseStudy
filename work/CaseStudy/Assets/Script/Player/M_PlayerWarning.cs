@@ -78,23 +78,15 @@ public class M_PlayerWarning : MonoBehaviour
         if(isFound)
         {
             Found();
-            
-            if(isSwitch)
-            {
-                BGM.GetComponent<M_SwitchBGM>().ChangeBGM();
-                isSwitch = false;
-            }
+
+            BGM.GetComponent<M_SwitchBGM>().ChangeBGM(true);           
         }
         else
         {           
             //Œ©‚Â‚©‚Á‚Ä‚È‚¢Žž‚Í“§–¾
             img.color = Color.clear;
-            
-            if(!isSwitch)
-            {
-                BGM.GetComponent<M_SwitchBGM>().ChangeBGM();
-                isSwitch = true;
-            }
+                  
+            BGM.GetComponent<M_SwitchBGM>().ChangeBGM(false);      
         }      
     }
 
@@ -144,13 +136,5 @@ public class M_PlayerWarning : MonoBehaviour
                 EnemyList.Remove(collision.gameObject);
             }
         }
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.collider.CompareTag("Enemy"))
-        {
-            isFound = true;
-        }
-    }
+    }  
 }
