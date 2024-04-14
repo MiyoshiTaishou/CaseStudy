@@ -67,6 +67,8 @@ public class M_PlayerWarning : MonoBehaviour
             {
                 //Œ©‚Â‚©‚Á‚½ê‡‚Ítrue‚É‚µ‚Ä”²‚¯‚é
                 isFound = true;
+
+                Debug.Log("Œ©‚Â‚©‚Á‚½‚æ");
                 break;
             }
             else
@@ -78,6 +80,8 @@ public class M_PlayerWarning : MonoBehaviour
         if(isFound)
         {
             Found();
+
+            Debug.Log("Œ©‚Â‚©‚Á‚½");
 
             BGM.GetComponent<M_SwitchBGM>().ChangeBGM(true);           
         }

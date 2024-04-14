@@ -31,7 +31,8 @@ public class M_SwitchBGM : MonoBehaviour
 
     private void Start()
     {
-        bgmSource1.Play();                
+        bgmSource1.Play();
+        fRate = 1.0f;
     }
 
     private void Update()
@@ -47,7 +48,7 @@ public class M_SwitchBGM : MonoBehaviour
         //}       
 
         //BGMのミックス
-        bgmSource1.volume = (1 - fRate) * fVolume;
+        bgmSource1.volume = 1 * fVolume;
         bgmSource2.volume = fRate * fVolume;
     }
 
