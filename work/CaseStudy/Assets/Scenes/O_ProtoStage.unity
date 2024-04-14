@@ -253,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -262,6 +262,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -343,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -352,6 +356,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -428,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -437,6 +445,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -513,7 +525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -522,6 +534,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -908,7 +924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -917,6 +933,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -993,7 +1013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -1002,6 +1022,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -1284,7 +1308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -1293,6 +1317,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -1406,7 +1434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -1415,6 +1443,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -1658,7 +1690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -1667,6 +1699,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -1748,7 +1784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -1757,6 +1793,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -1833,7 +1873,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -1842,6 +1882,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -1927,7 +1971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -1936,6 +1980,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -2012,7 +2060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -2021,6 +2069,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -2262,7 +2314,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1819633653674106870, guid: ab51d90afb4185041a9f48ee1df7558c, type: 3}
+
       propertyPath: m_Name
       value: Duct (5)
       objectReference: {fileID: 0}
@@ -2333,7 +2385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -2342,6 +2394,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -2562,7 +2618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -2571,6 +2627,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -2742,7 +2802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -2751,6 +2811,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -16639,7 +16703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -16648,6 +16712,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -17012,7 +17080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -17021,6 +17089,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -17143,7 +17215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -17152,6 +17224,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -17287,7 +17363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -17296,6 +17372,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -18028,7 +18108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -18037,6 +18117,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -18118,7 +18202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -18127,6 +18211,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -18339,7 +18427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -18348,6 +18436,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -18574,7 +18666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -18583,6 +18675,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -18659,7 +18755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -18668,6 +18764,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -19186,7 +19286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -19195,6 +19295,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
@@ -19271,7 +19375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: fDistance
-      value: 0.8
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: isRayDraw
@@ -19280,6 +19384,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fFreezeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x

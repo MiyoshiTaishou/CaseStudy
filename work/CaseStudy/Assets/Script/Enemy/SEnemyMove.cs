@@ -17,6 +17,9 @@ public class SEnemyMove : MonoBehaviour
     [Header("目標位置まで到達して何秒待機するか"), SerializeField]
     float fWaitTime = 0.0f;
 
+    [Header("敵衝突時の停止時間"), SerializeField]
+    float fFreezeTime = 0.0f;
+
     //反対方向を向いているか
     private bool IsReflectionX = false;
 
@@ -176,13 +179,13 @@ public class SEnemyMove : MonoBehaviour
             {
                 GallPos.x = defaultPos.x - MoveDistance.x;
                 MoveSpeed.x = -MoveSpeed.x;
-                StartCoroutine(Gall());
+                StartCoroutine(Gall(fWaitTime));
             }
             else if(!IsReflectionX) 
             {
                 GallPos.x = defaultPos.x + MoveDistance.x;
                 MoveSpeed.x = -MoveSpeed.x;
-                StartCoroutine(Gall());
+                StartCoroutine(Gall(fWaitTime));
             }
         }
 
@@ -195,7 +198,7 @@ public class SEnemyMove : MonoBehaviour
             IsReflectionX = true;
             GallPos.x = defaultPos.x - MoveDistance.x;
             MoveSpeed.x = -MoveSpeed.x;
-            StartCoroutine(Gall());
+            StartCoroutine(Gall(fWaitTime));
         }
         else if(transform.position.x<GallPos.x&&
             IsReflectionX) 
@@ -203,7 +206,7 @@ public class SEnemyMove : MonoBehaviour
             IsReflectionX = false;
             GallPos.x = defaultPos.x + MoveDistance.x;
             MoveSpeed.x = -MoveSpeed.x;
-            StartCoroutine(Gall());
+            StartCoroutine(Gall(fWaitTime));
         }
 
         //現状使わないY軸移動
@@ -233,6 +236,7 @@ public class SEnemyMove : MonoBehaviour
 
       private void OnCollisionEnter2D(Collision2D _collision)
     {
+        //敵と当たった瞬間に方向転換
         if(_collision.transform.CompareTag("Enemy")/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
         {
             IsReflectionX = !IsReflectionX;
@@ -246,11 +250,35 @@ public class SEnemyMove : MonoBehaviour
                 GallPos.x = defaultPos.x + MoveDistance.x;
                 MoveSpeed.x = -MoveSpeed.x;
             }
+            StartCoroutine(Gall(fFreezeTime));
+        }
+    }
+    private void OnCollisionStay2D(Collision2D _collision)
+    {
+        //敵と当たっている間そいつと違う方向を向いているかのチェックをし続ける
+        //違う方向を向いていたら方向転換
+        //その際、方向転換後の力を加えてループを回避
+        if(_collision.transform.CompareTag("Enemy") && _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX)
+        {
+            IsReflectionX = !IsReflectionX;
+            if (IsReflectionX)
+            {
+                GallPos.x = defaultPos.x - MoveDistance.x;
+                MoveSpeed.x = -MoveSpeed.x;
+            }
+            else if (!IsReflectionX)
+            {
+                GallPos.x = defaultPos.x + MoveDistance.x;
+                MoveSpeed.x = -MoveSpeed.x;
+            }
+
+            rb.AddForce(MoveSpeed);
+            StartCoroutine(Gall(fFreezeTime));
         }
     }
 
     //コルーチンで待機処理
-    IEnumerator Gall()
+    IEnumerator Gall(float _wait)
     {
         //終わるまで待ってほしい処理を書く
         this.enabled = false;
@@ -266,7 +294,7 @@ public class SEnemyMove : MonoBehaviour
             }
         }
         //指定の秒数待つ
-        yield return new WaitForSeconds(fWaitTime);
+        yield return new WaitForSeconds(_wait);
         //再開してから実行したい処理を書く
         this.enabled = true;
         if(isSlope)
@@ -278,9 +306,9 @@ public class SEnemyMove : MonoBehaviour
     private bool GroundCheck()
     {
         Vector2 origin = transform.position;
-        origin.y -= 0.7f;
+        origin.y -= 1.2f;
         RaycastHit2D hit=Physics2D.Raycast(origin, Vector2.down,0.2f);
-        Debug.DrawRay(origin,Vector2.down*0.2f, Color.yellow);
+        //Debug.DrawRay(origin,Vector2.down*0.2f, Color.yellow);
         if(hit.collider != null && hit.collider.CompareTag("TileMap")) 
         {
             //ホロ床すり抜けなどで位置が大きく変わった場合に目標位置等の更新を行う
@@ -289,12 +317,12 @@ public class SEnemyMove : MonoBehaviour
                 if (IsReflectionX)
                 {
                     GallPos.x = defaultPos.x - MoveDistance.x;
-                    StartCoroutine(Gall());
+                    StartCoroutine(Gall(fWaitTime));
                 }
                 else if (!IsReflectionX)
                 {
                     GallPos.x = defaultPos.x + MoveDistance.x;
-                    StartCoroutine(Gall());
+                    StartCoroutine(Gall(fWaitTime));
                 }
                 defaultPos = transform.position;
             }
