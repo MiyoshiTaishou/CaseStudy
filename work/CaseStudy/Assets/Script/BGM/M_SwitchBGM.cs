@@ -47,8 +47,8 @@ public class M_SwitchBGM : MonoBehaviour
         //}       
 
         //BGMのミックス
-        //bgmSource1.volume = (1 - fRate) * fVolume;
-        //bgmSource2.volume = fRate * fVolume;
+        bgmSource1.volume = (1 - fRate) * fVolume;
+        bgmSource2.volume = fRate * fVolume;
     }
 
     /// <summary>
