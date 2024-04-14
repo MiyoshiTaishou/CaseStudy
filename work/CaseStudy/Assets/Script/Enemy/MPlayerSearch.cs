@@ -112,7 +112,7 @@ public class MPlayerSearch : MonoBehaviour
         }
 
         // ‹–ì”ÍˆÍ‚ğ•`‰æ‚·‚é
-        DrawFieldOfView();
+        //DrawFieldOfView();
     }
 
     //‹–ìŠp“à‚É“ü‚Á‚½‚©‚Ç‚¤‚©ŒŸ’m
@@ -280,6 +280,8 @@ public class MPlayerSearch : MonoBehaviour
         mesh.triangles = triangles;
 
         mesh.RecalculateNormals();
+
+        MTDefault.color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
 
         // ƒƒbƒVƒ…‚ğ•`‰æ
         Graphics.DrawMesh(mesh, Vector3.zero, Quaternion.identity, MTDefault, 0);
