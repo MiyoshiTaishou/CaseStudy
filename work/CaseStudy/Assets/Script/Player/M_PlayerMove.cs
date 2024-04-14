@@ -51,10 +51,12 @@ public class M_PlayerMove : MonoBehaviour
         if(fHorizontalInput > 0.0f)
         {
             vecDir = transform.right;
+            transform.eulerAngles = Vector3.zero;
         }
         else if(fHorizontalInput < 0.0f)
         {
             vecDir = -transform.right;
+            transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
         }
     }
 }
