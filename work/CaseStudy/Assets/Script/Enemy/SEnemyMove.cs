@@ -307,7 +307,7 @@ public class SEnemyMove : MonoBehaviour
     {
         Vector2 origin = transform.position;
         origin.y -= 1.2f;
-        RaycastHit2D hit=Physics2D.Raycast(origin, Vector2.down,0.2f);
+        RaycastHit2D hit=Physics2D.Raycast(origin, Vector2.down,0.4f);
         //Debug.DrawRay(origin,Vector2.down*0.2f, Color.yellow);
         if(hit.collider != null && hit.collider.CompareTag("TileMap")) 
         {
