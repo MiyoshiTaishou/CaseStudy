@@ -132,15 +132,16 @@ public class M_PlayerPush : MonoBehaviour
 
                 if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<MPlayerSearch>().GetIsSearch())
                 {
-                    Vector3 dir;
+                    Vector3 dir = Vector3.zero;                    
 
-                    if (this.transform.eulerAngles.y == 180.0f)
+                    if (PlayerObj.transform.eulerAngles.y >= 180.0f)
                     {
                         dir = transform.right;
                     }     
-                    else
+                    else if(PlayerObj.transform.eulerAngles.y <= 60.0f)
                     {
-                        dir = -transform.right;
+                        Debug.Log(PlayerObj.transform.eulerAngles);
+                        dir = transform.right;
                     }
 
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
