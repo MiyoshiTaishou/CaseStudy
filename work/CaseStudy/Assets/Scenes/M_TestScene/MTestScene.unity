@@ -754,7 +754,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 117817261664437955, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
   m_PrefabInstance: {fileID: 915425208}
   m_PrefabAsset: {fileID: 0}
-
 --- !u!1001 &150453544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1119,6 +1118,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255884833}
   m_CullTransparentMesh: 1
+--- !u!4 &277490632 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 117817261664437955, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+  m_PrefabInstance: {fileID: 584012474}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &293531588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2065,6 +2069,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+--- !u!4 &624461112 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 117817261664437955, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+  m_PrefabInstance: {fileID: 29256553}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &626399034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2765,7 +2774,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
-
 --- !u!1001 &915425208
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17771,6 +17779,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarningCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 9032567230447829903, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9032567230647337555, guid: eaba9cd99decefb40930304fb2faf288, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -18541,8 +18553,8 @@ Transform:
   - {fileID: 1780757773}
   - {fileID: 1787045735}
   - {fileID: 2082020927}
-  - {fileID: 130812525}
-  - {fileID: 112103225}
+  - {fileID: 624461112}
+  - {fileID: 277490632}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19509,7 +19521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
