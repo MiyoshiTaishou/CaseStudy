@@ -195,6 +195,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -298,6 +302,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -388,6 +396,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -472,6 +484,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -566,6 +582,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -651,6 +671,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -735,6 +759,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -1195,6 +1223,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -1289,6 +1321,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -1457,6 +1493,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -1915,6 +1955,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -2055,6 +2099,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -2370,6 +2418,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -2460,6 +2512,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -2549,6 +2605,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -2761,6 +2821,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -2845,6 +2909,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -2940,6 +3008,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -17538,6 +17610,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -17626,6 +17706,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -17873,6 +17957,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -17957,6 +18045,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -18052,6 +18144,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -18321,6 +18417,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -18830,6 +18930,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -18923,6 +19027,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -19015,6 +19123,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
@@ -19450,6 +19562,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20
       objectReference: {fileID: 0}
@@ -19757,6 +19873,10 @@ PrefabInstance:
       propertyPath: isRayDraw
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 391747642}
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveSpeed.x
       value: 20

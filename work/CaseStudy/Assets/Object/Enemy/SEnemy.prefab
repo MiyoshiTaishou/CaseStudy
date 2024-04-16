@@ -286,20 +286,23 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117817261664437972}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd1b8a03e1d286e40a95e79346c1d4e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
   MoveDistance: {x: 5, y: 0}
   MoveSpeed: {x: 3, y: 0}
-
-  fGroundDistance: 2.5
-  fGup: 0.3
+  fWaitTime: 0
+  fFreezeTime: 0
+  fDistance: 0.5
+  fGroundDistance: 1
+  fGup: 0
   fGrounddirx: 0.2
   fGrounddiry: -0.8
-  isStop: 1
-  isRayDraw: 1
+  isStop: 0
+  isRayDraw: 0
   Power: 20
   fLimitSpeed: 2
 --- !u!95 &117817261664437954
