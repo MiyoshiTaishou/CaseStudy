@@ -43,6 +43,8 @@ public class S_EnemyBall : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    private Vector2 vel;
+
     public int GetStickCount() 
     {
         int temp = 0;
@@ -64,7 +66,8 @@ public class S_EnemyBall : MonoBehaviour
         {
            GetComponent<SEnemyMove>().enabled = false;
            GetComponent<M_BlindingMove>().enabled = false;
-           GetComponent<MPlayerSearch>().enabled = false;  
+           GetComponent<MPlayerSearch>().enabled = false;
+            vel = rb.velocity;
         }
         if(isBall&& Mathf.Abs(rb.velocity.x) < fStopjudge) 
         {
@@ -74,6 +77,34 @@ public class S_EnemyBall : MonoBehaviour
 
 
 
+    private void OnCollisionEnter2D(Collision2D _collision)
+    {
+        if(!isPushing)
+        {
+            return;
+        }
+        //Ç†ÇΩÇ¡ÇΩÉIÉuÉWÉFÉNÉgÇ™ìGÇ©Ç¬âüÇ≥ÇÍÇƒÇ¢Ç»ÇØÇÍÇŒãzé˚
+        ColObject= _collision.gameObject;
+        if(ColObject.tag=="Enemy")
+        {
+            if (!ColObject.GetComponent<S_EnemyBall>().GetisPushing()||
+                (ColObject.GetComponent<S_EnemyBall>().GetisPushing()&&fStickCnt > ColObject.GetComponent<S_EnemyBall>().GetStickCount()))
+            {
+                isBall = true;
+                fStickCnt++;
+                //ãzé˚ÇµÇΩìGÇÃêîÇ…âûÇ∂ÇƒãêëÂâª
+                Vector3 nextScale = defaultScale;
+                float GiantLv = (float)GetGiantLv();
+                nextScale.x -= GiantLv / 2;
+                nextScale.y += GiantLv / 2;
+                transform.localScale = nextScale;
+                Destroy(ColObject);
+                rb.AddForce(vel*fBoost, ForceMode2D.Impulse);
+                GetComponent<AudioSource>().PlayOneShot(audioclip);
+                StartCoroutine(HitStop());
+            }
+        }
+    }
     private void OnCollisionStay2D(Collision2D _collision)
     {
         if(!isPushing)

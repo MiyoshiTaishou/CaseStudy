@@ -1,13 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
-using static UnityEngine.UI.Image;
 
 public class SEnemyMove : MonoBehaviour
 {
+    [Header("メインカメラ"),SerializeField]
+    Camera mainCamera= null;
+
     [Header("何マス分移動するか"), SerializeField]
     Vector2 MoveDistance= Vector2.zero;
 
@@ -76,6 +74,8 @@ public class SEnemyMove : MonoBehaviour
     //地に足ついてるか
     private bool isGround = false;
 
+    private bool isLook = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +89,10 @@ public class SEnemyMove : MonoBehaviour
         slopeGup1.x = 0.2f;
         slopeGup2 = slopeGup1;
         slopeGup2.x *= -1;
+        if (!mainCamera)
+        {
+            Debug.LogError("Main camera がありません");
+        }
     }
 
     // Update is called once per frame
@@ -98,7 +102,22 @@ public class SEnemyMove : MonoBehaviour
         {
             return;
         }
+        if (!isLook)
+        {
+            // オブジェクトの境界ボックスを取得
+            Bounds bounds = GetComponent<Renderer>().bounds;
 
+            // オブジェクトの境界ボックスがカメラの視錐台内にあるかどうかを判定
+            bool isVisible = GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(mainCamera), bounds);
+            if (isVisible) 
+            {
+                isLook= true;
+            }
+            else 
+            {
+                return;
+            }
+        }
         //坂道計算
         //傾きを計算するためのポジションを取得
         slopeOrigin1 = transform.position;
@@ -110,26 +129,26 @@ public class SEnemyMove : MonoBehaviour
 
         RaycastHit2D hitSlope1 = Physics2D.Raycast(slopeOrigin1, Vector2.down, 2.0f);
         RaycastHit2D hitSlope2 = Physics2D.Raycast(slopeOrigin2, Vector2.down, 2.0f);
-        if(hitSlope1.collider!=null && hitSlope2.collider!=null&&
-            hitSlope1.collider.CompareTag("TileMap")&& hitSlope2.collider.CompareTag("TileMap"))
+        if (hitSlope1.collider != null && hitSlope2.collider != null &&
+            hitSlope1.collider.CompareTag("TileMap") && hitSlope2.collider.CompareTag("TileMap"))
         {
             //2点間の傾きを計算
             Vector2 point1 = hitSlope1.point;
             Vector2 point2 = hitSlope2.point;
-            float slopeAngle= Mathf.Atan2(point2.y-point1.y, point2.x-point1.x) * Mathf.Rad2Deg;
+            float slopeAngle = Mathf.Atan2(point2.y - point1.y, point2.x - point1.x) * Mathf.Rad2Deg;
             int isRight = IsReflectionX ? -1 : 1;
 
             if (slopeAngle < 170 && slopeAngle > 10)
             {
-                Vector2 vel=rb.velocity;
-                vel.x = fLimitSpeed*isRight;
+                Vector2 vel = rb.velocity;
+                vel.x = fLimitSpeed * isRight;
                 rb.velocity = vel;
                 isSlope = true;
             }
             else
             {
                 rb.drag = 1;
-                isSlope= false;
+                isSlope = false;
             }
             //傾斜の角度が一定以上なら傾いていると判断
 
@@ -139,13 +158,13 @@ public class SEnemyMove : MonoBehaviour
             Vector2 vecAngle = new Vector2(Mathf.Cos(slopeAngle * Mathf.Deg2Rad), Mathf.Sin(slopeAngle * Mathf.Deg2Rad));
 
             Vector2 resistanceForce = vecAngle * horizontalResistance;
-            if(IsReflectionX) 
+            if (IsReflectionX)
             {
-              rb.AddForce(resistanceForce * Power, ForceMode2D.Force);
+                rb.AddForce(resistanceForce * Power, ForceMode2D.Force);
             }
-            else 
+            else
             {
-              rb.AddForce(resistanceForce * (Power/2), ForceMode2D.Force);
+                rb.AddForce(resistanceForce * (Power / 2), ForceMode2D.Force);
             }
         }
 
@@ -192,7 +211,7 @@ public class SEnemyMove : MonoBehaviour
         rb.AddForce(MoveSpeed);
         //以下から現在位置がゴール位置を越えているかを判定し、
         //越えていれば待機したのち進行方向を反転する処理
-        if(transform.position.x>GallPos.x&&
+        if (transform.position.x>GallPos.x&&
             !IsReflectionX) 
         {            
             IsReflectionX = true;
@@ -236,9 +255,14 @@ public class SEnemyMove : MonoBehaviour
 
       private void OnCollisionEnter2D(Collision2D _collision)
     {
+        Vector2 colpos = _collision.transform.position;
+        Vector2 pos = transform.position;
+        Vector2 vec = colpos - pos;
+
         //敵と当たった瞬間に方向転換
-        if(_collision.transform.CompareTag("Enemy")/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
+        if (_collision.transform.CompareTag("Enemy")&&vec.x<0.0f&&IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
         {
+
             IsReflectionX = !IsReflectionX;
             if (IsReflectionX)
             {
@@ -250,31 +274,83 @@ public class SEnemyMove : MonoBehaviour
                 GallPos.x = defaultPos.x + MoveDistance.x;
                 MoveSpeed.x = -MoveSpeed.x;
             }
+            //Vector2 colpos = _collision.transform.position;
+            //Vector2 pos = transform.position;
+            //Vector2 vec = colpos - pos;
+            //if (vec.x < 0)
+            //{
+            //    pos.x -= 0.1f;
+            //}
+            //else
+            //{
+            //    pos.x += 0.1f;
+            //}
+            //transform.position = pos;
+            StartCoroutine(Gall(fFreezeTime));
+        }
+        else if (_collision.transform.CompareTag("Enemy")&&vec.x>0.0f&&!IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
+        {
+
+            IsReflectionX = !IsReflectionX;
+            if (IsReflectionX)
+            {
+                GallPos.x = defaultPos.x - MoveDistance.x;
+                MoveSpeed.x = -MoveSpeed.x;
+            }
+            else if (!IsReflectionX)
+            {
+                GallPos.x = defaultPos.x + MoveDistance.x;
+                MoveSpeed.x = -MoveSpeed.x;
+            }
+            //Vector2 colpos = _collision.transform.position;
+            //Vector2 pos = transform.position;
+            //Vector2 vec = colpos - pos;
+            //if (vec.x < 0)
+            //{
+            //    pos.x -= 0.1f;
+            //}
+            //else
+            //{
+            //    pos.x += 0.1f;
+            //}
+            //transform.position = pos;
             StartCoroutine(Gall(fFreezeTime));
         }
     }
     private void OnCollisionStay2D(Collision2D _collision)
     {
-        //敵と当たっている間そいつと違う方向を向いているかのチェックをし続ける
-        //違う方向を向いていたら方向転換
-        //その際、方向転換後の力を加えてループを回避
-        if(_collision.transform.CompareTag("Enemy") && _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX)
-        {
-            IsReflectionX = !IsReflectionX;
-            if (IsReflectionX)
-            {
-                GallPos.x = defaultPos.x - MoveDistance.x;
-                MoveSpeed.x = -MoveSpeed.x;
-            }
-            else if (!IsReflectionX)
-            {
-                GallPos.x = defaultPos.x + MoveDistance.x;
-                MoveSpeed.x = -MoveSpeed.x;
-            }
+        ////敵と当たっている間そいつと違う方向を向いているかのチェックをし続ける
+        ////違う方向を向いていたら方向転換
+        ////その際、方向転換後の力を加えてループを回避
+        //if(_collision.transform.CompareTag("Enemy") /*&& _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX*/)
+        //{
+        //    IsReflectionX = !IsReflectionX;
+        //    if (IsReflectionX)
+        //    {
+        //        GallPos.x = defaultPos.x - MoveDistance.x;
+        //        MoveSpeed.x = -MoveSpeed.x;
+        //    }
+        //    else if (!IsReflectionX)
+        //    {
+        //        GallPos.x = defaultPos.x + MoveDistance.x;
+        //        MoveSpeed.x = -MoveSpeed.x;
+        //    }
 
-            rb.AddForce(MoveSpeed);
-            StartCoroutine(Gall(fFreezeTime));
-        }
+        //    //方向転換の後にちょっと距離を離す(無限ループ防止)
+        //    Vector2 colpos= _collision.transform.position;
+        //    Vector2 pos = transform.position;
+        //    Vector2 vec = colpos - pos;
+        //    if(vec.x<0)
+        //    {
+        //        pos.x -= 0.1f;
+        //    }
+        //    else
+        //    {
+        //        pos.x += 0.1f;
+        //    }
+        //    transform.position = pos;
+        //    StartCoroutine(Gall(fFreezeTime));
+        //}
     }
 
     //コルーチンで待機処理
