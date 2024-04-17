@@ -25,6 +25,9 @@ public class S_EnemyBall : MonoBehaviour
     [Header("‘å‚«‚³‚Ì’iŠK‚Æ•K—v‚È‹zû”"), SerializeField]
     int[] nGiantNum;
 
+    [Header("U“®ŠÔ"), SerializeField]
+    private float fTime = 0.1f;
+
     //‰ò‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
     private bool isBall = false;
     public bool GetisBall() { return isBall; }
@@ -101,6 +104,8 @@ public class S_EnemyBall : MonoBehaviour
                 Destroy(ColObject);
                 rb.AddForce(vel*fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
+
+                StartCoroutine(M_Utility.GamePadMotor(fTime));
                 StartCoroutine(HitStop());
             }
         }

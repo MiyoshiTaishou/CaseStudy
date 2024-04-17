@@ -452,6 +452,7 @@ MonoBehaviour:
   fLimitSpeedx: 25
   fStopjudge: 0
   nGiantNum: 
+  fTime: 0.2
 --- !u!1001 &7546007977649258714
 PrefabInstance:
   m_ObjectHideFlags: 0
