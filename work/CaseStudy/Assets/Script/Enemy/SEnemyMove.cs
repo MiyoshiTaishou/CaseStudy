@@ -76,6 +76,11 @@ public class SEnemyMove : MonoBehaviour
 
     private bool isLook = false;
 
+    //ホログラムとの衝突を検知(2024/4/17 木村記載)
+    private bool IsCollidingHologram = false;
+
+    public bool GetIsCollidingHologram() { return IsCollidingHologram; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -206,6 +211,20 @@ public class SEnemyMove : MonoBehaviour
                 MoveSpeed.x = -MoveSpeed.x;
                 StartCoroutine(Gall(fWaitTime));
             }
+
+            //ホログラムとの衝突を検知(2024/4/17 木村記載)
+            if (hitWall.collider.CompareTag("Hologram"))
+            {
+                IsCollidingHologram = true;
+            }
+            else
+            {
+                IsCollidingHologram = false; ;
+            }
+        }
+        else
+        {
+            IsCollidingHologram = false; ;
         }
 
         rb.AddForce(MoveSpeed);

@@ -5,7 +5,7 @@
 
 適用方法
 
-①K_ChangeSprite(スクリプト)、K_EnemyRolling(プレハブ)を敵に付ける
+①K_ChangeSprite(スクリプト)を敵に付ける
 
 ②EnemyObjNormalに通常時の敵の画像、EnemyObjRollingに転がっている時の画像を入れる
 

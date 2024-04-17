@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 117817261664437960}
   - component: {fileID: 8150564939816693198}
   - component: {fileID: 8150564939816693210}
+  - component: {fileID: 7637743471098859428}
+  - component: {fileID: -3771449834700050858}
   m_Layer: 2
   m_Name: SEnemy
   m_TagString: Enemy
@@ -452,7 +454,6 @@ MonoBehaviour:
   fLimitSpeedx: 25
   fStopjudge: 0
   nGiantNum: 
-  fTime: 0.2
 --- !u!1001 &7546007977649258714
 PrefabInstance:
   m_ObjectHideFlags: 0
