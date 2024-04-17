@@ -13,7 +13,7 @@ public class K_ChangeSprite : MonoBehaviour
     //このオブジェクトにくっついている敵スプライト(通常時)
     private GameObject EnemySpriteNormal;
 
-    //このオブジェクトにくっついている敵スプライト(転がり時)
+    //転がり時の敵スプライト(転がり時)
     private GameObject EnemySpriteRolling;
 
     private S_EnemyBall EnemyBall;
@@ -23,9 +23,8 @@ public class K_ChangeSprite : MonoBehaviour
         string strEnemySprites = EnemyObjNormal.name;
         EnemySpriteNormal = this.transform.Find(strEnemySprites).gameObject;
 
-        strEnemySprites = EnemyObjRolling.name;
-        EnemyObjRolling = this.transform.Find(strEnemySprites).gameObject;
-        EnemyObjRolling.SetActive(false);
+        EnemySpriteRolling= Instantiate(EnemyObjRolling, transform.position, Quaternion.identity);
+        EnemySpriteRolling.SetActive(false);
 
         EnemyBall = GetComponent<S_EnemyBall>();
     }
@@ -36,7 +35,8 @@ public class K_ChangeSprite : MonoBehaviour
         if(StickEnemyNum > 0)
         {
             EnemySpriteNormal.SetActive(false);
-            EnemyObjRolling.SetActive(true);
+            EnemySpriteRolling.SetActive(true);
+            EnemySpriteRolling.transform.position = this.transform.position;
         }
     }
 }

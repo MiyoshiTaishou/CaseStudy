@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 117817261664437960}
   - component: {fileID: 8150564939816693198}
   - component: {fileID: 8150564939816693210}
+  - component: {fileID: 7637743471098859428}
+  - component: {fileID: -3771449834700050858}
   m_Layer: 2
   m_Name: SEnemy
   m_TagString: Enemy
@@ -452,6 +454,33 @@ MonoBehaviour:
   fLimitSpeedx: 25
   fStopjudge: 0
   nGiantNum: 
+--- !u!114 &7637743471098859428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117817261664437972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f632a03a156bf4fafc8920b11bec39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyReactionPrefab: {fileID: 155749565533083559, guid: 906cbd322d165b14a95641cfc5e040aa, type: 3}
+--- !u!114 &-3771449834700050858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117817261664437972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54fbc8055402212418c53bee5e233ae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyObjNormal: {fileID: -8653719598885068355, guid: 00c875278ffc1df4a964f827d0ce626f, type: 3}
+  EnemyObjRolling: {fileID: 6342705089899883761, guid: deccbb4c37b417741b9f5e5e6f12778d, type: 3}
 --- !u!1001 &7546007977649258714
 PrefabInstance:
   m_ObjectHideFlags: 0
