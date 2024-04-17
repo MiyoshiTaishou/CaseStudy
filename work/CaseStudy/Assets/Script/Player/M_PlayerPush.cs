@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class M_PlayerPush : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class M_PlayerPush : MonoBehaviour
 
     [Header("‰Ÿ‚·—Í"), SerializeField]
     float fPower = 5.0f;
+
+    [Header("U“®ŠÔ"), SerializeField]
+    private float fTime = 0.5f;
 
     /// <summary>
     /// ƒvƒŒƒCƒ„[
@@ -144,11 +148,15 @@ public class M_PlayerPush : MonoBehaviour
                         dir = transform.right;
                     }
 
+                    push.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
                     push.GetComponent<S_EnemyBall>().SetisPushing(true);
+
+                    Debug.Log("‰Ÿ‚µ‚½");
+                    StartCoroutine(M_Utility.GamePadMotor(fTime));
                 }
 
                 break;
         }       
-    }
+    }   
 }
