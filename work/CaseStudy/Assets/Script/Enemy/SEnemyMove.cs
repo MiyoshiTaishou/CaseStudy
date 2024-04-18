@@ -82,6 +82,7 @@ public class SEnemyMove : MonoBehaviour
     public bool GetIsCollidingHologram() { return IsCollidingHologram; }
 
     // Start is called before the first frame update
+    private Vector2 defaultScale= Vector2.zero;
     void Start()
     {
         defaultPos = transform.position;
@@ -98,6 +99,7 @@ public class SEnemyMove : MonoBehaviour
         {
             Debug.LogError("Main camera がありません");
         }
+        defaultScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -181,7 +183,7 @@ public class SEnemyMove : MonoBehaviour
         GroundDirection.x=fGrounddirx*coef;
         GroundDirection.y=fGrounddiry;
         Vector2 scale= transform.localScale;
-        scale.x = -1.2f * coef;
+        scale.x = defaultScale.x * coef;
         transform.localScale = scale;
         RaycastHit2D hitWall = Physics2D.Raycast(Origin, Vector2.right*coef, fDistance);
         RaycastHit2D hitGround = Physics2D.Raycast(Origin, GroundDirection, fGroundDistance);
@@ -338,41 +340,41 @@ public class SEnemyMove : MonoBehaviour
             StartCoroutine(Gall(fFreezeTime));
         }
     }
-    private void OnCollisionStay2D(Collision2D _collision)
-    {
-        ////敵と当たっている間そいつと違う方向を向いているかのチェックをし続ける
-        ////違う方向を向いていたら方向転換
-        ////その際、方向転換後の力を加えてループを回避
-        //if(_collision.transform.CompareTag("Enemy") /*&& _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX*/)
-        //{
-        //    IsReflectionX = !IsReflectionX;
-        //    if (IsReflectionX)
-        //    {
-        //        GallPos.x = defaultPos.x - MoveDistance.x;
-        //        MoveSpeed.x = -MoveSpeed.x;
-        //    }
-        //    else if (!IsReflectionX)
-        //    {
-        //        GallPos.x = defaultPos.x + MoveDistance.x;
-        //        MoveSpeed.x = -MoveSpeed.x;
-        //    }
+    //private void OnCollisionStay2D(Collision2D _collision)
+    //{
+    //    ////敵と当たっている間そいつと違う方向を向いているかのチェックをし続ける
+    //    ////違う方向を向いていたら方向転換
+    //    ////その際、方向転換後の力を加えてループを回避
+    //    //if(_collision.transform.CompareTag("Enemy") /*&& _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX*/)
+    //    //{
+    //    //    IsReflectionX = !IsReflectionX;
+    //    //    if (IsReflectionX)
+    //    //    {
+    //    //        GallPos.x = defaultPos.x - MoveDistance.x;
+    //    //        MoveSpeed.x = -MoveSpeed.x;
+    //    //    }
+    //    //    else if (!IsReflectionX)
+    //    //    {
+    //    //        GallPos.x = defaultPos.x + MoveDistance.x;
+    //    //        MoveSpeed.x = -MoveSpeed.x;
+    //    //    }
 
-        //    //方向転換の後にちょっと距離を離す(無限ループ防止)
-        //    Vector2 colpos= _collision.transform.position;
-        //    Vector2 pos = transform.position;
-        //    Vector2 vec = colpos - pos;
-        //    if(vec.x<0)
-        //    {
-        //        pos.x -= 0.1f;
-        //    }
-        //    else
-        //    {
-        //        pos.x += 0.1f;
-        //    }
-        //    transform.position = pos;
-        //    StartCoroutine(Gall(fFreezeTime));
-        //}
-    }
+    //    //    //方向転換の後にちょっと距離を離す(無限ループ防止)
+    //    //    Vector2 colpos= _collision.transform.position;
+    //    //    Vector2 pos = transform.position;
+    //    //    Vector2 vec = colpos - pos;
+    //    //    if(vec.x<0)
+    //    //    {
+    //    //        pos.x -= 0.1f;
+    //    //    }
+    //    //    else
+    //    //    {
+    //    //        pos.x += 0.1f;
+    //    //    }
+    //    //    transform.position = pos;
+    //    //    StartCoroutine(Gall(fFreezeTime));
+    //    //}
+    //}
 
     //コルーチンで待機処理
     IEnumerator Gall(float _wait)
