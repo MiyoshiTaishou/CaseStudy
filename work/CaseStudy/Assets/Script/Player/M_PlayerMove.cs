@@ -136,6 +136,10 @@ public class M_PlayerMove : MonoBehaviour
             {                
                 fStamina -= fUseDashStamina * Time.deltaTime;                
             }
+            else
+            {
+                fStamina += fStayRecoverySpeed * Time.deltaTime;
+            }
         }
         else
         {
