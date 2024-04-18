@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 6336587647645303322}
   - component: {fileID: 6336587647645303323}
   - component: {fileID: 6336587647645303316}
-  - component: {fileID: 6336587647645303317}
-  - component: {fileID: 6336587647645303318}
   - component: {fileID: 3424376335874709191}
-  - component: {fileID: 8925823462861846450}
+  - component: {fileID: 760944304370445758}
+  - component: {fileID: 6302026298218498335}
   m_Layer: 3
   m_Name: OPlayer
   m_TagString: Player
@@ -144,39 +143,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fMoveSpeed: 5
---- !u!114 &6336587647645303317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336587648020932168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbb1bfb918e9a3e43ace0b5da69f3548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BlindingObj: {fileID: 8866717144761918295, guid: 09a50c0354c4b2244b20968e4eed4455, type: 3}
-  fThrowPower: 5
---- !u!114 &6336587647645303318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336587648020932168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3e9d76fa8f75e64393a6dbabbe1f565, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sTilemapObjectName: Tilemap
-  sFloorTileNames:
-  - Tiles123
-  - douro_1
-  - douro_2
-  - douro_3
-  - douro_0
+  fDashSpeed: 10
+  fStaminaMax: 100
+  fUseDashStamina: 1
+  fRecoverySpeed: 2
+  fStayRecoverySpeed: 4
+  fUsedStaminaRecoverySpeed: 1
+  UseColor: {r: 0, g: 0, b: 0, a: 0}
+  CautionColor: {r: 0, g: 0, b: 0, a: 0}
+  CautionParcent: 40
+  WarningColor: {r: 0, g: 0, b: 0, a: 0}
+  WarningParcent: 20
 --- !u!95 &3424376335874709191
 Animator:
   serializedVersion: 5
@@ -198,23 +175,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8925823462861846450
+--- !u!114 &760944304370445758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6336587648020932168}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6182aa2b6eb3a2f43bf37b7df5e98cf5, type: 3}
+  m_Script: {fileID: 11500000, guid: 875107849e733fc40b10555c78d3a714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Holo_Player: {fileID: 392718627150799720, guid: dd81cf2fab2f620489a615625495ecd6, type: 3}
-  Holo_Wall: {fileID: 806074594693296770, guid: be4101a1eed5aae4098f365085e80191, type: 3}
-  Holo_Floor: {fileID: 3770925614584002175, guid: 10814aed2fabbac4a85c0d9bb6fd9841, type: 3}
-  fTileScale: 1
-  bGenerationMethosd: 1
+  fSpreadSpeed: 10
+  fMaxRadius: 15
+  fLineWidth: 0.1
+  iSegments: 20
+  material: {fileID: 2100000, guid: d3f4820e6d0604b4381a2b9c4c3e2613, type: 2}
+--- !u!114 &6302026298218498335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336587648020932168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3a468caa6c1ad246853ab47f1ad8a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  img: {fileID: 0}
+  color: {r: 1, g: 0, b: 0, a: 0.15686275}
+  fColorSpeed: 0
 --- !u!1 &6336587649174639115
 GameObject:
   m_ObjectHideFlags: 0
