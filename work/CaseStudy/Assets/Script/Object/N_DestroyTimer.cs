@@ -10,18 +10,29 @@ public class N_DestroyTimer : MonoBehaviour
     [Header("íœ‚³‚ê‚é‚Ü‚Å‚ÌŠÔ"), SerializeField]
     private float fDestroyTimer = 5.0f;
 
+    [Header("ŠÔ‚Åíœ‚³‚ê‚éH"), SerializeField]
+    private bool isDestroy = false;
+
     /// <summary>
     /// Œo‰ßŠÔ
     /// </summary>
-    private float fElapsedTime = 0.0f; 
+    private float fElapsedTime = 0.0f;
 
     // Update is called once per frame
     void Update()
     {
-        if(fElapsedTime >= fDestroyTimer)
+        if (isDestroy)
         {
-            Destroy(this.gameObject);
+            if (fElapsedTime >= fDestroyTimer)
+            {
+                Destroy(this.gameObject);
+            }
+            fElapsedTime += Time.deltaTime;
         }
-        fElapsedTime += Time.deltaTime;
+    }
+
+    public void SetBoolDestroy(bool _truefalse)
+    {
+        isDestroy = _truefalse;
     }
 }
