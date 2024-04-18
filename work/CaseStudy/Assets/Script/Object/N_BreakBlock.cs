@@ -14,14 +14,20 @@ public class N_BreakBlock : MonoBehaviour
     [Header("BreakObjectTag"), SerializeField]
     private const string sBreakTag = "Enemy";
 
-    private Animator animator;
+    [Header("破壊時のエフェクト"), SerializeField]
+    private GameObject Effect;
+
+    [Header("AudioClip"), SerializeField]
+    private AudioClip audioclip;
 
     private S_EnemyBall enemyBall;
+
+    private Transform trans_Block;
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        trans_Block = gameObject.transform;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -42,16 +48,15 @@ public class N_BreakBlock : MonoBehaviour
             // 指定値以上の塊がぶつかってきたら
             if (checkNum >= iBreakNum)
             {
-                animator.SetBool("break", true);
+                Vector3 pos = trans_Block.position;
+
+                Instantiate(Effect, pos, Quaternion.identity);
+
+                // オブジェクト削除と同時に効果音を鳴らす処理
+                AudioSource.PlayClipAtPoint(audioclip, pos);
+
+                Destroy(gameObject);
             }
         }
-    }
-
-    void SetDestroy()
-    {
-        animator.SetBool("destroy", true);
-
-        // 自身を削除
-        Destroy(this.gameObject);
     }
 }

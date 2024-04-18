@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1497359285853439717}
   - component: {fileID: 1497359285853439716}
   - component: {fileID: 1497359285853439719}
-  - component: {fileID: 1497359285853439720}
   m_Layer: 6
   m_Name: BreakBlock
   m_TagString: Ground
@@ -126,24 +125,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iBreakNum: 3
---- !u!95 &1497359285853439720
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1497359285853439715}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a1247bb6d73150c4a98bee1f4bd034be, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  Effect: {fileID: 151244, guid: 8368975de5593844bbfaf74e342fb326, type: 3}
+  audioclip: {fileID: 8300000, guid: f0c20ade732bea2498bacba7645daae2, type: 3}

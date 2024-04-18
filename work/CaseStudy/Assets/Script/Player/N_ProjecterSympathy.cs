@@ -68,7 +68,7 @@ public class N_ProjecterSympathy : MonoBehaviour
         }
 
         // キー入力があったら共鳴開始
-        if(Input.GetKeyDown(KeyCode.E)/* || Input.GetButtonDown("Sympathy")*/)
+        if(Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("SympathyButton"))
         {
             if(isSympathy == false)
             {
