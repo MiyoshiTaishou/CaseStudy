@@ -180,7 +180,9 @@ public class SEnemyMove : MonoBehaviour
         Origin.x += fGup * coef;
         GroundDirection.x=fGrounddirx*coef;
         GroundDirection.y=fGrounddiry;
-
+        Vector2 scale= transform.localScale;
+        scale.x = -1.2f * coef;
+        transform.localScale = scale;
         RaycastHit2D hitWall = Physics2D.Raycast(Origin, Vector2.right*coef, fDistance);
         RaycastHit2D hitGround = Physics2D.Raycast(Origin, GroundDirection, fGroundDistance);
         if (isRayDraw)
