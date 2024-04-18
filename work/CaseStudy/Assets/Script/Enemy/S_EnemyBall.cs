@@ -104,6 +104,7 @@ public class S_EnemyBall : MonoBehaviour
                 Destroy(ColObject);
                 rb.AddForce(vel*fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
+                GetComponent<AudioSource>().pitch+=0.2f;
 
                 StartCoroutine(M_Utility.GamePadMotor(fTime));
                 StartCoroutine(HitStop());
