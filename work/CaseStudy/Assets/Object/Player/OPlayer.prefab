@@ -148,10 +148,10 @@ MonoBehaviour:
   fRecoverySpeed: 2
   fStayRecoverySpeed: 4
   fUsedStaminaRecoverySpeed: 1
-  UseColor: {r: 0, g: 0, b: 0, a: 0}
-  CautionColor: {r: 0, g: 0, b: 0, a: 0}
+  UseColor: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+  CautionColor: {r: 1, g: 0.6819977, b: 0, a: 1}
   CautionParcent: 40
-  WarningColor: {r: 0, g: 0, b: 0, a: 0}
+  WarningColor: {r: 1, g: 0, b: 0, a: 1}
   WarningParcent: 20
 --- !u!114 &760944304370445758
 MonoBehaviour:
@@ -196,7 +196,6 @@ GameObject:
   - component: {fileID: 6336587649174639114}
   - component: {fileID: 6336587649174639112}
   - component: {fileID: 6336587649174639113}
-  - component: {fileID: 4851747095769831180}
   m_Layer: 2
   m_Name: PlayerEyeSight
   m_TagString: Untagged
@@ -259,27 +258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerChangeKey: 99
   fWaitTime: 10
---- !u!95 &4851747095769831180
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336587649174639115}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a37ddba84892c83489111d201d111a96, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &52770110461691223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -513,7 +491,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: dcd7e15af3d8b234e870b26fe471524e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

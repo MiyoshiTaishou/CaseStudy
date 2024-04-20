@@ -68,6 +68,11 @@ public class M_PlayerMove : MonoBehaviour
     public bool GetIsMove() { return isMove; }
     public void SetIsMove(bool _move) { isMove = _move; }
 
+    /// <summary>
+    ///アニメーション関連
+    /// </summary>
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +85,9 @@ public class M_PlayerMove : MonoBehaviour
         //UIを探す
         StaminaImage = GameObject.Find("StaminaBar").GetComponent<Image>();
         StaminaColor = StaminaImage.color;
+
+        // 子オブジェクトの中から、アニメーターを取得
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -119,6 +127,7 @@ public class M_PlayerMove : MonoBehaviour
             // 入力に基づいて移動する
             Vector2 vecMoveDirection = new Vector2(_forizontal * fDashSpeed, rbPlayer.velocity.y);
             rbPlayer.velocity = vecMoveDirection;
+            animator.SetBool("run", true);
 
             if (_forizontal > 0.0f)
             {
@@ -146,6 +155,7 @@ public class M_PlayerMove : MonoBehaviour
             // 入力に基づいて移動する
             Vector2 vecMoveDirection = new Vector2(_forizontal * fMoveSpeed, rbPlayer.velocity.y);
             rbPlayer.velocity = vecMoveDirection;
+            animator.SetBool("run", true);
 
             if (_forizontal > 0.0f)
             {
@@ -164,6 +174,7 @@ public class M_PlayerMove : MonoBehaviour
                 if (_forizontal == 0.0f)
                 {                    
                     fStamina += fStayRecoverySpeed * Time.deltaTime;
+                    animator.SetBool("run", false);
                 }
                 else
                 {                    
@@ -191,6 +202,7 @@ public class M_PlayerMove : MonoBehaviour
             isStamina = false;
         }
 
+        
 
     }
 
