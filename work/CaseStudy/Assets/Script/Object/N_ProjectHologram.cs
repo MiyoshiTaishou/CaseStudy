@@ -15,6 +15,9 @@ public class N_ProjectHologram : MonoBehaviour
     [Header("プロジェクターのモード"), SerializeField]
     HOLOGRAM_MODE mode = HOLOGRAM_MODE.PLAYER;
 
+    [Header("ホログラムの登録"), SerializeField]
+    private GameObject[] gHolograms;
+
     // 表示する方向
     enum HOLOGRAM_DIRECTION
     {
@@ -166,23 +169,24 @@ public class N_ProjectHologram : MonoBehaviour
         switch (_mode)
         {
             case HOLOGRAM_MODE.PLAYER:
-                address = "Assets/Object/Field/Hologram/Holo_Player.prefab";
+                //address = "Assets/Object/Field/Hologram/Holo_Player.prefab";
                 iHowMany = 1;
                 break;
 
             case HOLOGRAM_MODE.WALL:
-                address = "Assets/Object/Field/Hologram/Holo_Wall.prefab";
+                //address = "Assets/Object/Field/Hologram/Holo_Wall.prefab";
                 break;
 
             case HOLOGRAM_MODE.FLOOR:
-                address = "Assets/Object/Field/Hologram/Holo_Floor.prefab";
+                //address = "Assets/Object/Field/Hologram/Holo_Floor.prefab";
                 break;
         }
 #if UNITY_EDITOR
 
         // パスを元にプレハブを取得
-        Prefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
+        //Prefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
 #endif
+        Prefab = gHolograms[(int)_mode];
 
         switch (_direction)
         {
