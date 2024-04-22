@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+#if UNITY_EDITOR
 using UnityEditor.U2D.Path;
+#endif
 using UnityEngine;
 
 public class M_Blinding : MonoBehaviour

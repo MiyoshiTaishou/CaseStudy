@@ -178,8 +178,11 @@ public class N_ProjectHologram : MonoBehaviour
                 address = "Assets/Object/Field/Hologram/Holo_Floor.prefab";
                 break;
         }
+#if UNITY_EDITOR
+
         // パスを元にプレハブを取得
         Prefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
+#endif
 
         switch (_direction)
         {

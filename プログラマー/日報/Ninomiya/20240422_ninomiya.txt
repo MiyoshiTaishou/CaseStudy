@@ -1,0 +1,6 @@
+ビルドできる状態にスクリプト修正
+
+using UnityEditor;が入っているスクリプトでエラーをはいていたので
+#ifUNITY_EDITOR
+#endif
+で囲んで対応した。

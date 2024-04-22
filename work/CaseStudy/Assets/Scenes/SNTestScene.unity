@@ -206,6 +206,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (36)
@@ -313,6 +317,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (39)
@@ -407,6 +415,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (28)
@@ -495,6 +507,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -593,6 +609,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (40)
@@ -681,6 +701,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -771,6 +795,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (15)
@@ -782,6 +810,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 117817261664437955, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
   m_PrefabInstance: {fileID: 915425208}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &106536401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 106536402}
+  m_Layer: 0
+  m_Name: Projecters
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &106536402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106536401}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 470358301}
+  m_Father: {fileID: 559645196}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &155614444 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 117817261664437955, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
@@ -1145,6 +1205,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (37)
@@ -1234,6 +1298,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (14)
@@ -1247,6 +1315,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6302026298218498335, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
+      propertyPath: img
+      value: 
+      objectReference: {fileID: 2036927023}
     - target: {fileID: 6336587647645303316, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: nStamina
       value: 300
@@ -1481,6 +1553,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -1943,6 +2019,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (13)
@@ -1997,12 +2077,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 470358301}
   - {fileID: 1743279845}
   - {fileID: 646626202}
   - {fileID: 789203164}
-  - {fileID: 1773619369}
   - {fileID: 1695191903}
+  - {fileID: 1773619369}
+  - {fileID: 106536402}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2093,6 +2173,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -2232,7 +2316,7 @@ Transform:
   - {fileID: 1774919866}
   - {fileID: 1167343665}
   m_Father: {fileID: 559645196}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &676080867 stripped
 RectTransform:
@@ -2404,6 +2488,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (34)
@@ -2497,6 +2585,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -2592,6 +2684,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (17)
@@ -2633,7 +2729,7 @@ Transform:
   - {fileID: 1385369327}
   - {fileID: 20116592}
   m_Father: {fileID: 559645196}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &833348374
 PrefabInstance:
@@ -2717,6 +2813,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -2806,6 +2906,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -2905,6 +3009,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -18541,6 +18649,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (7)
@@ -18633,6 +18745,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -18884,6 +19000,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (27)
@@ -18972,6 +19092,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -19071,6 +19195,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -19345,6 +19473,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (22)
@@ -19438,6 +19570,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -19707,7 +19843,7 @@ RectTransform:
   m_Children:
   - {fileID: 1748603391}
   m_Father: {fileID: 559645196}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -19863,6 +19999,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (33)
@@ -19959,6 +20099,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
@@ -20057,6 +20201,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (35)
@@ -20099,7 +20247,7 @@ Transform:
   m_Children:
   - {fileID: 1242704299}
   m_Father: {fileID: 559645196}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &1743279846
 Grid:
@@ -20232,8 +20380,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 559645196}
+    m_TransformParent: {fileID: 106536402}
     m_Modifications:
+    - target: {fileID: 6372921232022759936, guid: c793d23110b397448b2ff7991f372973, type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6372921232022759937, guid: c793d23110b397448b2ff7991f372973, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -20599,6 +20751,10 @@ PrefabInstance:
       propertyPath: MoveDistance.x
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name
       value: SEnemy (12)
@@ -20910,6 +21066,10 @@ PrefabInstance:
     - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: MoveDistance.x
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 117817261664437967, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: fGroundDistance
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117817261664437972, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_Name

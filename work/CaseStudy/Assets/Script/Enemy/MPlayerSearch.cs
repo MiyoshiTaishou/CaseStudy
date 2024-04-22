@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
+#endif
 
 //プレイヤーをサーチする処理
 //Tagを自由に設定して追跡するオブジェクトを変えるとかもできるようにしたい

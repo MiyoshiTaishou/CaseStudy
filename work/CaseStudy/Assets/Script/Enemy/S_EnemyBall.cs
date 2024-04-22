@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor.Build;
 using UnityEditor.Rendering;
+#endif
 using UnityEngine;
 
 public class S_EnemyBall : MonoBehaviour
