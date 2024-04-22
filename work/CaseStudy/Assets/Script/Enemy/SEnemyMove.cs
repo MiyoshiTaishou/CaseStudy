@@ -217,7 +217,7 @@ public class SEnemyMove : MonoBehaviour
             }
 
             //ホログラムとの衝突を検知(2024/4/17 木村記載)
-            if (hitWall.collider.CompareTag("Hologram"))
+            if (hitWall.collider != null &&  hitWall.collider.CompareTag("Hologram"))
             {
                 IsCollidingHologram = true;
             }

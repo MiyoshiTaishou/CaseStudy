@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(M_ImageEasing))]//Šg’£‚·‚éƒNƒ‰ƒX‚ðŽw’è
 public class M_EasingGUI : Editor
 {
@@ -22,3 +24,4 @@ public class M_EasingGUI : Editor
         }
     }
 }
+#endif
