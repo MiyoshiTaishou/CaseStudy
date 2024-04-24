@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 //ダクトの移動処理
 public class M_DuctWarp : MonoBehaviour
@@ -29,11 +30,33 @@ public class M_DuctWarp : MonoBehaviour
 
     [Header("移動時に鳴らすSE"), SerializeField]
     private AudioSource SEDuctMove;
-   
+
+    [Header("アニメーション"), SerializeField]
+    private Vector3 animScale = Vector3.one;
+
+    [Header("開始時イージング"), SerializeField]
+    private M_Easing.Ease easeStart;
+
+    [Header("終了時イージング"), SerializeField]
+    private M_Easing.Ease easeEnd;
+
+    [Header("アニメーション時間"), SerializeField]
+    private float fAnimPlayTime = 0.3f;
+
+    /// <summary>
+    /// アニメーション時間
+    /// </summary>
+    private float fAnimTime = 0.0f;
+
     /// <summary>
     /// ダクトに触れている
     /// </summary>
     private bool isTouch;
+
+    /// <summary>
+    /// ダクトに触れている
+    /// </summary>
+    private Vector3 saveScale;
 
     /// <summary>
     /// ダクトマネージャ
@@ -44,7 +67,7 @@ public class M_DuctWarp : MonoBehaviour
     /// 移動中
     /// </summary>
     private bool isMoveDuct;
-  
+
     // 20240407 二宮追記
     /// <summary>
     /// 対象追跡カメラスクリプト
@@ -74,13 +97,15 @@ public class M_DuctWarp : MonoBehaviour
         if (!RightDuct)
         {
             Debug.Log("右ダクトが見つかりません");
-        }      
-       
+        }
+
         //UI非表示
         UIObj.SetActive(false);
 
         // 20240407 二宮追記
         trackingPlayer = GameObject.Find("Main Camera").GetComponent<N_TrackingPlayer>();
+
+        saveScale = transform.localScale;
     }
 
     // Update is called once per frame
@@ -94,12 +119,14 @@ public class M_DuctWarp : MonoBehaviour
 
         //入る処理
         if (Input.GetKeyDown(KeyCode.V) && isTouch)
-        {           
+        {
             //マネージャに自身のダクトにプレイヤーが入ったことを知らせる
             DuctManager.GetComponent<M_DuctManager>().SetContains(this.gameObject, true);
-        }      
-        
-        if(DuctManager.GetComponent<M_DuctManager>().GetValue(gameObject))
+
+            StartCoroutine(IEDuctAnimStart(fAnimPlayTime));
+        }
+
+        if (DuctManager.GetComponent<M_DuctManager>().GetValue(gameObject))
         {
             InDuctMove();
         }
@@ -108,7 +135,7 @@ public class M_DuctWarp : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {            
+        {
             isTouch = true;
 
             UIObj.SetActive(true);
@@ -169,5 +196,50 @@ public class M_DuctWarp : MonoBehaviour
         DuctManager.GetComponent<M_DuctManager>().DuctWarp(_obj, this.gameObject);
 
         isMoveDuct = false;
+    }
+
+    IEnumerator IEDuctAnimStart(float _waitTime)
+    {
+        var func = M_Easing.GetEasingMethod(easeStart);
+
+        // アニメーションが開始された時間を記録する
+        float startTime = Time.time;
+
+        while (Time.time - startTime < _waitTime)
+        {
+            float elapsedTime = Time.time - startTime;
+            float t = Mathf.Clamp01(elapsedTime / _waitTime);           
+
+            // アニメーションを適用
+            this.gameObject.transform.localScale = saveScale + animScale * func(t);
+
+            yield return null;
+        }
+
+        StartCoroutine(IEDuctAnimEnd(_waitTime));
+    }
+
+    IEnumerator IEDuctAnimEnd(float _waitTime)
+    {
+        var func = M_Easing.GetEasingMethod(easeEnd);
+
+        // アニメーションが開始された時間を記録する
+        float startTime = Time.time;
+
+        while (Time.time - startTime < _waitTime)
+        {
+            float elapsedTime = Time.time - startTime;
+            float t = Mathf.Clamp01(elapsedTime / _waitTime);
+
+            t = 1 - t;
+
+            // アニメーションを適用
+            this.gameObject.transform.localScale = saveScale + animScale * func(t);
+
+            yield return null;
+        }
+
+        // アニメーション完了後、元のスケールに戻す
+        transform.localScale = saveScale;
     }
 }
