@@ -236,6 +236,10 @@ MonoBehaviour:
   UIObj: {fileID: 1819633652518326455}
   SEDuctEnter: {fileID: 0}
   SEDuctMove: {fileID: 0}
+  animScale: {x: 0.2, y: 0.2, z: 0.2}
+  easeStart: 23
+  easeEnd: 16
+  fAnimPlayTime: 0.3
 --- !u!82 &6704668891544293357
 AudioSource:
   m_ObjectHideFlags: 0
