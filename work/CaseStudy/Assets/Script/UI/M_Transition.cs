@@ -12,6 +12,9 @@ public class M_Transition : MonoBehaviour
     [Header("イージング関数"),SerializeField]
     private M_Easing.Ease ease;
 
+    [Header("フェードインアウト"), SerializeField]
+    private bool isInOut = true;
+
     /// <summary>
     /// シーン遷移先の名前
     /// </summary>
@@ -40,6 +43,16 @@ public class M_Transition : MonoBehaviour
     {
         image = GetComponent<Image>();
         material = image.material;
+
+        if(isInOut)
+        {
+            val = -1.0f;
+        }
+        else
+        {
+            val = 1.0f;
+        }
+
         this.material.SetFloat("_Val", val);
     }
 
@@ -47,24 +60,43 @@ public class M_Transition : MonoBehaviour
     void Update()
     {
         if(isTransition)
-        {
+        {                                   
             fTime += Time.deltaTime;
 
             //関数登録
             var func = M_Easing.GetEasingMethod(ease);
-          
+
             float t = Mathf.Clamp01(fTime / duration);
 
             // 値を1から-1に減少させる
             val = 1.0f - func(t) * 2f;
 
-            Debug.Log(val);
-
             this.material.SetFloat("_Val", val);
 
-            if(val <= -1.0f)
+            if (val <= -0.9f)
             {
                 SceneManager.LoadScene(sceneName);
+            }
+                     
+        }
+       
+
+        if (isInOut)
+        {
+            fTime += Time.deltaTime;
+
+            //関数登録
+            var func = M_Easing.GetEasingMethod(ease);
+
+            float t = Mathf.Clamp01(fTime / duration);
+
+            val = func(t) * 2f;
+
+            this.material.SetFloat("_Val", val);  
+            
+            if(val >= 1.0f)
+            {
+                isInOut = false;
             }
         }
     }    
@@ -72,5 +104,7 @@ public class M_Transition : MonoBehaviour
     public void LoadScene()
     {
         isTransition = true;
+
+        fTime = 0.0f;
     }
 }
