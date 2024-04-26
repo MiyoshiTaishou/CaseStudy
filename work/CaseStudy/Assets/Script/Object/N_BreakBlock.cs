@@ -16,7 +16,10 @@ public class N_BreakBlock : MonoBehaviour
     private const string sBreakTag = "Enemy";
 
     [Header("破壊時のエフェクト"), SerializeField]
-    private GameObject Effect;
+    private GameObject Eff_Explosion;
+
+    [Header("敵爆散のエフェクト"), SerializeField]
+    private GameObject Eff_Scatter;
 
     [Header("AudioClip"), SerializeField]
     private AudioClip audioclip;
@@ -68,12 +71,50 @@ public class N_BreakBlock : MonoBehaviour
             {
                 Vector3 pos = trans_Block.position;
 
-                Instantiate(Effect, pos, Quaternion.identity);
+                // ブロック爆発
+                Instantiate(Eff_Explosion, pos, Quaternion.identity);
+
+                // 敵爆散
+                pos = collision.transform.position;
+                Instantiate(Eff_Scatter, pos, Quaternion.identity);
 
                 // オブジェクト削除と同時に効果音を鳴らす処理
                 AudioSource.PlayClipAtPoint(audioclip, pos);
 
                 Destroy(gameObject);
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        // 指定したタグをもったオブジェクトがぶつかってきたら
+        if (collision.collider.tag == sBreakTag)
+        {
+            enemyBall = collision.gameObject.GetComponent<S_EnemyBall>();
+
+            // ぶつかってきた敵塊の数を取得
+            int checkNum = (int)enemyBall.GetStickCount();
+
+            // 指定値以上の塊がぶつかってきたら
+            if (checkNum >= iBreakNum)
+            {
+                Vector3 pos = trans_Block.position;
+
+                // ブロック爆発
+                Instantiate(Eff_Explosion, pos, Quaternion.identity);
+
+                // 敵爆散
+                pos = collision.transform.position;
+                Instantiate(Eff_Scatter, pos, Quaternion.identity);
+
+                // オブジェクト削除と同時に効果音を鳴らす処理
+                AudioSource.PlayClipAtPoint(audioclip, pos);
+
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+
             }
         }
     }

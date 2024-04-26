@@ -37,6 +37,8 @@ public class N_ProjecterSympathy : MonoBehaviour
     // 投影機のスクリプトを格納するリスト
     private List<N_ProjectHologram> list = new List<N_ProjectHologram>();
 
+    private N_PlaySound playSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,8 @@ public class N_ProjecterSympathy : MonoBehaviour
         lineRenderer.material = material;
 
         trans_Player = this.gameObject.transform;
+
+        playSound = transform.GetChild(3).gameObject.GetComponent<N_PlaySound>();
     }
 
     // Update is called once per frame
@@ -70,7 +74,7 @@ public class N_ProjecterSympathy : MonoBehaviour
         // キー入力があったら共鳴開始
         if(Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("SympathyButton"))
         {
-            if(isSympathy == false)
+            if(isSympathy == false && !playSound.GetIsPlaying())
             {
                 isSympathy = true;
                 // 表示
@@ -83,6 +87,10 @@ public class N_ProjecterSympathy : MonoBehaviour
                     // 初期化
                     SC_Holo.Initialize();
                 }
+
+                // se再生
+                playSound.PlaySound(N_PlaySound.SEName.CrowCry);
+                //Debug.Log("再生");
             }
         }
 
