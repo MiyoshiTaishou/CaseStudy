@@ -25,6 +25,7 @@ public class K_ChangeSprite : MonoBehaviour
 
         EnemySpriteRolling= Instantiate(EnemyObjRolling, transform.position, Quaternion.identity);
         EnemySpriteRolling.SetActive(false);
+        EnemySpriteRolling.transform.parent = this.transform;
 
         EnemyBall = GetComponent<S_EnemyBall>();
     }
