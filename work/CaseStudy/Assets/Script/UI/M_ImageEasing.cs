@@ -34,6 +34,7 @@ public class M_ImageEasing : MonoBehaviour
         savePos = image.transform.position;
         saveScale = image.transform.localScale;
         saveRot = image.transform.rotation.eulerAngles;
+        isEasing = true;
     }
 
     void Update()
