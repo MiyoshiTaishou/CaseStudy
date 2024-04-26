@@ -49,6 +49,7 @@ public class M_PlayerMove : MonoBehaviour
     /// ダッシュ中か
     /// </summary>
     private bool isDash = true;
+  
 
     private Rigidbody2D rbPlayer;
    
@@ -64,6 +65,13 @@ public class M_PlayerMove : MonoBehaviour
     /// 移動可能か
     /// </summary>
     private bool isMove = true;
+
+    /// <summary>
+    /// ダッシュしているか
+    /// </summary>
+    private bool isNowDash = true;
+
+    public bool GetIsDash() { return isNowDash; }
 
     public bool GetIsMove() { return isMove; }
     public void SetIsMove(bool _move) { isMove = _move; }
@@ -143,11 +151,14 @@ public class M_PlayerMove : MonoBehaviour
             //移動している場合はスタミナを消費する
             if (_forizontal != 0.0f)
             {                
-                fStamina -= fUseDashStamina * Time.deltaTime;                
+                fStamina -= fUseDashStamina * Time.deltaTime;   
+                isNowDash = true;
+                
             }
             else
             {
                 fStamina += fStayRecoverySpeed * Time.deltaTime;
+                isNowDash = false;
             }
         }
         else
@@ -186,6 +197,7 @@ public class M_PlayerMove : MonoBehaviour
                 fStamina += fUsedStaminaRecoverySpeed * Time.deltaTime;
             }
 
+            isNowDash = false;
         }
 
         //スタミナが最大まで回復したか
