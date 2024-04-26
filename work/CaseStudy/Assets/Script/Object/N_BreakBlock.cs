@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;//耐久値表示用(2024/04/25　木村追加)
 
 public class N_BreakBlock : MonoBehaviour
 {
@@ -24,10 +25,27 @@ public class N_BreakBlock : MonoBehaviour
 
     private Transform trans_Block;
 
+    //耐久値表示用(2024/04/25　木村追加)
+    private TextMeshProUGUI TextEndurance;
+
     // Start is called before the first frame update
     void Start()
     {
         trans_Block = gameObject.transform;
+
+        //耐久値表示用(2024/04/25　木村追加)
+        GameObject cd = transform.GetChild(0).gameObject; ;
+        GameObject gcd = cd.GetComponent<Transform>().transform.GetChild(0).gameObject;
+        TextEndurance = gcd.GetComponent<TextMeshProUGUI>();
+        TextEndurance.text = iBreakNum.ToString();
+        Debug.Log(TextEndurance.text);
+    }
+
+    //耐久値表示用(2024/04/25　木村追加)
+    private void Update()
+    {
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        TextEndurance.transform.position = new Vector3(screenPos.x, screenPos.y, screenPos.z); // 適切なオフセットを持たせる
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
