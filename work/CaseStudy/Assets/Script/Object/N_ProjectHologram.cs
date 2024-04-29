@@ -38,6 +38,8 @@ public class N_ProjectHologram : MonoBehaviour
     [Header("プロジェクターのオンオフ"), SerializeField]
     private bool isProjection = false;
 
+    public bool GetProjection() { return isProjection; }
+
     private bool isActive = false;
 
     private GameObject Prefab;
@@ -48,7 +50,7 @@ public class N_ProjectHologram : MonoBehaviour
     private List<GameObject> Hologram = new List<GameObject>();
 
     // 一度の共鳴でオンオフが切り替わるのは一回
-    private bool isAlreadySwitch = false;
+    private bool isAlreadySwitch = false;   
 
     // Start is called before the first frame update
     void Start()
