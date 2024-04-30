@@ -56,7 +56,7 @@ public class M_DuctManager : MonoBehaviour
 
     private void Update()
     {
-        if(ductDictionary.ContainsValue(true) && Input.GetKeyDown(KeyCode.V))
+        if(ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct"))
         {           
             Debug.Log("ダクトを出た");
 

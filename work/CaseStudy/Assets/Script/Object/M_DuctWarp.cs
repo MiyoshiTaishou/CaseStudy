@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 //ダクトの移動処理
 public class M_DuctWarp : MonoBehaviour
@@ -118,7 +119,7 @@ public class M_DuctWarp : MonoBehaviour
         }
 
         //入る処理
-        if (Input.GetKeyDown(KeyCode.V) && isTouch)
+        if (Input.GetButtonDown("Duct") && isTouch)
         {
             //マネージャに自身のダクトにプレイヤーが入ったことを知らせる
             DuctManager.GetComponent<M_DuctManager>().SetContains(this.gameObject, true);
@@ -156,26 +157,30 @@ public class M_DuctWarp : MonoBehaviour
     {
         Debug.Log(gameObject);
 
+        // キーボード入力を受け取る
+        float fHorizontalInput = Input.GetAxis("Horizontal");
+        float fVerticalInput = Input.GetAxis("Vertical");
+
         //上ダクトに移動
-        if (Input.GetKeyDown(KeyCode.W) && UpDuct)
+        if (fVerticalInput > 0.3f&& UpDuct)
         {
             StartCoroutine(IEMoveDuct(fMoveTime, UpDuct));
         }
 
         //下ダクトに移動
-        if (Input.GetKeyDown(KeyCode.S) && DownDuct)
+        if (fVerticalInput < -0.3f && DownDuct)
         {
             StartCoroutine(IEMoveDuct(fMoveTime, DownDuct));
         }
 
         //左ダクトに移動
-        if (Input.GetKeyDown(KeyCode.A) && LeftDuct)
+        if (fHorizontalInput < -0.3f && LeftDuct)
         {
             StartCoroutine(IEMoveDuct(fMoveTime, LeftDuct));
         }
 
         //右ダクトに移動
-        if (Input.GetKeyDown(KeyCode.D) && RightDuct)
+        if (fHorizontalInput > 0.3f && RightDuct)
         {
             StartCoroutine(IEMoveDuct(fMoveTime, RightDuct));
         }
