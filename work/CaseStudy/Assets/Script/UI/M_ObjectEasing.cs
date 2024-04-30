@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class M_ImageEasing : MonoBehaviour
+public class M_ObjectEasing : MonoBehaviour
 {
-    private Image image;
     private float fTime;
     private bool isEasing = false;
-
     public bool GetEasing() { return isEasing; }
 
     private bool isReverse = false;
@@ -39,11 +36,10 @@ public class M_ImageEasing : MonoBehaviour
     private bool isStart = true;
 
     void Start()
-    {
-        image = GetComponent<Image>();
-        savePos = image.transform.position;
-        saveScale = image.transform.localScale;
-        saveRot = image.transform.rotation.eulerAngles;
+    {       
+        savePos = this.transform.position;
+        saveScale = this.transform.localScale;
+        saveRot = this.transform.rotation.eulerAngles;
         isEasing = isStart;
     }
 
@@ -65,16 +61,16 @@ public class M_ImageEasing : MonoBehaviour
     {
         isEasing = !isEasing;
         fTime = 0;
-        image.transform.position = savePos;
-        image.transform.localScale = saveScale;
-        image.transform.rotation = Quaternion.Euler(saveRot);
+        this.transform.position = savePos;
+        this.transform.localScale = saveScale;
+        this.transform.rotation = Quaternion.Euler(saveRot);
     }
 
     private void Easing()
     {
         float t = Mathf.Clamp01(fTime / duration);
 
-        if(isReverse)
+        if (isReverse)
         {
             t = 1 - t;
         }
@@ -82,20 +78,20 @@ public class M_ImageEasing : MonoBehaviour
         if (pos.isApply)
         {
             var func = M_Easing.GetEasingMethod(pos.ease);
-            image.transform.position = savePos + pos.amount * func(t);
+            this.transform.position = savePos + pos.amount * func(t);
         }
 
         if (scale.isApply)
         {
             var func = M_Easing.GetEasingMethod(scale.ease);
-            image.transform.localScale = saveScale + scale.amount * func(t);
+            this.transform.localScale = saveScale + scale.amount * func(t);
         }
 
         if (rot.isApply)
         {
             var func = M_Easing.GetEasingMethod(rot.ease);
             Vector3 vecRot = saveRot + rot.amount * func(t);
-            image.transform.rotation = Quaternion.Euler(vecRot);
+            this.transform.rotation = Quaternion.Euler(vecRot);
         }
     }
 }
