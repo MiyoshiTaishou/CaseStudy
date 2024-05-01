@@ -106,7 +106,7 @@ public class N_ProjectHologram : MonoBehaviour
                         fTime += Time.deltaTime;
                         fTime = Mathf.Clamp01(fTime); // ’l‚ğ0‚©‚ç1‚Ì”ÍˆÍ‚É§ŒÀ‚·‚é
                         material.SetFloat("_Fader", fTime); // _Fader‚ğİ’è
-                        projectionUI.GetComponent<SpriteRenderer>().material.SetFloat("_Fader", fTime); // _Fader‚ğİ’è
+                        //projectionUI.GetComponent<SpriteRenderer>().material.SetFloat("_Fader", fTime); // _Fader‚ğİ’è
                     }
                 }
             }
