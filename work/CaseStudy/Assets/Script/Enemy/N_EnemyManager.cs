@@ -42,11 +42,12 @@ public class N_EnemyManager : MonoBehaviour
     private static int GenerateOrder = 0;
 
     // ステートマシン
-    private enum ManagerState
+    public enum ManagerState
     {
         IDLE,
         PATOROL,
         WAIT,
+        ECPULSION, // 除名
 
     }
 
@@ -83,6 +84,10 @@ public class N_EnemyManager : MonoBehaviour
 
             case ManagerState.WAIT:
                 Wait();
+                break;
+
+            case ManagerState.ECPULSION:
+                //Ecpulsion();
                 break;
         }
     }
@@ -163,7 +168,7 @@ public class N_EnemyManager : MonoBehaviour
         }
     }
 
-    private void ChangeManagerState(ManagerState _state)
+    public void ChangeManagerState(ManagerState _state)
     {
         managerState = _state;
     }
@@ -215,6 +220,25 @@ public class N_EnemyManager : MonoBehaviour
                 enemy.EnemyMove(0.0f, IsReflectionX);
             }
         }
+    }
+
+    // 除名
+    private void Ecpulsion()
+    {
+        // 何もせず待機
+    }
+
+    // ボールになった敵をリストから削除
+    public void EcpulsionMember(int _number,ManagerState _state) 
+    {
+        TeamMembers.RemoveAt(_number);
+        sEnemyMoves.RemoveAt(_number);
+        // 隊列の人数を計測
+        CountMemberNum();
+        // 自身の隊列に番号再付与
+        SetInfomation(false);
+
+        managerState = _state;
     }
 
     // 隊列に敵を追加する
@@ -344,5 +368,10 @@ public class N_EnemyManager : MonoBehaviour
     public float GetMoveSpeed()
     {
         return MoveSpeed;
+    }
+
+    public N_EnemyManager.ManagerState GetState()
+    {
+        return managerState;
     }
 }

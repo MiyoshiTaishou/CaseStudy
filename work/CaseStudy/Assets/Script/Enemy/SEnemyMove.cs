@@ -82,11 +82,16 @@ public class SEnemyMove : MonoBehaviour
     // 隊列内での番号
     public int TeamNumber = 0;
 
-    public N_EnemyManager enemyManager;
+    private N_EnemyManager enemyManager;
 
     private Transform thisTrans;
 
     public void StartMove() { isLook = true; }
+
+    public N_EnemyManager GetManager()
+    {
+        return enemyManager;
+    }
 
     public bool GetIsCollidingHologram() { return IsCollidingHologram; }
 
@@ -300,11 +305,6 @@ public class SEnemyMove : MonoBehaviour
         }
     }
 
-    private N_EnemyManager GetManager()
-    {
-        return enemyManager;
-    }
-
     public bool GetIsReflection()
     {
         return IsReflectionX;
@@ -512,5 +512,10 @@ public class SEnemyMove : MonoBehaviour
         thisTrans.Translate(_move, 0.0f, 0.0f, Space.Self);
         IsReflectionX = _ref;
         rb.velocity = Vector2.zero;
+    }
+
+    public int GetTeamNumber()
+    {
+        return TeamNumber;
     }
 }
