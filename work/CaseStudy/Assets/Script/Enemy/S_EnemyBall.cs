@@ -50,6 +50,9 @@ public class S_EnemyBall : MonoBehaviour
 
     private Vector2 vel;
 
+    // 隊列から除名されているか
+    private bool isDeleteMember = false;
+
     public int GetStickCount() 
     {
         int temp = 0;
@@ -69,10 +72,13 @@ public class S_EnemyBall : MonoBehaviour
 
         if (isPushing)
         {
-           GetComponent<SEnemyMove>().enabled = false;
-           GetComponent<M_BlindingMove>().enabled = false;
-           GetComponent<MPlayerSearch>().enabled = false;
+            GetComponent<SEnemyMove>().enabled = false;
+            GetComponent<M_BlindingMove>().enabled = false;
+            GetComponent<MPlayerSearch>().enabled = false;
             vel = rb.velocity;
+
+            // 隊列から除名
+            DeleteMember();
         }
         if(isBall&& Mathf.Abs(rb.velocity.x) < fStopjudge) 
         {
@@ -80,7 +86,25 @@ public class S_EnemyBall : MonoBehaviour
         }
     }
 
+    private void DeleteMember()
+    {
+        if (!isDeleteMember)
+        {
+            SEnemyMove sEnemyMove = gameObject.GetComponent<SEnemyMove>();
+            N_EnemyManager enemyMana = sEnemyMove.GetManager();
 
+            // 現在の状態取得
+            N_EnemyManager.ManagerState state = enemyMana.GetState();
+
+            // 状態変更
+            enemyMana.ChangeManagerState(N_EnemyManager.ManagerState.ECPULSION);
+
+            // 除名関数呼び出し(隊列番号、現在のマネージャーの状態)
+            enemyMana.EcpulsionMember(sEnemyMove.GetTeamNumber(), state);
+
+            isDeleteMember = true;
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D _collision)
     {
@@ -90,10 +114,11 @@ public class S_EnemyBall : MonoBehaviour
         }
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject= _collision.gameObject;
-        if(ColObject.CompareTag("Enemy")||ColObject.CompareTag("EnemyBall"))
+        S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
+        if (ColObject.CompareTag("Enemy")||ColObject.CompareTag("EnemyBall"))
         {
-            if (!ColObject.GetComponent<S_EnemyBall>().GetisPushing()||
-                (ColObject.GetComponent<S_EnemyBall>().GetisPushing()&&fStickCnt > ColObject.GetComponent<S_EnemyBall>().GetStickCount()))
+            if (!colEnemyBall.GetisPushing()||
+                (colEnemyBall.GetisPushing()&&fStickCnt > colEnemyBall.GetStickCount()))
             {
                 isBall = true;
                 fStickCnt++;
@@ -108,6 +133,10 @@ public class S_EnemyBall : MonoBehaviour
                 nextScale.x += GiantLv / 2;
                 nextScale.y += GiantLv / 2;
                 transform.localScale = nextScale;
+
+                // 隊列から除名
+                colEnemyBall.DeleteMember();
+
                 Destroy(ColObject);
                 rb.AddForce(vel*fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
@@ -126,10 +155,11 @@ public class S_EnemyBall : MonoBehaviour
         }
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject= _collision.gameObject;
-        if(ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
+        S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
+        if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
-            if (!ColObject.GetComponent<S_EnemyBall>().GetisPushing()||
-                (ColObject.GetComponent<S_EnemyBall>().GetisPushing()&&fStickCnt > ColObject.GetComponent<S_EnemyBall>().GetStickCount()))
+            if (!colEnemyBall.GetisPushing()||
+                (colEnemyBall.GetisPushing()&&fStickCnt > colEnemyBall.GetStickCount()))
             {
                 isBall = true;
                 fStickCnt++;
@@ -144,6 +174,10 @@ public class S_EnemyBall : MonoBehaviour
                 nextScale.x += GiantLv / 2;
                 nextScale.y += GiantLv / 2;
                 transform.localScale = nextScale;
+
+                // 隊列から除名
+                colEnemyBall.DeleteMember();
+
                 Destroy(ColObject);
                 rb.AddForce(rb.velocity*fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
