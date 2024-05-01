@@ -20,11 +20,21 @@ public class M_MaterialChange : MonoBehaviour
         {
             // マテリアルの float の値を 0 まで進める
             foreach (var mt in originalMaterials)
-            {                
-                 float currentValue = mt.Key.material.GetFloat("_Fader");
-                 float currentValue2 = mt.Key.material.GetFloat("_Effect");
+            {
+                float currentValue = 0f;
+                float currentValue2 = 0f;
 
-                 float newValue = currentValue - Time.deltaTime;
+                if (mt.Key.material.HasProperty("_Fader"))
+                {
+                    currentValue = mt.Key.material.GetFloat("_Fader");
+                }
+
+                if (mt.Key.material.HasProperty("_Effect"))
+                {
+                    currentValue2 = mt.Key.material.GetFloat("_Effect");
+                }
+
+                float newValue = currentValue - Time.deltaTime;
                  float newValue2 = currentValue2 + Time.deltaTime;
 
                  mt.Key.material.SetFloat("_Fader", newValue);                

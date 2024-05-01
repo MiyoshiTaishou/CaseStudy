@@ -38,6 +38,9 @@ public class N_ProjectHologram : MonoBehaviour
     [Header("プロジェクターのオンオフ"), SerializeField]
     private bool isProjection = false;
 
+    [Header("プロジェクター起動時に出す演出"), SerializeField]
+    private GameObject projectionUI;
+
     public bool GetProjection() { return isProjection; }
 
     private bool isActive = false;
@@ -50,7 +53,12 @@ public class N_ProjectHologram : MonoBehaviour
     private List<GameObject> Hologram = new List<GameObject>();
 
     // 一度の共鳴でオンオフが切り替わるのは一回
-    private bool isAlreadySwitch = false;   
+    private bool isAlreadySwitch = false;
+
+    /// <summary>
+    /// 時間計測by三好大翔
+    /// </summary>
+    private float fTime = 0.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +74,8 @@ public class N_ProjectHologram : MonoBehaviour
 
         // ホログラム生成
         GenerateHologram();
+
+        projectionUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -77,18 +87,39 @@ public class N_ProjectHologram : MonoBehaviour
             {
                 foreach (GameObject obj in Hologram)
                 {
-                    obj.SetActive(true);
+                    fTime = 0.0f;
+                    obj.SetActive(true); 
+                    projectionUI.SetActive(true);
                 }
                 isActive = true;
             }
+
+            foreach (GameObject obj in Hologram)
+            {
+                SpriteRenderer[] spriteRenderers = obj.GetComponentsInChildren<SpriteRenderer>(true); // 子オブジェクトのSpriteRendererを取得（trueを指定して非アクティブなものも含める）
+              
+                foreach (SpriteRenderer renderer in spriteRenderers)
+                {
+                    Material material = renderer.material; // 子オブジェクトのマテリアルを取得
+                    if (material.HasProperty("_Fader")) // マテリアルが_Faderプロパティを持っているか確認
+                    {
+                        fTime += Time.deltaTime;
+                        fTime = Mathf.Clamp01(fTime); // 値を0から1の範囲に制限する
+                        material.SetFloat("_Fader", fTime); // _Faderを設定
+                    }
+                }
+            }
+
+            projectionUI.GetComponent<SpriteRenderer>().material.SetFloat("_Fader", fTime); // _Faderを設定
         }
         else
         {
             if(isActive == true)
             {
                 foreach (GameObject obj in Hologram)
-                {
-                    obj.SetActive(false);
+                {                   
+                    obj.SetActive(false);  
+                    projectionUI.SetActive(false);
                 }
                 isActive = false;
             }
@@ -146,7 +177,7 @@ public class N_ProjectHologram : MonoBehaviour
             // 最初非表示
             obj.SetActive(false);
             // リスト追加
-            Hologram.Add(obj);
+            Hologram.Add(obj);          
         }
 
     }
