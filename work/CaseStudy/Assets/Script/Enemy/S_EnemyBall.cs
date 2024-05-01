@@ -90,7 +90,7 @@ public class S_EnemyBall : MonoBehaviour
         }
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject= _collision.gameObject;
-        if(ColObject.tag=="Enemy")
+        if(ColObject.CompareTag("Enemy")||ColObject.CompareTag("EnemyBall"))
         {
             if (!ColObject.GetComponent<S_EnemyBall>().GetisPushing()||
                 (ColObject.GetComponent<S_EnemyBall>().GetisPushing()&&fStickCnt > ColObject.GetComponent<S_EnemyBall>().GetStickCount()))
@@ -126,7 +126,7 @@ public class S_EnemyBall : MonoBehaviour
         }
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject= _collision.gameObject;
-        if(ColObject.tag=="Enemy")
+        if(ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
             if (!ColObject.GetComponent<S_EnemyBall>().GetisPushing()||
                 (ColObject.GetComponent<S_EnemyBall>().GetisPushing()&&fStickCnt > ColObject.GetComponent<S_EnemyBall>().GetStickCount()))
