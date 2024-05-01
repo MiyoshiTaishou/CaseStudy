@@ -1,24 +1,24 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class SEnemyMove : MonoBehaviour
 {
-    [Header("ƒƒCƒ“ƒJƒƒ‰"),SerializeField]
+    [Header("ãƒ¡ã‚¤ãƒ³ã‚«ãƒ¡ãƒ©"),SerializeField]
     Camera mainCamera= null;
 
-    [Header("‰½ƒ}ƒX•ªˆÚ“®‚·‚é‚©"), SerializeField]
+    [Header("ä½•ãƒã‚¹åˆ†ç§»å‹•ã™ã‚‹ã‹"), SerializeField]
     Vector2 MoveDistance= Vector2.zero;
 
-    [Header("ˆÚ“®‘¬“x"), SerializeField]
+    [Header("ç§»å‹•é€Ÿåº¦"), SerializeField]
     Vector2 MoveSpeed= Vector2.zero;
 
-    [Header("–Ú•WˆÊ’u‚Ü‚Å“’B‚µ‚Ä‰½•b‘Ò‹@‚·‚é‚©"), SerializeField]
+    [Header("ç›®æ¨™ä½ç½®ã¾ã§åˆ°é”ã—ã¦ä½•ç§’å¾…æ©Ÿã™ã‚‹ã‹"), SerializeField]
     float fWaitTime = 0.0f;
 
-    [Header("“GÕ“Ë‚Ì’â~ŠÔ"), SerializeField]
+    [Header("æ•µè¡çªæ™‚ã®åœæ­¢æ™‚é–“"), SerializeField]
     float fFreezeTime = 0.0f;
 
-    //”½‘Î•ûŒü‚ğŒü‚¢‚Ä‚¢‚é‚©
+    //åå¯¾æ–¹å‘ã‚’å‘ã„ã¦ã„ã‚‹ã‹
     private bool IsReflectionX = false;
 
     private bool IsReflectionY = false;
@@ -26,40 +26,40 @@ public class SEnemyMove : MonoBehaviour
     bool GetReflectionX() { return IsReflectionX; }
     bool GetReflectionY() { return IsReflectionY; }
 
-    //‰ŠúˆÊ’u
+    //åˆæœŸä½ç½®
     private Vector2 defaultPos= Vector2.zero;
 
     private Rigidbody2D rb=null;
 
-    //–Ú•WˆÊ’u
+    //ç›®æ¨™ä½ç½®
     private Vector2 GallPos=Vector2.zero;
 
-    //•Ç‚âŠR‚ğ”»’f‚·‚éRay
+    //å£ã‚„å´–ã‚’åˆ¤æ–­ã™ã‚‹Ray
     private Ray rayWall,rayGround;
-    [Header("Ray‚Ì’·‚³(•Ç—p)"), SerializeField]
+    [Header("Rayã®é•·ã•(å£ç”¨)"), SerializeField]
     float fDistance=0.5f;
-    [Header("Ray‚Ì’·‚³(‘«Œ³)"), SerializeField]
+    [Header("Rayã®é•·ã•(è¶³å…ƒ)"), SerializeField]
     float fGroundDistance=1.0f;
-    [Header("Ray‚Ìn“_‚ğ‚Ç‚ê‚¾‚¯—£‚·‚©(x)"), SerializeField]
+    [Header("Rayã®å§‹ç‚¹ã‚’ã©ã‚Œã ã‘é›¢ã™ã‹(x)"), SerializeField]
     float fGup = 0.0f;
-    [Header("‘«Œ³‚ÌRay‚Ì•ûŒü"), SerializeField]
+    [Header("è¶³å…ƒã®Rayã®æ–¹å‘"), SerializeField]
     float fGrounddirx = 0.2f, fGrounddiry = -0.8f;
-    [Header("ƒsƒ^ƒb‚Æ~‚Ü‚é"), SerializeField]
+    [Header("ãƒ”ã‚¿ãƒƒã¨æ­¢ã¾ã‚‹"), SerializeField]
     bool isStop = false;
-    [Header("Ray‚Ì‰Â‹‰»"), SerializeField]
+    [Header("Rayã®å¯è¦–åŒ–"), SerializeField]
     bool isRayDraw = false;
-    [Header("â“¹’ïR—Í„§20"), SerializeField]
+    [Header("å‚é“æŠµæŠ—åŠ›æ¨å¥¨20"), SerializeField]
     float Power = 20.0f;
-    [Header("§ŒÀ‘¬“x"), SerializeField]
+    [Header("åˆ¶é™é€Ÿåº¦"), SerializeField]
     float fLimitSpeed = 2.0f;
 
-    //Ray‚Ìn“_
+    //Rayã®å§‹ç‚¹
     private Vector2 Origin=Vector2.zero;
 
-    //‘«Œ³‚É”ò‚Î‚·Ray‚Ì•ûŒü
+    //è¶³å…ƒã«é£›ã°ã™Rayã®æ–¹å‘
     private Vector2 GroundDirection=Vector2.zero;
 
-    //ˆÈ‰ºAâ“¹ŒvZ—p‚Ì•Ï”
+    //ä»¥ä¸‹ã€å‚é“è¨ˆç®—ç”¨ã®å¤‰æ•°
     private Vector2 slopeOrigin1=Vector2.zero;
     private Vector2 slopeOrigin2=Vector2.zero;
     private Vector2 slopePos1= Vector2.zero;
@@ -67,17 +67,26 @@ public class SEnemyMove : MonoBehaviour
     Vector2 slopeGup1=Vector2.zero;
     private Vector2 slopeGup2=Vector2.zero;
 
-    private float frictionCoefficient = 0.5f; // –€CŒW”
-    //â“¹ã‚É‚¢‚é‚©
+    private float frictionCoefficient = 0.5f; // æ‘©æ“¦ä¿‚æ•°
+    //å‚é“ä¸Šã«ã„ã‚‹ã‹
     private bool isSlope = false;
 
-    //’n‚É‘«‚Â‚¢‚Ä‚é‚©
+    //åœ°ã«è¶³ã¤ã„ã¦ã‚‹ã‹
     private bool isGround = false;
 
     private bool isLook = false;
 
-    //ƒzƒƒOƒ‰ƒ€‚Æ‚ÌÕ“Ë‚ğŒŸ’m(2024/4/17 –Ø‘º‹LÚ)
+    //ãƒ›ãƒ­ã‚°ãƒ©ãƒ ã¨ã®è¡çªã‚’æ¤œçŸ¥(2024/4/17 æœ¨æ‘è¨˜è¼‰)
     private bool IsCollidingHologram = false;
+
+    // éšŠåˆ—å†…ã§ã®ç•ªå·
+    public int TeamNumber = 0;
+
+    public N_EnemyManager enemyManager;
+
+    private Transform thisTrans;
+
+    public void StartMove() { isLook = true; }
 
     public bool GetIsCollidingHologram() { return IsCollidingHologram; }
 
@@ -90,16 +99,19 @@ public class SEnemyMove : MonoBehaviour
         rb= GetComponent<Rigidbody2D>();
         if(!rb)
         {
-            Debug.LogError("RigidBody2D‚ª‚ ‚è‚Ü‚¹‚ñ");
+            Debug.LogError("RigidBody2DãŒã‚ã‚Šã¾ã›ã‚“");
         }
         slopeGup1.x = 0.2f;
         slopeGup2 = slopeGup1;
         slopeGup2.x *= -1;
         if (!mainCamera)
         {
-            Debug.LogError("Main camera ‚ª‚ ‚è‚Ü‚¹‚ñ");
+            Debug.LogError("Main camera ãŒã‚ã‚Šã¾ã›ã‚“");
         }
         defaultScale = transform.localScale;
+
+        enemyManager = this.transform.parent.gameObject.GetComponent<N_EnemyManager>();
+        thisTrans = this.GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -111,22 +123,23 @@ public class SEnemyMove : MonoBehaviour
         }
         if (!isLook)
         {
-            // ƒIƒuƒWƒFƒNƒg‚Ì‹«ŠEƒ{ƒbƒNƒX‚ğæ“¾
+            // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å¢ƒç•Œãƒœãƒƒã‚¯ã‚¹ã‚’å–å¾—
             Bounds bounds = GetComponent<Renderer>().bounds;
 
-            // ƒIƒuƒWƒFƒNƒg‚Ì‹«ŠEƒ{ƒbƒNƒX‚ªƒJƒƒ‰‚Ì‹‘ä“à‚É‚ ‚é‚©‚Ç‚¤‚©‚ğ”»’è
+            // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®å¢ƒç•Œãƒœãƒƒã‚¯ã‚¹ãŒã‚«ãƒ¡ãƒ©ã®è¦–éŒå°å†…ã«ã‚ã‚‹ã‹ã©ã†ã‹ã‚’åˆ¤å®š
             bool isVisible = GeometryUtility.TestPlanesAABB(GeometryUtility.CalculateFrustumPlanes(mainCamera), bounds);
             if (isVisible) 
             {
-                isLook= true;
+                //isLook= true;
+                enemyManager.IsLook(true);
             }
             else 
             {
                 return;
             }
         }
-        //â“¹ŒvZ
-        //ŒX‚«‚ğŒvZ‚·‚é‚½‚ß‚Ìƒ|ƒWƒVƒ‡ƒ“‚ğæ“¾
+        //å‚é“è¨ˆç®—
+        //å‚¾ãã‚’è¨ˆç®—ã™ã‚‹ãŸã‚ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã‚’å–å¾—
         slopeOrigin1 = transform.position;
         slopeOrigin1.x += slopeGup1.x;
         slopeOrigin1.y += slopeGup1.y;
@@ -139,7 +152,7 @@ public class SEnemyMove : MonoBehaviour
         if (hitSlope1.collider != null && hitSlope2.collider != null &&
             hitSlope1.collider.CompareTag("TileMap") && hitSlope2.collider.CompareTag("TileMap"))
         {
-            //2“_ŠÔ‚ÌŒX‚«‚ğŒvZ
+            //2ç‚¹é–“ã®å‚¾ãã‚’è¨ˆç®—
             Vector2 point1 = hitSlope1.point;
             Vector2 point2 = hitSlope2.point;
             float slopeAngle = Mathf.Atan2(point2.y - point1.y, point2.x - point1.x) * Mathf.Rad2Deg;
@@ -157,10 +170,10 @@ public class SEnemyMove : MonoBehaviour
                 rb.drag = 1;
                 isSlope = false;
             }
-            //ŒXÎ‚ÌŠp“x‚ªˆê’èˆÈã‚È‚çŒX‚¢‚Ä‚¢‚é‚Æ”»’f
+            //å‚¾æ–œã®è§’åº¦ãŒä¸€å®šä»¥ä¸Šãªã‚‰å‚¾ã„ã¦ã„ã‚‹ã¨åˆ¤æ–­
 
-            //ŒX‚«‚É‘Î‚·‚é’ïR—Í‚ğŒvZ
-            //ŒXÎ‚É‘Î‚·‚é…•½•ûŒü‚ÌR—Í‚ğŒvZ
+            //å‚¾ãã«å¯¾ã™ã‚‹æŠµæŠ—åŠ›ã‚’è¨ˆç®—
+            //å‚¾æ–œã«å¯¾ã™ã‚‹æ°´å¹³æ–¹å‘ã®æŠ—åŠ›ã‚’è¨ˆç®—
             float horizontalResistance = rb.mass * Mathf.Abs(rb.gravityScale) * frictionCoefficient * Mathf.Sin(slopeAngle * Mathf.Deg2Rad);
             Vector2 vecAngle = new Vector2(Mathf.Cos(slopeAngle * Mathf.Deg2Rad), Mathf.Sin(slopeAngle * Mathf.Deg2Rad));
 
@@ -176,7 +189,7 @@ public class SEnemyMove : MonoBehaviour
         }
 
 
-        //‚±‚Ì•ÓƒR[ƒh‚­‚Á‚»‰˜‚¢‚Ì‚Å‹C‚ªŒü‚¢‚½‚ç’¼‚µ‚Ä‚¨‚«‚Ü‚·
+        //ã“ã®è¾ºã‚³ãƒ¼ãƒ‰ãã£ãæ±šã„ã®ã§æ°—ãŒå‘ã„ãŸã‚‰ç›´ã—ã¦ãŠãã¾ã™
         int coef=IsReflectionX? -1 : 1;
         Origin = transform.position;
         Origin.x += fGup * coef;
@@ -189,41 +202,43 @@ public class SEnemyMove : MonoBehaviour
         RaycastHit2D hitGround = Physics2D.Raycast(Origin, GroundDirection, fGroundDistance);
         if (isRayDraw)
         {
-            Debug.DrawRay(Origin, Vector2.right * coef*fDistance, Color.red, 0.1f, false);
-            Debug.DrawRay(Origin, GroundDirection*fGroundDistance, Color.blue, 0.1f, false);
-            Debug.DrawRay(slopeOrigin1, Vector2.down*2.0f,Color.blue,1.0f,false);
-            Debug.DrawRay(slopeOrigin2, Vector2.down*2.0f,Color.green,1.0f,false);
+            Debug.DrawRay(Origin, Vector2.right * coef*fDistance, Color.red, 0.0f, false);
+            //Debug.DrawRay(Origin, GroundDirection*fGroundDistance, Color.blue, 0.1f, false);
+            //Debug.DrawRay(slopeOrigin1, Vector2.down*2.0f,Color.blue,1.0f,false);
+            //Debug.DrawRay(slopeOrigin2, Vector2.down*2.0f,Color.green,1.0f,false);
         }
 
-        //•Ç”»’è—p‚ÌRay‚ªƒ^ƒCƒ‹ƒ}ƒbƒv‚ÉÚG‚µ‚Ä‚¢‚é‚©A‘«Œ³‚ÌRay‚ª‰½‚àî•ñ‚ğ“¾‚ç‚ê‚È‚¯‚ê‚Î•ûŒü‚ğØ‚è‘Ö‚¦‚é
+        //å£åˆ¤å®šç”¨ã®RayãŒã‚¿ã‚¤ãƒ«ãƒãƒƒãƒ—ã«æ¥è§¦ã—ã¦ã„ã‚‹ã‹ã€è¶³å…ƒã®RayãŒä½•ã‚‚æƒ…å ±ã‚’å¾—ã‚‰ã‚Œãªã‘ã‚Œã°æ–¹å‘ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹
         if (GroundCheck()&&
             hitWall.collider!=null&&hitWall.collider.CompareTag("TileMap")||
             hitWall.collider!=null&&hitWall.collider.CompareTag("Hologram")||
             hitWall.collider!=null&&hitWall.collider.CompareTag("Ground")||
             hitGround.collider==null)
         {
-            IsReflectionX= !IsReflectionX;
-            if(IsReflectionX) 
-            {
-                GallPos.x = defaultPos.x - MoveDistance.x;
-                MoveSpeed.x = -MoveSpeed.x;
-                StartCoroutine(Gall(fWaitTime));
-            }
-            else if(!IsReflectionX) 
-            {
-                GallPos.x = defaultPos.x + MoveDistance.x;
-                MoveSpeed.x = -MoveSpeed.x;
-                StartCoroutine(Gall(fWaitTime));
-            }
+            //IsReflectionX= !IsReflectionX;
+            //if(IsReflectionX) 
+            //{
+            //    GallPos.x = defaultPos.x - MoveDistance.x;
+            //    MoveSpeed.x = -MoveSpeed.x;
+            //    StartCoroutine(Gall(fWaitTime));
+            //}
+            //else if(!IsReflectionX) 
+            //{
+            //    GallPos.x = defaultPos.x + MoveDistance.x;
+            //    MoveSpeed.x = -MoveSpeed.x;
+            //    StartCoroutine(Gall(fWaitTime));
+            //}
 
-            //ƒzƒƒOƒ‰ƒ€‚Æ‚ÌÕ“Ë‚ğŒŸ’m(2024/4/17 –Ø‘º‹LÚ)
+            //ãƒ›ãƒ­ã‚°ãƒ©ãƒ ã¨ã®è¡çªã‚’æ¤œçŸ¥(2024/4/17 æœ¨æ‘è¨˜è¼‰)
             if (hitWall.collider != null &&  hitWall.collider.CompareTag("Hologram"))
             {
+                //Debug.Log("ãƒ›ãƒ­ã‚°ãƒ©ãƒ æ¤œçŸ¥");
                 IsCollidingHologram = true;
+                enemyManager.DetectionHologram(TeamNumber);
             }
             else
             {
-                IsCollidingHologram = false; ;
+                IsCollidingHologram = false;
             }
         }
         else
@@ -231,27 +246,36 @@ public class SEnemyMove : MonoBehaviour
             IsCollidingHologram = false; ;
         }
 
-        rb.AddForce(MoveSpeed);
-        //ˆÈ‰º‚©‚çŒ»İˆÊ’u‚ªƒS[ƒ‹ˆÊ’u‚ğ‰z‚¦‚Ä‚¢‚é‚©‚ğ”»’è‚µA
-        //‰z‚¦‚Ä‚¢‚ê‚Î‘Ò‹@‚µ‚½‚Ì‚¿is•ûŒü‚ğ”½“]‚·‚éˆ—
-        if (transform.position.x>GallPos.x&&
-            !IsReflectionX) 
-        {            
-            IsReflectionX = true;
-            GallPos.x = defaultPos.x - MoveDistance.x;
-            MoveSpeed.x = -MoveSpeed.x;
-            StartCoroutine(Gall(fWaitTime));
-        }
-        else if(transform.position.x<GallPos.x&&
-            IsReflectionX) 
+        if (GroundCheck() &&
+            hitWall.collider != null && hitWall.collider.CompareTag("TileMap") ||
+            hitWall.collider != null && hitWall.collider.CompareTag("Ground") ||
+            hitGround.collider == null)
         {
-            IsReflectionX = false;
-            GallPos.x = defaultPos.x + MoveDistance.x;
-            MoveSpeed.x = -MoveSpeed.x;
-            StartCoroutine(Gall(fWaitTime));
+            //Debug.Log("ãƒ›ãƒ­ã‚°ãƒ©ãƒ ä»¥å¤–æ¤œçŸ¥");
+            enemyManager.RequestRefletion();
         }
 
-        //Œ»óg‚í‚È‚¢Y²ˆÚ“®
+        //rb.AddForce(MoveSpeed);
+        ////ä»¥ä¸‹ã‹ã‚‰ç¾åœ¨ä½ç½®ãŒã‚´ãƒ¼ãƒ«ä½ç½®ã‚’è¶Šãˆã¦ã„ã‚‹ã‹ã‚’åˆ¤å®šã—ã€
+        ////è¶Šãˆã¦ã„ã‚Œã°å¾…æ©Ÿã—ãŸã®ã¡é€²è¡Œæ–¹å‘ã‚’åè»¢ã™ã‚‹å‡¦ç†
+        //if (transform.position.x>GallPos.x&&
+        //    !IsReflectionX) 
+        //{            
+        //    IsReflectionX = true;
+        //    GallPos.x = defaultPos.x - MoveDistance.x;
+        //    MoveSpeed.x = -MoveSpeed.x;
+        //    StartCoroutine(Gall(fWaitTime));
+        //}
+        //else if(transform.position.x<GallPos.x&&
+        //    IsReflectionX) 
+        //{
+        //    IsReflectionX = false;
+        //    GallPos.x = defaultPos.x + MoveDistance.x;
+        //    MoveSpeed.x = -MoveSpeed.x;
+        //    StartCoroutine(Gall(fWaitTime));
+        //}
+
+        //ç¾çŠ¶ä½¿ã‚ãªã„Yè»¸ç§»å‹•
         //if(transform.position.y>GallPos.y&&
         //    !IsReflectionY) 
         //{
@@ -276,75 +300,114 @@ public class SEnemyMove : MonoBehaviour
         }
     }
 
+    private N_EnemyManager GetManager()
+    {
+        return enemyManager;
+    }
+
+    public bool GetIsReflection()
+    {
+        return IsReflectionX;
+    }
+
       private void OnCollisionEnter2D(Collision2D _collision)
     {
         Vector2 colpos = _collision.transform.position;
         Vector2 pos = transform.position;
         Vector2 vec = colpos - pos;
 
-        //“G‚Æ“–‚½‚Á‚½uŠÔ‚É•ûŒü“]Š·
-        if (_collision.transform.CompareTag("Enemy")&&vec.x<0.0f&&IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
+        if (_collision.transform.CompareTag("Enemy"))
         {
+            SEnemyMove enemyMove = _collision.gameObject.GetComponent<SEnemyMove>();
+            N_EnemyManager colManager = enemyMove.GetManager();
 
-            IsReflectionX = !IsReflectionX;
-            if (IsReflectionX)
+            // é•ã†éšŠåˆ—ã«æ‰€å±ã—ã¦ã„ã‚‹æ•µåŒå£«ãªã‚‰
+            if (this.enemyManager.name != colManager.name)
             {
-                GallPos.x = defaultPos.x - MoveDistance.x;
-                MoveSpeed.x = -MoveSpeed.x;
+                // é€²è¡Œæ–¹å‘ãŒé•ã†ãªã‚‰
+                if (IsReflectionX != enemyMove.GetIsReflection())
+                {
+                    // æ–¹å‘è»¢æ›
+                    enemyManager.RequestRefletion();
+                }
+                // åŒã˜æ–¹å‘ã«é€²ã‚“ã§ã„ã‚‹ãªã‚‰
+                else
+                {
+                    // ã“ã£ã¡ã®åˆ†å²ã«å…¥ã‚‹ = ã©ã¡ã‚‰ã‹ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ãŒãŠãŠãã„
+                    // å¤§ãã„æ–¹ãŒå°ã•ã„æ–¹ã®ã‚±ãƒ„ã‹ã‚‰ã¶ã¤ã‹ã£ã¦ã„ã‚‹ã¯ãšãªã®ã§
+                    // ã‚¹ãƒ”ãƒ¼ãƒ‰ãŒå¤§ãã„å¥´ã ã‘æ–¹å‘è»¢æ›
+                    if(this.enemyManager.GetMoveSpeed() > colManager.GetMoveSpeed())
+                    {
+                        // æ–¹å‘è»¢æ›
+                        enemyManager.RequestRefletion();
+                    }
+                }
             }
-            else if (!IsReflectionX)
-            {
-                GallPos.x = defaultPos.x + MoveDistance.x;
-                MoveSpeed.x = -MoveSpeed.x;
-            }
-            //Vector2 colpos = _collision.transform.position;
-            //Vector2 pos = transform.position;
-            //Vector2 vec = colpos - pos;
-            //if (vec.x < 0)
-            //{
-            //    pos.x -= 0.1f;
-            //}
-            //else
-            //{
-            //    pos.x += 0.1f;
-            //}
-            //transform.position = pos;
-            StartCoroutine(Gall(fFreezeTime));
         }
-        else if (_collision.transform.CompareTag("Enemy")&&vec.x>0.0f&&!IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
-        {
 
-            IsReflectionX = !IsReflectionX;
-            if (IsReflectionX)
-            {
-                GallPos.x = defaultPos.x - MoveDistance.x;
-                MoveSpeed.x = -MoveSpeed.x;
-            }
-            else if (!IsReflectionX)
-            {
-                GallPos.x = defaultPos.x + MoveDistance.x;
-                MoveSpeed.x = -MoveSpeed.x;
-            }
-            //Vector2 colpos = _collision.transform.position;
-            //Vector2 pos = transform.position;
-            //Vector2 vec = colpos - pos;
-            //if (vec.x < 0)
-            //{
-            //    pos.x -= 0.1f;
-            //}
-            //else
-            //{
-            //    pos.x += 0.1f;
-            //}
-            //transform.position = pos;
-            StartCoroutine(Gall(fFreezeTime));
-        }
+        //æ•µã¨å½“ãŸã£ãŸç¬é–“ã«æ–¹å‘è»¢æ›
+        //if (_collision.transform.CompareTag("Enemy") && vec.x < 0.0f && IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
+        //{
+
+        //    IsReflectionX = !IsReflectionX;
+        //    if (IsReflectionX)
+        //    {
+        //        GallPos.x = defaultPos.x - MoveDistance.x;
+        //        MoveSpeed.x = -MoveSpeed.x;
+        //    }
+        //    else if (!IsReflectionX)
+        //    {
+        //        GallPos.x = defaultPos.x + MoveDistance.x;
+        //        MoveSpeed.x = -MoveSpeed.x;
+        //    }
+        //    //Vector2 colpos = _collision.transform.position;
+        //    //Vector2 pos = transform.position;
+        //    //Vector2 vec = colpos - pos;
+        //    //if (vec.x < 0)
+        //    //{
+        //    //    pos.x -= 0.1f;
+        //    //}
+        //    //else
+        //    //{
+        //    //    pos.x += 0.1f;
+        //    //}
+        //    //transform.position = pos;
+        //    StartCoroutine(Gall(fFreezeTime));
+        //}
+        //else if (_collision.transform.CompareTag("Enemy") && vec.x > 0.0f && !IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
+        //{
+
+        //    IsReflectionX = !IsReflectionX;
+        //    if (IsReflectionX)
+        //    {
+        //        GallPos.x = defaultPos.x - MoveDistance.x;
+        //        MoveSpeed.x = -MoveSpeed.x;
+        //    }
+        //    else if (!IsReflectionX)
+        //    {
+        //        GallPos.x = defaultPos.x + MoveDistance.x;
+        //        MoveSpeed.x = -MoveSpeed.x;
+        //    }
+        //    //Vector2 colpos = _collision.transform.position;
+        //    //Vector2 pos = transform.position;
+        //    //Vector2 vec = colpos - pos;
+        //    //if (vec.x < 0)
+        //    //{
+        //    //    pos.x -= 0.1f;
+        //    //}
+        //    //else
+        //    //{
+        //    //    pos.x += 0.1f;
+        //    //}
+        //    //transform.position = pos;
+        //    StartCoroutine(Gall(fFreezeTime));
+        //}
     }
     //private void OnCollisionStay2D(Collision2D _collision)
     //{
-    //    ////“G‚Æ“–‚½‚Á‚Ä‚¢‚éŠÔ‚»‚¢‚Â‚Æˆá‚¤•ûŒü‚ğŒü‚¢‚Ä‚¢‚é‚©‚Ìƒ`ƒFƒbƒN‚ğ‚µ‘±‚¯‚é
-    //    ////ˆá‚¤•ûŒü‚ğŒü‚¢‚Ä‚¢‚½‚ç•ûŒü“]Š·
-    //    ////‚»‚ÌÛA•ûŒü“]Š·Œã‚Ì—Í‚ğ‰Á‚¦‚Äƒ‹[ƒv‚ğ‰ñ”ğ
+    //    ////æ•µã¨å½“ãŸã£ã¦ã„ã‚‹é–“ãã„ã¤ã¨é•ã†æ–¹å‘ã‚’å‘ã„ã¦ã„ã‚‹ã‹ã®ãƒã‚§ãƒƒã‚¯ã‚’ã—ç¶šã‘ã‚‹
+    //    ////é•ã†æ–¹å‘ã‚’å‘ã„ã¦ã„ãŸã‚‰æ–¹å‘è»¢æ›
+    //    ////ãã®éš›ã€æ–¹å‘è»¢æ›å¾Œã®åŠ›ã‚’åŠ ãˆã¦ãƒ«ãƒ¼ãƒ—ã‚’å›é¿
     //    //if(_collision.transform.CompareTag("Enemy") /*&& _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX*/)
     //    //{
     //    //    IsReflectionX = !IsReflectionX;
@@ -359,7 +422,7 @@ public class SEnemyMove : MonoBehaviour
     //    //        MoveSpeed.x = -MoveSpeed.x;
     //    //    }
 
-    //    //    //•ûŒü“]Š·‚ÌŒã‚É‚¿‚å‚Á‚Æ‹——£‚ğ—£‚·(–³ŒÀƒ‹[ƒv–h~)
+    //    //    //æ–¹å‘è»¢æ›ã®å¾Œã«ã¡ã‚‡ã£ã¨è·é›¢ã‚’é›¢ã™(ç„¡é™ãƒ«ãƒ¼ãƒ—é˜²æ­¢)
     //    //    Vector2 colpos= _collision.transform.position;
     //    //    Vector2 pos = transform.position;
     //    //    Vector2 vec = colpos - pos;
@@ -376,10 +439,10 @@ public class SEnemyMove : MonoBehaviour
     //    //}
     //}
 
-    //ƒRƒ‹[ƒ`ƒ“‚Å‘Ò‹@ˆ—
+    //ã‚³ãƒ«ãƒ¼ãƒãƒ³ã§å¾…æ©Ÿå‡¦ç†
     IEnumerator Gall(float _wait)
     {
-        //I‚í‚é‚Ü‚Å‘Ò‚Á‚Ä‚Ù‚µ‚¢ˆ—‚ğ‘‚­
+        //çµ‚ã‚ã‚‹ã¾ã§å¾…ã£ã¦ã»ã—ã„å‡¦ç†ã‚’æ›¸ã
         this.enabled = false;
         if (isStop)
         {
@@ -392,9 +455,9 @@ public class SEnemyMove : MonoBehaviour
                 rb.isKinematic = true;
             }
         }
-        //w’è‚Ì•b”‘Ò‚Â
+        //æŒ‡å®šã®ç§’æ•°å¾…ã¤
         yield return new WaitForSeconds(_wait);
-        //ÄŠJ‚µ‚Ä‚©‚çÀs‚µ‚½‚¢ˆ—‚ğ‘‚­
+        //å†é–‹ã—ã¦ã‹ã‚‰å®Ÿè¡Œã—ãŸã„å‡¦ç†ã‚’æ›¸ã
         this.enabled = true;
         if(isSlope)
         {
@@ -410,7 +473,7 @@ public class SEnemyMove : MonoBehaviour
         //Debug.DrawRay(origin,Vector2.down*0.2f, Color.yellow);
         if(hit.collider != null && hit.collider.CompareTag("TileMap")) 
         {
-            //ƒzƒ°‚·‚è”²‚¯‚È‚Ç‚ÅˆÊ’u‚ª‘å‚«‚­•Ï‚í‚Á‚½ê‡‚É–Ú•WˆÊ’u“™‚ÌXV‚ğs‚¤
+            //ãƒ›ãƒ­åºŠã™ã‚ŠæŠœã‘ãªã©ã§ä½ç½®ãŒå¤§ããå¤‰ã‚ã£ãŸå ´åˆã«ç›®æ¨™ä½ç½®ç­‰ã®æ›´æ–°ã‚’è¡Œã†
             if(!isGround) 
             {
                 if (IsReflectionX)
@@ -432,5 +495,22 @@ public class SEnemyMove : MonoBehaviour
             isGround= false;
         }
         return isGround;
+    }
+
+    public void SetNumber(int _num)
+    {
+        TeamNumber = _num;
+    }
+
+    public void SetEnemyManager()
+    {
+        enemyManager = this.transform.parent.gameObject.GetComponent<N_EnemyManager>();
+    }
+
+    public void EnemyMove(float _move, bool _ref)
+    {
+        thisTrans.Translate(_move, 0.0f, 0.0f, Space.Self);
+        IsReflectionX = _ref;
+        rb.velocity = Vector2.zero;
     }
 }
