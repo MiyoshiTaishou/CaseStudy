@@ -105,7 +105,7 @@ public class S_EnemyBall : MonoBehaviour
                 //‹zû‚µ‚½“G‚Ì”‚É‰‚¶‚Ä‹‘å‰»
                 Vector3 nextScale = defaultScale;
                 float GiantLv = (float)GetGiantLv();
-                nextScale.x -= GiantLv / 2;
+                nextScale.x += GiantLv / 2;
                 nextScale.y += GiantLv / 2;
                 transform.localScale = nextScale;
                 Destroy(ColObject);
@@ -141,7 +141,7 @@ public class S_EnemyBall : MonoBehaviour
                 //‹zû‚µ‚½“G‚Ì”‚É‰‚¶‚Ä‹‘å‰»
                 Vector3 nextScale = defaultScale;
                 float GiantLv = (float)GetGiantLv();
-                nextScale.x -= GiantLv / 2;
+                nextScale.x += GiantLv / 2;
                 nextScale.y += GiantLv / 2;
                 transform.localScale = nextScale;
                 Destroy(ColObject);
