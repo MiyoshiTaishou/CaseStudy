@@ -94,11 +94,7 @@ public class M_PlayerPush : MonoBehaviour
 
     //押す処理
     void Push(GameObject push)
-    {
-        // 押すアニメーションを再生
-        animator2.SetBool("push", true);
-        animator2.SetBool("push", false);
-
+    {      
         //押せる条件
         switch (mode)
         {
@@ -171,6 +167,7 @@ public class M_PlayerPush : MonoBehaviour
                     StartCoroutine(M_Utility.GamePadMotor(fTime));
 
                     animator.SetTrigger("Start");
+                    animator2.SetTrigger("push");
                 }
                 
                 break;
