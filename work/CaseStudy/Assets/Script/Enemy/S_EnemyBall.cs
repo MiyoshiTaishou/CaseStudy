@@ -133,6 +133,11 @@ public class S_EnemyBall : MonoBehaviour
             {
                 isBall = true;
                 fStickCnt++;
+                if (fStickCnt == 1)
+                {
+                    fStickCnt++;
+                    transform.tag = "EnemyBall";
+                }
                 //‹zû‚µ‚½“G‚Ì”‚É‰‚¶‚Ä‹‘å‰»
                 Vector3 nextScale = defaultScale;
                 float GiantLv = (float)GetGiantLv();
