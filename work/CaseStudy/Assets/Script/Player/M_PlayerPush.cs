@@ -32,17 +32,22 @@ public class M_PlayerPush : MonoBehaviour
     /// <summary>
     /// 押すオブジェクト
     /// </summary>
-    GameObject PushObj;
+    GameObject PushObj;    
 
     /// <summary>
     /// 押せるかどうか
     /// </summary>
     private bool isPush = false;
-   
+
+    private Animator animator;
+  
     // Start is called before the first frame update
     void Start()
     {
         PlayerObj = GameObject.Find("Player");
+
+        // Animatorコンポーネントを取得
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,7 +55,7 @@ public class M_PlayerPush : MonoBehaviour
     {      
         if(isPush && PushObj)
         {
-            Push(PushObj);
+            Push(PushObj);            
         }
     }
 
@@ -154,8 +159,10 @@ public class M_PlayerPush : MonoBehaviour
 
                     Debug.Log("押した");
                     StartCoroutine(M_Utility.GamePadMotor(fTime));
-                }
 
+                    animator.SetTrigger("Start");
+                }
+                
                 break;
         }       
     }   
