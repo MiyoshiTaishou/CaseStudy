@@ -38,11 +38,17 @@ public class M_PlayerPush : MonoBehaviour
     /// 押せるかどうか
     /// </summary>
     private bool isPush = false;
-   
+
+    /// <summary>
+    ///アニメーション関連
+    /// </summary>
+    private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerObj = GameObject.Find("Player");
+        animator = GameObject.Find("T_main_chara").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -84,6 +90,10 @@ public class M_PlayerPush : MonoBehaviour
     //押す処理
     void Push(GameObject push)
     {
+        // 押すアニメーションを再生
+        animator.SetBool("push", true);
+        animator.SetBool("push", false);
+
         //押せる条件
         switch (mode)
         {
