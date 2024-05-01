@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class M_PlayerPush : MonoBehaviour
 {
     /// <summary>
-    /// ‚Ç‚Ìó‘Ô‚Ì‚É‰Ÿ‚¹‚é‚æ‚¤‚É‚·‚é‚©
+    /// ã©ã®çŠ¶æ…‹ã®æ™‚ã«æŠ¼ã›ã‚‹ã‚ˆã†ã«ã™ã‚‹ã‹
     /// </summary>
     enum MODE
     {
@@ -15,38 +15,44 @@ public class M_PlayerPush : MonoBehaviour
         None,
     }
 
-    [Header("‰Ÿ‚¹‚éğŒ"),SerializeField]
+    [Header("æŠ¼ã›ã‚‹æ¡ä»¶"),SerializeField]
     MODE mode;
 
-    [Header("‰Ÿ‚·—Í"), SerializeField]
+    [Header("æŠ¼ã™åŠ›"), SerializeField]
     float fPower = 5.0f;
 
-    [Header("U“®ŠÔ"), SerializeField]
+    [Header("æŒ¯å‹•æ™‚é–“"), SerializeField]
     private float fTime = 0.5f;
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
     /// </summary>
     GameObject PlayerObj;
 
     /// <summary>
-    /// ‰Ÿ‚·ƒIƒuƒWƒFƒNƒg
+    /// æŠ¼ã™ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     /// </summary>
     GameObject PushObj;    
 
     /// <summary>
-    /// ‰Ÿ‚¹‚é‚©‚Ç‚¤‚©
+    /// æŠ¼ã›ã‚‹ã‹ã©ã†ã‹
     /// </summary>
     private bool isPush = false;
 
-    private Animator animator;
-  
+    /// <summary>
+    ///ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é–¢é€£
+    /// </summary>
+    private Animator animator;   
+    private Animator animator2;   
+    
     // Start is called before the first frame update
     void Start()
     {
         PlayerObj = GameObject.Find("Player");
 
-        // AnimatorƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾
+        animator2 = GameObject.Find("T_main_chara").GetComponent<Animator>();
+
+        // Animatorã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆã‚’å–å¾—
         animator = GetComponent<Animator>();
     }
 
@@ -67,7 +73,7 @@ public class M_PlayerPush : MonoBehaviour
             {
                 isPush = true;
 
-                //‰Ÿ‚·ƒIƒuƒWƒFƒNƒg‘ã“ü
+                //æŠ¼ã™ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆä»£å…¥
                 PushObj = collision.gameObject;
             }
         }       
@@ -86,13 +92,17 @@ public class M_PlayerPush : MonoBehaviour
         }
     }
 
-    //‰Ÿ‚·ˆ—
+    //æŠ¼ã™å‡¦ç†
     void Push(GameObject push)
     {
-        //‰Ÿ‚¹‚éğŒ
+        // æŠ¼ã™ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’å†ç”Ÿ
+        animator2.SetBool("push", true);
+        animator2.SetBool("push", false);
+
+        //æŠ¼ã›ã‚‹æ¡ä»¶
         switch (mode)
         {
-            //ğŒ‚È‚µ
+            //æ¡ä»¶ãªã—
             case MODE.None:
 
                 if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush"))
@@ -114,7 +124,7 @@ public class M_PlayerPush : MonoBehaviour
 
                 break;
 
-            //–Ú‚­‚ç‚Ü‚µ’†
+            //ç›®ãã‚‰ã¾ã—ä¸­
             case MODE.Blinding:
                
                 if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("EnemyPush")) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
@@ -136,7 +146,7 @@ public class M_PlayerPush : MonoBehaviour
 
                 break;
 
-            //ƒoƒŒ‚Ä‚¢‚È‚¢
+            //ãƒãƒ¬ã¦ã„ãªã„æ™‚
             case MODE.Back:
 
                 if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<MPlayerSearch>().GetIsSearch())
@@ -157,7 +167,7 @@ public class M_PlayerPush : MonoBehaviour
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
                     push.GetComponent<S_EnemyBall>().SetisPushing(true);
 
-                    Debug.Log("‰Ÿ‚µ‚½");
+                    Debug.Log("æŠ¼ã—ãŸ");
                     StartCoroutine(M_Utility.GamePadMotor(fTime));
 
                     animator.SetTrigger("Start");
