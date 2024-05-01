@@ -13,7 +13,7 @@ public class N_BreakBlock : MonoBehaviour
     /// 自身のオブジェクトを破壊するオブジェクトが持つタグ名
     /// </summary>
     [Header("BreakObjectTag"), SerializeField]
-    private const string sBreakTag = "Enemy";
+    private const string sBreakTag = "EnemyBall";
 
     [Header("破壊時のエフェクト"), SerializeField]
     private GameObject Eff_Explosion;
