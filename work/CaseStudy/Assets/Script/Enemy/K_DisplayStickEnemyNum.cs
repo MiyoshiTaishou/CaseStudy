@@ -21,7 +21,7 @@ public class K_DisplayStickEnemyNum : MonoBehaviour
     {
         int StickEnemyNum = GetComponent<S_EnemyBall>().GetStickCount();
 
-        if(StickEnemyNum!=0)
+        if(StickEnemyNum>0)
         {
              UIScript.SetEnemyNum(StickEnemyNum);
         }
