@@ -31,6 +31,10 @@ public class N_BreakBlock : MonoBehaviour
     //耐久値表示用(2024/04/25　木村追加)
     private TextMeshProUGUI TextEndurance;
 
+    //敵爆散用(2024/05/02　木村追加)
+    private ParticleSystem particle;
+    private ParticleSystem.Burst burst;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +45,7 @@ public class N_BreakBlock : MonoBehaviour
         GameObject gcd = cd.GetComponent<Transform>().transform.GetChild(0).gameObject;
         TextEndurance = gcd.GetComponent<TextMeshProUGUI>();
         TextEndurance.text = iBreakNum.ToString();
-        Debug.Log(TextEndurance.text);
+        particle = Eff_Scatter.GetComponent<ParticleSystem>();
     }
 
     //耐久値表示用(2024/04/25　木村追加)
@@ -76,6 +80,8 @@ public class N_BreakBlock : MonoBehaviour
 
                 // 敵爆散
                 pos = collision.transform.position;
+                burst.count = enemyBall.GetStickCount();
+                particle.emission.SetBurst(0, burst);
                 Instantiate(Eff_Scatter, pos, Quaternion.identity);
 
                 // オブジェクト削除と同時に効果音を鳴らす処理
@@ -107,6 +113,8 @@ public class N_BreakBlock : MonoBehaviour
 
                 // 敵爆散
                 pos = collision.transform.position;
+                burst.count = enemyBall.GetStickCount();
+                particle.emission.SetBurst(0, burst);
                 Instantiate(Eff_Scatter, pos, Quaternion.identity);
 
                 // オブジェクト削除と同時に効果音を鳴らす処理
