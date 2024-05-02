@@ -63,6 +63,12 @@ public class M_PlayerPush : MonoBehaviour
         {
             Push(PushObj);            
         }
+
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush"))
+        {
+            animator.SetTrigger("Start");
+            animator2.SetTrigger("push");
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -164,10 +170,7 @@ public class M_PlayerPush : MonoBehaviour
                     push.GetComponent<S_EnemyBall>().SetisPushing(true);
 
                     Debug.Log("押した");
-                    StartCoroutine(M_Utility.GamePadMotor(fTime));
-
-                    animator.SetTrigger("Start");
-                    animator2.SetTrigger("push");
+                    StartCoroutine(M_Utility.GamePadMotor(fTime));                   
                 }
                 
                 break;
