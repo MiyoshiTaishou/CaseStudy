@@ -120,7 +120,7 @@ public class N_ProjectHologram : MonoBehaviour
                 foreach (GameObject obj in Hologram)
                 {                   
                     obj.SetActive(false);  
-                    projectionUI.SetActive(false);
+                    //projectionUI.SetActive(false);
                 }
                 isActive = false;
             }
