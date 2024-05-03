@@ -26,17 +26,24 @@ public class N_ProjectHologram : MonoBehaviour
         LEFT,
         RIGHT,
     }
-    [Header("プロジェクターの向き"), SerializeField]
-    HOLOGRAM_DIRECTION direction = HOLOGRAM_DIRECTION.UP;
+    [Header("ホログラムを生成する方向"), SerializeField]
+    HOLOGRAM_DIRECTION HoloDirection = HOLOGRAM_DIRECTION.UP;
 
     [Header("どれくらい離れた位置に表示するか"), SerializeField]
-    private float fDistance = 1.0f;
+    private Vector2 AwayDistance = new Vector2(0.0f,0.0f);
 
     [Header("いくつ連ねるか"), SerializeField]
     private int iHowMany = 1;
 
+    [Header("自動でマスに合わせる"), SerializeField]
+    private bool AutoCombine = false;
+
     [Header("プロジェクターのオンオフ"), SerializeField]
     private bool isProjection = false;
+
+    // 表示するホログラムの設定を途中で変える
+    [Header("表示するホログラムの設定を途中で変える"), SerializeField]
+    private bool isReset = false;
 
     [Header("プロジェクター起動時に出す演出"), SerializeField]
     private GameObject projectionUI;
@@ -54,7 +61,7 @@ public class N_ProjectHologram : MonoBehaviour
 
     // 一度の共鳴でオンオフが切り替わるのは一回
     private bool isAlreadySwitch = false;
-
+    
     /// <summary>
     /// 時間計測by三好大翔
     /// </summary>
@@ -66,11 +73,15 @@ public class N_ProjectHologram : MonoBehaviour
         // トランスフォーム取得
         trans_Projecter = this.gameObject.transform;
 
-        // 置きなおし
-        Replacement();
+        // インスペクターでマスに合わせると指定した時
+        if (AutoCombine)
+        {
+            // 置きなおし
+            Replacement();
+        }
 
         // 描画に必要な情報をセット
-        SetInfomation(mode, direction);
+        SetInfomation(mode, HoloDirection);
 
         // ホログラム生成
         GenerateHologram();
@@ -81,6 +92,24 @@ public class N_ProjectHologram : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isReset)
+        {
+            // 生成したホログラム削除
+            foreach(var obj in Hologram)
+            {
+                Destroy(obj);
+            }
+            Hologram.Clear();
+
+            // 描画に必要な情報をセット
+            SetInfomation(mode, HoloDirection);
+
+            // ホログラム生成
+            GenerateHologram();
+
+            isActive = false;
+            isReset = false;
+        }
         if (isProjection)
         {
             if(isActive == false)
@@ -136,27 +165,29 @@ public class N_ProjectHologram : MonoBehaviour
         float dirY = 1.0f;
         Vector3 sca = Prefab.transform.localScale;
 
-        switch (direction)
+        // ホログラムの開始地点調整
+        switch (HoloDirection)
         {
-            case HOLOGRAM_DIRECTION.UP:
-                vec.y = vec.y + fDistance;
-                dirX = 0.0f;
-                break;
-
             case HOLOGRAM_DIRECTION.DOWN:
-                vec.y = vec.y - fDistance;
-                dirX = 0.0f;
                 dirY = -dirY;
                 break;
 
             case HOLOGRAM_DIRECTION.LEFT:
-                vec.x = vec.x - fDistance;
                 dirX = -dirX;
-                dirY = 0.0f;
+                break;
+        }
+        vec.x = vec.x + AwayDistance.x * dirX;
+        vec.y = vec.y + AwayDistance.y * dirY;
+
+        switch (HoloDirection)
+        {
+            case HOLOGRAM_DIRECTION.UP:
+            case HOLOGRAM_DIRECTION.DOWN:
+                dirX = 0.0f;
                 break;
 
+            case HOLOGRAM_DIRECTION.LEFT:
             case HOLOGRAM_DIRECTION.RIGHT:
-                vec.x = vec.x + fDistance;
                 dirY = 0.0f;
                 break;
         }
@@ -189,51 +220,39 @@ public class N_ProjectHologram : MonoBehaviour
         Vector2 vec = trans_Projecter.position;
         Vector2 sca = trans_Projecter.localScale;
 
-        vec.x = Mathf.FloorToInt(vec.x) + sca.x / 2.0f;
-        vec.y = Mathf.FloorToInt(vec.y) + sca.y / 2.0f;
+        Debug.Log(gameObject.name);
+        Debug.Log(vec);
+
+        vec.x = Mathf.FloorToInt(vec.x) + 0.5f/*sca.x / 2.0f*/;
+        vec.y = Mathf.FloorToInt(vec.y) + 0.5f/*sca.y / 2.0f*/;
 
         trans_Projecter.position = vec;
+
+        Debug.Log(vec);
     }
 
     // 必要な情報をセットする
     private void SetInfomation(HOLOGRAM_MODE _mode,HOLOGRAM_DIRECTION _direction)
     {
-        string address = "";
-
         switch (_mode)
         {
             case HOLOGRAM_MODE.PLAYER:
-                //address = "Assets/Object/Field/Hologram/Holo_Player.prefab";
                 iHowMany = 1;
                 break;
 
             case HOLOGRAM_MODE.WALL:
-                //address = "Assets/Object/Field/Hologram/Holo_Wall.prefab";
                 break;
 
             case HOLOGRAM_MODE.FLOOR:
-                //address = "Assets/Object/Field/Hologram/Holo_Floor.prefab";
                 break;
         }
-#if UNITY_EDITOR
 
-        // パスを元にプレハブを取得
-        //Prefab = AssetDatabase.LoadAssetAtPath<GameObject>(address);
-#endif
         Prefab = gHolograms[(int)_mode];
 
         switch (_direction)
         {
-            case HOLOGRAM_DIRECTION.UP:
-                trans_Projecter.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
-                break;
-
-            case HOLOGRAM_DIRECTION.DOWN:
-                trans_Projecter.eulerAngles = new Vector3(0.0f, 0.0f, 270.0f);
-                break;
-
             case HOLOGRAM_DIRECTION.LEFT:
-                trans_Projecter.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f);
+                trans_Projecter.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
                 break;
 
             case HOLOGRAM_DIRECTION.RIGHT:
