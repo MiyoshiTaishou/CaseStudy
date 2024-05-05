@@ -220,8 +220,8 @@ public class N_ProjectHologram : MonoBehaviour
         Vector2 vec = trans_Projecter.position;
         Vector2 sca = trans_Projecter.localScale;
 
-        Debug.Log(gameObject.name);
-        Debug.Log(vec);
+        //Debug.Log(gameObject.name);
+        //Debug.Log(vec);
 
         vec.x = Mathf.FloorToInt(vec.x) + 0.5f/*sca.x / 2.0f*/;
         vec.y = Mathf.FloorToInt(vec.y) + 0.5f/*sca.y / 2.0f*/;

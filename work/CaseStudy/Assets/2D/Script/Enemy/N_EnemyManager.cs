@@ -44,14 +44,18 @@ public class N_EnemyManager : MonoBehaviour
     // ステートマシン
     public enum ManagerState
     {
-        IDLE,
-        PATOROL,
-        WAIT,
-        ECPULSION, // 除名
-
+        IDLE,       // アイドル
+        PATOROL,    // 巡回
+        WAIT,       // 待機
+        ECPULSION,  // 除名
+        CHASE,      // 追跡
     }
 
     private ManagerState managerState = ManagerState.PATOROL;
+
+    // 追跡対象の座標
+    private GameObject Target;
+    private Transform TargetTrans;
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +92,10 @@ public class N_EnemyManager : MonoBehaviour
 
             case ManagerState.ECPULSION:
                 //Ecpulsion();
+                break;
+
+            case ManagerState.CHASE:
+                Chase();
                 break;
         }
     }
@@ -219,6 +227,42 @@ public class N_EnemyManager : MonoBehaviour
             {
                 enemy.EnemyMove(0.0f, IsReflectionX);
             }
+        }
+    }
+
+    private void Chase()
+    {
+        int num = 0;
+        foreach (var obj in TeamMembers) {
+            if (TargetTrans.position.x < obj.transform.position.x)
+            {
+                float dir = -1.0f;
+
+                // このフレームで移動する距離
+                float distance = dir * MoveSpeed * Time.deltaTime;
+
+                sEnemyMoves[num].ChaseTarget(distance);
+            }
+            if(TargetTrans.position.x > obj.transform.position.x)
+            {
+                float dir = 1.0f;
+
+                // このフレームで移動する距離
+                float distance = dir * MoveSpeed * Time.deltaTime;
+
+                sEnemyMoves[num].ChaseTarget(distance);
+            }
+            num++;
+        }
+    }
+
+    public void SetTarget(GameObject _obj)
+    {
+        if (Target == null || Target != _obj)
+        {
+            Target = _obj;
+            TargetTrans = Target.GetComponent<Transform>();
+            managerState = ManagerState.CHASE;
         }
     }
 

@@ -208,9 +208,9 @@ public class SEnemyMove : MonoBehaviour
         if (isRayDraw)
         {
             Debug.DrawRay(Origin, Vector2.right * coef*fDistance, Color.red, 0.0f, false);
-            //Debug.DrawRay(Origin, GroundDirection*fGroundDistance, Color.blue, 0.1f, false);
-            //Debug.DrawRay(slopeOrigin1, Vector2.down*2.0f,Color.blue,1.0f,false);
-            //Debug.DrawRay(slopeOrigin2, Vector2.down*2.0f,Color.green,1.0f,false);
+            Debug.DrawRay(Origin, GroundDirection * fGroundDistance, Color.blue, 0.1f, false);
+            Debug.DrawRay(slopeOrigin1, Vector2.down * 2.0f, Color.blue, 1.0f, false);
+            Debug.DrawRay(slopeOrigin2, Vector2.down * 2.0f, Color.green, 1.0f, false);
         }
 
         //壁判定用のRayがタイルマップに接触しているか、足元のRayが何も情報を得られなければ方向を切り替える
@@ -253,8 +253,8 @@ public class SEnemyMove : MonoBehaviour
 
         if (GroundCheck() &&
             hitWall.collider != null && hitWall.collider.CompareTag("TileMap") ||
-            hitWall.collider != null && hitWall.collider.CompareTag("Ground") ||
-            hitGround.collider == null)
+            hitWall.collider != null && hitWall.collider.CompareTag("Ground") /*||
+            hitGround.collider == null*/)
         {
             //Debug.Log("ホログラム以外検知");
             enemyManager.RequestRefletion();
@@ -511,6 +511,12 @@ public class SEnemyMove : MonoBehaviour
     {
         thisTrans.Translate(_move, 0.0f, 0.0f, Space.Self);
         IsReflectionX = _ref;
+        rb.velocity = Vector2.zero;
+    }
+
+    public void ChaseTarget(float _move)
+    {
+        thisTrans.Translate(_move, 0.0f, 0.0f, Space.Self);
         rb.velocity = Vector2.zero;
     }
 
