@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1609188613567155284}
   - component: {fileID: 1609188613567155286}
+  - component: {fileID: 4735578770737253120}
+  - component: {fileID: 64682064158426754}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -26,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1609188613567155283}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1609188614443976412}
@@ -84,6 +86,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &4735578770737253120
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609188613567155283}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.49999997
+--- !u!114 &64682064158426754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609188613567155283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3413d00b6c9ea6d4e8272585aada4571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StageClearPrefab: {fileID: 5098620619951804766, guid: c733f7827f92707469832870d82f0c74, type: 3}
 --- !u!1 &1609188613900269838
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +125,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1609188613900269839}
   - component: {fileID: 1609188613900269841}
+  - component: {fileID: 7104583886058483838}
+  - component: {fileID: 8722056708722881211}
   m_Layer: 0
   m_Name: Case
   m_TagString: Untagged
@@ -168,6 +201,46 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &7104583886058483838
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609188613900269838}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &8722056708722881211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609188613900269838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2146877702cb9c44873f04bc2cf18dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nHardness: 1
+  sBreakTag: EnemyBall
 --- !u!1 &1609188614443976410
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +250,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1609188614443976412}
-  - component: {fileID: 1609188614443976411}
   m_Layer: 0
   m_Name: ShowCase
   m_TagString: Untagged
@@ -202,16 +274,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1609188614443976411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609188614443976410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2146877702cb9c44873f04bc2cf18dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nHardness: 1
