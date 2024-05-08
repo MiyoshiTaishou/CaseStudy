@@ -24,6 +24,9 @@ public class M_PlayerPush : MonoBehaviour
     [Header("振動時間"), SerializeField]
     private float fTime = 0.5f;
 
+    [Header("風のアニメーション再生タイミング"), SerializeField]
+    private float fDlayAnim = 1.0f;
+
     /// <summary>
     /// プレイヤー
     /// </summary>
@@ -59,15 +62,25 @@ public class M_PlayerPush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {      
-        if(isPush && PushObj)
+        if(isPush && PushObj && animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             Push(PushObj);            
         }
 
-        if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush"))
-        {
-            animator.SetTrigger("Start");
+        if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush") && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        {           
             animator2.SetTrigger("push");
+            StartCoroutine(IEAnimDlay(fDlayAnim));
+        }
+      
+        //アニメーション再生中は動かないようにする
+        if(animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        {
+            PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
+        }            
+        else
+        {
+            PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
         }
     }
 
@@ -175,5 +188,14 @@ public class M_PlayerPush : MonoBehaviour
                 
                 break;
         }       
-    }   
+    }
+
+    IEnumerator IEAnimDlay(float _waitTime)
+    {
+        // 待機時間
+        yield return new WaitForSeconds(_waitTime);
+
+        animator.SetTrigger("Start");
+    }
+
 }
