@@ -45,8 +45,8 @@ public class N_ProjectHologram : MonoBehaviour
     [Header("表示するホログラムの設定を途中で変える"), SerializeField]
     private bool isReset = false;
 
-    [Header("プロジェクター起動時に出す演出"), SerializeField]
-    private GameObject projectionUI;
+    //[Header("プロジェクター起動時に出す演出"), SerializeField]
+    //private GameObject projectionUI;
 
     public bool GetProjection() { return isProjection; }
 
@@ -86,7 +86,7 @@ public class N_ProjectHologram : MonoBehaviour
         // ホログラム生成
         GenerateHologram();
 
-        projectionUI.SetActive(false);
+        //projectionUI.SetActive(false);
     }
 
     // Update is called once per frame

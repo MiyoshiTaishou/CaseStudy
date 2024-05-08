@@ -7,6 +7,9 @@ public class N_PlayerSearch : MonoBehaviour
     private N_EnemyManager enemyManager;
     private SEnemyMove enemyMove;
 
+    private bool isSearch = false;
+    public bool GetIsSearch() { return isSearch; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,29 +23,44 @@ public class N_PlayerSearch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(enemyManager == null)
+        {
+            enemyManager = enemyMove.GetManager();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player") || collision.CompareTag("Decoy"))
+        if (enemyManager != null)
         {
-            Debug.Log("î≠å©");
-            enemyManager.SetTarget(collision.gameObject);
+            if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
+            {
+                //Debug.Log("î≠å©");
+                enemyManager.SetTarget(collision.gameObject);
+
+                isSearch = true;
+            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
+        if (enemyManager != null)
         {
-            Debug.Log("í«ê’");
-            enemyManager.SetTarget(collision.gameObject);
+            if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
+            {
+                //Debug.Log("í«ê’");
+                enemyManager.SetTarget(collision.gameObject);
+
+                isSearch = true;
+            }
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         //enemyManager.ChangeManagerState(N_EnemyManager.ManagerState.PATOROL);
+
+        isSearch = false;
     }
 }

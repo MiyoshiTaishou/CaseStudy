@@ -16,7 +16,7 @@ public class K_ShowCase : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
          // 指定したタグをもったオブジェクトがぶつかってきたら
-         if (collision.collider.tag == sBreakTag)
+         if (collision.transform.CompareTag(sBreakTag))
          {
              enemyBall = collision.gameObject.GetComponent<S_EnemyBall>();
 
@@ -26,8 +26,10 @@ public class K_ShowCase : MonoBehaviour
              // 指定値以上の塊がぶつかってきたら
              if (checkNum >= nHardness)
              {
-                 Destroy(gameObject);
-                 Destroy(collision.gameObject);
+                Debug.Log(gameObject.name);
+                Debug.Log(collision.gameObject);
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
              }
          }
     }
@@ -35,7 +37,7 @@ public class K_ShowCase : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
          // 指定したタグをもったオブジェクトがぶつかってきたら
-         if (collision.collider.tag == sBreakTag)
+         if (collision.transform.CompareTag(sBreakTag))
          {
              enemyBall = collision.gameObject.GetComponent<S_EnemyBall>();
 
@@ -46,7 +48,7 @@ public class K_ShowCase : MonoBehaviour
              if (checkNum >= nHardness)
              {
                  Destroy(gameObject);
-                 Destroy(collision.gameObject);
+                 Destroy(collision.transform.gameObject);
              }
          }
     }
