@@ -15,13 +15,12 @@ public class K_Treasure : MonoBehaviour
         StageClearObj.SetActive(false);
     }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         // プレイヤーがぶつかってきたら
-        if (collision.collider.tag == "Player")
+        if (collision.transform.CompareTag("Player"))
         {
             Destroy(gameObject);
-
             StageClearObj.SetActive(true);
         }
     }
@@ -29,10 +28,9 @@ public class K_Treasure : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         // プレイヤーがぶつかってきたら
-        if (collision.collider.tag == "Player")
+        if (collision.transform.CompareTag("Player"))
         {
             Destroy(gameObject);
-
             StageClearObj.SetActive(true);
         }
     }
