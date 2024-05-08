@@ -63,12 +63,13 @@ public class M_PlayerWarning : MonoBehaviour
         //範囲内のエネミーに見つかっているかどうかチェックをする
         foreach (GameObject obj in EnemyList)
         {
-            if(obj.GetComponent<MPlayerSearch>().GetIsSearch())
+            //if(obj.GetComponent<MPlayerSearch>().GetIsSearch())
+            if(obj.GetComponent<N_PlayerSearch>().GetIsSearch())
             {
                 //見つかった場合はtrueにして抜ける
                 isFound = true;
 
-                Debug.Log("見つかったよ");
+                //Debug.Log("見つかったよ");
                 break;
             }
             else
@@ -81,7 +82,7 @@ public class M_PlayerWarning : MonoBehaviour
         {
             Found();
 
-            Debug.Log("見つかった");
+            //Debug.Log("見つかった");
 
             BGM.GetComponent<M_SwitchBGM>().ChangeBGM(true);           
         }

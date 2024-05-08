@@ -29,6 +29,9 @@ public class N_EnemyManager : MonoBehaviour
     [Header("ˆÚ“®‘¬“x"), SerializeField]
     private float MoveSpeed = 4.0f;
 
+    [Header("’ÇÕ‚ÌˆÚ“®‘¬“x"), SerializeField]
+    private float ChaseSpeed = 4.0f;
+
     [Header("•ûŒü“]Š·‘Ò‹@ŠÔ"), SerializeField]
     private float WaitTime = 0.5f;
 
@@ -417,5 +420,10 @@ public class N_EnemyManager : MonoBehaviour
     public N_EnemyManager.ManagerState GetState()
     {
         return managerState;
+    }
+
+    public bool GetIsReflection()
+    {
+        return IsReflectionX;
     }
 }

@@ -3037,6 +3037,10 @@ PrefabInstance:
       value: EnemyManager
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: ChaseSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: TeamMembers.Array.size
       value: 5
       objectReference: {fileID: 0}
