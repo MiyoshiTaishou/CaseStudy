@@ -60,9 +60,18 @@ public class M_PlayerWarning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        List<int> array = new List<int>();
+        int i = 0;
         //範囲内のエネミーに見つかっているかどうかチェックをする
         foreach (GameObject obj in EnemyList)
         {
+            if(obj == null)
+            {
+                array.Add(i);
+
+                // 次のループへスキップ
+                continue;
+            }
             //if(obj.GetComponent<MPlayerSearch>().GetIsSearch())
             if(obj.GetComponent<N_PlayerSearch>().GetIsSearch())
             {
@@ -76,6 +85,12 @@ public class M_PlayerWarning : MonoBehaviour
             {
                 isFound = false;
             }
+        }
+
+        // 削除されたオブジェクトをリストから除外
+        foreach(var num in array)
+        {
+            EnemyList.RemoveAt(num);
         }
       
         if(isFound)
