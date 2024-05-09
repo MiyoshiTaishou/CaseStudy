@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+#if UNITY_EDITOR
 using static UnityEditor.Progress;
-
+#endif
 public class M_ClearUI : MonoBehaviour
 {
     /// <summary>

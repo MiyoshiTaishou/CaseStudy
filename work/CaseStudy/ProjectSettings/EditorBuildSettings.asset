@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/2D/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/2D/Scenes/M_TestScene/M_TestTitleScene.unity
     guid: 6d1406c76f5178242b154a9aeb361b77
   - enabled: 0
@@ -20,10 +20,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/2D/Scenes/SNTestScene.unity
     guid: 4563eec228842fa42bb6a477f46dd1b5
-  - enabled: 1
+  - enabled: 0
     path: Assets/2D/Scenes/SNTestScene_2.unity
     guid: b9bbb09371c05b841b3fd7b723fd37df
-  - enabled: 1
+  - enabled: 0
     path: Assets/2D/Scenes/M_TestScene/M_SelectScene.unity
     guid: cf6b7c79d33f0bf4486fcba77aca443f
+  - enabled: 1
+    path: Assets/2D/Scenes/SNTestScene_3.unity
+    guid: 817fc7a2649eb0d43b806a5127e9a478
   m_configObjects: {}
