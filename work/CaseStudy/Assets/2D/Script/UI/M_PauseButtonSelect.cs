@@ -1,4 +1,6 @@
+#if UNITY_EDITOR
 using UnityEditor.Rendering.LookDev;
+#endif
 using UnityEngine;
 using UnityEngine.UI;
 

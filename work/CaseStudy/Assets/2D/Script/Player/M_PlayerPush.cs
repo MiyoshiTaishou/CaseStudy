@@ -62,7 +62,7 @@ public class M_PlayerPush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {      
-        if(isPush && PushObj && animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        if(isPush && PushObj && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             Push(PushObj);            
         }
@@ -88,7 +88,7 @@ public class M_PlayerPush : MonoBehaviour
     {
         if (!collision.isTrigger)
         {            
-            if (collision.tag == "Enemy")
+            if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
             {
                 isPush = true;
 
@@ -102,7 +102,7 @@ public class M_PlayerPush : MonoBehaviour
     {
         if (!collision.isTrigger)
         {
-            if (collision.tag == "Enemy")
+            if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
             {
                 isPush = false;
 
@@ -178,7 +178,7 @@ public class M_PlayerPush : MonoBehaviour
                         dir = transform.right;
                     }
 
-                    push.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    //push.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
                     push.GetComponent<S_EnemyBall>().SetisPushing(true);
 

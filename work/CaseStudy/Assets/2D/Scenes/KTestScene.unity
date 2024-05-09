@@ -549,6 +549,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 550249435524415407, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976410, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_Name
       value: ShowCase
@@ -575,7 +579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.69
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -609,6 +613,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6139527433605741638, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
+      propertyPath: iTexSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6139527433605741638, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
+      propertyPath: TextPrefab
+      value: 
+      objectReference: {fileID: 1596489224}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
 --- !u!1001 &107703700
@@ -15495,6 +15507,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1596489224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 346455752079443112, guid: a134b1118bb701140a06a5805f0ca398, type: 3}
+  m_PrefabInstance: {fileID: 698344892}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1630116908
 PrefabInstance:
   m_ObjectHideFlags: 0
