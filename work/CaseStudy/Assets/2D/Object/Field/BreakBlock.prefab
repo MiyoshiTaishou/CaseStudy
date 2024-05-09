@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1497359285853439718}
   - component: {fileID: 1497359285853439717}
   - component: {fileID: 1497359285853439716}
-  - component: {fileID: 1497359285853439719}
+  - component: {fileID: -8649466034749069963}
   m_Layer: 6
   m_Name: BreakBlock
   m_TagString: Ground
@@ -113,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1497359285853439719
+--- !u!114 &-8649466034749069963
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,12 +122,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1497359285853439715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40498874a623cd644b45faade2bc4181, type: 3}
+  m_Script: {fileID: 11500000, guid: 12180058fdd4cef4b997c333eab1450d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   iBreakNum: 3
+  iTexSize: 50
+  IsDisplayBreakNum: 1
   Eff_Explosion: {fileID: 151244, guid: 8368975de5593844bbfaf74e342fb326, type: 3}
-  Eff_Scatter: {fileID: 2433704489725696160, guid: 4205230b5c3436f478bf08d5580b636a, type: 3}
   audioclip: {fileID: 8300000, guid: f0c20ade732bea2498bacba7645daae2, type: 3}
 --- !u!1 &6244634858943715370
 GameObject:

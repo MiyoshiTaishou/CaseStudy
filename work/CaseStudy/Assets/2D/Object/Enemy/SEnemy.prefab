@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 5329434735095555639}
   - component: {fileID: 7050390331203036084}
   - component: {fileID: 1678738030882416057}
+  - component: {fileID: 5932147941604700506}
   m_Layer: 2
   m_Name: SEnemy
   m_TagString: Enemy
@@ -523,6 +524,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &5932147941604700506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117817261664437972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad689a447a031a24f8c3189f60860442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Eff_Scatter: {fileID: 2433704489725696160, guid: 4205230b5c3436f478bf08d5580b636a, type: 3}
+  audioclip: {fileID: 0}
 --- !u!1001 &1661920226232648490
 PrefabInstance:
   m_ObjectHideFlags: 0
