@@ -87,8 +87,8 @@ public class N_BreakBlock : MonoBehaviour
                 // オブジェクト削除と同時に効果音を鳴らす処理
                 AudioSource.PlayClipAtPoint(audioclip, pos);
 
-                Destroy(gameObject);
                 Destroy(collision.gameObject);
+                Destroy(gameObject);
             }
         }
     }
@@ -120,9 +120,8 @@ public class N_BreakBlock : MonoBehaviour
                 // オブジェクト削除と同時に効果音を鳴らす処理
                 AudioSource.PlayClipAtPoint(audioclip, pos);
 
-                Destroy(gameObject);
                 Destroy(collision.gameObject);
-
+                Destroy(gameObject);
             }
         }
     }
