@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 806074594693296771}
   - component: {fileID: 493051187933618308}
   - component: {fileID: -1728434509893756347}
+  - component: {fileID: 5770419547624861994}
   m_Layer: 8
   m_Name: Holo_Wall
   m_TagString: Hologram
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 806074594693296770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.22, y: -2.62, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,3 +127,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5770419547624861994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806074594693296770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676ea1870c11c7646ae6d1e98f62d0b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.5
+  pos:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 29
+    amount: {x: 0.4, y: 0.4, z: 0}
+  isStart: 1

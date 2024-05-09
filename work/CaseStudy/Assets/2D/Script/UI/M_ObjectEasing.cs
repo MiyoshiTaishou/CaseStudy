@@ -61,9 +61,9 @@ public class M_ObjectEasing : MonoBehaviour
     {
         isEasing = !isEasing;
         fTime = 0;
-        this.transform.position = savePos;
-        this.transform.localScale = saveScale;
-        this.transform.rotation = Quaternion.Euler(saveRot);
+        //this.transform.position = savePos;
+        //this.transform.localScale = saveScale;
+        //this.transform.rotation = Quaternion.Euler(saveRot);
     }
 
     private void Easing()

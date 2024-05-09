@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -118,6 +119,11 @@ public class N_ProjectHologram : MonoBehaviour
                 {
                     fTime = 0.0f;
                     obj.SetActive(true); 
+
+                    if(obj.GetComponent<M_ObjectEasing>())
+                    {                        
+                        obj.GetComponent<M_ObjectEasing>().EasingOnOff();
+                    }
                     //projectionUI.SetActive(true);
                 }
                 isActive = true;
