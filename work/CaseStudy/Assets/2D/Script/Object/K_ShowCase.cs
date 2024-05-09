@@ -26,10 +26,8 @@ public class K_ShowCase : MonoBehaviour
              // 指定値以上の塊がぶつかってきたら
              if (checkNum >= nHardness)
              {
-                Debug.Log(gameObject.name);
-                Debug.Log(collision.gameObject);
-                Destroy(gameObject);
                 Destroy(collision.gameObject);
+                Destroy(gameObject);
              }
          }
     }
@@ -47,8 +45,8 @@ public class K_ShowCase : MonoBehaviour
              // 指定値以上の塊がぶつかってきたら
              if (checkNum >= nHardness)
              {
-                 Destroy(gameObject);
-                 Destroy(collision.transform.gameObject);
+                Destroy(collision.transform.gameObject);
+                Destroy(gameObject);
              }
          }
     }
