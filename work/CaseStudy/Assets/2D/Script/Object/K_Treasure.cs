@@ -20,8 +20,8 @@ public class K_Treasure : MonoBehaviour
         // プレイヤーがぶつかってきたら
         if (collision.transform.CompareTag("Player"))
         {
-            Destroy(gameObject);
             StageClearObj.SetActive(true);
+            Destroy(gameObject);
         }
     }
 
@@ -30,8 +30,8 @@ public class K_Treasure : MonoBehaviour
         // プレイヤーがぶつかってきたら
         if (collision.transform.CompareTag("Player"))
         {
-            Destroy(gameObject);
             StageClearObj.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
