@@ -114,7 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3413d00b6c9ea6d4e8272585aada4571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageClearPrefab: {fileID: 5098620619951804766, guid: c733f7827f92707469832870d82f0c74, type: 3}
+  StageClearPrefab: {fileID: 346455752079443112, guid: a134b1118bb701140a06a5805f0ca398, type: 3}
 --- !u!1 &1609188613900269838
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,6 +244,7 @@ MonoBehaviour:
   iTexSize: 3
   IsDisplayBreakNum: 1
   Eff_Explosion: {fileID: 151244, guid: 8368975de5593844bbfaf74e342fb326, type: 3}
+  audioclip: {fileID: 0}
 --- !u!1 &1609188614443976410
 GameObject:
   m_ObjectHideFlags: 0

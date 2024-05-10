@@ -549,6 +549,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 64682064158426754, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
+      propertyPath: StageClearPrefab
+      value: 
+      objectReference: {fileID: 346455752079443112, guid: a134b1118bb701140a06a5805f0ca398, type: 3}
     - target: {fileID: 550249435524415407, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_fontStyle
       value: 1
@@ -579,7 +583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30
+      value: 24.2
       objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_LocalPosition.z
