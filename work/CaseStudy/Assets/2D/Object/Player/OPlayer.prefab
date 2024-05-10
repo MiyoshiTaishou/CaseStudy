@@ -343,7 +343,8 @@ MonoBehaviour:
   fMaxRadius: 15
   fLineWidth: 0.1
   iSegments: 20
-  material: {fileID: 2100000, guid: d3f4820e6d0604b4381a2b9c4c3e2613, type: 2}
+  material: {fileID: 0}
+  MeowingPrefab: {fileID: 5573310245492036228, guid: 5ab908b9d8dbfa149b197b90a2cde571, type: 3}
 --- !u!114 &6302026298218498335
 MonoBehaviour:
   m_ObjectHideFlags: 0
