@@ -19,6 +19,12 @@ public class N_ProjecterSympathy : MonoBehaviour
     [Header("マテリアル"), SerializeField]
     private Material material;
 
+    [Header("鳴き声エフェクト"), SerializeField]
+    private GameObject MeowingPrefab;
+
+    private GameObject MeowingObj; 
+    Animator animator;
+
     // 半径
     private float fRadius = 0.0f;
 
@@ -42,9 +48,11 @@ public class N_ProjecterSympathy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.material = material;
-
+        if(material!=null)
+        {
+            lineRenderer = gameObject.AddComponent<LineRenderer>();
+            lineRenderer.material = material;
+        }
         trans_Player = this.gameObject.transform;
 
         playSound = transform.GetChild(3).gameObject.GetComponent<N_PlaySound>();
@@ -78,7 +86,10 @@ public class N_ProjecterSympathy : MonoBehaviour
             {
                 isSympathy = true;
                 // 表示
-                lineRenderer.enabled = true;
+                if (material != null)
+                {
+                    lineRenderer.enabled = true;
+                }
                 SympathyPosition = trans_Player.position;
 
                 // リストに格納された各オブジェクト
@@ -91,6 +102,10 @@ public class N_ProjecterSympathy : MonoBehaviour
                 // se再生
                 playSound.PlaySound(N_PlaySound.SEName.CrowCry);
                 //Debug.Log("再生");
+                MeowingObj= Instantiate(MeowingPrefab, SympathyPosition, Quaternion.identity);
+                MeowingObj.transform.localScale = new Vector3(fMaxRadius * 2.2f, fMaxRadius * 2.2f, 1);
+                animator = MeowingObj.GetComponent<Animator>();
+                animator.SetFloat("Speed", fSpreadSpeed/10f);
             }
         }
 
@@ -111,19 +126,22 @@ public class N_ProjecterSympathy : MonoBehaviour
             }
 
             // 円を描画する処理
-            lineRenderer.widthMultiplier = fLineWidth;
-            lineRenderer.positionCount = iSegments + 1;
-
-            float deltaTheta = (2f * Mathf.PI) / iSegments;
-            float theta = 0f;
-
-            for (int i = 0; i < iSegments + 1; i++)
+            if (material != null)
             {
-                float x = fRadius * Mathf.Cos(theta);
-                float y = fRadius * Mathf.Sin(theta);
-                Vector3 pos = new Vector3(SympathyPosition.x + x,SympathyPosition.y + y, 0f);
-                lineRenderer.SetPosition(i, pos);
-                theta += deltaTheta;
+                lineRenderer.widthMultiplier = fLineWidth;
+                lineRenderer.positionCount = iSegments + 1;
+
+                float deltaTheta = (2f * Mathf.PI) / iSegments;
+                float theta = 0f;
+
+                for (int i = 0; i < iSegments + 1; i++)
+                {
+                    float x = fRadius * Mathf.Cos(theta);
+                    float y = fRadius * Mathf.Sin(theta);
+                    Vector3 pos = new Vector3(SympathyPosition.x + x, SympathyPosition.y + y, 0f);
+                    lineRenderer.SetPosition(i, pos);
+                    theta += deltaTheta;
+                }
             }
 
             // リストに格納されたオブジェクトを総当たりで当たり判定
@@ -136,7 +154,10 @@ public class N_ProjecterSympathy : MonoBehaviour
             if (!isSympathy)
             {
                 fRadius = 0.0f;
-                lineRenderer.enabled = false;
+                if (material != null)
+                {
+                    lineRenderer.enabled = false;
+                }
             }
             
         }
