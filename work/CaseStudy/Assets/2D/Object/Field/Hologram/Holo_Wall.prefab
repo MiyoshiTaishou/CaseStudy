@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 808af780adc493f418e0647d86a79d5d, type: 2}
+  - {fileID: 2100000, guid: a07ce03ac6f476c468249186a34e8c8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,5 +151,5 @@ MonoBehaviour:
   scale:
     isApply: 1
     ease: 29
-    amount: {x: 0.4, y: 0.4, z: 0}
+    amount: {x: 0.2, y: 0.2, z: 0}
   isStart: 1
