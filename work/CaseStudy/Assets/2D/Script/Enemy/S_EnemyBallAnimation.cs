@@ -27,15 +27,11 @@ public class S_EnemyBallAnimation : MonoBehaviour
             // アニメーションが終了したら何かをする
             //Destroy(transform.Find("w").gameObject);
             transform.Find("w").gameObject.SetActive(false);
+            Vector3 scale= transform.localScale;
+            scale.x = 0.5f;
+            scale.y = 0.5f;
+            transform.localScale = scale;
             animator.SetTrigger("enemy_roll_loop");
         }
-        // 再生中のアニメーションの情報を取得
-        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-
-        // 再生中のアニメーションの名前を取得
-        string currentAnimationName = stateInfo.IsName("enemy_roll_loop") ? "Idle" : "Unknown";
-
-        // 取得したアニメーション名を出力
-        Debug.Log("Current Animation: " + currentAnimationName);
     }
 }

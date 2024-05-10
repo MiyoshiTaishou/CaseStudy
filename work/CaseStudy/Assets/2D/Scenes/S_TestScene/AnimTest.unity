@@ -17958,6 +17958,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SwitchBGM
       objectReference: {fileID: 0}
+    - target: {fileID: 7487603991789896491, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+      propertyPath: bgmSource1
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487603991789896491, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+      propertyPath: bgmSource2
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_Pitch
       value: 0.8
