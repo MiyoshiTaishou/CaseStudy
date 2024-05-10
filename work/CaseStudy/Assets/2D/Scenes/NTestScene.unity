@@ -3407,7 +3407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6372921232022759936, guid: c793d23110b397448b2ff7991f372973, type: 3}
       propertyPath: AwayDistance.y
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6372921232022759937, guid: c793d23110b397448b2ff7991f372973, type: 3}
       propertyPath: m_RootOrder

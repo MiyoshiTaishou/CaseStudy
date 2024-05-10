@@ -35,9 +35,17 @@ public class N_EnemyManager : MonoBehaviour
     [Header("方向転換時待機時間"), SerializeField]
     private float WaitTime = 0.5f;
 
+    [Header("発見後追跡までの時間"), SerializeField]
+    private float FoundTime = 0.5f;
+
+    [Header("見失って巡回に戻る時間"), SerializeField]
+    private float LostSightTime = 0.5f;
+
     // 経過時間
     private float ElapsedTime = 0.0f;
     private float ElapsedWaitTime = 0.0f;
+    private float ElapsedFoundTime = 0.0f;
+    private float ElapsedLostSightTime = 0.0f;
 
     private bool IsDitection = false;
 
@@ -51,9 +59,13 @@ public class N_EnemyManager : MonoBehaviour
         PATOROL,    // 巡回
         WAIT,       // 待機
         ECPULSION,  // 除名
+        FOUND,      // 発見
+        CHASEINIT,  // 追跡準備
         CHASE,      // 追跡
+        LOSTSIGHT,  // 見失った
     }
 
+    [SerializeField]
     private ManagerState managerState = ManagerState.PATOROL;
 
     // 追跡対象の座標
@@ -97,8 +109,20 @@ public class N_EnemyManager : MonoBehaviour
                 //Ecpulsion();
                 break;
 
+            case ManagerState.FOUND:
+                FoundTarget();
+                break;
+
+            case ManagerState.CHASEINIT:
+                ChaseInit();
+                break;
+
             case ManagerState.CHASE:
                 Chase();
+                break;
+
+            case ManagerState.LOSTSIGHT:
+                LostSight();
                 break;
         }
     }
@@ -233,16 +257,79 @@ public class N_EnemyManager : MonoBehaviour
         }
     }
 
+    private void FoundTarget()
+    {
+        if(ElapsedFoundTime == 0.0f)
+        {
+            int num = 0;
+
+            // 向きセット
+            foreach (var obj in TeamMembers)
+            {
+                if (TargetTrans.position.x < obj.transform.position.x)
+                {
+                    // 向き変更
+                    sEnemyMoves[num].EnemyMove(0.0f, true);
+                }
+                if (TargetTrans.position.x > obj.transform.position.x)
+                {
+                    // 向き変更
+                    sEnemyMoves[num].EnemyMove(0.0f, false);
+                }
+                num++;
+            }
+
+            // ビックリマーク表示
+            foreach (var obj in TeamMembers)
+            {
+                obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(true);
+            }
+        }
+
+        // 敵を発見後一定時間指さし確認
+        ElapsedFoundTime += Time.deltaTime;
+
+        // 追跡状態に遷移
+        if(ElapsedFoundTime >= FoundTime)
+        {
+            // 初期化系
+            ElapsedFoundTime = 0.0f;
+
+            managerState = ManagerState.CHASEINIT;
+
+            // ビックリマーク非表示
+            foreach (var obj in TeamMembers)
+            {
+                obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(false);
+            }
+        }
+    }
+
+    private void ChaseInit()
+    {
+        
+        managerState = ManagerState.CHASE;
+    }
+
     private void Chase()
     {
         int num = 0;
+
+        float dis = 0.0f;
+
         foreach (var obj in TeamMembers) {
+
+            float temp = Mathf.Abs(TargetTrans.position.x - obj.transform.position.x);
+            if (dis == 0.0f || temp < 1.0f)
+            {
+                dis = temp;
+            }
             if (TargetTrans.position.x < obj.transform.position.x)
             {
                 float dir = -1.0f;
 
                 // このフレームで移動する距離
-                float distance = dir * MoveSpeed * Time.deltaTime;
+                float distance = dir * ChaseSpeed * Time.deltaTime;
 
                 sEnemyMoves[num].ChaseTarget(distance);
             }
@@ -251,11 +338,52 @@ public class N_EnemyManager : MonoBehaviour
                 float dir = 1.0f;
 
                 // このフレームで移動する距離
-                float distance = dir * MoveSpeed * Time.deltaTime;
+                float distance = dir * ChaseSpeed * Time.deltaTime;
 
                 sEnemyMoves[num].ChaseTarget(distance);
             }
             num++;
+        }
+
+        // 端のどちらかが見失ったら
+        //if(TeamMembers[0].GetComponent<N_PlayerSearch>().GetIsSearch() == false ||
+        //    TeamMembers[iMemberNum - 1].GetComponent<N_PlayerSearch>().GetIsSearch() == false)
+        //{
+        //    managerState = ManagerState.LOSTSIGHT;
+        //}
+
+        // 追跡対象に近づいたら別の状態に遷移
+        if(dis < 1.0f)
+        {
+            managerState = ManagerState.LOSTSIGHT;
+        }
+    }
+
+    private void LostSight()
+    {
+        if (ElapsedLostSightTime == 0.0f)
+        {
+            // クエスチョンマーク表示
+            foreach (var obj in TeamMembers)
+            {
+                obj.GetComponent<K_EnemyReaction>().SetIsLostTarget(true);
+            }
+        }
+
+        ElapsedLostSightTime += Time.deltaTime;
+
+        if(ElapsedLostSightTime >= LostSightTime)
+        {
+            // 初期化
+            Target = null;
+            managerState = ManagerState.PATOROL;
+            ElapsedLostSightTime = 0.0f;
+
+            // ビックリマーク非表示
+            foreach (var obj in TeamMembers)
+            {
+                obj.GetComponent<K_EnemyReaction>().SetIsLostTarget(false);
+            }
         }
     }
 
@@ -265,7 +393,7 @@ public class N_EnemyManager : MonoBehaviour
         {
             Target = _obj;
             TargetTrans = Target.GetComponent<Transform>();
-            managerState = ManagerState.CHASE;
+            managerState = ManagerState.FOUND;
         }
     }
 
