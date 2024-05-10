@@ -4,45 +4,82 @@ using UnityEngine;
 
 public class K_EnemyReaction : MonoBehaviour
 {
-    [Header("敵反応"), SerializeField]
+    [Header("ホログラム検知"), SerializeField]
     private GameObject EnemyReactionPrefab;
 
-    private bool IsSearch=false;
+    [Header("追跡対象発見"), SerializeField]
+    private GameObject EnemyFoundPrefab;
 
-    private GameObject EnemyReaction;
+    // 壁,床ホロ
+    private bool IsSearchHologram=false;
+
+    // プレイヤー,プレイヤーホロ
+    private bool IsSearchTarget = false;
+
+    // ターゲットを見失った
+    private bool IsTargetLost = false;
+
+    private GameObject EnemyQuestion;
+
+    private GameObject EnemyFoundTarget;
 
     private SEnemyMove EnemyMove;
+
+    public void SetIsSearchTarget(bool _search)
+    {
+        IsSearchTarget = _search;
+    }
+    public void SetIsLostTarget(bool _search)
+    {
+        IsTargetLost = _search;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         //プレハブ実体化
-        EnemyReaction = Instantiate(EnemyReactionPrefab, transform.position, Quaternion.identity);
-        EnemyReaction.SetActive(false);
+        EnemyQuestion = Instantiate(EnemyReactionPrefab, transform.position, Quaternion.identity);
+        EnemyQuestion.SetActive(false);
+
+        EnemyFoundTarget = Instantiate(EnemyFoundPrefab, transform.position, Quaternion.identity);
+        EnemyFoundTarget.SetActive(false);
 
         EnemyMove = GetComponent<SEnemyMove>();
     }
 
     private void Update()
     {
-        IsSearch = EnemyMove.GetIsCollidingHologram();
+        IsSearchHologram = EnemyMove.GetIsCollidingHologram();
         //ホログラム検知したら
-        if (IsSearch)
+        if (IsSearchHologram || IsTargetLost)
         {
-            EnemyReaction.SetActive(true);
+            EnemyQuestion.SetActive(true);
             Vector3 ReactionPos = this.transform.position;
             ReactionPos.y += 3.0f;
-            EnemyReaction.transform.position = ReactionPos;
+            EnemyQuestion.transform.position = ReactionPos;
         }
         else
         {
-            EnemyReaction.SetActive(false);
+            EnemyQuestion.SetActive(false);
+        }
+
+        if (IsSearchTarget)
+        {
+            EnemyFoundTarget.SetActive(true);
+            Vector3 ReactionPos = this.transform.position;
+            ReactionPos.y += 3.0f;
+            EnemyFoundTarget.transform.position = ReactionPos;
+        }
+        else
+        {
+            EnemyFoundTarget.SetActive(false);
         }
     }
 
     //敵が消えたら
     void OnDestroy()
     {
-        Destroy(EnemyReaction);
+        Destroy(EnemyQuestion);
+        Destroy(EnemyFoundTarget);
     }
 }

@@ -465,6 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyReactionPrefab: {fileID: 155749565533083559, guid: 906cbd322d165b14a95641cfc5e040aa, type: 3}
+  EnemyFoundPrefab: {fileID: 5202796998603462646, guid: 4b138a1503c394b4595c845898786f2f, type: 3}
 --- !u!95 &5329434735095555639
 Animator:
   serializedVersion: 5

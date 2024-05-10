@@ -15,9 +15,6 @@ public class N_PlayerSearch : MonoBehaviour
     {
         enemyMove = this.gameObject.GetComponent<SEnemyMove>();
         enemyManager = enemyMove.GetManager();
-
-        //Debug.Log(enemyManager);
-        //Debug.Log(enemyMove);
     }
 
     // Update is called once per frame
