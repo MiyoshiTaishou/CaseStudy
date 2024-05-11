@@ -253,8 +253,8 @@ public class SEnemyMove : MonoBehaviour
 
         if (GroundCheck() &&
             hitWall.collider != null && hitWall.collider.CompareTag("TileMap") ||
-            hitWall.collider != null && hitWall.collider.CompareTag("Ground") /*||
-            hitGround.collider == null*/)
+            hitWall.collider != null && hitWall.collider.CompareTag("Ground") ||
+            hitGround.collider == null)
         {
             //Debug.Log("ホログラム以外検知");
             enemyManager.RequestRefletion();
@@ -328,7 +328,14 @@ public class SEnemyMove : MonoBehaviour
                 if (IsReflectionX != enemyMove.GetIsReflection())
                 {
                     // 方向転換
-                    enemyManager.RequestRefletion();
+                    //enemyManager.RequestRefletion();
+
+                    // 生成順が速い方に合体
+                    if(this.enemyManager.GetGenerateNumber() < colManager.GetGenerateNumber())
+                    {
+                        // 合体
+                        enemyManager.UnionTeam(colManager);
+                    }
                 }
                 // 同じ方向に進んでいるなら
                 else
@@ -339,7 +346,10 @@ public class SEnemyMove : MonoBehaviour
                     if(this.enemyManager.GetMoveSpeed() > colManager.GetMoveSpeed())
                     {
                         // 方向転換
-                        enemyManager.RequestRefletion();
+                        //enemyManager.RequestRefletion();
+
+                        // 合体
+                        enemyManager.UnionTeam(colManager);
                     }
                 }
             }
