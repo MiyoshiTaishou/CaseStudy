@@ -234,7 +234,7 @@ public class N_ProjectHologram : MonoBehaviour
 
         trans_Projecter.position = vec;
 
-        Debug.Log(vec);
+        //Debug.Log(vec);
     }
 
     // 必要な情報をセットする

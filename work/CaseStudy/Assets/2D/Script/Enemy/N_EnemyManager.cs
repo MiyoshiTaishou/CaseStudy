@@ -12,7 +12,7 @@ public class N_EnemyManager : MonoBehaviour
 
     private int iMemberNum = 0;
 
-    private bool IsReflectionX = false;
+    public bool IsReflectionX = false;
 
     // 隊列の一帯でもカメラに移っていたらtrue
     private bool isLook = false;
@@ -51,6 +51,13 @@ public class N_EnemyManager : MonoBehaviour
 
     // マネージャーの生成順
     private static int GenerateOrder = 0;
+    // 生成順
+    private int GenerateNumber = 0;
+
+    public int GetGenerateNumber()
+    {
+        return GenerateNumber;
+    }
 
     // ステートマシン
     public enum ManagerState
@@ -86,6 +93,7 @@ public class N_EnemyManager : MonoBehaviour
 
         // 名前でマネージャーを区別できるようにする
         this.gameObject.name = this.gameObject.name + GenerateOrder.ToString();
+        GenerateNumber = GenerateOrder;
         GenerateOrder++;
     }
 
@@ -201,6 +209,68 @@ public class N_EnemyManager : MonoBehaviour
         {
             sc_mana.ChangeManagerState(ManagerState.WAIT);
         }
+    }
+
+    public void UnionTeam(N_EnemyManager _manager)
+    {
+        //Debug.Log("合体");
+        // 自分の隊列に加える
+        TeamAddEnemy(this.gameObject, _manager.GetTeamMember());
+
+        // X座標の小さい順に並び替え
+        SortMember();
+
+        sEnemyMoves.Clear();
+        SetEnemyMoveScript();
+
+        // 自身の隊列に番号再付与
+        SetInfomation(true);
+
+        // 待ち時間にする
+        managerState = ManagerState.WAIT;
+
+        // 敵のいなくなったマネージャー削除
+        Destroy(_manager.gameObject);
+    }
+
+    // X座標小さい順に並び替え
+    private void SortMember()
+    {
+        List<GameObject> list = new List<GameObject>();
+
+        for(int i = 0;i < iMemberNum; i++)
+        {
+            if (i == 0) {
+                list.Add(TeamMembers[i]);
+                //Debug.Log(TeamMembers[i].gameObject.name);
+
+                continue;
+            }
+
+            for(int j = 0;j < i; j++)
+            {
+                // 左にいたら挿入
+                if(TeamMembers[i].transform.position.x < list[j].transform.position.x)
+                {
+                    list.Insert(j, TeamMembers[i]);
+                    //Debug.Log(TeamMembers[i].gameObject.name);
+                    break;
+                }
+                else
+                {
+                    // 新リストに最後まで追加されなければ
+                    if(j == i - 1)
+                    {
+                        // 末尾に追加
+                        list.Add(TeamMembers[i]);
+                        //Debug.Log(TeamMembers[i].gameObject.name);
+                    }
+                }
+            }
+        }
+
+        TeamMembers.Clear();
+        TeamMembers.AddRange(list);
     }
 
     public void ChangeManagerState(ManagerState _state)
@@ -435,6 +505,7 @@ public class N_EnemyManager : MonoBehaviour
         for(int i = 0; i < iMemberNum; i++)
         {
             SEnemyMove move = sEnemyMoves[i];
+            
             // 隊列内の番号付与
             move.SetNumber(i);
             if (_isNewMana)
@@ -553,5 +624,10 @@ public class N_EnemyManager : MonoBehaviour
     public bool GetIsReflection()
     {
         return IsReflectionX;
+    }
+
+    private List<GameObject> GetTeamMember()
+    {
+        return TeamMembers;
     }
 }
