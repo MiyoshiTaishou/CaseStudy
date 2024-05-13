@@ -1510,6 +1510,10 @@ PrefabInstance:
       value: 0.7658349
       objectReference: {fileID: 0}
     - target: {fileID: 3623423401792762175, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
+      propertyPath: mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623423401792762175, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: fDlayAnim
       value: 0.3
       objectReference: {fileID: 0}
@@ -1538,8 +1542,20 @@ PrefabInstance:
       value: 0.8299999
       objectReference: {fileID: 0}
     - target: {fileID: 5349125540813385581, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7535464
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349125540813385581, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7587077
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349125540813385581, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.56
+      value: 1.441
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349125540813385581, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0595
       objectReference: {fileID: 0}
     - target: {fileID: 5785282091875727885, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: m_Bounds.m_Center.y
@@ -18170,6 +18186,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3207084556748839627, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fHitStop
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084556954952399, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fHitStop
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fBoost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fHitStop
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fLimitSpeedx
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 4598615127679613980, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
       propertyPath: MoveSpeed
       value: 0

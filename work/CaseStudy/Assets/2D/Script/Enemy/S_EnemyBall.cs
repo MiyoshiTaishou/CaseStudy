@@ -142,8 +142,8 @@ public class S_EnemyBall : MonoBehaviour
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
                 GetComponent<AudioSource>().pitch+=0.2f;
 
-                StartCoroutine(M_Utility.GamePadMotor(fTime));
                 StartCoroutine(HitStop());
+                StartCoroutine(M_Utility.GamePadMotor(fTime));
             }
         }
     }
