@@ -6,17 +6,14 @@ public class SEnemyMove : MonoBehaviour
     [Header("メインカメラ"),SerializeField]
     Camera mainCamera= null;
 
-    [Header("何マス分移動するか"), SerializeField]
-    Vector2 MoveDistance= Vector2.zero;
+    //[Header("何マス分移動するか"), SerializeField]
+    //Vector2 MoveDistance= Vector2.zero;
 
-    [Header("移動速度"), SerializeField]
-    Vector2 MoveSpeed= Vector2.zero;
+    //[Header("目標位置まで到達して何秒待機するか"), SerializeField]
+    //float fWaitTime = 0.0f;
 
-    [Header("目標位置まで到達して何秒待機するか"), SerializeField]
-    float fWaitTime = 0.0f;
-
-    [Header("敵衝突時の停止時間"), SerializeField]
-    float fFreezeTime = 0.0f;
+    //[Header("敵衝突時の停止時間"), SerializeField]
+    //float fFreezeTime = 0.0f;
 
     //反対方向を向いているか
     private bool IsReflectionX = false;
@@ -99,8 +96,8 @@ public class SEnemyMove : MonoBehaviour
     private Vector2 defaultScale= Vector2.zero;
     void Start()
     {
-        defaultPos = transform.position;
-        GallPos = defaultPos + MoveDistance;
+        //defaultPos = transform.position;
+        //GallPos = defaultPos + MoveDistance;
         rb= GetComponent<Rigidbody2D>();
         if(!rb)
         {
@@ -122,10 +119,10 @@ public class SEnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.GetComponent<MPlayerSearch>().GetIsSearch())
-        {
-            return;
-        }
+        //if(this.GetComponent<MPlayerSearch>().GetIsSearch())
+        //{
+        //    return;
+        //}
         if (!isLook)
         {
             // オブジェクトの境界ボックスを取得
@@ -185,7 +182,7 @@ public class SEnemyMove : MonoBehaviour
             Vector2 resistanceForce = vecAngle * horizontalResistance;
             if (IsReflectionX)
             {
-                rb.AddForce(resistanceForce * Power, ForceMode2D.Force);
+                rb.AddForce(resistanceForce * Power * 20, ForceMode2D.Force);
             }
             else
             {
@@ -220,20 +217,6 @@ public class SEnemyMove : MonoBehaviour
             hitWall.collider!=null&&hitWall.collider.CompareTag("Ground")||
             hitGround.collider==null)
         {
-            //IsReflectionX= !IsReflectionX;
-            //if(IsReflectionX) 
-            //{
-            //    GallPos.x = defaultPos.x - MoveDistance.x;
-            //    MoveSpeed.x = -MoveSpeed.x;
-            //    StartCoroutine(Gall(fWaitTime));
-            //}
-            //else if(!IsReflectionX) 
-            //{
-            //    GallPos.x = defaultPos.x + MoveDistance.x;
-            //    MoveSpeed.x = -MoveSpeed.x;
-            //    StartCoroutine(Gall(fWaitTime));
-            //}
-
             //ホログラムとの衝突を検知(2024/4/17 木村記載)
             if (hitWall.collider != null &&  hitWall.collider.CompareTag("Hologram"))
             {
@@ -260,49 +243,12 @@ public class SEnemyMove : MonoBehaviour
             enemyManager.RequestRefletion();
         }
 
-        //rb.AddForce(MoveSpeed);
-        ////以下から現在位置がゴール位置を越えているかを判定し、
-        ////越えていれば待機したのち進行方向を反転する処理
-        //if (transform.position.x>GallPos.x&&
-        //    !IsReflectionX) 
-        //{            
-        //    IsReflectionX = true;
-        //    GallPos.x = defaultPos.x - MoveDistance.x;
-        //    MoveSpeed.x = -MoveSpeed.x;
-        //    StartCoroutine(Gall(fWaitTime));
-        //}
-        //else if(transform.position.x<GallPos.x&&
-        //    IsReflectionX) 
+        //if (Mathf.Abs(rb.velocity.x) > fLimitSpeed)
         //{
-        //    IsReflectionX = false;
-        //    GallPos.x = defaultPos.x + MoveDistance.x;
-        //    MoveSpeed.x = -MoveSpeed.x;
-        //    StartCoroutine(Gall(fWaitTime));
+        //    Vector2 vel = rb.velocity;
+        //    vel.x = fLimitSpeed*coef;
+        //    rb.velocity = vel;
         //}
-
-        //現状使わないY軸移動
-        //if(transform.position.y>GallPos.y&&
-        //    !IsReflectionY) 
-        //{
-        //    IsReflectionY = true;
-        //    GallPos.y = defaultPos.y - MoveDistance.y;
-        //    MoveSpeed.y = -MoveSpeed.y;
-        //    StartCoroutine(Gall());
-        //}
-        //else if(transform.position.y<GallPos.y&&
-        //    IsReflectionY) 
-        //{
-        //    IsReflectionY = false;
-        //    GallPos.y = defaultPos.y + MoveDistance.y;
-        //    MoveSpeed.y = -MoveSpeed.y;
-        //    StartCoroutine(Gall());
-        //}
-        if (Mathf.Abs(rb.velocity.x) > fLimitSpeed)
-        {
-            Vector2 vel = rb.velocity;
-            vel.x = fLimitSpeed*coef;
-            rb.velocity = vel;
-        }
     }
 
     public bool GetIsReflection()
@@ -312,10 +258,6 @@ public class SEnemyMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _collision)
     {
-        //Vector2 colpos = _collision.transform.position;
-        //Vector2 pos = transform.position;
-        //Vector2 vec = colpos - pos;
-
         if (_collision.transform.CompareTag("Enemy"))
         {
             SEnemyMove enemyMove = _collision.gameObject.GetComponent<SEnemyMove>();
@@ -358,65 +300,6 @@ public class SEnemyMove : MonoBehaviour
                 }
             }
         }
-
-
-        //敵と当たった瞬間に方向転換
-        //if (_collision.transform.CompareTag("Enemy") && vec.x < 0.0f && IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
-        //{
-
-        //    IsReflectionX = !IsReflectionX;
-        //    if (IsReflectionX)
-        //    {
-        //        GallPos.x = defaultPos.x - MoveDistance.x;
-        //        MoveSpeed.x = -MoveSpeed.x;
-        //    }
-        //    else if (!IsReflectionX)
-        //    {
-        //        GallPos.x = defaultPos.x + MoveDistance.x;
-        //        MoveSpeed.x = -MoveSpeed.x;
-        //    }
-        //    //Vector2 colpos = _collision.transform.position;
-        //    //Vector2 pos = transform.position;
-        //    //Vector2 vec = colpos - pos;
-        //    //if (vec.x < 0)
-        //    //{
-        //    //    pos.x -= 0.1f;
-        //    //}
-        //    //else
-        //    //{
-        //    //    pos.x += 0.1f;
-        //    //}
-        //    //transform.position = pos;
-        //    StartCoroutine(Gall(fFreezeTime));
-        //}
-        //else if (_collision.transform.CompareTag("Enemy") && vec.x > 0.0f && !IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
-        //{
-
-        //    IsReflectionX = !IsReflectionX;
-        //    if (IsReflectionX)
-        //    {
-        //        GallPos.x = defaultPos.x - MoveDistance.x;
-        //        MoveSpeed.x = -MoveSpeed.x;
-        //    }
-        //    else if (!IsReflectionX)
-        //    {
-        //        GallPos.x = defaultPos.x + MoveDistance.x;
-        //        MoveSpeed.x = -MoveSpeed.x;
-        //    }
-        //    //Vector2 colpos = _collision.transform.position;
-        //    //Vector2 pos = transform.position;
-        //    //Vector2 vec = colpos - pos;
-        //    //if (vec.x < 0)
-        //    //{
-        //    //    pos.x -= 0.1f;
-        //    //}
-        //    //else
-        //    //{
-        //    //    pos.x += 0.1f;
-        //    //}
-        //    //transform.position = pos;
-        //    StartCoroutine(Gall(fFreezeTime));
-        //}
     }
     private void OnCollisionStay2D(Collision2D _collision)
     {
@@ -462,66 +345,33 @@ public class SEnemyMove : MonoBehaviour
                 }
             }
         }
-
-        ////敵と当たっている間そいつと違う方向を向いているかのチェックをし続ける
-        ////違う方向を向いていたら方向転換
-        ////その際、方向転換後の力を加えてループを回避
-        //if(_collision.transform.CompareTag("Enemy") /*&& _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX*/)
-        //{
-        //    IsReflectionX = !IsReflectionX;
-        //    if (IsReflectionX)
-        //    {
-        //        GallPos.x = defaultPos.x - MoveDistance.x;
-        //        MoveSpeed.x = -MoveSpeed.x;
-        //    }
-        //    else if (!IsReflectionX)
-        //    {
-        //        GallPos.x = defaultPos.x + MoveDistance.x;
-        //        MoveSpeed.x = -MoveSpeed.x;
-        //    }
-
-        //    //方向転換の後にちょっと距離を離す(無限ループ防止)
-        //    Vector2 colpos= _collision.transform.position;
-        //    Vector2 pos = transform.position;
-        //    Vector2 vec = colpos - pos;
-        //    if(vec.x<0)
-        //    {
-        //        pos.x -= 0.1f;
-        //    }
-        //    else
-        //    {
-        //        pos.x += 0.1f;
-        //    }
-        //    transform.position = pos;
-        //    StartCoroutine(Gall(fFreezeTime));
-        //}
     }
 
     //コルーチンで待機処理
-    IEnumerator Gall(float _wait)
-    {
-        //終わるまで待ってほしい処理を書く
-        this.enabled = false;
-        if (isStop)
-        {
-            Vector2 vel = rb.velocity;
-            vel.x = 0;
-            vel.y = 0;
-            rb.velocity = vel;
-            if (isSlope)
-            {
-                rb.isKinematic = true;
-            }
-        }
-        //指定の秒数待つ
-        yield return new WaitForSeconds(_wait);
-        //再開してから実行したい処理を書く
-        this.enabled = true;
-        if(isSlope)
-        {
-            rb.isKinematic = false;
-        }
-    }
+    //IEnumerator Gall(float _wait)
+    //{
+    //    //終わるまで待ってほしい処理を書く
+    //    this.enabled = false;
+    //    if (isStop)
+    //    {
+    //        Vector2 vel = rb.velocity;
+    //        vel.x = 0;
+    //        vel.y = 0;
+    //        rb.velocity = vel;
+    //        if (isSlope)
+    //        {
+    //            rb.isKinematic = true;
+    //        }
+    //    }
+    //    //指定の秒数待つ
+    //    yield return new WaitForSeconds(_wait);
+    //    //再開してから実行したい処理を書く
+    //    this.enabled = true;
+    //    if(isSlope)
+    //    {
+    //        rb.isKinematic = false;
+    //    }
+    //}
 
     private bool GroundCheck()
     {
@@ -532,20 +382,20 @@ public class SEnemyMove : MonoBehaviour
         if(hit.collider != null && hit.collider.CompareTag("TileMap")) 
         {
             //ホロ床すり抜けなどで位置が大きく変わった場合に目標位置等の更新を行う
-            if(!isGround) 
-            {
-                if (IsReflectionX)
-                {
-                    GallPos.x = defaultPos.x - MoveDistance.x;
-                    StartCoroutine(Gall(fWaitTime));
-                }
-                else if (!IsReflectionX)
-                {
-                    GallPos.x = defaultPos.x + MoveDistance.x;
-                    StartCoroutine(Gall(fWaitTime));
-                }
-                defaultPos = transform.position;
-            }
+            //if(!isGround) 
+            //{
+            //    if (IsReflectionX)
+            //    {
+            //        GallPos.x = defaultPos.x - MoveDistance.x;
+            //        StartCoroutine(Gall(fWaitTime));
+            //    }
+            //    else if (!IsReflectionX)
+            //    {
+            //        GallPos.x = defaultPos.x + MoveDistance.x;
+            //        StartCoroutine(Gall(fWaitTime));
+            //    }
+            //    defaultPos = transform.position;
+            //}
           isGround= true;
         }
         else
