@@ -90,7 +90,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 0.6264151, g: 1, b: 0.73043287, a: 0.007843138}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &117817261664437553
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyObjNormal: {fileID: 1222617881103884951}
-  EnemyObjRolling: {fileID: 6342705089899883761, guid: deccbb4c37b417741b9f5e5e6f12778d, type: 3}
+  EnemyObjRolling: {fileID: 6342705089899883761, guid: 05345b24fff498644ab30a25b127b311, type: 3}
 --- !u!114 &-6995187622395517184
 MonoBehaviour:
   m_ObjectHideFlags: 0

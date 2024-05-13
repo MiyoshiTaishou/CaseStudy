@@ -310,11 +310,11 @@ public class SEnemyMove : MonoBehaviour
         return IsReflectionX;
     }
 
-      private void OnCollisionEnter2D(Collision2D _collision)
+    private void OnCollisionEnter2D(Collision2D _collision)
     {
-        Vector2 colpos = _collision.transform.position;
-        Vector2 pos = transform.position;
-        Vector2 vec = colpos - pos;
+        //Vector2 colpos = _collision.transform.position;
+        //Vector2 pos = transform.position;
+        //Vector2 vec = colpos - pos;
 
         if (_collision.transform.CompareTag("Enemy"))
         {
@@ -335,6 +335,8 @@ public class SEnemyMove : MonoBehaviour
                     {
                         // 合体
                         enemyManager.UnionTeam(colManager);
+                        //Debug.Log("合体");
+
                     }
                 }
                 // 同じ方向に進んでいるなら
@@ -350,10 +352,13 @@ public class SEnemyMove : MonoBehaviour
 
                         // 合体
                         enemyManager.UnionTeam(colManager);
+                        //Debug.Log("合体");
+
                     }
                 }
             }
         }
+
 
         //敵と当たった瞬間に方向転換
         //if (_collision.transform.CompareTag("Enemy") && vec.x < 0.0f && IsReflectionX/*&&_collision.transform.GetComponent<SEnemyMove>().GetReflectionX()==IsReflectionX*/)
@@ -413,41 +418,84 @@ public class SEnemyMove : MonoBehaviour
         //    StartCoroutine(Gall(fFreezeTime));
         //}
     }
-    //private void OnCollisionStay2D(Collision2D _collision)
-    //{
-    //    ////敵と当たっている間そいつと違う方向を向いているかのチェックをし続ける
-    //    ////違う方向を向いていたら方向転換
-    //    ////その際、方向転換後の力を加えてループを回避
-    //    //if(_collision.transform.CompareTag("Enemy") /*&& _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX*/)
-    //    //{
-    //    //    IsReflectionX = !IsReflectionX;
-    //    //    if (IsReflectionX)
-    //    //    {
-    //    //        GallPos.x = defaultPos.x - MoveDistance.x;
-    //    //        MoveSpeed.x = -MoveSpeed.x;
-    //    //    }
-    //    //    else if (!IsReflectionX)
-    //    //    {
-    //    //        GallPos.x = defaultPos.x + MoveDistance.x;
-    //    //        MoveSpeed.x = -MoveSpeed.x;
-    //    //    }
+    private void OnCollisionStay2D(Collision2D _collision)
+    {
+        if (_collision.transform.CompareTag("Enemy"))
+        {
+            SEnemyMove enemyMove = _collision.gameObject.GetComponent<SEnemyMove>();
+            N_EnemyManager colManager = enemyMove.GetManager();
 
-    //    //    //方向転換の後にちょっと距離を離す(無限ループ防止)
-    //    //    Vector2 colpos= _collision.transform.position;
-    //    //    Vector2 pos = transform.position;
-    //    //    Vector2 vec = colpos - pos;
-    //    //    if(vec.x<0)
-    //    //    {
-    //    //        pos.x -= 0.1f;
-    //    //    }
-    //    //    else
-    //    //    {
-    //    //        pos.x += 0.1f;
-    //    //    }
-    //    //    transform.position = pos;
-    //    //    StartCoroutine(Gall(fFreezeTime));
-    //    //}
-    //}
+            // 違う隊列に所属している敵同士なら
+            if (this.enemyManager.name != colManager.name)
+            {
+                // 進行方向が違うなら
+                if (IsReflectionX != enemyMove.GetIsReflection())
+                {
+                    // 方向転換
+                    //enemyManager.RequestRefletion();
+
+                    // 生成順が速い方に合体
+                    if (this.enemyManager.GetGenerateNumber() < colManager.GetGenerateNumber())
+                    {
+                        // 合体
+                        enemyManager.UnionTeam(colManager);
+                        //Debug.Log("合体");
+
+                    }
+                }
+                // 同じ方向に進んでいるなら
+                else
+                {
+                    // こっちの分岐に入る = どちらかのスピードがおおきい
+                    // 大きい方が小さい方のケツからぶつかっているはずなので
+                    // スピードが大きい奴だけ方向転換
+                    if (this.enemyManager.GetMoveSpeed() > colManager.GetMoveSpeed())
+                    {
+                        // 方向転換
+                        //enemyManager.RequestRefletion();
+
+                        // 合体
+                        enemyManager.UnionTeam(colManager);
+                        //Debug.Log("合体");
+
+                    }
+                }
+            }
+        }
+
+        ////敵と当たっている間そいつと違う方向を向いているかのチェックをし続ける
+        ////違う方向を向いていたら方向転換
+        ////その際、方向転換後の力を加えてループを回避
+        //if(_collision.transform.CompareTag("Enemy") /*&& _collision.transform.GetComponent<SEnemyMove>().GetReflectionX() != IsReflectionX*/)
+        //{
+        //    IsReflectionX = !IsReflectionX;
+        //    if (IsReflectionX)
+        //    {
+        //        GallPos.x = defaultPos.x - MoveDistance.x;
+        //        MoveSpeed.x = -MoveSpeed.x;
+        //    }
+        //    else if (!IsReflectionX)
+        //    {
+        //        GallPos.x = defaultPos.x + MoveDistance.x;
+        //        MoveSpeed.x = -MoveSpeed.x;
+        //    }
+
+        //    //方向転換の後にちょっと距離を離す(無限ループ防止)
+        //    Vector2 colpos= _collision.transform.position;
+        //    Vector2 pos = transform.position;
+        //    Vector2 vec = colpos - pos;
+        //    if(vec.x<0)
+        //    {
+        //        pos.x -= 0.1f;
+        //    }
+        //    else
+        //    {
+        //        pos.x += 0.1f;
+        //    }
+        //    transform.position = pos;
+        //    StartCoroutine(Gall(fFreezeTime));
+        //}
+    }
 
     //コルーチンで待機処理
     IEnumerator Gall(float _wait)
