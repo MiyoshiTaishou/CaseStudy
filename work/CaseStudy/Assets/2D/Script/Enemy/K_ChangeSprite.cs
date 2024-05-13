@@ -32,12 +32,18 @@ public class K_ChangeSprite : MonoBehaviour
 
     private void Update()
     {
-        int StickEnemyNum = EnemyBall.GetStickCount();
-        if(StickEnemyNum > 0)
+        bool IsRolling = EnemyBall.GetisPushing();
+        if (IsRolling)
         {
             EnemySpriteNormal.SetActive(false);
             EnemySpriteRolling.SetActive(true);
             EnemySpriteRolling.transform.position = this.transform.position;
+        }
+        else
+        {
+            EnemySpriteNormal.SetActive(true);
+            EnemySpriteNormal.transform.position = this.transform.position;
+            EnemySpriteRolling.SetActive(false);
         }
     }
 }
