@@ -104,6 +104,7 @@ public class M_Transition : MonoBehaviour
     public void LoadScene()
     {
         isTransition = true;
+        M_GameMaster.SetGamePlay(true);
 
         fTime = 0.0f;
     }
