@@ -62,6 +62,11 @@ public class M_PlayerPush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {      
+        if(!M_GameMaster.GetGamePlay())
+        {
+            return;
+        }
+
         if(isPush && PushObj && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             Push(PushObj);            

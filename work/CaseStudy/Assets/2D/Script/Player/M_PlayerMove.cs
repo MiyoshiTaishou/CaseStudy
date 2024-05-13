@@ -101,7 +101,7 @@ public class M_PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
-        if(!isMove)
+        if(!isMove || !M_GameMaster.GetGamePlay())
         {
             return;
         }
