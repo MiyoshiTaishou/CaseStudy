@@ -35,7 +35,9 @@ public class M_PlayerPush : MonoBehaviour
     /// <summary>
     /// 押すオブジェクト
     /// </summary>
-    GameObject PushObj;    
+    GameObject PushObj;
+
+    List<GameObject> PushList = new List<GameObject>();
 
     /// <summary>
     /// 押せるかどうか
@@ -69,6 +71,18 @@ public class M_PlayerPush : MonoBehaviour
 
         if(isPush && PushObj && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
+            float Distance = 100.0f;
+            Vector3 pos=PlayerObj.transform.position;
+            for (int i = 0; i < PushList.Count; i ++)
+            {
+                float check = (PushList[i].transform.position - pos).magnitude;
+                if(check<Distance)
+                {
+                    Distance = check;
+                    PushObj = PushList[i];
+                }
+            }
+
             Push(PushObj);            
         }
 
@@ -96,9 +110,13 @@ public class M_PlayerPush : MonoBehaviour
             if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
             {
                 isPush = true;
-
                 //押すオブジェクト代入
                 PushObj = collision.gameObject;
+                if (PushList.Contains(collision.gameObject) == false)
+                {
+                    Debug.Log("押したいいいい"+PushList.Count);
+                    PushList.Add(collision.gameObject);
+                }
             }
         }       
     }
@@ -112,6 +130,11 @@ public class M_PlayerPush : MonoBehaviour
                 isPush = false;
 
                 PushObj = null;
+
+                if (PushList.Contains(collision.gameObject))
+                {
+                    PushList.Remove(collision.gameObject);
+                }
             }
         }
     }
