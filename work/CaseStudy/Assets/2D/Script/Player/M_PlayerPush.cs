@@ -114,7 +114,6 @@ public class M_PlayerPush : MonoBehaviour
                 PushObj = collision.gameObject;
                 if (PushList.Contains(collision.gameObject) == false)
                 {
-                    Debug.Log("押したいいいい"+PushList.Count);
                     PushList.Add(collision.gameObject);
                 }
             }
