@@ -45,6 +45,13 @@ public class N_ProjecterSympathy : MonoBehaviour
 
     private N_PlaySound playSound;
 
+    private bool isPossible = true;
+
+    public void SetIsPossible(bool _possible)
+    {
+        isPossible = _possible;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +68,12 @@ public class N_ProjecterSympathy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // false‚ÅŸƒtƒŒ[ƒ€‚Ö
+        if (!isPossible)
+        {
+            return;
+        }
+
         // Å‰‚¾‚¯Às
         if (!isInitialized)
         {
