@@ -33,6 +33,11 @@ public class M_PlayerPush : MonoBehaviour
     GameObject PlayerObj;
 
     /// <summary>
+    /// ダクトマネージャ
+    /// </summary>
+    GameObject DuctManager;
+    
+    /// <summary>
     /// 押すオブジェクト
     /// </summary>
     GameObject PushObj;
@@ -57,6 +62,8 @@ public class M_PlayerPush : MonoBehaviour
 
         animator2 = GameObject.Find("T_main_chara").GetComponent<Animator>();
 
+        DuctManager = GameObject.Find("DuctManager");
+
         // Animatorコンポーネントを取得
         animator = GetComponent<Animator>();
     }
@@ -64,7 +71,7 @@ public class M_PlayerPush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {      
-        if(!M_GameMaster.GetGamePlay())
+        if(!M_GameMaster.GetGamePlay() || DuctManager.GetComponent<M_DuctManager>().ContainsTrueValue())
         {
             return;
         }

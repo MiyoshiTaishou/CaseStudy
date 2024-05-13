@@ -55,7 +55,7 @@ public class M_DuctManager : MonoBehaviour
     }
 
     private void Update()
-    {
+    {        
         if(ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct"))
         {           
             Debug.Log("ダクトを出た");
@@ -81,6 +81,22 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
             PlayerObj.GetComponent<CircleCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+        }
+
+        if (ductDictionary.ContainsValue(true))
+        {
+            // ダクトに入ったらプレイヤーのレイヤーを変更
+            PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");         
+
+            //見えないようにする
+            for (int i = 0; i < renderers.Count; i++)
+            {
+                renderers[i].enabled = false;
+            }
+            PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            PlayerObj.GetComponent<CircleCollider2D>().enabled = false;
+            PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         }
     }
     //M_DuctWarpから呼ばれて指定したところまでプレイヤーを飛ばす
@@ -115,9 +131,11 @@ public class M_DuctManager : MonoBehaviour
                 renderers[i].enabled = false;
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);           
             PlayerObj.GetComponent<CircleCollider2D>().enabled = false;
-            PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;          
+            PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+
+            Debug.Log(PlayerObj.GetComponent<M_PlayerMove>().GetIsMove());
         }
         else
         {
