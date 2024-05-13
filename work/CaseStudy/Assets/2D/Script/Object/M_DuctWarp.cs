@@ -117,7 +117,7 @@ public class M_DuctWarp : MonoBehaviour
         }
 
         //入る処理
-        if (Input.GetButtonDown("Duct") && isTouch)
+        if (Input.GetButtonDown("Duct") && isTouch && M_GameMaster.GetGamePlay())
         {
             //マネージャに自身のダクトにプレイヤーが入ったことを知らせる
             DuctManager.GetComponent<M_DuctManager>().SetContains(this.gameObject, true);
