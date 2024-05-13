@@ -11341,7 +11341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1547794933
 Transform:
   m_ObjectHideFlags: 0
@@ -13606,8 +13606,16 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fBoost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
       propertyPath: fHitStop
-      value: 100
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fLimitSpeedx
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3207084557853218861, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
       propertyPath: fHitStop
