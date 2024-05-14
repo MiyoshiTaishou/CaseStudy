@@ -79,6 +79,7 @@ public class M_DuctManager : MonoBehaviour
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
             PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
+            PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
             PlayerObj.GetComponent<CircleCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
         }
@@ -95,6 +96,7 @@ public class M_DuctManager : MonoBehaviour
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
             PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(false);
             PlayerObj.GetComponent<CircleCollider2D>().enabled = false;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
         }
@@ -131,7 +133,8 @@ public class M_DuctManager : MonoBehaviour
                 renderers[i].enabled = false;
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);           
+            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(false);
             PlayerObj.GetComponent<CircleCollider2D>().enabled = false;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
 
@@ -151,6 +154,7 @@ public class M_DuctManager : MonoBehaviour
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
             PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
+            PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
             PlayerObj.GetComponent<CircleCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
         }
