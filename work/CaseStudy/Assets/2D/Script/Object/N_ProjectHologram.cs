@@ -46,6 +46,13 @@ public class N_ProjectHologram : MonoBehaviour
     [Header("表示するホログラムの設定を途中で変える"), SerializeField]
     private bool isReset = false;
 
+    [Header("共鳴エフェクト"), SerializeField]
+    private GameObject MeowingPrefab;
+    private GameObject MeowingObj;
+
+    [Header("共鳴音"), SerializeField]
+    private AudioClip audioclip;
+
     //[Header("プロジェクター起動時に出す演出"), SerializeField]
     //private GameObject projectionUI;
 
@@ -127,6 +134,14 @@ public class N_ProjectHologram : MonoBehaviour
                     //projectionUI.SetActive(true);
                 }
                 isActive = true;
+                if(MeowingPrefab)
+                {
+                    MeowingObj = Instantiate(MeowingPrefab, transform.position, Quaternion.identity);
+                }
+                if (audioclip)
+                {
+                    AudioSource.PlayClipAtPoint(audioclip, transform.position);
+                }
             }
 
             foreach (GameObject obj in Hologram)
