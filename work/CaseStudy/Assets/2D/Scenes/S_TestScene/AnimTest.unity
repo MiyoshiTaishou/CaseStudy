@@ -1438,6 +1438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5921fe15fa3e4d4f96668352ca23c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fspeed: 0
 --- !u!1001 &373651828
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18187,8 +18188,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3207084556748839627, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fBoost
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084556748839627, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
       propertyPath: fHitStop
-      value: 120
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084556748839627, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fStopjudge
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3207084556954952399, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
       propertyPath: fHitStop
@@ -18201,6 +18210,10 @@ PrefabInstance:
     - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
       propertyPath: fHitStop
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
+      propertyPath: fStopjudge
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3207084557095889370, guid: c44a0d6cf0428ba45921b7a2860c2036, type: 3}
       propertyPath: fLimitSpeedx
