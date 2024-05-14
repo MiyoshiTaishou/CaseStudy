@@ -435,7 +435,7 @@ MonoBehaviour:
   audioclip: {fileID: 8300000, guid: a7cec79ac3b51bb48bd4539366407033, type: 3}
   fHitStop: 3
   fLimitSpeedx: 35
-  fStopjudge: 0
+  fStopjudge: 1
   nGiantNum: 00000000
   fTime: 0.1
 --- !u!114 &1050243765183906609

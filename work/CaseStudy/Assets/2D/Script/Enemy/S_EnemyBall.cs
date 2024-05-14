@@ -53,6 +53,11 @@ public class S_EnemyBall : MonoBehaviour
     // ‘à—ñ‚©‚çœ–¼‚³‚ê‚Ä‚¢‚é‚©
     private bool isDeleteMember = false;
 
+    //¶Œü‚«‚ÉˆÚ“®‚µ‚Ä‚¢‚é‚©
+    private bool isLeft = false;
+
+    public bool GetisLeft() { return isLeft; }
+
     public int GetStickCount() 
     {
         int temp = 0;
@@ -76,7 +81,14 @@ public class S_EnemyBall : MonoBehaviour
             GetComponent<M_BlindingMove>().enabled = false;
             GetComponent<MPlayerSearch>().enabled = false;
             vel = rb.velocity;
-
+            if(vel.x<0)
+            {
+                isLeft= true;
+            }
+            else if(vel.x>0) 
+            {
+                isLeft= false;
+            }
             // ‘à—ñ‚©‚çœ–¼
             DeleteMember();
         }
