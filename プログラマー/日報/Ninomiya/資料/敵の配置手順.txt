@@ -1,0 +1,38 @@
+ーーーーーーーーーー新規ステージを作る場合ーーーーーーーーーーーーー
+
+①ヒエラルキービューに空のオブジェクトでいいからEnemyを作成
+
+②Stageの子オブジェクトとして配置
+
+③Asetts > 2D > Object > Enemy内にあるプレハブEnemyManagerを①で作成したEnemyの子オブジェクトに配置
+
+④大体でいいから配置したいステージの座標付近にEnemyManagerを置く（後でまとめて移動とかしやすいから）
+
+⑤Assets > 2D > Object > Enemy > Sawano内の最新状態の敵(2024/05/14 Enemy_Mark.1)をEnemyManagerの子オブジェクトとして配置
+
+⑥隊列ごとに③～⑤繰り返し
+
+⑦配置した敵すべてのSEnemyMoveのメインカメラにそのシーンのMain Cameraをセット(敵だけ全部選択してまとめてセットできる)
+
+完了
+
+ーーーーーーーーーーすでに配置したステージの場合ーーーーーーーーーーーー
+１、EnemyKari(プレハブ化されたもの)をそのまま使用している場合
+　①プレハブごと変更せないかんなるのでヒエラルキー上のEnemyKariのプレハブ化を解除
+
+　②EnemyKariの上で右クリック
+
+　③Prefab > Unpackでそのシーンでのプレハブ化を解除できる
+
+　④すでに置いてある敵を Assets > 2D > Object > Enemy > Sawano内の最新状態の敵(2024/05/14 Enemy_Mark.1)をEnemyManagerの子オブジェクトとして配置
+
+　⑤置き換えが終わったら配置した敵すべてのSEnemyMoveのメインカメラにそのシーンのMain Cameraをセット
+
+２、自分で新しくからのオブジェクト作ってた場合
+　①すでに置いてある敵を Assets > 2D > Object > Enemy > Sawano内の最新状態の敵(2024/05/14 Enemy_Mark.1)をEnemyManagerの子オブジェクトとして配置
+
+　②置き換えが終わったら配置した敵すべてのSEnemyMoveのメインカメラにそのシーンのMain Cameraをセット
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+この資料の保存場所
+CaseStudy > プログラマー > 日報 > Ninomiya > 資料 > 敵の配置手順.txt

@@ -25,6 +25,11 @@ public class K_EnemyReaction : MonoBehaviour
 
     private SEnemyMove EnemyMove;
 
+    public void SetIsSearchHologram(bool _search)
+    {
+        IsSearchHologram = _search;
+    }
+
     public void SetIsSearchTarget(bool _search)
     {
         IsSearchTarget = _search;
@@ -49,7 +54,7 @@ public class K_EnemyReaction : MonoBehaviour
 
     private void Update()
     {
-        IsSearchHologram = EnemyMove.GetIsCollidingHologram();
+        //IsSearchHologram = EnemyMove.GetIsCollidingHologram();
         //ÉzÉçÉOÉâÉÄåüímÇµÇΩÇÁ
         if (IsSearchHologram || IsTargetLost)
         {
