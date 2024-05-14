@@ -103,11 +103,14 @@ MonoBehaviour:
   - {fileID: 392718627150799720, guid: dd81cf2fab2f620489a615625495ecd6, type: 3}
   - {fileID: 806074594693296770, guid: be4101a1eed5aae4098f365085e80191, type: 3}
   - {fileID: 3770925614584002175, guid: 10814aed2fabbac4a85c0d9bb6fd9841, type: 3}
-  direction: 0
-  fDistance: 1
+  HoloDirection: 0
+  AwayDistance: {x: 0, y: 0}
   iHowMany: 1
+  AutoCombine: 0
   isProjection: 0
-  projectionUI: {fileID: 0}
+  isReset: 0
+  MeowingPrefab: {fileID: 5573310245492036228, guid: 5ab908b9d8dbfa149b197b90a2cde571, type: 3}
+  audioclip: {fileID: 8300000, guid: e748f2f7229dc4142aa39f3cbd0c2601, type: 3}
 --- !u!1001 &3948682316162660321
 PrefabInstance:
   m_ObjectHideFlags: 0
