@@ -317,6 +317,11 @@ public class N_EnemyManager : MonoBehaviour
             ElapsedWaitTime = 0.0f;
             // 巡回状態
             managerState = ManagerState.PATOROL;
+
+            foreach (var obj in TeamMembers)
+            {
+                obj.GetComponent<K_EnemyReaction>().SetIsSearchHologram(false);
+            }
         }
         else
         {
@@ -581,6 +586,13 @@ public class N_EnemyManager : MonoBehaviour
                 //Debug.Log(_number.ToString() + "検知 + 切り返し");
                 Init();
                 managerState = ManagerState.WAIT;
+
+                // クエスチョンマーク表示
+                foreach (var obj in TeamMembers)
+                {
+                    obj.GetComponent<K_EnemyReaction>().SetIsSearchHologram(true);
+                }
+
             }
             else/* if(_number != 0)*/
             {
@@ -599,6 +611,11 @@ public class N_EnemyManager : MonoBehaviour
                 //Debug.Log(_number.ToString() + "検知 + 切り返し");
                 Init();
                 managerState = ManagerState.WAIT;
+                // クエスチョンマーク表示
+                foreach (var obj in TeamMembers)
+                {
+                    obj.GetComponent<K_EnemyReaction>().SetIsSearchHologram(true);
+                }
             }
             else/* if(_number != 0)*/
             {
