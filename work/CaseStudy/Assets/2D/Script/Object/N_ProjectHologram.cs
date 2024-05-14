@@ -169,7 +169,13 @@ public class N_ProjectHologram : MonoBehaviour
         Vector3 vec = trans_Projecter.position;
         float dirX = 1.0f;
         float dirY = 1.0f;
+
         Vector3 sca = Prefab.transform.localScale;
+
+        if(Prefab.transform.localScale.x == 0.0f)
+        {
+            sca = Vector3.one;
+        }
 
         // ホログラムの開始地点調整
         switch (HoloDirection)
