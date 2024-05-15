@@ -30,6 +30,10 @@ public class S_EnemyBall : MonoBehaviour
     [Header("振動時間"), SerializeField]
     private float fTime = 0.1f;
 
+    [Header("敵衝突エフェクト"), SerializeField]
+    private GameObject Eff_ClashPrefab;
+    private GameObject Eff_ClashObj;
+
     //塊になっているかどうか
     private bool isBall = false;
     public bool GetisBall() { return isBall; }
@@ -133,7 +137,15 @@ public class S_EnemyBall : MonoBehaviour
                 (colEnemyBall.GetisPushing()&&fStickCnt > colEnemyBall.GetStickCount()))
             {
                 isBall = true;
-                fStickCnt++;
+                if (!colEnemyBall.GetisBall())
+                {
+                    fStickCnt++;
+                }
+                else if(colEnemyBall.GetisBall())
+                {
+                    fStickCnt += colEnemyBall.GetStickCount();
+                }
+                
                 if(fStickCnt==1)
                 {
                     fStickCnt++;
@@ -156,6 +168,10 @@ public class S_EnemyBall : MonoBehaviour
 
                 StartCoroutine(HitStop());
                 StartCoroutine(M_Utility.GamePadMotor(fTime));
+                if (Eff_ClashPrefab != null)
+                {
+                    Eff_ClashObj = Instantiate(Eff_ClashPrefab, transform.position, Quaternion.identity);
+                }
             }
         }
     }
@@ -194,6 +210,10 @@ public class S_EnemyBall : MonoBehaviour
                 rb.AddForce(rb.velocity*fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
                 StartCoroutine(HitStop());
+                if (Eff_ClashPrefab != null)
+                {
+                    Eff_ClashObj = Instantiate(Eff_ClashPrefab, transform.position, Quaternion.identity);
+                }
             }
         }
     }
