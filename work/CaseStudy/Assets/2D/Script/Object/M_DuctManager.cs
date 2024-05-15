@@ -60,6 +60,8 @@ public class M_DuctManager : MonoBehaviour
         {           
             Debug.Log("ダクトを出た");
 
+            GetComponent<AudioSource>().Play();
+
             // 辞書のキーのコレクションを取得
             var keys = new List<GameObject>(ductDictionary.Keys);
 
@@ -114,12 +116,14 @@ public class M_DuctManager : MonoBehaviour
     // ダクトの状態を更新するメソッド
     public void SetContains(GameObject duct, bool state)
     {
-        ductDictionary[duct] = state;
+        ductDictionary[duct] = state;        
 
         // ダクトの状態が変わった後にプレイヤーの挙動を制御する
         if (ContainsTrueValue())
         {
             Debug.Log("ダクトに入った");
+
+            GetComponent<AudioSource>().Play();
 
             // ダクトに入ったらプレイヤーのレイヤーを変更
             PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");
@@ -145,7 +149,7 @@ public class M_DuctManager : MonoBehaviour
             Debug.Log("ダクトを出た");
 
             // ダクトから出たらプレイヤーの元のレイヤーに戻す
-            PlayerObj.layer = LayerMask.NameToLayer("PlayerLayer");
+            PlayerObj.layer = LayerMask.NameToLayer("PlayerLayer");            
 
             //見えるようにする
             for (int i = 0; i < renderers.Count; i++)
