@@ -45,9 +45,11 @@ public class K_EnemyReaction : MonoBehaviour
         //ƒvƒŒƒnƒuŽÀ‘Ì‰»
         EnemyQuestion = Instantiate(EnemyReactionPrefab, transform.position, Quaternion.identity);
         EnemyQuestion.SetActive(false);
+        EnemyQuestion.transform.parent = gameObject.transform;
 
         EnemyFoundTarget = Instantiate(EnemyFoundPrefab, transform.position, Quaternion.identity);
         EnemyFoundTarget.SetActive(false);
+        EnemyFoundTarget.transform.parent = gameObject.transform;
 
         EnemyMove = GetComponent<SEnemyMove>();
     }
