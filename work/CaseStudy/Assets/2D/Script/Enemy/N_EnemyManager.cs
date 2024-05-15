@@ -517,6 +517,8 @@ public class N_EnemyManager : MonoBehaviour
             {
                 // 新しいマネージャーを敵に登録
                 move.SetEnemyManager();
+
+                move.EnemyMove(0.0f, IsReflectionX);
             }
             // 隊列内の敵の向きを取得
             IsReflectionX = move.GetIsReflection();
