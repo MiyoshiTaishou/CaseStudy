@@ -133,7 +133,15 @@ public class S_EnemyBall : MonoBehaviour
                 (colEnemyBall.GetisPushing()&&fStickCnt > colEnemyBall.GetStickCount()))
             {
                 isBall = true;
-                fStickCnt++;
+                if (!colEnemyBall.GetisBall())
+                {
+                    fStickCnt++;
+                }
+                else if(colEnemyBall.GetisBall())
+                {
+                    fStickCnt += colEnemyBall.GetStickCount();
+                }
+                
                 if(fStickCnt==1)
                 {
                     fStickCnt++;
