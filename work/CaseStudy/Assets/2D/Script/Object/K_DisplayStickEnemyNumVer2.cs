@@ -61,7 +61,11 @@ public class K_DisplayStickEnemyNumVer2 : MonoBehaviour
                 }
 
                 //ÉTÉCÉYïœÇ¶ÇÈ
-                Texts[i].fontSize = 30 + StickEnemyNum * 10;
+                if(Texts[i].fontSize<100)
+                {
+                 Texts[i].fontSize = 30 + StickEnemyNum * 10;
+                }
+
             }
         }
     }

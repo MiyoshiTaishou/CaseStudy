@@ -172,6 +172,14 @@ public class N_ProjectHologram : MonoBehaviour
                     obj.SetActive(false);  
                     //projectionUI.SetActive(false);
                 }
+                if (MeowingPrefab)
+                {
+                    MeowingObj = Instantiate(MeowingPrefab, transform.position, Quaternion.identity);
+                }
+                if (audioclip)
+                {
+                    AudioSource.PlayClipAtPoint(audioclip, transform.position);
+                }
                 isActive = false;
             }
         }
