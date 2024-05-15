@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  fDistance: 1.3
+  fDistance: 0.5
   fGroundDistance: 2
   fGup: 1
   fGrounddirx: 0.2

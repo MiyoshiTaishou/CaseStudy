@@ -42,12 +42,14 @@ public class N_EnemyManager : MonoBehaviour
     private float LostSightTime = 0.5f;
 
     // 経過時間
-    private float ElapsedTime = 0.0f;
-    private float ElapsedWaitTime = 0.0f;
-    private float ElapsedFoundTime = 0.0f;
-    private float ElapsedLostSightTime = 0.0f;
+    public float ElapsedTime = 0.0f;
+    public float ElapsedWaitTime = 0.0f;
+    public float ElapsedFoundTime = 0.0f;
+    public float ElapsedLostSightTime = 0.0f;
 
     private bool IsDitection = false;
+
+    private bool IsRef = false;
 
     // マネージャーの生成順
     private static int GenerateOrder = 0;
@@ -133,6 +135,8 @@ public class N_EnemyManager : MonoBehaviour
                 LostSight();
                 break;
         }
+
+        //Debug.Log(IsRef);
     }
 
     // ホログラムによってチームを分割された時
@@ -213,7 +217,6 @@ public class N_EnemyManager : MonoBehaviour
 
     public void UnionTeam(N_EnemyManager _manager)
     {
-        //Debug.Log("合体");
         // 自分の隊列に加える
         TeamAddEnemy(this.gameObject, _manager.GetTeamMember());
 
@@ -228,6 +231,7 @@ public class N_EnemyManager : MonoBehaviour
 
         // 待ち時間にする
         managerState = ManagerState.WAIT;
+        IsRef = true;
 
         // 敵のいなくなったマネージャー削除
         Destroy(_manager.gameObject);
@@ -310,6 +314,16 @@ public class N_EnemyManager : MonoBehaviour
     private void Wait()
     {
         ElapsedWaitTime += Time.deltaTime;
+        //Debug.Log(ElapsedWaitTime);
+
+        if(ElapsedWaitTime + Time.deltaTime >= WaitTime)
+        {
+            if (!IsRef)
+            {
+                IsReflectionX = !IsReflectionX;
+                IsRef = true;
+            }
+        }
 
         // 待つ
         if (ElapsedWaitTime >= WaitTime)
@@ -317,6 +331,7 @@ public class N_EnemyManager : MonoBehaviour
             ElapsedWaitTime = 0.0f;
             // 巡回状態
             managerState = ManagerState.PATOROL;
+            IsRef = false;
 
             foreach (var obj in TeamMembers)
             {
@@ -420,13 +435,6 @@ public class N_EnemyManager : MonoBehaviour
             num++;
         }
 
-        // 端のどちらかが見失ったら
-        //if(TeamMembers[0].GetComponent<N_PlayerSearch>().GetIsSearch() == false ||
-        //    TeamMembers[iMemberNum - 1].GetComponent<N_PlayerSearch>().GetIsSearch() == false)
-        //{
-        //    managerState = ManagerState.LOSTSIGHT;
-        //}
-
         // 追跡対象に近づいたら別の状態に遷移
         if(dis < 1.0f)
         {
@@ -517,6 +525,7 @@ public class N_EnemyManager : MonoBehaviour
             {
                 // 新しいマネージャーを敵に登録
                 move.SetEnemyManager();
+                move.EnemyMove(0.0f, IsReflectionX);
             }
             // 隊列内の敵の向きを取得
             IsReflectionX = move.GetIsReflection();
@@ -557,7 +566,7 @@ public class N_EnemyManager : MonoBehaviour
     private void Init()
     {
         ElapsedTime = 0.0f;
-        IsReflectionX = !IsReflectionX;
+        //IsReflectionX = !IsReflectionX;
     }
 
     // 隊列の誰かが切り返し依頼をする時呼び出し
@@ -570,7 +579,7 @@ public class N_EnemyManager : MonoBehaviour
     // ホログラムの壁を検知した時呼び出し
     public void DetectionHologram(int _number)
     {
-        if (IsDitection)
+        if (IsDitection || managerState == ManagerState.WAIT)
         {
             //Debug.Log("でてけ");
             return;
@@ -583,7 +592,6 @@ public class N_EnemyManager : MonoBehaviour
             // 一番右の敵がホログラムの壁を検知
             if (_number == iMemberNum - 1)
             {
-                //Debug.Log(_number.ToString() + "検知 + 切り返し");
                 Init();
                 managerState = ManagerState.WAIT;
 
@@ -598,8 +606,6 @@ public class N_EnemyManager : MonoBehaviour
             {
                 // 隊列分割
                 PartitionTeam(_number);
-                //Debug.Log(gameObject.name + _number.ToString() + "検知 + 分割右" + IsReflectionX);
-
             }
         }
         // 左に進行中
@@ -608,7 +614,6 @@ public class N_EnemyManager : MonoBehaviour
             // 一番左の敵がホログラムの壁を検知
             if (_number == 0)
             {
-                //Debug.Log(_number.ToString() + "検知 + 切り返し");
                 Init();
                 managerState = ManagerState.WAIT;
                 // クエスチョンマーク表示
@@ -621,8 +626,6 @@ public class N_EnemyManager : MonoBehaviour
             {
                 // 隊列分割
                 PartitionTeam(_number);
-                //Debug.Log(gameObject.name + _number.ToString() + "検知 + 分割左" + IsReflectionX);
-
             }
         }
         IsDitection = false;

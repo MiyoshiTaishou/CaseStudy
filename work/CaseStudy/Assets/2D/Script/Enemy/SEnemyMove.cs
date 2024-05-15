@@ -18,18 +18,18 @@ public class SEnemyMove : MonoBehaviour
     //反対方向を向いているか
     private bool IsReflectionX = false;
 
-    private bool IsReflectionY = false;
+    //private bool IsReflectionY = false;
 
-    bool GetReflectionX() { return IsReflectionX; }
-    bool GetReflectionY() { return IsReflectionY; }
+    //bool GetReflectionX() { return IsReflectionX; }
+    //bool GetReflectionY() { return IsReflectionY; }
 
     //初期位置
-    private Vector2 defaultPos= Vector2.zero;
+    //private Vector2 defaultPos= Vector2.zero;
 
     private Rigidbody2D rb=null;
 
     //目標位置
-    private Vector2 GallPos=Vector2.zero;
+    //private Vector2 GallPos=Vector2.zero;
 
     //壁や崖を判断するRay
     private Ray rayWall,rayGround;
@@ -205,9 +205,9 @@ public class SEnemyMove : MonoBehaviour
         if (isRayDraw)
         {
             Debug.DrawRay(Origin, Vector2.right * coef*fDistance, Color.red, 0.0f, false);
-            Debug.DrawRay(Origin, GroundDirection * fGroundDistance, Color.blue, 0.1f, false);
-            Debug.DrawRay(slopeOrigin1, Vector2.down * 2.0f, Color.blue, 1.0f, false);
-            Debug.DrawRay(slopeOrigin2, Vector2.down * 2.0f, Color.green, 1.0f, false);
+            //Debug.DrawRay(Origin, GroundDirection * fGroundDistance, Color.blue, 0.1f, false);
+            //Debug.DrawRay(slopeOrigin1, Vector2.down * 2.0f, Color.blue, 1.0f, false);
+            //Debug.DrawRay(slopeOrigin2, Vector2.down * 2.0f, Color.green, 1.0f, false);
         }
 
         //壁判定用のRayがタイルマップに接触しているか、足元のRayが何も情報を得られなければ方向を切り替える
@@ -237,18 +237,12 @@ public class SEnemyMove : MonoBehaviour
         if (GroundCheck() &&
             hitWall.collider != null && hitWall.collider.CompareTag("TileMap") ||
             hitWall.collider != null && hitWall.collider.CompareTag("Ground") ||
+            hitWall.collider != null && hitWall.collider.CompareTag("FieldObj") ||
             hitGround.collider == null)
         {
             //Debug.Log("ホログラム以外検知");
             enemyManager.RequestRefletion();
         }
-
-        //if (Mathf.Abs(rb.velocity.x) > fLimitSpeed)
-        //{
-        //    Vector2 vel = rb.velocity;
-        //    vel.x = fLimitSpeed*coef;
-        //    rb.velocity = vel;
-        //}
     }
 
     public bool GetIsReflection()
