@@ -231,7 +231,7 @@ public class S_EnemyBall : MonoBehaviour
         }
         rb.velocity = Vector2.zero;
         //指定のフレーム待つ
-        yield return new WaitForSeconds(fHitStop/60);
+        yield return new WaitForSecondsRealtime(fHitStop/60);
         //保存した速度で再開する
         rb.velocity = vel;
         isPushing = true;
