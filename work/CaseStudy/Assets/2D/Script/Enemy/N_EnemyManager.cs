@@ -51,6 +51,8 @@ public class N_EnemyManager : MonoBehaviour
 
     private bool IsRef = false;
 
+    private bool init = false;
+
     // マネージャーの生成順
     private static int GenerateOrder = 0;
     // 生成順
@@ -90,8 +92,7 @@ public class N_EnemyManager : MonoBehaviour
         CountMemberNum();
         // 隊列内の敵の移動スクリプトを取得
         SetEnemyMoveScript();
-        // 隊列の敵に番号を付与
-        SetInfomation(true);
+        
 
         // 名前でマネージャーを区別できるようにする
         this.gameObject.name = this.gameObject.name + GenerateOrder.ToString();
@@ -102,6 +103,14 @@ public class N_EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (!init)
+        {
+            // 隊列の敵に番号を付与
+            SetInfomation(true);
+
+            init = true;
+        }
         switch (managerState)
         {
             case ManagerState.IDLE:
