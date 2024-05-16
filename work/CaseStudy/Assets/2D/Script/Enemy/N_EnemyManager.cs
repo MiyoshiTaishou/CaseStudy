@@ -293,6 +293,15 @@ public class N_EnemyManager : MonoBehaviour
 
     private void Patrol()
     {
+        if(ElapsedTime == 0.0f)
+        {
+            // 全リアクション非表示
+            foreach (var obj in TeamMembers)
+            {
+                obj.GetComponent<K_EnemyReaction>().AllSetFalse();
+            }
+        }
+
         float dir = 1.0f;
         if (IsReflectionX == true)
         {
@@ -471,7 +480,7 @@ public class N_EnemyManager : MonoBehaviour
             managerState = ManagerState.PATOROL;
             ElapsedLostSightTime = 0.0f;
 
-            // ビックリマーク非表示
+            // クエスチョンマーク非表示
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsLostTarget(false);
@@ -582,7 +591,12 @@ public class N_EnemyManager : MonoBehaviour
     public void RequestRefletion()
     {
         Init();
+        //if (managerState == ManagerState.PATOROL)
+        //{
+        //    managerState = ManagerState.WAIT;
+        //}
         managerState = ManagerState.WAIT;
+
     }
 
     // ホログラムの壁を検知した時呼び出し

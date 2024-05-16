@@ -11,9 +11,28 @@ public class M_PlayerMove : MonoBehaviour
     [Header("移動速度"), SerializeField]
     private float fMoveSpeed = 10.0f;
 
+    enum DASHMODE
+    {
+        DASH,     // 加速形式
+        TELEPORT, // 瞬間移動形式
+    }
+
+    [Header("ダッシュのモード"), SerializeField]
+     DASHMODE DashMode = DASHMODE.DASH;
+
     [Header("ダッシュ速度"), SerializeField]
     private float fDashSpeed = 10.0f;
-    
+
+    [Header("何フレームかけてテレポートするか"), SerializeField]
+    private int iTeleportFlame = 5;
+
+    [Header("テレポート距離"), SerializeField]
+    private float fTeleportDistance = 3.0f;
+
+    private int NowTeleportFlame = 0;
+    private bool isNowTeleport = false;
+    private bool ButtonTrigger = false;
+
     private float fStamina;
 
     [Header("スタミナ関連")]
@@ -71,6 +90,8 @@ public class M_PlayerMove : MonoBehaviour
     /// </summary>
     private bool isNowDash = true;
 
+    private Transform PlayerTrans;
+
     public bool GetIsDash() { return isNowDash; }
 
     public bool GetIsMove() { return isMove; }
@@ -86,6 +107,8 @@ public class M_PlayerMove : MonoBehaviour
     {
         rbPlayer = GetComponent<Rigidbody2D>();
         vecDir = transform.right;
+
+        PlayerTrans = gameObject.transform;
 
         //スタミナを最大にする
         fStamina = fStaminaMax;
@@ -112,18 +135,85 @@ public class M_PlayerMove : MonoBehaviour
         //ダッシュボタンを押しているか
         if(Input.GetButton("DashButton"))
         {
+            if (!isNowTeleport && !ButtonTrigger)
+            {
+                // テレポート用変数
+                isNowTeleport = true;
+                ButtonTrigger = true;
+            }
+
+            // ダッシュ用変数
             isDash = true;
         }
         else
         {
             isDash = false;
-        }        
+            ButtonTrigger = false;
+        }
 
         //移動処理を呼ぶ
-        MoveUpdate(fHorizontalInput);
+        switch (DashMode)
+        {
+            case DASHMODE.DASH:
+                MoveUpdate(fHorizontalInput);
+                //UI処理を呼ぶ
+                StaminaUIUpdate();
+                break;
 
-        //UI処理を呼ぶ
-        StaminaUIUpdate();
+            case DASHMODE.TELEPORT:
+                Teleport(fHorizontalInput);
+                break;
+        }
+
+    }
+
+    // 瞬間移動
+    private void Teleport(float _fhorizontal)
+    {
+        // テレポート中
+        if (isNowTeleport && NowTeleportFlame < iTeleportFlame)
+        {
+            // このフレームでの移動距離
+            float moveDis = fTeleportDistance / iTeleportFlame;
+
+            if (vecDir.x > 0)
+            {
+                PlayerTrans.position += new Vector3(moveDis, 0.0f, 0.0f);
+            }
+            else if (vecDir.x < 0)
+            {
+                PlayerTrans.position -= new Vector3(moveDis, 0.0f, 0.0f);
+            }
+
+            NowTeleportFlame++;
+
+            // テレポート用
+            // 指定フレーム分経ったら
+            if (NowTeleportFlame >= iTeleportFlame)
+            {
+                // テレポート終了
+                isNowTeleport = false;
+                NowTeleportFlame = 0;
+            }
+        }
+        else
+        {
+            // 入力に基づいて移動する
+            Vector2 vecMoveDirection = new Vector2(_fhorizontal * fMoveSpeed, rbPlayer.velocity.y);
+            rbPlayer.velocity = vecMoveDirection;
+            animator.SetBool("run", true);
+
+            if (_fhorizontal > 0.0f)
+            {
+                vecDir = new Vector3(1.0f,0.0f,0.0f);
+                transform.eulerAngles = Vector3.zero;
+            }
+            else if (_fhorizontal < 0.0f)
+            {
+                vecDir = new Vector3(-1.0f,0.0f,0.0f);
+                transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+            }
+        }
     }
 
     //移動関連の処理をする
@@ -132,6 +222,7 @@ public class M_PlayerMove : MonoBehaviour
         //スタミナを使い切っていなくて走るボタンを押している時
         if (isDash && isStamina)
         {
+                    
             // 入力に基づいて移動する
             Vector2 vecMoveDirection = new Vector2(_forizontal * fDashSpeed, rbPlayer.velocity.y);
             rbPlayer.velocity = vecMoveDirection;
@@ -150,10 +241,10 @@ public class M_PlayerMove : MonoBehaviour
 
             //移動している場合はスタミナを消費する
             if (_forizontal != 0.0f)
-            {                
-                fStamina -= fUseDashStamina * Time.deltaTime;   
+            {
+                fStamina -= fUseDashStamina * Time.deltaTime;
                 isNowDash = true;
-                
+
             }
             else
             {
@@ -213,9 +304,6 @@ public class M_PlayerMove : MonoBehaviour
             fStamina = 0;
             isStamina = false;
         }
-
-        
-
     }
 
     //UI関連の処理をする

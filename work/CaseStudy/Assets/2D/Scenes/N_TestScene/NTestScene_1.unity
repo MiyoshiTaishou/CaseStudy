@@ -2132,6 +2132,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6336587647645303316, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
+      propertyPath: DashMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336587647645303316, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: nStamina
       value: 300
       objectReference: {fileID: 0}
@@ -2196,6 +2200,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6336587647645303316, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
+      propertyPath: fTeleportDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6336587647645303316, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: fStayRecoverySpeed
       value: 40
       objectReference: {fileID: 0}
@@ -2217,11 +2225,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6336587647645303319, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.61
+      value: 44.85
       objectReference: {fileID: 0}
     - target: {fileID: 6336587647645303319, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.99
+      value: 32.56
       objectReference: {fileID: 0}
     - target: {fileID: 6336587647645303319, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: m_LocalPosition.z
