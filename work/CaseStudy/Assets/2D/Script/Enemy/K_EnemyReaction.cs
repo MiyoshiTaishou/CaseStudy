@@ -83,6 +83,13 @@ public class K_EnemyReaction : MonoBehaviour
         }
     }
 
+    public void AllSetFalse()
+    {
+        IsSearchTarget = false;
+        EnemyQuestion.SetActive(false);
+        EnemyFoundTarget.SetActive(false);
+    }
+
     //ìGÇ™è¡Ç¶ÇΩÇÁ
     void OnDestroy()
     {
