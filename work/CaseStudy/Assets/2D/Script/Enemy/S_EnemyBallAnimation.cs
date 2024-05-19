@@ -35,7 +35,9 @@ public class S_EnemyBallAnimation : MonoBehaviour
         }
         else if(ball.GetisPushing() == false) 
         {
-            animator.speed = 0.0f;
+            Debug.Log("‚Æ‚Ü‚ê‚¦‚¦‚¦‚¦");
+            animator.SetBool("Stop", true);
+            animator.Play("enemy_roll_Stop");
         }
         //if (!animator.GetCurrentAnimatorStateInfo(0).IsName("enemy_roll_start") &&
         //    animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)

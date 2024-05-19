@@ -24,6 +24,12 @@ public class N_PlayerSearch : MonoBehaviour
         {
             enemyManager = enemyMove.GetManager();
         }
+
+        //‹Êó‘Ô‚È‚ç’ÇÕó‘Ô‚ğ‰ğœ
+        if(GetComponent<S_EnemyBall>().GetisBall())
+        {
+            isSearch = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,7 +40,6 @@ public class N_PlayerSearch : MonoBehaviour
             {
                 //Debug.Log("”­Œ©");
                 enemyManager.SetTarget(collision.gameObject);
-
                 isSearch = true;
             }
         }
@@ -57,7 +62,6 @@ public class N_PlayerSearch : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         //enemyManager.ChangeManagerState(N_EnemyManager.ManagerState.PATOROL);
-
         isSearch = false;
     }
 }
