@@ -46,30 +46,58 @@ public class M_MaterialChange : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //プロジェクター起動中のみ
-        if(GetComponent<N_ProjectHologram>().GetProjection())
+        if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
         {
-            SpriteRenderer[] childRenderers = collision.GetComponentsInChildren<SpriteRenderer>();
-            foreach (SpriteRenderer childRenderer in childRenderers)
+            //プロジェクター起動中のみ
+            if (GetComponent<N_ProjectHologram>().GetProjection())
             {
-                // ヒットしたオブジェクトのマテリアルを保存する
-                if (!originalMaterials.ContainsKey(childRenderer))
+                SpriteRenderer[] childRenderers = collision.GetComponentsInChildren<SpriteRenderer>();
+                foreach (SpriteRenderer childRenderer in childRenderers)
                 {
-                    originalMaterials.Add(childRenderer, childRenderer.material);
+                    // ヒットしたオブジェクトのマテリアルを保存する
+                    if (!originalMaterials.ContainsKey(childRenderer))
+                    {
+                        originalMaterials.Add(childRenderer, childRenderer.material);
 
-                    // マテリアル変更
-                    childRenderer.material = m_Material;
+                        // マテリアル変更
+                        childRenderer.material = m_Material;
 
-                    // マテリアルの float の値をリセットする
-                    childRenderer.material.SetFloat("_Fader", 1.0f);
-                    childRenderer.material.SetFloat("_Effect", 0.0f);
+                        // マテリアルの float の値をリセットする
+                        childRenderer.material.SetFloat("_Fader", 1.0f);
+                        childRenderer.material.SetFloat("_Effect", 0.0f);
 
-                    Debug.Log("マテリアル適用");
-                    isStart = true;
+                        Debug.Log("マテリアル適用");
+                        isStart = true;                       
+                    }
                 }
+
+                collision.isTrigger = true;
+                collision.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+                Vector3 vel = collision.GetComponent<Rigidbody2D>().velocity;
+                collision.GetComponent<Rigidbody2D>().velocity = new Vector3(vel.x, 0.0f, vel.z);
             }
-        }   
-        else
+            else
+            {
+                SpriteRenderer[] childRenderers = collision.GetComponentsInChildren<SpriteRenderer>();
+                foreach (SpriteRenderer childRenderer in childRenderers)
+                {
+                    // 元のマテリアルに戻す
+                    if (originalMaterials.ContainsKey(childRenderer))
+                    {
+                        childRenderer.material = originalMaterials[childRenderer];
+                        originalMaterials.Remove(childRenderer);
+                    }
+                }
+
+                collision.isTrigger = false;
+                collision.GetComponent<Rigidbody2D>().gravityScale = 4.0f;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
         {
             SpriteRenderer[] childRenderers = collision.GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer childRenderer in childRenderers)
@@ -81,20 +109,9 @@ public class M_MaterialChange : MonoBehaviour
                     originalMaterials.Remove(childRenderer);
                 }
             }
-        }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        SpriteRenderer[] childRenderers = collision.GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer childRenderer in childRenderers)
-        {
-            // 元のマテリアルに戻す
-            if (originalMaterials.ContainsKey(childRenderer))
-            {
-                childRenderer.material = originalMaterials[childRenderer];
-                originalMaterials.Remove(childRenderer);
-            }
+            collision.isTrigger = false;
+            collision.GetComponent<Rigidbody2D>().gravityScale = 4.0f;
         }
     }
 }
