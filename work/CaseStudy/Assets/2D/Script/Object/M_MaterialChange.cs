@@ -46,7 +46,7 @@ public class M_MaterialChange : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Player"))
         {
             //プロジェクター起動中のみ
             if (GetComponent<N_ProjectHologram>().GetProjection())
@@ -97,7 +97,7 @@ public class M_MaterialChange : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") || collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Player"))
         {
             SpriteRenderer[] childRenderers = collision.GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer childRenderer in childRenderers)
