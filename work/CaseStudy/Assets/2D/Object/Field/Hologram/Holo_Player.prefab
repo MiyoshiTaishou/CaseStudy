@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 3525170242437846334}
   - component: {fileID: 13561794828072500}
   - component: {fileID: -2111308224854769968}
-  - component: {fileID: 2690061856411027925}
   - component: {fileID: 3354543536654103378}
+  - component: {fileID: 7114846359398160051}
+  - component: {fileID: -1772857890566408471}
+  - component: {fileID: 3920023016528230156}
   m_Layer: 8
   m_Name: Holo_Player
   m_TagString: Decoy
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 392718627150799720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1022327925912784847}
@@ -120,28 +122,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &2690061856411027925
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 392718627150799720}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &3354543536654103378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,8 +152,75 @@ MonoBehaviour:
   scale:
     isApply: 1
     ease: 29
-    amount: {x: 0.8, y: 0.8, z: 0}
+    amount: {x: 0.5, y: 0.5, z: 0}
   isStart: 1
+--- !u!61 &7114846359398160051
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392718627150799720}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &-1772857890566408471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392718627150799720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd271d4c844696d4486236d41571d2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fMoveSpeed: 5
+  DashMode: 0
+  fDashSpeed: 20
+  iTeleportFlame: 5
+  fTeleportDistance: 3
+  fStaminaMax: 100
+  fUseDashStamina: 10
+  fRecoverySpeed: 20
+  fStayRecoverySpeed: 40
+  fUsedStaminaRecoverySpeed: 10
+  UseColor: {r: 0, g: 0, b: 0, a: 0}
+  CautionColor: {r: 0, g: 0, b: 0, a: 0}
+  CautionParcent: 40
+  WarningColor: {r: 0, g: 0, b: 0, a: 0}
+  WarningParcent: 20
+--- !u!114 &3920023016528230156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392718627150799720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb1bfb918e9a3e43ace0b5da69f3548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlindingObj: {fileID: 0}
+  fThrowPower: 5
 --- !u!1 &2327855717482175491
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +356,10 @@ PrefabInstance:
     - target: {fileID: 2091721574659945784, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709683448437500301, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7310569821080857450, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: fDlayAnim

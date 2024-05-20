@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2091721574659945784}
   - component: {fileID: 3230963197561355576}
   - component: {fileID: 3934893850614670194}
-  - component: {fileID: -8741556286751532971}
   - component: {fileID: 7310569821080857450}
+  - component: {fileID: 2709683448437500301}
   m_Layer: 0
   m_Name: kaze02]_00000 1
   m_TagString: Untagged
@@ -108,22 +108,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &-8741556286751532971
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7455578348281846349}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 2
 --- !u!114 &7310569821080857450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,3 +123,30 @@ MonoBehaviour:
   mode: 0
   fPower: 30
   fTime: 0.5
+  fDlayAnim: 1
+--- !u!61 &2709683448437500301
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455578348281846349}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.03}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 2.88}
+    newSize: {x: 5.12, y: 2.88}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.03, y: 1.84}
+  m_EdgeRadius: 0
