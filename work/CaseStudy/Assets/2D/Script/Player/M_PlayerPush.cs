@@ -89,7 +89,10 @@ public class M_PlayerPush : MonoBehaviour
                     PushObj = PushList[i];
                 }
             }
-
+            if(!PushObj)
+            {
+                PushObj = PushList[0];
+            }
             Push(PushObj);            
         }
 
@@ -121,6 +124,7 @@ public class M_PlayerPush : MonoBehaviour
                 PushObj = collision.gameObject;
                 if (PushList.Contains(collision.gameObject) == false)
                 {
+                    //Debug.Log(collision.gameObject.name);
                     PushList.Add(collision.gameObject);
                 }
             }
@@ -198,7 +202,7 @@ public class M_PlayerPush : MonoBehaviour
             //バレていない時
             case MODE.Back:
 
-                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<MPlayerSearch>().GetIsSearch())
+                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
                 {
                     Vector3 dir = Vector3.zero;                    
 

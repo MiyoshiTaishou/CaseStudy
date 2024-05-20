@@ -83,7 +83,7 @@ public class S_EnemyBall : MonoBehaviour
         {
             GetComponent<SEnemyMove>().enabled = false;
             GetComponent<M_BlindingMove>().enabled = false;
-            GetComponent<MPlayerSearch>().enabled = false;
+            GetComponent<N_PlayerSearch>().enabled = false;
             vel = rb.velocity;
             if(vel.x<0)
             {
