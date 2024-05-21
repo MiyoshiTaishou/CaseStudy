@@ -29,16 +29,8 @@ public class S_EnemyBallAnimation : MonoBehaviour
         {
             Debug.Log("The animation 'AnimationName' is currently playing.");
         }
-        if(ball.GetisPushing() == true)
-        {
-            AnimPlay();
-        }
-        else if(ball.GetisPushing() == false) 
-        {
-            Debug.Log("‚Æ‚Ü‚ê‚¦‚¦‚¦‚¦");
-            animator.SetBool("Stop", true);
-            animator.Play("enemy_roll_Stop");
-        }
+
+         AnimPlay();
         //if (!animator.GetCurrentAnimatorStateInfo(0).IsName("enemy_roll_start") &&
         //    animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         //{
@@ -55,8 +47,14 @@ public class S_EnemyBallAnimation : MonoBehaviour
 
     void AnimPlay()
     {
-        animator.speed = 1.0f;
-
+        if (ball.GetisPushing() == true)
+        {
+            animator.speed = 1.0f;
+        }
+        else if (ball.GetisPushing() == false)
+        {
+            animator.speed = 0.0f;
+        }
         if (!ball.GetisLeft())
         {
             animator.Play("enemy_roll_loop");

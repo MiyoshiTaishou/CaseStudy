@@ -32,7 +32,7 @@ public class K_ChangeSprite : MonoBehaviour
 
     private void Update()
     {
-        bool IsRolling = EnemyBall.GetisPushing();
+        bool IsRolling = EnemyBall.GetisBall();
         if (IsRolling)
         {
             EnemySpriteNormal.SetActive(false);

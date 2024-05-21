@@ -74,7 +74,7 @@ public class M_PlayerWarning : MonoBehaviour
                 continue;
             }
             //if(obj.GetComponent<MPlayerSearch>().GetIsSearch())
-            if(obj.GetComponent<N_PlayerSearch>().GetIsSearch())
+            if(obj.GetComponent<N_PlayerSearch>() && obj.GetComponent<N_PlayerSearch>().GetIsSearch())
             {
                 //Œ©‚Â‚©‚Á‚½ê‡‚Ítrue‚É‚µ‚Ä”²‚¯‚é
                 isFound = true;
