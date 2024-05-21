@@ -18034,6 +18034,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1632023547 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7487603992331043584, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+  m_PrefabInstance: {fileID: 2136691673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1647140695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18344,6 +18349,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 925124326}
     m_Modifications:
+    - target: {fileID: -7691061856803627827, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+      propertyPath: EnemyObjRolling
+      value: 
+      objectReference: {fileID: 6342705089899883761, guid: d301529544254b1459abf1b3d40ed546, type: 3}
     - target: {fileID: 117817261664437955, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -18610,6 +18619,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
+--- !u!82 &1732069534 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+  m_PrefabInstance: {fileID: 2136691673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1736191750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1497359285853439718, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
@@ -20376,11 +20390,11 @@ PrefabInstance:
     - target: {fileID: 7487603991789896491, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: bgmSource1
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1732069534}
     - target: {fileID: 7487603991789896491, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: bgmSource2
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1632023547}
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_Pitch
       value: 0.8

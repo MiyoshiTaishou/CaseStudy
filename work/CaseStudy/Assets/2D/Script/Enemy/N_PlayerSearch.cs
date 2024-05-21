@@ -7,7 +7,8 @@ public class N_PlayerSearch : MonoBehaviour
     private N_EnemyManager enemyManager;
     private SEnemyMove enemyMove;
 
-    private bool isSearch = false;
+    [SerializeField]
+    public bool isSearch = false;
     public bool GetIsSearch() { return isSearch; }
 
     // Start is called before the first frame update
@@ -62,6 +63,12 @@ public class N_PlayerSearch : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         //enemyManager.ChangeManagerState(N_EnemyManager.ManagerState.PATOROL);
+        isSearch = false;
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Ç‚ÇÁÇÍÇΩÅI");
         isSearch = false;
     }
 }
