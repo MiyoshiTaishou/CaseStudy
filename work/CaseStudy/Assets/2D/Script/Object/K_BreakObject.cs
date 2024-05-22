@@ -11,6 +11,12 @@ public class K_BreakObject : MonoBehaviour
     [Header("テキストサイズ"), SerializeField]
     private int iTexSize = 100;
 
+    [Header("テキストの揺れのスピード"), SerializeField]
+    private float UpDownSpeed = 1.0f;
+
+    [Header("テキストの揺れ幅"), SerializeField]
+    private float fShakingRange = 1.0f;
+
     [Header("耐久値を表示するか?"), SerializeField]
     private bool IsDisplayBreakNum = true;
 
@@ -21,6 +27,8 @@ public class K_BreakObject : MonoBehaviour
 
     [Header("爆発音"), SerializeField]
     private AudioClip audioclip;
+
+
 
     private bool isQuitting;
 
@@ -47,10 +55,10 @@ public class K_BreakObject : MonoBehaviour
         {
            if (IsDisplayBreakNum == true)
            {
-               // オブジェクト位置にテキスト要素を追従させる
-               Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-               TextEndurance.transform.position = new Vector3(screenPos.x, screenPos.y, screenPos.z); // 適切なオフセットを持たせる
-           }
+                // オブジェクト位置にテキスト要素を追従させる
+                Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+                TextEndurance.transform.position = new Vector3(screenPos.x, screenPos.y + Mathf.PingPong(Time.time * UpDownSpeed, fShakingRange), screenPos.z); // 適切なオフセットを持たせる
+            }
         }
     }
 
