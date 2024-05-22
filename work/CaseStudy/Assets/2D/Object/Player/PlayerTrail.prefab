@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1c7c1b08175e844914fc652c868648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  trailPrefab: {fileID: 0}
+  player: {fileID: 1061781001127465577, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
+  trailPrefab: {fileID: 5279419861592167256, guid: 7878c2b88e3e20045b063989d6f24529, type: 3}
   trailInterval: 3
   trailLength: 5
   fadeTime: 0.5
+  trailOffset: {x: 0, y: 0, z: 0}
