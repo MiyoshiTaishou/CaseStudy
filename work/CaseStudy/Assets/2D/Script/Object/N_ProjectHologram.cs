@@ -12,6 +12,7 @@ public class N_ProjectHologram : MonoBehaviour
         PLAYER,
         WALL,
         FLOOR,
+        TRANS,
     }
     [Header("プロジェクターのモード"), SerializeField]
     HOLOGRAM_MODE mode = HOLOGRAM_MODE.PLAYER;
@@ -279,6 +280,8 @@ public class N_ProjectHologram : MonoBehaviour
                 break;
 
             case HOLOGRAM_MODE.FLOOR:
+                break;
+            case HOLOGRAM_MODE.TRANS:
                 break;
         }
 
