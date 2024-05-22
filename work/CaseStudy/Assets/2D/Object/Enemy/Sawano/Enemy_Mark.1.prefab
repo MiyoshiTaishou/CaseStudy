@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyObjNormal: {fileID: 803734902209920363}
-  EnemyObjRolling: {fileID: 6342705089899883761, guid: deccbb4c37b417741b9f5e5e6f12778d, type: 3}
+  EnemyObjRolling: {fileID: 6342705089899883761, guid: 05345b24fff498644ab30a25b127b311, type: 3}
 --- !u!114 &377446080215070972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,6 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb78c813edad5fd4299e884877dd47f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSearch: 0
 --- !u!61 &908882179727931973
 BoxCollider2D:
   m_ObjectHideFlags: 0
