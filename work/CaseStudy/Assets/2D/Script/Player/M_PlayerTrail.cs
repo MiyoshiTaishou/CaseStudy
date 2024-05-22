@@ -19,6 +19,9 @@ public class M_PlayerTrail : MonoBehaviour
     [Header("残像のフェードアウト時間"), SerializeField]
     private float fadeTime = 0.5f; // 残像のフェードアウト時間
 
+    [Header("残像の表示位置"),SerializeField]
+    private Vector3 trailOffset = Vector3.zero;
+
     private int intervalCounter;
     private GameObject[] trails;
 
@@ -46,7 +49,7 @@ public class M_PlayerTrail : MonoBehaviour
     void GenerateTrail()
     {
         // 新しい残像を生成
-        GameObject newTrail = Instantiate(trailPrefab, player.transform.position, Quaternion.identity);
+        GameObject newTrail = Instantiate(trailPrefab, player.transform.position + trailOffset, Quaternion.identity);
         // 残像をリストに追加
         for (int i = 0; i < trails.Length - 1; i++)
         {
