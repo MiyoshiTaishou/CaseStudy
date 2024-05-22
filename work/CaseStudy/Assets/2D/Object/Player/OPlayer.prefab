@@ -184,10 +184,10 @@ GameObject:
   - component: {fileID: 6336587647645303319}
   - component: {fileID: 6336587647645303321}
   - component: {fileID: 6336587647645303322}
-  - component: {fileID: 6336587647645303323}
   - component: {fileID: 6336587647645303316}
   - component: {fileID: 760944304370445758}
   - component: {fileID: 6302026298218498335}
+  - component: {fileID: 216740328917473839}
   m_Layer: 3
   m_Name: OPlayer
   m_TagString: Player
@@ -287,22 +287,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &6336587647645303323
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336587648020932168}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &6336587647645303316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +300,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fMoveSpeed: 5
+  DashMode: 0
   fDashSpeed: 10
+  iTeleportFlame: 5
+  fTeleportDistance: 3
   fStaminaMax: 100
   fUseDashStamina: 1
   fRecoverySpeed: 2
@@ -360,6 +347,32 @@ MonoBehaviour:
   img: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 0.15686275}
   fColorSpeed: 0
+--- !u!61 &216740328917473839
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336587648020932168}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.06}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &6336587649174639115
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,8 +637,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6336587647645303319}
     m_Modifications:
-    - target: {fileID: -8741556286751532971, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
-      propertyPath: m_Radius
+    - target: {fileID: -8878303779200289823, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8878303779200289823, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: m_Size.y
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: -8878303779200289823, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.44
+      objectReference: {fileID: 0}
+    - target: {fileID: -8878303779200289823, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: -8878303779200289823, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2091721574659945784, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
@@ -634,7 +663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2091721574659945784, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 1.981
       objectReference: {fileID: 0}
     - target: {fileID: 2091721574659945784, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: m_LocalPosition.y
@@ -676,7 +705,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: kaze02]_00000 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8741556286751532971, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
 --- !u!4 &5349125540813385581 stripped
 Transform:
