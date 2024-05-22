@@ -60,6 +60,12 @@ public class S_EnemyBall : MonoBehaviour
     //左向きに移動しているか
     private bool isLeft = false;
 
+    private bool flg=false;
+
+    [SerializeField]
+    List<Vector2> vel2;
+
+    bool isCorutine = false;
     public bool GetisLeft() { return isLeft; }
 
     public int GetStickCount() 
@@ -81,20 +87,26 @@ public class S_EnemyBall : MonoBehaviour
 
         if (isPushing)
         {
+            if (isCorutine == false)
+            {
+                rb.velocity = vel;
+            }
+            vel2.Add(rb.velocity);
+            Debug.Log("敵玉速度" + rb.velocity.x);
+            DeleteMember();
+
             GetComponent<SEnemyMove>().enabled = false;
             GetComponent<M_BlindingMove>().enabled = false;
             //GetComponent<N_PlayerSearch>().enabled = false;
-            vel = rb.velocity;
-            if(vel.x<0)
+            if(rb.velocity.x<0)
             {
                 isLeft= true;
             }
-            else if(vel.x>0) 
+            else if(rb.velocity.x>0) 
             {
                 isLeft= false;
             }
             // 隊列から除名
-            DeleteMember();
         }
         if(isBall&& Mathf.Abs(rb.velocity.x) < fStopjudge) 
         {
@@ -128,6 +140,7 @@ public class S_EnemyBall : MonoBehaviour
         {
             return;
         }
+
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject= _collision.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
@@ -163,11 +176,12 @@ public class S_EnemyBall : MonoBehaviour
                 colEnemyBall.DeleteMember();
 
                 Destroy(ColObject);
-                rb.AddForce(vel*fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
                 GetComponent<AudioSource>().pitch+=0.2f;
 
                 StartCoroutine(HitStop());
+                rb.AddForce(vel*fBoost, ForceMode2D.Impulse);
+                vel = rb.velocity;
                 StartCoroutine(M_Utility.GamePadMotor(fTime));
                 if (Eff_ClashPrefab != null)
                 {
@@ -182,8 +196,15 @@ public class S_EnemyBall : MonoBehaviour
         {
             return;
         }
+        Debug.Log("敵玉速度" + rb.velocity.x);
+        if (flg == false && isPushing)
+        {
+            flg = true;
+            vel = rb.velocity;
+            Debug.Log("そくど" + vel.x);
+        }
         //あたったオブジェクトが敵かつ押されていなければ吸収
-        ColObject= _collision.gameObject;
+        ColObject = _collision.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
         if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
@@ -209,9 +230,12 @@ public class S_EnemyBall : MonoBehaviour
                 colEnemyBall.DeleteMember();
 
                 Destroy(ColObject);
-                rb.AddForce(rb.velocity*fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
                 StartCoroutine(HitStop());
+
+                rb.AddForce(rb.velocity*fBoost, ForceMode2D.Impulse);
+                vel = rb.velocity;
+
                 if (Eff_ClashPrefab != null)
                 {
                     Eff_ClashObj = Instantiate(Eff_ClashPrefab, transform.position, Quaternion.identity);
@@ -221,13 +245,18 @@ public class S_EnemyBall : MonoBehaviour
     }
     IEnumerator HitStop()
     {
+        if (isCorutine == false)
+        {
+            isCorutine = true;
+        }
+        Debug.Log("敵玉停止中");
         //速度を保存し、0にする
-        Vector2 vel=rb.velocity;
-        if(vel.x>fLimitSpeedx)
+        Vector2 vel = rb.velocity;
+        if (vel.x > fLimitSpeedx)
         {
             vel.x = fLimitSpeedx;
         }
-        else if(vel.x<-fLimitSpeedx)
+        else if (vel.x < -fLimitSpeedx)
         {
             vel.x = -fLimitSpeedx;
         }
@@ -237,6 +266,7 @@ public class S_EnemyBall : MonoBehaviour
         //保存した速度で再開する
         rb.velocity = vel;
         isPushing = true;
+        isCorutine = false;
     }
 
     //何段階巨大化したかを取得する関数

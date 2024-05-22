@@ -115,27 +115,22 @@ public class M_PlayerPush : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (!collision.isTrigger)
-        {            
-            if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
+            if ((!collision.isTrigger && collision.transform.CompareTag("Enemy")) || collision.transform.CompareTag("EnemyBall"))
             {
                 isPush = true;
                 //押すオブジェクト代入
                 PushObj = collision.gameObject;
                 if (PushList.Contains(collision.gameObject) == false)
                 {
-                    //Debug.Log(collision.gameObject.name);
-                    PushList.Add(collision.gameObject);
+                Debug.Log("リストに追加＝"+collision.gameObject.name);
+                PushList.Add(collision.gameObject);
                 }
             }
-        }       
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.isTrigger)
-        {
-            if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
+            if ((!collision.isTrigger&&collision.transform.CompareTag("Enemy"))|| collision.transform.CompareTag("EnemyBall"))
             {
                 isPush = false;
 
@@ -146,7 +141,7 @@ public class M_PlayerPush : MonoBehaviour
                     PushList.Remove(collision.gameObject);
                 }
             }
-        }
+        
     }
 
     //押す処理
@@ -180,7 +175,7 @@ public class M_PlayerPush : MonoBehaviour
             //目くらまし中
             case MODE.Blinding:
                
-                if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("EnemyPush")) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
+                if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("EnemyPush")) && (push.GetComponent<M_BlindingMove>().GetIsBlinding()||push.GetComponent<S_EnemyBall>().GetisBall()))
                 {
                     Vector3 dir;
 
@@ -202,7 +197,7 @@ public class M_PlayerPush : MonoBehaviour
             //バレていない時
             case MODE.Back:
 
-                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
+                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && (!push.GetComponent<N_PlayerSearch>().GetIsSearch()||push.GetComponent<S_EnemyBall>().GetisBall()))
                 {
                     Vector3 dir = Vector3.zero;                    
 

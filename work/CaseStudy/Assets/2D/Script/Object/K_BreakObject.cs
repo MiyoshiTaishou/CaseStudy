@@ -22,6 +22,9 @@ public class K_BreakObject : MonoBehaviour
     [Header("爆発音"), SerializeField]
     private AudioClip audioclip;
 
+    [Header("ヒットストップ"), SerializeField]
+    float fHitStop = 0;
+
     private bool isQuitting;
 
     private void Start()
@@ -66,19 +69,36 @@ public class K_BreakObject : MonoBehaviour
 
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.CompareTag("EnemyBall")&&collision.transform.GetComponent<S_EnemyBall>().GetisPushing())
+        {
+            StartCoroutine(HitStop());
+        }
+    }
+
     private void OnDestroy()
     {
         if(!isQuitting)
         {
-            //爆発エフェクト再生
-            if(Eff_Explosion)
-            {
-                Instantiate(Eff_Explosion, transform.position, Quaternion.identity);
-            }
-            if (audioclip)
-            {
-                AudioSource.PlayClipAtPoint(audioclip, transform.position);
-            }
+            //StartCoroutine(HitStop());
+        }
+    }
+
+    IEnumerator HitStop()
+    {
+        Debug.Log("止まっている");
+        //指定のフレーム待つ
+        yield return new WaitForSecondsRealtime(fHitStop / 60);
+        //爆発エフェクト再生
+        if (Eff_Explosion)
+        {
+            Debug.Log("エフェクト再生");
+            Instantiate(Eff_Explosion, transform.position, Quaternion.identity);
+        }
+        if (audioclip)
+        {
+            AudioSource.PlayClipAtPoint(audioclip, transform.position);
         }
     }
 }

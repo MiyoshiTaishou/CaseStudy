@@ -316,8 +316,6 @@ public class SEnemyMove : MonoBehaviour
                     {
                         // 合体
                         enemyManager.UnionTeam(colManager);
-                        //Debug.Log("合体");
-
                     }
                 }
                 // 同じ方向に進んでいるなら
