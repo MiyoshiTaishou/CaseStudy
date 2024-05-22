@@ -411,6 +411,10 @@ public class SEnemyMove : MonoBehaviour
 
     public void EnemyMove(float _move, bool _ref)
     {
+        if(GetComponent<S_EnemyBall>().GetisPushing())
+        {
+            return;
+        }
         thisTrans.Translate(_move, 0.0f, 0.0f, Space.Self);
         IsReflectionX = _ref;
         rb.velocity = Vector2.zero;

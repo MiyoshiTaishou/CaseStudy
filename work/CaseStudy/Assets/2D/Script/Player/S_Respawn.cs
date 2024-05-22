@@ -81,12 +81,12 @@ public class S_Respawn : MonoBehaviour
 
         //Positionに関するコンポーネントのオンオフ
         transform.root.GetComponent<M_PlayerMove>().enabled = false;
-        transform.root.GetComponent<CircleCollider2D>().enabled = false;
+        transform.root.GetComponent<BoxCollider2D>().enabled = false;
         
         //指定のフレーム待つ
         yield return new WaitForSeconds(nHitStop / 60);
 
-        transform.root.GetComponent<CircleCollider2D>().enabled = true;
+        transform.root.GetComponent<BoxCollider2D>().enabled = true;
         transform.root.GetComponent<M_PlayerMove>().enabled = true;
 
         //復活orでっど
