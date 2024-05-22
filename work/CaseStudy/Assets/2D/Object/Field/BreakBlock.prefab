@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iBreakNum: 3
   iTexSize: 50
+  UpDownSpeed: 5
+  fShakingRange: 3
   IsDisplayBreakNum: 1
   Eff_Explosion: {fileID: 8111725552830047418, guid: 8d36c3d409370a8439501b8136e2785c, type: 3}
   audioclip: {fileID: 8300000, guid: f0c20ade732bea2498bacba7645daae2, type: 3}
