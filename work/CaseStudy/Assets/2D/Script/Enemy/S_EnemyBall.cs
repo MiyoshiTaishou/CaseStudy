@@ -34,6 +34,10 @@ public class S_EnemyBall : MonoBehaviour
     private GameObject Eff_ClashPrefab;
     private GameObject Eff_ClashObj;
 
+    [Header("敵回転エフェクト"), SerializeField]
+    private GameObject Eff_RollingPrefab;
+    private GameObject Eff_RollingObj;
+
     //塊になっているかどうか
     private bool isBall = false;
     public bool GetisBall() { return isBall; }
@@ -73,12 +77,20 @@ public class S_EnemyBall : MonoBehaviour
     {
         defaultScale= transform.localScale;
         rb = GetComponent<Rigidbody2D>();
+        if(Eff_RollingPrefab)
+        {
+            Eff_RollingObj= Instantiate(Eff_RollingPrefab, transform.position, Quaternion.identity);
+            Eff_RollingObj.SetActive(false);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(Eff_RollingObj)
+        {
+            Eff_RollingObj.transform.position = this.gameObject.transform.position;
+        }
         if (isPushing)
         {
             GetComponent<SEnemyMove>().enabled = false;
@@ -136,6 +148,11 @@ public class S_EnemyBall : MonoBehaviour
             if (!colEnemyBall.GetisPushing()||
                 (colEnemyBall.GetisPushing()&&fStickCnt > colEnemyBall.GetStickCount()))
             {
+                if (Eff_RollingObj)
+                {
+                    Eff_RollingObj.SetActive(true);
+                }
+
                 isBall = true;
                 Destroy(GetComponent<N_PlayerSearch>());
                 if (!colEnemyBall.GetisBall())
@@ -190,6 +207,11 @@ public class S_EnemyBall : MonoBehaviour
             if (!colEnemyBall.GetisPushing()||
                 (colEnemyBall.GetisPushing()&&fStickCnt > colEnemyBall.GetStickCount()))
             {
+                if (Eff_RollingObj)
+                {
+                    Eff_RollingObj.SetActive(true);
+                }
+
                 isBall = true;
                 Destroy(GetComponent<N_PlayerSearch>());
                 fStickCnt++;

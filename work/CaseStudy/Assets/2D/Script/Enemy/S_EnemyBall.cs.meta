@@ -3,7 +3,10 @@ guid: 592f74bbd251a844d8733ea8e2ff4397
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - audioclip: {instanceID: 0}
+  - Eff_ClashPrefab: {instanceID: 0}
+  - Eff_RollingPrefab: {fileID: 805547623497314194, guid: 86e726fe7f7f4e24897dba8a6b92ac90, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
