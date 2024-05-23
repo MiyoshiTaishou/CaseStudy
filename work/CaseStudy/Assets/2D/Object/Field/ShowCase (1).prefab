@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iBreakNum: 3
   iTexSize: 3
+  UpDownSpeed: 1
+  fShakingRange: 1
   IsDisplayBreakNum: 1
   Eff_Explosion: {fileID: 151244, guid: 8368975de5593844bbfaf74e342fb326, type: 3}
   audioclip: {fileID: 0}
@@ -143,6 +145,7 @@ GameObject:
   - component: {fileID: 6621883143280875111}
   - component: {fileID: 1925371929280846821}
   - component: {fileID: 1899815833282139171}
+  - component: {fileID: 5424574020227745408}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -259,6 +262,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPopUI: {fileID: 5091131871375038105}
+--- !u!114 &5424574020227745408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867361754564104500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a252501a42e462f4c87299ea8a3fdc5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotAxis: 1
+  fRotateSpeed: 5
+  isReset: 0
 --- !u!1 &867361755968494525
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +554,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 867361755968494523}
     m_Modifications:
+    - target: {fileID: 6699901702288102104, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699901702288102104, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a07ce03ac6f476c468249186a34e8c8c, type: 2}
     - target: {fileID: 6699901702288102105, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: m_Name
       value: StageClear
@@ -546,19 +572,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.x
-      value: 0.3
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.y
-      value: 0.3
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.z
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102107, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699901702288102107, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699901702288102107, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6699901702288102107, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102107, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: m_LocalPosition.x
