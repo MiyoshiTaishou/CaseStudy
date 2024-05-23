@@ -204,6 +204,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1905725172142955212, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905725172142955212, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: m_Color.g
+      value: 0.050943315
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905725172142955212, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: m_Color.r
+      value: 0.40493345
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
 --- !u!1001 &65848549
@@ -626,6 +638,14 @@ PrefabInstance:
       propertyPath: iBreakNum
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: -8649466034749069963, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
+      propertyPath: GenerateNum
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -8649466034749069963, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
+      propertyPath: Eff_BrokenPiece
+      value: 
+      objectReference: {fileID: 3817280387306558789, guid: 0df61ab047c28cf4fab24e547f14bc94, type: 3}
     - target: {fileID: 1497359285853439715, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
       propertyPath: m_Name
       value: BreakBlock (11)
@@ -2153,11 +2173,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6336587647645303319, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.85
+      value: 45.07
       objectReference: {fileID: 0}
     - target: {fileID: 6336587647645303319, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.56
+      value: 25.93
       objectReference: {fileID: 0}
     - target: {fileID: 6336587647645303319, guid: e360123a8dacbb1469f05cacc8c9e35d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4088,6 +4108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Projecter (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6372921232022759938, guid: c793d23110b397448b2ff7991f372973, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c793d23110b397448b2ff7991f372973, type: 3}
 --- !u!4 &861469804 stripped
@@ -4940,6 +4964,14 @@ PrefabInstance:
       propertyPath: iBreakNum
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -8649466034749069963, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
+      propertyPath: GenerateNum
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -8649466034749069963, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
+      propertyPath: Eff_BrokenPiece
+      value: 
+      objectReference: {fileID: 3817280387306558789, guid: 0df61ab047c28cf4fab24e547f14bc94, type: 3}
     - target: {fileID: 1497359285853439715, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
       propertyPath: m_Name
       value: BreakBlock (9)
@@ -6147,19 +6179,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: WaitTime
-      value: 0.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: MoveSpeed
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: IsReflectionX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: TeamMembers.Array.size
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.MoveTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.WaitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.FoundTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.MoveSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.ChaseSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: TeamMembers.Array.data[0]
@@ -6185,6 +6237,10 @@ PrefabInstance:
       propertyPath: TeamMembers.Array.data[5]
       value: 
       objectReference: {fileID: 1600531395}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.LostSightTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7499987602488542441, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -15121,6 +15177,14 @@ PrefabInstance:
       propertyPath: iBreakNum
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -8649466034749069963, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
+      propertyPath: GenerateNum
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: -8649466034749069963, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
+      propertyPath: Eff_BrokenPiece
+      value: 
+      objectReference: {fileID: 3817280387306558789, guid: 0df61ab047c28cf4fab24e547f14bc94, type: 3}
     - target: {fileID: 1497359285853439715, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
       propertyPath: m_Name
       value: BreakBlock (8)

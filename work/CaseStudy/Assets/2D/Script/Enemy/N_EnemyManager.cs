@@ -21,8 +21,34 @@ public class N_EnemyManager : MonoBehaviour
 
     public List<SEnemyMove> sEnemyMoves = new List<SEnemyMove>();
 
+    [System.Serializable]
+    struct ManagerMoveStatus
+    {
+        [Header("何秒"), SerializeField]
+        public float MoveTime;
+
+        [Header("移動速度"), SerializeField]
+        public float MoveSpeed;
+
+        [Header("追跡時の移動速度"), SerializeField]
+        public float ChaseSpeed;
+
+        [Header("方向転換時待機時間"), SerializeField]
+        public float WaitTime;
+
+        [Header("発見後追跡までの時間"), SerializeField]
+        public float FoundTime;
+
+        [Header("見失って巡回に戻る時間"), SerializeField]
+        public float LostSightTime;
+
+    }
+
     // 敵の移動方式変える
     // 指定秒数正面に移動する
+    [Header("移動ステータス"), SerializeField]
+    ManagerMoveStatus managerStatus;
+
     [Header("何秒"), SerializeField]
     private float MoveTime = 3.0f;
 
@@ -83,10 +109,29 @@ public class N_EnemyManager : MonoBehaviour
     private GameObject Target;
     private Transform TargetTrans;
 
+    // 移動ステータス初期化
+    void InitMoveStatus()
+    {
+        managerStatus.MoveTime = 3.0f;
+        managerStatus.MoveSpeed = 4.0f;
+        managerStatus.ChaseSpeed = 4.0f;
+        managerStatus.WaitTime = 0.5f;
+        managerStatus.FoundTime = 0.5f;
+        managerStatus.LostSightTime = 0.5f;
+    }
+
+    void SetMoveStatus(ManagerMoveStatus _sta)
+    {
+        managerStatus = _sta;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         thisTrans = this.transform;
+
+        // 初期化
+        //InitMoveStatus();
 
         // 隊列の人数を計測
         CountMemberNum();
@@ -162,6 +207,7 @@ public class N_EnemyManager : MonoBehaviour
         manager.transform.parent = thisTrans.parent.gameObject.transform;
         manager.name = "EnemyManager";
         N_EnemyManager sc_mana = manager.AddComponent<N_EnemyManager>();
+        sc_mana.SetMoveStatus(managerStatus);
 
         int i = 0;
         // 分割
@@ -308,15 +354,14 @@ public class N_EnemyManager : MonoBehaviour
             dir *= -1.0f;
         }
         // このフレームで移動する距離
-        float distance = dir * MoveSpeed * Time.deltaTime;
+        float distance = dir * managerStatus.MoveSpeed * Time.deltaTime;
 
         ElapsedTime += Time.deltaTime;
 
         // 一定時間経過
-        if (ElapsedTime >= MoveTime)
+        if (ElapsedTime >= managerStatus.MoveTime)
         {
-            // 初期化
-            Init();
+            ElapsedTime = 0.0f;
             // 待ち状態に遷移
             managerState = ManagerState.WAIT;
         }
@@ -331,10 +376,11 @@ public class N_EnemyManager : MonoBehaviour
     // 待ち状態
     private void Wait()
     {
+        ElapsedTime = 0.0f;
         ElapsedWaitTime += Time.deltaTime;
         //Debug.Log(ElapsedWaitTime);
 
-        if(ElapsedWaitTime + Time.deltaTime >= WaitTime)
+        if(ElapsedWaitTime + Time.deltaTime >= managerStatus.WaitTime)
         {
             if (!IsRef)
             {
@@ -344,7 +390,7 @@ public class N_EnemyManager : MonoBehaviour
         }
 
         // 待つ
-        if (ElapsedWaitTime >= WaitTime)
+        if (ElapsedWaitTime >= managerStatus.WaitTime)
         {
             ElapsedWaitTime = 0.0f;
             // 巡回状態
@@ -398,7 +444,7 @@ public class N_EnemyManager : MonoBehaviour
         ElapsedFoundTime += Time.deltaTime;
 
         // 追跡状態に遷移
-        if(ElapsedFoundTime >= FoundTime)
+        if(ElapsedFoundTime >= managerStatus.FoundTime)
         {
             // 初期化系
             ElapsedFoundTime = 0.0f;
@@ -437,7 +483,7 @@ public class N_EnemyManager : MonoBehaviour
                 float dir = -1.0f;
 
                 // このフレームで移動する距離
-                float distance = dir * ChaseSpeed * Time.deltaTime;
+                float distance = dir * managerStatus.ChaseSpeed * Time.deltaTime;
 
                 sEnemyMoves[num].ChaseTarget(distance);
             }
@@ -446,7 +492,7 @@ public class N_EnemyManager : MonoBehaviour
                 float dir = 1.0f;
 
                 // このフレームで移動する距離
-                float distance = dir * ChaseSpeed * Time.deltaTime;
+                float distance = dir * managerStatus.ChaseSpeed * Time.deltaTime;
 
                 sEnemyMoves[num].ChaseTarget(distance);
             }
@@ -473,7 +519,7 @@ public class N_EnemyManager : MonoBehaviour
 
         ElapsedLostSightTime += Time.deltaTime;
 
-        if(ElapsedLostSightTime >= LostSightTime)
+        if(ElapsedLostSightTime >= managerStatus.LostSightTime)
         {
             // 初期化
             Target = null;
@@ -581,16 +627,9 @@ public class N_EnemyManager : MonoBehaviour
         }
     }
 
-    private void Init()
-    {
-        ElapsedTime = 0.0f;
-        //IsReflectionX = !IsReflectionX;
-    }
-
     // 隊列の誰かが切り返し依頼をする時呼び出し
     public void RequestRefletion()
     {
-        Init();
         //if (managerState == ManagerState.PATOROL)
         //{
         //    managerState = ManagerState.WAIT;
@@ -615,7 +654,6 @@ public class N_EnemyManager : MonoBehaviour
             // 一番右の敵がホログラムの壁を検知
             if (_number == iMemberNum - 1)
             {
-                Init();
                 managerState = ManagerState.WAIT;
 
                 // クエスチョンマーク表示
@@ -637,7 +675,6 @@ public class N_EnemyManager : MonoBehaviour
             // 一番左の敵がホログラムの壁を検知
             if (_number == 0)
             {
-                Init();
                 managerState = ManagerState.WAIT;
                 // クエスチョンマーク表示
                 foreach (var obj in TeamMembers)
@@ -656,7 +693,7 @@ public class N_EnemyManager : MonoBehaviour
 
     public float GetMoveSpeed()
     {
-        return MoveSpeed;
+        return managerStatus.MoveSpeed;
     }
 
     public N_EnemyManager.ManagerState GetState()
