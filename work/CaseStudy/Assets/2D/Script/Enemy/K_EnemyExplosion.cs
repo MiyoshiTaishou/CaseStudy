@@ -12,9 +12,13 @@ public class K_EnemyExplosion : MonoBehaviour
 
     private S_EnemyBall enemyBall;
 
+    [Header("ヒットストップ"), SerializeField]
+    private float fHitStop = 10;
+
     //敵爆散用
     private ParticleSystem particle;
     private ParticleSystem.Burst burst;
+
 
     void Start()
     {
@@ -37,19 +41,21 @@ public class K_EnemyExplosion : MonoBehaviour
             int checkNum = enemyBall.GetStickCount();
             if(HitObj.GetComponent<K_BreakObject>() .GetBreakNum()<= checkNum)
             {
-                // 敵爆散エフェクト
-                burst.count = enemyBall.GetStickCount();
-                particle.emission.SetBurst(0, burst);
-                Instantiate(Eff_Scatter, transform.position, Quaternion.identity);
+                StartCoroutine(HitStop(HitObj));
+                Debug.Log("破壊");
+                //// 敵爆散エフェクト
+                //burst.count = enemyBall.GetStickCount();
+                //particle.emission.SetBurst(0, burst);
+                //Instantiate(Eff_Scatter, transform.position, Quaternion.identity);
 
-                // オブジェクト削除と同時に効果音を鳴らす処理
-                if (audioclip)
-                {
-                    AudioSource.PlayClipAtPoint(audioclip, transform.position);
-                }
+                //// オブジェクト削除と同時に効果音を鳴らす処理
+                //if (audioclip)
+                //{
+                //    AudioSource.PlayClipAtPoint(audioclip, transform.position);
+                //}
 
-                Destroy(HitObj);
-                Destroy(gameObject);
+                //Destroy(HitObj);
+                //Destroy(gameObject);
             }
         }
     }
@@ -67,20 +73,42 @@ public class K_EnemyExplosion : MonoBehaviour
             int checkNum = enemyBall.GetStickCount();
             if (Break.GetBreakNum() <= checkNum)
             {
+                StartCoroutine(HitStop(HitObj));
                 // 敵爆散エフェクト
-                burst.count = enemyBall.GetStickCount();
-                particle.emission.SetBurst(0, burst);
-                Instantiate(Eff_Scatter, transform.position, Quaternion.identity);
+                //burst.count = enemyBall.GetStickCount();
+                //particle.emission.SetBurst(0, burst);
+                //Instantiate(Eff_Scatter, transform.position, Quaternion.identity);
 
-                // オブジェクト削除と同時に効果音を鳴らす処理
-                if(audioclip)
-                {
-                    AudioSource.PlayClipAtPoint(audioclip, transform.position);
-                }
+                //// オブジェクト削除と同時に効果音を鳴らす処理
+                //if (audioclip)
+                //{
+                //    AudioSource.PlayClipAtPoint(audioclip, transform.position);
+                //}
 
-                Destroy(HitObj);
-                Destroy(gameObject);
+                //Destroy(HitObj);
+                //Destroy(gameObject);
             }
         }
+    }
+    IEnumerator HitStop(GameObject obj)
+    {
+
+        Debug.Log("aaaa");
+        //指定のフレーム待つ
+        yield return new WaitForSecondsRealtime(fHitStop / 60);
+        Debug.Log("止まる時");
+        // 敵爆散エフェクト
+        burst.count = enemyBall.GetStickCount();
+        particle.emission.SetBurst(0, burst);
+        Instantiate(Eff_Scatter, transform.position, Quaternion.identity);
+
+        // オブジェクト削除と同時に効果音を鳴らす処理
+        if (audioclip)
+        {
+            AudioSource.PlayClipAtPoint(audioclip, transform.position);
+        }
+
+        Destroy(obj);
+        Destroy(gameObject);
     }
 }
