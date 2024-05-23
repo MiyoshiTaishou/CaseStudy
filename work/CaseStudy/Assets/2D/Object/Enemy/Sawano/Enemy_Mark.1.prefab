@@ -256,6 +256,12 @@ MonoBehaviour:
   Power: 20
   fLimitSpeed: 2
   TeamNumber: 0
+  layerMask_Wall:
+    serializedVersion: 2
+    m_Bits: 321
+  layerMask_Ground:
+    serializedVersion: 2
+    m_Bits: 321
 --- !u!114 &1905725172142954804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +390,7 @@ MonoBehaviour:
   nGiantNum: 00000000
   fTime: 0.1
   Eff_ClashPrefab: {fileID: 817287823798157542, guid: b115bacd7a802cf499a6978aa4b07e06, type: 3}
+  Eff_RollingPrefab: {fileID: 0}
 --- !u!114 &1050243765183906609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,6 +493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Eff_Scatter: {fileID: 2433704489725696160, guid: 4205230b5c3436f478bf08d5580b636a, type: 3}
   audioclip: {fileID: 0}
+  fHitStop: 10
 --- !u!61 &3559411171947690459
 BoxCollider2D:
   m_ObjectHideFlags: 0

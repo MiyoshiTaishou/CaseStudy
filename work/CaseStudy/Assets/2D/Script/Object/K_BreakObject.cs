@@ -25,10 +25,16 @@ public class K_BreakObject : MonoBehaviour
     [Header("破壊時のエフェクト"), SerializeField]
     private GameObject Eff_Explosion;
 
+    [Header("破片のエフェクト"), SerializeField]
+    private GameObject Eff_BrokenPiece;
+
+    [Header("破片生成数(初期30)"), SerializeField]
+    private int GenerateNum = 30;
+
     [Header("爆発音"), SerializeField]
     private AudioClip audioclip;
 
-
+    private ParticleSystem.Burst burst;
 
     private bool isQuitting;
 
@@ -42,6 +48,11 @@ public class K_BreakObject : MonoBehaviour
             TextEndurance = gcd.GetComponent<TextMeshProUGUI>();
             TextEndurance.text = iBreakNum.ToString();
             TextEndurance.fontSize = iTexSize;
+        }
+
+        if (Eff_BrokenPiece) {
+            burst.count = GenerateNum;
+            Eff_BrokenPiece.GetComponent<ParticleSystem>().emission.SetBurst(0,burst);
         }
     }
 
@@ -86,6 +97,11 @@ public class K_BreakObject : MonoBehaviour
             if (audioclip)
             {
                 AudioSource.PlayClipAtPoint(audioclip, transform.position);
+            }
+            // 破片エフェクト生成
+            if (Eff_BrokenPiece)
+            {
+                Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
             }
         }
     }
