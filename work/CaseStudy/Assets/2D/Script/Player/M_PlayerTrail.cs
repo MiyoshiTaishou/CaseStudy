@@ -48,8 +48,11 @@ public class M_PlayerTrail : MonoBehaviour
 
     void GenerateTrail()
     {
+        // プレイヤーの現在の回転を取得
+        Quaternion playerRotation = player.transform.rotation;
+
         // 新しい残像を生成
-        GameObject newTrail = Instantiate(trailPrefab, player.transform.position + trailOffset, Quaternion.identity);
+        GameObject newTrail = Instantiate(trailPrefab, player.transform.position + trailOffset, playerRotation);
         // 残像をリストに追加
         for (int i = 0; i < trails.Length - 1; i++)
         {
