@@ -66,6 +66,10 @@ public class S_EnemyBall : MonoBehaviour
 
     public bool GetisLeft() { return isLeft; }
 
+    private BoxCollider2D BocCol2D;
+    private Vector3 ColliderSize;
+    private Vector3 ColliderOffset;
+
     public int GetStickCount() 
     {
         int temp = 0;
@@ -82,6 +86,10 @@ public class S_EnemyBall : MonoBehaviour
             Eff_RollingObj= Instantiate(Eff_RollingPrefab, transform.position, Quaternion.identity);
             Eff_RollingObj.SetActive(false);
         }
+        BocCol2D = this.GetComponent<BoxCollider2D>();
+        ColliderSize = BocCol2D.size / this.transform.localScale;
+        ColliderOffset = BocCol2D.offset;
+        Debug.Log(ColliderSize);
     }
 
     // Update is called once per frame
@@ -175,7 +183,12 @@ public class S_EnemyBall : MonoBehaviour
                 nextScale.x += GiantLv / 2;
                 nextScale.y += GiantLv / 2;
                 transform.localScale = nextScale;
-
+                Vector3 offset = ColliderOffset;
+                offset.y -= 0.5f;
+                BocCol2D.offset = offset;
+                Vector3 size = ColliderSize;
+                size.y *= 0.5f;
+                BocCol2D.size = size;
                 // ë‡óÒÇ©ÇÁèúñº
                 colEnemyBall.DeleteMember();
 
