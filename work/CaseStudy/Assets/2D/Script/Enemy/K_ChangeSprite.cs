@@ -37,7 +37,9 @@ public class K_ChangeSprite : MonoBehaviour
         {
             EnemySpriteNormal.SetActive(false);
             EnemySpriteRolling.SetActive(true);
-            EnemySpriteRolling.transform.position = this.transform.position;
+            Vector3 pos=this.transform.position;
+            pos.y += 0.3f;
+            EnemySpriteRolling.transform.position = pos;
         }
         else
         {
