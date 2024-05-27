@@ -96,7 +96,7 @@ public class M_PlayerPush : MonoBehaviour
             Push(PushObj);            
         }
 
-        if(Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush") && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+            if (Input.GetKeyDown(KeyCode.Return) || /*Input.GetButtonDown("EnemyPush")*/Input.GetAxis("EnemyPush") > 0 && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {           
             animator2.SetTrigger("push");
             StartCoroutine(IEAnimDlay(fDlayAnim));

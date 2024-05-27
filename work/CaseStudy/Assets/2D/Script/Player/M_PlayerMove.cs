@@ -133,7 +133,8 @@ public class M_PlayerMove : MonoBehaviour
         float fHorizontalInput = Input.GetAxis("Horizontal");
        
         //ダッシュボタンを押しているか
-        if(Input.GetButton("DashButton"))
+        //if(Input.GetButton("DashButton"))
+        if(Input.GetAxis("DashButton") < 0)
         {
             if (!isNowTeleport && !ButtonTrigger)
             {
