@@ -5137,8 +5137,28 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.MoveTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.WaitTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: sEnemyMoves.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.FoundTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.MoveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.ChaseSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: TeamMembers.Array.data[0]
@@ -5163,6 +5183,10 @@ PrefabInstance:
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: TeamMembers.Array.data[5]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.LostSightTime
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7499987602488542441, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: m_RootOrder
@@ -9219,8 +9243,28 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.MoveTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.WaitTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: sEnemyMoves.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.FoundTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.MoveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.ChaseSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: TeamMembers.Array.data[0]
@@ -9261,6 +9305,10 @@ PrefabInstance:
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: TeamMembers.Array.data[9]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
+      propertyPath: managerStatus.LostSightTime
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7499987602488542441, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: m_RootOrder

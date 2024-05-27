@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ease: 2
   isInOut: 1
-  sceneName: SNTestScene_5
+  sceneName: SNTestScene_7
   duration: 3
 --- !u!114 &329193345
 MonoBehaviour:
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ease: 2
   isInOut: 1
-  sceneName: SNTestScene_6
+  sceneName: SNTestScene_5
   duration: 3
 --- !u!114 &1069619740
 MonoBehaviour:
@@ -1441,7 +1441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1377252958
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1897,7 +1897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1709488263
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2005,7 +2005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ease: 2
   isInOut: 1
-  sceneName: OTestStage02
+  sceneName: SNTestScene_6
   duration: 3
 --- !u!114 &1874957876
 MonoBehaviour:

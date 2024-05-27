@@ -26,10 +26,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/2D/Scenes/O_TestScene/OStage01.unity
     guid: ed3978ba378feb34983ab981d484c9e5
-  - enabled: 1
+  - enabled: 0
     path: Assets/2D/Scenes/O_TestScene/OTestStage02.unity
     guid: 05f8a20c0abe69743b5c2727e8813ac8
-  - enabled: 1
+  - enabled: 0
     path: Assets/2D/Scenes/TSTestScene/TSTestScene_1.unity
     guid: 98a6eadb928cb51489d2e943848906a0
+  - enabled: 1
+    path: Assets/2D/Scenes/SN_TestScenes/SNTestScene_7.unity
+    guid: 37ee8b051d6e1d34ba3a871b8216f1ab
   m_configObjects: {}
