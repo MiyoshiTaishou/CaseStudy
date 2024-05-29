@@ -96,7 +96,8 @@ public class M_PlayerPush : MonoBehaviour
             Push(PushObj);            
         }
 
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")/*Input.GetAxis("EnemyPush") > 0*/ && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0.5 && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        //if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush") && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {           
             animator2.SetTrigger("push");
             StartCoroutine(IEAnimDlay(fDlayAnim));
@@ -158,7 +159,8 @@ public class M_PlayerPush : MonoBehaviour
             //条件なし
             case MODE.None:
 
-                if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush"))
+                if (Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0)
+                //if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush"))
                 {
                     Vector3 dir;
 
@@ -179,8 +181,9 @@ public class M_PlayerPush : MonoBehaviour
 
             //目くらまし中
             case MODE.Blinding:
-               
-                if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("EnemyPush")) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
+
+                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
+                //if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("EnemyPush")) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
                 {
                     Vector3 dir;
 
@@ -202,7 +205,8 @@ public class M_PlayerPush : MonoBehaviour
             //バレていない時
             case MODE.Back:
 
-                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
+                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0.5f) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
+                    //if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
                 {
                     Vector3 dir = Vector3.zero;                    
 

@@ -499,8 +499,10 @@ public class N_EnemyManager : MonoBehaviour
             num++;
         }
 
-        // ’ÇÕ‘ÎÛ‚É‹ß‚Ã‚¢‚½‚ç•Ê‚Ìó‘Ô‚É‘JˆÚ
-        if(dis < 1.0f)
+        // ’ÇÕ‘ÎÛ‚ğŒ©¸‚Á‚½‚çó‘Ô‘JˆÚ
+        // ‰E’[‚Æ¶’[‚Ì“G‚ªŒ©¸‚Á‚½ = ‘à—ñ‚ªŒ©¸‚Á‚½
+        if(TeamMembers[0].GetComponent<N_PlayerSearch>().GetIsSearch() == false &&
+            TeamMembers[iMemberNum - 1].GetComponent<N_PlayerSearch>().GetIsSearch() == false)
         {
             managerState = ManagerState.LOSTSIGHT;
         }

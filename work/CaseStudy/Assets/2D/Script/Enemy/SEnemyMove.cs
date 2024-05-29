@@ -250,7 +250,7 @@ public class SEnemyMove : MonoBehaviour
             hitWall.collider != null && hitWall.collider.CompareTag("FieldObj") ||
             hitGround.collider == null)
         {
-            Debug.Log("ホログラム以外検知");
+            //Debug.Log("ホログラム以外検知");
             enemyManager.RequestRefletion();
         }
     }
@@ -382,7 +382,7 @@ public class SEnemyMove : MonoBehaviour
         Vector2 origin = transform.position;
         origin.y -= 1.2f;
         RaycastHit2D hit=Physics2D.Raycast(origin, Vector2.down,0.4f, layerMask_Ground);
-        Debug.Log(hit.collider);
+        //Debug.Log(hit.collider);
         //Debug.DrawRay(origin,Vector2.down*0.2f, Color.yellow);
         if(hit.collider != null && hit.collider.CompareTag("TileMap")) 
         {
@@ -402,11 +402,11 @@ public class SEnemyMove : MonoBehaviour
             //    defaultPos = transform.position;
             //}
           isGround= true;
-            Debug.Log("地面当たり");
+            //Debug.Log("地面当たり");
         }
         else
         {
-            Debug.Log("地面はずれ");
+            //Debug.Log("地面はずれ");
 
             isGround = false;
         }

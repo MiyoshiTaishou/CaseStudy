@@ -94,7 +94,7 @@ public class S_EnemyBall : MonoBehaviour
         if (isPushing)
         {
             GetComponent<SEnemyMove>().enabled = false;
-            GetComponent<M_BlindingMove>().enabled = false;
+            //GetComponent<M_BlindingMove>().enabled = false;
             //GetComponent<N_PlayerSearch>().enabled = false;
             vel = rb.velocity;
             if(vel.x<0)
@@ -154,7 +154,7 @@ public class S_EnemyBall : MonoBehaviour
                 }
 
                 isBall = true;
-                Destroy(GetComponent<N_PlayerSearch>());
+                //Destroy(GetComponent<N_PlayerSearch>());
                 if (!colEnemyBall.GetisBall())
                 {
                     fStickCnt++;
@@ -213,7 +213,7 @@ public class S_EnemyBall : MonoBehaviour
                 }
 
                 isBall = true;
-                Destroy(GetComponent<N_PlayerSearch>());
+                //Destroy(GetComponent<N_PlayerSearch>());
                 fStickCnt++;
                 if (fStickCnt == 1)
                 {

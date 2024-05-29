@@ -21,15 +21,19 @@ public class N_PlayerSearch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemyManager == null)
-        {
-            enemyManager = enemyMove.GetManager();
-        }
-
+        
         //‹Êó‘Ô‚È‚ç’ÇÕó‘Ô‚ğ‰ğœ
         if(GetComponent<S_EnemyBall>().GetisBall())
         {
             isSearch = false;
+            enemyManager = null;
+        }
+        else
+        {
+            if (enemyManager == null)
+            {
+                enemyManager = enemyMove.GetManager();
+            }
         }
     }
 
