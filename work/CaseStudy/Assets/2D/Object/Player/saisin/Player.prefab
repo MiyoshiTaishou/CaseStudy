@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 6035749312733321631}
   - component: {fileID: 6434554067274879322}
   - component: {fileID: 6434554067274879298}
-  - component: {fileID: 5685086021641508598}
+  - component: {fileID: 6883019623941804465}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -263,8 +263,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BlindingObj: {fileID: 0}
   fThrowPower: 5
---- !u!70 &5685086021641508598
-CapsuleCollider2D:
+--- !u!61 &6883019623941804465
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -276,9 +276,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03, y: 0.57}
+  m_Offset: {x: 0, y: 0.63}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 0.7, y: 1}
-  m_Direction: 0
+  m_EdgeRadius: 0
 --- !u!1 &6268105327750159728
 GameObject:
   m_ObjectHideFlags: 0
