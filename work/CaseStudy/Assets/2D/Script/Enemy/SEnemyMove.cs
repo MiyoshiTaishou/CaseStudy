@@ -125,6 +125,11 @@ public class SEnemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!M_GameMaster.GetGamePlay())
+        {
+            return;
+        }
+
         //if(this.GetComponent<MPlayerSearch>().GetIsSearch())
         //{
         //    return;
