@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class M_ImageEasing : MonoBehaviour
 {
     private Image image;
+    private RectTransform rectTransform;
     private float fTime;
     private bool isEasing = false;
 
@@ -15,7 +16,7 @@ public class M_ImageEasing : MonoBehaviour
 
     public void SetReverse(bool reverse) { isReverse = reverse; }
 
-    private Vector3 savePos;
+    private Vector2 savePos;
     private Vector3 saveScale;
     private Vector3 saveRot;
 
@@ -41,7 +42,8 @@ public class M_ImageEasing : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
-        savePos = image.transform.position;
+        rectTransform = image.GetComponent<RectTransform>();
+        savePos = rectTransform.anchoredPosition;
         saveScale = image.transform.localScale;
         saveRot = image.transform.rotation.eulerAngles;
         isEasing = isStart;
@@ -65,7 +67,7 @@ public class M_ImageEasing : MonoBehaviour
     {
         isEasing = !isEasing;
         fTime = 0;
-        image.transform.position = savePos;
+        rectTransform.anchoredPosition = savePos;
         image.transform.localScale = saveScale;
         image.transform.rotation = Quaternion.Euler(saveRot);
     }
@@ -74,7 +76,7 @@ public class M_ImageEasing : MonoBehaviour
     {
         float t = Mathf.Clamp01(fTime / duration);
 
-        if(isReverse)
+        if (isReverse)
         {
             t = 1 - t;
         }
@@ -82,7 +84,7 @@ public class M_ImageEasing : MonoBehaviour
         if (pos.isApply)
         {
             var func = M_Easing.GetEasingMethod(pos.ease);
-            image.transform.position = savePos + pos.amount * func(t);
+            rectTransform.anchoredPosition = savePos + (Vector2)(pos.amount * func(t));
         }
 
         if (scale.isApply)

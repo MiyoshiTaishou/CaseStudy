@@ -12,7 +12,7 @@ public class M_ObjectEasing : MonoBehaviour
 
     public void SetReverse(bool reverse) { isReverse = reverse; }
 
-    private Vector3 savePos;
+    private Vector2 savePos;
     private Vector3 saveScale;
     private Vector3 saveRot;
 
@@ -35,9 +35,12 @@ public class M_ObjectEasing : MonoBehaviour
     [Header("äJénéûÇ…çsÇ§Ç©"), SerializeField]
     private bool isStart = true;
 
+    private RectTransform rectTransform;
+
     void Start()
-    {       
-        savePos = this.transform.position;
+    {
+        rectTransform = GetComponent<RectTransform>();
+        savePos = rectTransform.anchoredPosition;
         saveScale = this.transform.localScale;
         saveRot = this.transform.rotation.eulerAngles;
         isEasing = isStart;
@@ -61,9 +64,9 @@ public class M_ObjectEasing : MonoBehaviour
     {
         isEasing = !isEasing;
         fTime = 0;
-        //this.transform.position = savePos;
-        //this.transform.localScale = saveScale;
-        //this.transform.rotation = Quaternion.Euler(saveRot);
+        rectTransform.anchoredPosition = savePos;
+        this.transform.localScale = saveScale;
+        this.transform.rotation = Quaternion.Euler(saveRot);
     }
 
     private void Easing()
@@ -78,7 +81,7 @@ public class M_ObjectEasing : MonoBehaviour
         if (pos.isApply)
         {
             var func = M_Easing.GetEasingMethod(pos.ease);
-            this.transform.position = savePos + pos.amount * func(t);
+            rectTransform.anchoredPosition = savePos + (Vector2)(pos.amount * func(t));
         }
 
         if (scale.isApply)
