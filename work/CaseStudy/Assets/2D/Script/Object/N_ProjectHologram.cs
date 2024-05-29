@@ -95,16 +95,24 @@ public class N_ProjectHologram : MonoBehaviour
         // ホログラム生成
         GenerateHologram();
 
-        //projectionUI.SetActive(false);
+        // M_ObjectEasingの初期化とnullチェック
+        foreach (GameObject obj in Hologram)
+        {
+            if (obj.GetComponent<M_ObjectEasing>() == null)
+            {
+                Debug.LogError("M_ObjectEasing component not found on " + obj.name);
+            }
+        }
+
+        // projectionUI.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isReset)
         {
             // 生成したホログラム削除
-            foreach(var obj in Hologram)
+            foreach (var obj in Hologram)
             {
                 Destroy(obj);
             }
@@ -121,21 +129,26 @@ public class N_ProjectHologram : MonoBehaviour
         }
         if (isProjection)
         {
-            if(isActive == false)
+            if (isActive == false)
             {
                 foreach (GameObject obj in Hologram)
                 {
                     fTime = 0.0f;
-                    obj.SetActive(true); 
+                    obj.SetActive(true);
 
-                    if(obj.GetComponent<M_ObjectEasing>())
-                    {                        
-                        obj.GetComponent<M_ObjectEasing>().EasingOnOff();
+                    var easingComponent = obj.GetComponent<M_ObjectEasing>();
+                    if (easingComponent != null)
+                    {
+                        easingComponent.EasingOnOff();
                     }
-                    //projectionUI.SetActive(true);
+                    else
+                    {
+                        Debug.LogError("M_ObjectEasing component not found on " + obj.name);
+                    }
+                    // projectionUI.SetActive(true);
                 }
                 isActive = true;
-                if(MeowingPrefab)
+                if (MeowingPrefab)
                 {
                     MeowingObj = Instantiate(MeowingPrefab, transform.position, Quaternion.identity);
                 }
@@ -148,7 +161,7 @@ public class N_ProjectHologram : MonoBehaviour
             foreach (GameObject obj in Hologram)
             {
                 SpriteRenderer[] spriteRenderers = obj.GetComponentsInChildren<SpriteRenderer>(true); // 子オブジェクトのSpriteRendererを取得（trueを指定して非アクティブなものも含める）
-              
+
                 foreach (SpriteRenderer renderer in spriteRenderers)
                 {
                     Material material = renderer.material; // 子オブジェクトのマテリアルを取得
@@ -157,21 +170,19 @@ public class N_ProjectHologram : MonoBehaviour
                         fTime += Time.deltaTime;
                         fTime = Mathf.Clamp01(fTime); // 値を0から1の範囲に制限する
                         material.SetFloat("_Fader", fTime); // _Faderを設定
-                        //projectionUI.GetComponent<SpriteRenderer>().material.SetFloat("_Fader", fTime); // _Faderを設定
+                                                            // projectionUI.GetComponent<SpriteRenderer>().material.SetFloat("_Fader", fTime); // _Faderを設定
                     }
                 }
             }
-
-           
         }
         else
         {
-            if(isActive == true)
+            if (isActive == true)
             {
                 foreach (GameObject obj in Hologram)
-                {                   
-                    obj.SetActive(false);  
-                    //projectionUI.SetActive(false);
+                {
+                    obj.SetActive(false);
+                    // projectionUI.SetActive(false);
                 }
                 if (MeowingPrefab)
                 {

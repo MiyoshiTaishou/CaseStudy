@@ -12,7 +12,7 @@ public class M_ObjectEasing : MonoBehaviour
 
     public void SetReverse(bool reverse) { isReverse = reverse; }
 
-    private Vector2 savePos;
+    private Vector3 savePos;  // Vector2からVector3に変更
     private Vector3 saveScale;
     private Vector3 saveRot;
 
@@ -35,15 +35,16 @@ public class M_ObjectEasing : MonoBehaviour
     [Header("開始時に行うか"), SerializeField]
     private bool isStart = true;
 
-    private RectTransform rectTransform;
-
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
-        savePos = rectTransform.anchoredPosition;
+        if (this.transform != null)
+        {
+            savePos = this.transform.position;
+        }
         saveScale = this.transform.localScale;
         saveRot = this.transform.rotation.eulerAngles;
         isEasing = isStart;
+        fTime = 0.0f;
     }
 
     void Update()
@@ -62,12 +63,26 @@ public class M_ObjectEasing : MonoBehaviour
 
     public void EasingOnOff()
     {
+        Debug.Log("EasingOnOff called");
         isEasing = !isEasing;
         fTime = 0;
-        rectTransform.anchoredPosition = savePos;
+
+        // Nullチェックを追加
+        if (this.transform != null)
+        {
+            Debug.Log("Transform is not null");
+            this.transform.position = savePos;
+        }
+        else
+        {
+            Debug.LogError("Transform is null!");
+        }
+
+        Debug.Log("Setting scale and rotation");
         this.transform.localScale = saveScale;
         this.transform.rotation = Quaternion.Euler(saveRot);
     }
+
 
     private void Easing()
     {
@@ -78,10 +93,11 @@ public class M_ObjectEasing : MonoBehaviour
             t = 1 - t;
         }
 
-        if (pos.isApply)
+        // Nullチェックを追加
+        if (this.transform != null && pos.isApply)
         {
             var func = M_Easing.GetEasingMethod(pos.ease);
-            rectTransform.anchoredPosition = savePos + (Vector2)(pos.amount * func(t));
+            this.transform.position = savePos + pos.amount * func(t);
         }
 
         if (scale.isApply)

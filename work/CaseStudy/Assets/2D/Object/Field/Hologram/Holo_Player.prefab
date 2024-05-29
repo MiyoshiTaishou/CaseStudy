@@ -158,7 +158,7 @@ MonoBehaviour:
     isApply: 1
     ease: 29
     amount: {x: 0.5, y: 0.5, z: 0}
-  isStart: 1
+  isStart: 0
 --- !u!70 &7597019926767237766
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
