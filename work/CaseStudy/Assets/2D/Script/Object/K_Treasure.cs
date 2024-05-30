@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class K_Treasure : MonoBehaviour
 {
-    [Header("ステージクリア(仮)"), SerializeField]
-    private GameObject StageClearPrefab;
+    [Header("リンゴ取得SE(NULLでもいいよ)"), SerializeField]
+    private AudioClip audioclip;
 
-    private GameObject StageClearObj;
+    private GameObject CaseObj;
 
     void Start()
     {
-        StageClearObj = Instantiate(StageClearPrefab, transform.position, Quaternion.identity);
-        StageClearObj.SetActive(false);
+        //ケースが存在したらコライダー無効化
+        CaseObj = GameObject.Find("Case");
+        if(CaseObj)
+        {
+            this.GetComponent<CircleCollider2D>().enabled = false;
+            Debug.Log("ケース発見");
+        }
+        else
+        {
+            this.GetComponent<CircleCollider2D>().enabled = true;
+            Debug.Log("ケースない");
+        }
+    }
+
+    private void Update()
+    {
+        if (!CaseObj)
+        {
+            this.GetComponent<CircleCollider2D>().enabled = true;
+            Debug.Log("宝判定有効化");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -20,7 +39,11 @@ public class K_Treasure : MonoBehaviour
         // プレイヤーがぶつかってきたら
         if (collision.transform.CompareTag("Player"))
         {
-            StageClearObj.SetActive(true);
+            //音鳴らす
+            if (audioclip)
+            {
+                AudioSource.PlayClipAtPoint(audioclip, transform.position);
+            }
             Destroy(gameObject);
         }
     }
@@ -30,7 +53,11 @@ public class K_Treasure : MonoBehaviour
         // プレイヤーがぶつかってきたら
         if (collision.transform.CompareTag("Player"))
         {
-            StageClearObj.SetActive(true);
+            //音鳴らす
+            if (audioclip)
+            {
+                AudioSource.PlayClipAtPoint(audioclip, transform.position);
+            }
             Destroy(gameObject);
         }
     }
