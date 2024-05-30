@@ -49,23 +49,23 @@ public class N_EnemyManager : MonoBehaviour
     [Header("移動ステータス"), SerializeField]
     ManagerMoveStatus managerStatus;
 
-    [Header("何秒"), SerializeField]
-    private float MoveTime = 3.0f;
+    //[Header("何秒"), SerializeField]
+    //private float MoveTime = 3.0f;
 
-    [Header("移動速度"), SerializeField]
-    private float MoveSpeed = 4.0f;
+    //[Header("移動速度"), SerializeField]
+    //private float MoveSpeed = 4.0f;
 
-    [Header("追跡時の移動速度"), SerializeField]
-    private float ChaseSpeed = 4.0f;
+    //[Header("追跡時の移動速度"), SerializeField]
+    //private float ChaseSpeed = 4.0f;
 
-    [Header("方向転換時待機時間"), SerializeField]
-    private float WaitTime = 0.5f;
+    //[Header("方向転換時待機時間"), SerializeField]
+    //private float WaitTime = 0.5f;
 
-    [Header("発見後追跡までの時間"), SerializeField]
-    private float FoundTime = 0.5f;
+    //[Header("発見後追跡までの時間"), SerializeField]
+    //private float FoundTime = 0.5f;
 
-    [Header("見失って巡回に戻る時間"), SerializeField]
-    private float LostSightTime = 0.5f;
+    //[Header("見失って巡回に戻る時間"), SerializeField]
+    //private float LostSightTime = 0.5f;
 
     // 経過時間
     private float ElapsedTime = 0.0f;
@@ -501,8 +501,8 @@ public class N_EnemyManager : MonoBehaviour
 
         // 追跡対象を見失ったら状態遷移
         // 右端と左端の敵が見失った = 隊列が見失った
-        if(TeamMembers[0].GetComponent<N_PlayerSearch>().GetIsSearch() == false &&
-            TeamMembers[iMemberNum - 1].GetComponent<N_PlayerSearch>().GetIsSearch() == false)
+        if(TeamMembers[0].transform.GetChild(0).GetComponent<N_PlayerSearch>().GetIsSearch() == false &&
+            TeamMembers[iMemberNum - 1].transform.GetChild(0).GetComponent<N_PlayerSearch>().GetIsSearch() == false)
         {
             managerState = ManagerState.LOSTSIGHT;
         }
