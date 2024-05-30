@@ -27,6 +27,12 @@ public class M_PlayerPush : MonoBehaviour
     [Header("風のアニメーション再生タイミング"), SerializeField]
     private float fDlayAnim = 1.0f;
 
+    [Header("ヒットストップのフレーム"), SerializeField]
+    float fHitStop = 10.0f;
+
+    [Header("風の音"), SerializeField]
+    AudioClip ac = null;
+
     /// <summary>
     /// プレイヤー
     /// </summary>
@@ -55,6 +61,8 @@ public class M_PlayerPush : MonoBehaviour
     private Animator animator;   
     private Animator animator2;   
     
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -66,6 +74,8 @@ public class M_PlayerPush : MonoBehaviour
 
         // Animatorコンポーネントを取得
         animator = GetComponent<Animator>();
+        
+        audioSource= GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -208,23 +218,11 @@ public class M_PlayerPush : MonoBehaviour
                 if ((Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0.5f) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
                     //if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
                 {
-                    Vector3 dir = Vector3.zero;                    
-
-                    if (PlayerObj.transform.eulerAngles.y >= 180.0f)
-                    {
-                        dir = transform.right;
-                    }     
-                    else if(PlayerObj.transform.eulerAngles.y <= 60.0f)
-                    {
-                        Debug.Log(PlayerObj.transform.eulerAngles);
-                        dir = transform.right;
-                    }
-
+                 
                     //push.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                    push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
-                    push.GetComponent<S_EnemyBall>().SetisPushing(true);
 
                     Debug.Log("押した");
+                    StartCoroutine(HitStop(push));
                     StartCoroutine(M_Utility.GamePadMotor(fTime));                   
                 }
                 
@@ -240,4 +238,24 @@ public class M_PlayerPush : MonoBehaviour
         animator.SetTrigger("Start");
     }
 
+    IEnumerator HitStop(GameObject push)
+    {
+        Vector3 dir = Vector3.zero;
+
+        if (PlayerObj.transform.eulerAngles.y >= 180.0f)
+        {
+            dir = transform.right;
+        }
+        else if (PlayerObj.transform.eulerAngles.y <= 60.0f)
+        {
+            Debug.Log(PlayerObj.transform.eulerAngles);
+            dir = transform.right;
+        }
+        audioSource.PlayOneShot(ac);
+        //指定のフレーム待つ
+        yield return new WaitForSecondsRealtime(fHitStop / 60);
+        
+        push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
+        push.GetComponent<S_EnemyBall>().SetisPushing(true);
+    }
 }
