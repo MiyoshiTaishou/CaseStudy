@@ -93,16 +93,7 @@ public class N_ProjectHologram : MonoBehaviour
         SetInfomation(mode, HoloDirection);
 
         // ホログラム生成
-        GenerateHologram();
-
-        // M_ObjectEasingの初期化とnullチェック
-        foreach (GameObject obj in Hologram)
-        {
-            if (obj.GetComponent<M_ObjectEasing>() == null)
-            {
-                Debug.LogError("M_ObjectEasing component not found on " + obj.name);
-            }
-        }
+        GenerateHologram();       
 
         // projectionUI.SetActive(false);
     }
@@ -134,18 +125,7 @@ public class N_ProjectHologram : MonoBehaviour
                 foreach (GameObject obj in Hologram)
                 {
                     fTime = 0.0f;
-                    obj.SetActive(true);
-
-                    var easingComponent = obj.GetComponent<M_ObjectEasing>();
-                    if (easingComponent != null)
-                    {
-                        easingComponent.EasingOnOff();
-                    }
-                    else
-                    {
-                        Debug.LogError("M_ObjectEasing component not found on " + obj.name);
-                    }
-                    // projectionUI.SetActive(true);
+                    obj.SetActive(true);                   
                 }
                 isActive = true;
                 if (MeowingPrefab)
@@ -205,13 +185,8 @@ public class N_ProjectHologram : MonoBehaviour
         float dirX = 1.0f;
         float dirY = 1.0f;
 
-        Vector3 sca = Prefab.transform.localScale;
-
-        if(Prefab.transform.localScale.x == 0.0f)
-        {
-            sca = Vector3.one;
-        }
-
+        Vector3 sca = Prefab.transform.localScale;        
+        
         // ホログラムの開始地点調整
         switch (HoloDirection)
         {
@@ -247,16 +222,18 @@ public class N_ProjectHologram : MonoBehaviour
                 vec.z
                 );
 
+            Debug.Log(newVec);
+
             // インスタンス生成
             GameObject obj = Instantiate(Prefab, newVec, Quaternion.identity);
             // 削除されないホログラムにする
             obj.GetComponent<N_DestroyTimer>().SetBoolDestroy(false);
             // 自身の子オブジェクトにする
-            obj.transform.parent = this.gameObject.transform;
+            obj.transform.parent = this.gameObject.transform;           
             // 最初非表示
             obj.SetActive(false);
             // リスト追加
-            Hologram.Add(obj);          
+            Hologram.Add(obj);            
         }
 
     }
