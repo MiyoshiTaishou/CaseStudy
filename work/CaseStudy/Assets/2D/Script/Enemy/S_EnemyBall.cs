@@ -116,7 +116,11 @@ public class S_EnemyBall : MonoBehaviour
             // ë‡óÒÇ©ÇÁèúñº
             DeleteMember();
         }
-        if(isBall&& Mathf.Abs(rb.velocity.x) < fStopjudge) 
+        else if(!isPushing&&!isBall)
+        {
+            GetComponent<SEnemyMove>().enabled=true;
+        }
+        if(/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge) 
         {
             isPushing = false;
         }
@@ -163,6 +167,13 @@ public class S_EnemyBall : MonoBehaviour
 
                 isBall = true;
                 //Destroy(GetComponent<N_PlayerSearch>());
+                
+                if(fStickCnt==0)
+                {
+                    fStickCnt++;
+                    transform.tag = "EnemyBall";
+                }
+
                 if (!colEnemyBall.GetisBall())
                 {
                     fStickCnt++;
@@ -170,12 +181,6 @@ public class S_EnemyBall : MonoBehaviour
                 else if(colEnemyBall.GetisBall())
                 {
                     fStickCnt += colEnemyBall.GetStickCount();
-                }
-                
-                if(fStickCnt==1)
-                {
-                    fStickCnt++;
-                    transform.tag = "EnemyBall";
                 }
                 //ãzé˚ÇµÇΩìGÇÃêîÇ…âûÇ∂ÇƒãêëÂâª
                 Vector3 nextScale = defaultScale;
