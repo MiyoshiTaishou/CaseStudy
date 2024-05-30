@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.64, y: 1.91}
   m_EdgeRadius: 0
 --- !u!114 &5723648254556397857
 MonoBehaviour:
@@ -246,12 +246,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867361754564104500}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3413d00b6c9ea6d4e8272585aada4571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StageClearPrefab: {fileID: 2053369011088852747, guid: 87c0ca44c9b4de743acd40b0e5ce58b9, type: 3}
+  audioclip: {fileID: 0}
 --- !u!114 &1899815833282139171
 MonoBehaviour:
   m_ObjectHideFlags: 0
