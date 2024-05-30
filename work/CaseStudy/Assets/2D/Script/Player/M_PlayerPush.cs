@@ -215,7 +215,7 @@ public class M_PlayerPush : MonoBehaviour
             //バレていない時
             case MODE.Back:
                 N_PlayerSearch search = push.gameObject.transform.GetChild(0).gameObject.GetComponent<N_PlayerSearch>();
-                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0.5f) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
+                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0.5f) && !search.GetIsSearch()/*!push.GetComponent<N_PlayerSearch>().GetIsSearch()*/)
                     //if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
                 {
                  

@@ -45,16 +45,6 @@ public class N_PlayerSearch : MonoBehaviour
                 enemyManager = enemyMove.GetManager();
             }
 
-            if (isSearch)
-            {
-                Debug.Log("å©Ç¬ÇØÇΩ");
-            }
-            else
-            {
-                Debug.Log("å©é∏Ç¡ÇΩ");
-
-            }
-
             // å©Ç¬ÇØÇƒÇ¢ÇÈÇ∆Ç´ÇÃÇ›å©é∏Ç§ÇΩÇﬂÇÃåvéZé¿çs
             if (isSearch)
             {
@@ -77,7 +67,7 @@ public class N_PlayerSearch : MonoBehaviour
         {
             if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
             {
-                Debug.Log("î≠å©");
+                //Debug.Log("î≠å©");
                 transTarget = collision.gameObject.transform;
                 enemyManager.SetTarget(collision.gameObject);
                 isSearch = true;
@@ -91,7 +81,7 @@ public class N_PlayerSearch : MonoBehaviour
         {
             if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
             {
-                Debug.Log("í«ê’");
+                //Debug.Log("í«ê’");
                 enemyManager.SetTarget(collision.gameObject);
 
                 isSearch = true;
