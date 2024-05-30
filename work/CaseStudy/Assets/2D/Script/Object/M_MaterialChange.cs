@@ -98,8 +98,15 @@ public class M_MaterialChange : MonoBehaviour
             collision.gameObject.layer = 3;
             foreach (Transform child in collision.gameObject.transform)
             {
-                // 子オブジェクトも同様
-                child.gameObject.layer = 3;
+                if (child.gameObject.name == "kaze02]_00000 1")
+                {
+                    child.gameObject.layer = 0;
+                }
+                else
+                {
+                    // 子オブジェクトも同様
+                    child.gameObject.layer = 3;
+                }
             }
 
             //collision.isTrigger = false;
@@ -128,8 +135,15 @@ public class M_MaterialChange : MonoBehaviour
             collision.gameObject.layer = 3;
             foreach (Transform child in collision.gameObject.transform)
             {
-                // 子オブジェクトも同様
-                child.gameObject.layer = 3;
+                if (child.gameObject.name == "kaze02]_00000 1")
+                {
+                    child.gameObject.layer = 0;
+                }
+                else
+                {
+                    // 子オブジェクトも同様
+                    child.gameObject.layer = 3;
+                }
             }
 
             //collision.isTrigger = false;
