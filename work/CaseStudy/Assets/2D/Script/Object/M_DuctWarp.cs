@@ -60,12 +60,7 @@ public class M_DuctWarp : MonoBehaviour
     /// <summary>
     /// ダクトマネージャ
     /// </summary>
-    private GameObject DuctManager;
-
-    /// <summary>
-    /// 移動中
-    /// </summary>
-    private bool isMoveDuct;
+    private GameObject DuctManager;    
 
     // 20240407 二宮追記
     /// <summary>
@@ -111,7 +106,7 @@ public class M_DuctWarp : MonoBehaviour
     void Update()
     {
         //ダクト移動中は処理しない
-        if (isMoveDuct)
+        if (DuctManager.GetComponent<M_DuctManager>().GetIsMove())
         {
             return;
         }
@@ -187,7 +182,7 @@ public class M_DuctWarp : MonoBehaviour
     //ダクトに移動するメソッド
     IEnumerator IEMoveDuct(float _waitTime, GameObject _obj)
     {
-        isMoveDuct = true;
+        DuctManager.GetComponent<M_DuctManager>().SetIsMove(true);
 
         // 20240407 二宮追記
         trackingPlayer.SetWarpInfo(_waitTime, _obj);
@@ -198,7 +193,7 @@ public class M_DuctWarp : MonoBehaviour
         //ダクトマネージャのワープ処理を呼ぶ
         DuctManager.GetComponent<M_DuctManager>().DuctWarp(_obj, this.gameObject);
 
-        isMoveDuct = false;
+        DuctManager.GetComponent<M_DuctManager>().SetIsMove(false);
     }
 
     IEnumerator IEDuctAnimStart(float _waitTime)

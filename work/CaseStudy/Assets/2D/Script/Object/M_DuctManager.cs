@@ -12,6 +12,15 @@ public class M_DuctManager : MonoBehaviour
     private static Dictionary<GameObject, bool> ductDictionary = new Dictionary<GameObject, bool>();
 
     /// <summary>
+    /// 移動中かどうか
+    /// </summary>
+    private bool isMove = false;
+
+    public void SetIsMove(bool _move) { isMove = _move; }
+
+    public bool GetIsMove() { return isMove; }
+
+    /// <summary>
     /// プレイヤー
     /// </summary>
     private GameObject PlayerObj;
@@ -56,7 +65,7 @@ public class M_DuctManager : MonoBehaviour
 
     private void Update()
     {        
-        if(ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct"))
+        if(ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct") && !isMove)
         {           
             Debug.Log("ダクトを出た");
 
