@@ -15,6 +15,7 @@ public class M_DuctManager : MonoBehaviour
     /// プレイヤー
     /// </summary>
     private GameObject PlayerObj;
+    private GameObject PlayerRes;
 
     /// <summary>
     /// プレイヤーが持っているレンダラ
@@ -26,6 +27,7 @@ public class M_DuctManager : MonoBehaviour
     void Start()
     {
         PlayerObj = GameObject.Find("Player");
+        PlayerRes = GameObject.Find("PlayerRespawn");
 
         if (!PlayerObj)
         {
@@ -84,6 +86,7 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+            PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
         }
 
         if (ductDictionary.ContainsValue(true))
@@ -101,6 +104,7 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(false);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = false;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            PlayerRes.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
     //M_DuctWarpから呼ばれて指定したところまでプレイヤーを飛ばす
@@ -141,6 +145,7 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(false);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = false;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            PlayerRes.GetComponent<BoxCollider2D>().enabled = false;
 
             Debug.Log(PlayerObj.GetComponent<M_PlayerMove>().GetIsMove());
         }
@@ -161,6 +166,7 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+            PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 
