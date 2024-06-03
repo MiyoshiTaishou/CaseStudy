@@ -70,20 +70,21 @@ public class S_EnemyBall : MonoBehaviour
     private Vector3 ColliderSize;
     private Vector3 ColliderOffset;
 
-    public int GetStickCount() 
+    public int GetStickCount()
     {
         int temp = 0;
         temp = Mathf.FloorToInt(fStickCnt);
-        return temp; }
+        return temp;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        defaultScale= transform.localScale;
+        defaultScale = transform.localScale;
         rb = GetComponent<Rigidbody2D>();
-        if(Eff_RollingPrefab)
+        if (Eff_RollingPrefab)
         {
-            Eff_RollingObj= Instantiate(Eff_RollingPrefab, transform.position, Quaternion.identity);
+            Eff_RollingObj = Instantiate(Eff_RollingPrefab, transform.position, Quaternion.identity);
             Eff_RollingObj.SetActive(false);
         }
         BocCol2D = this.GetComponent<BoxCollider2D>();
@@ -95,7 +96,7 @@ public class S_EnemyBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Eff_RollingObj)
+        if (Eff_RollingObj)
         {
             Eff_RollingObj.transform.position = this.gameObject.transform.position;
         }
@@ -105,22 +106,22 @@ public class S_EnemyBall : MonoBehaviour
             //GetComponent<M_BlindingMove>().enabled = false;
             //GetComponent<N_PlayerSearch>().enabled = false;
             vel = rb.velocity;
-            if(vel.x<0)
+            if (vel.x < 0)
             {
-                isLeft= true;
+                isLeft = true;
             }
-            else if(vel.x>0) 
+            else if (vel.x > 0)
             {
-                isLeft= false;
+                isLeft = false;
             }
             // 隊列から除名
             DeleteMember();
         }
-        else if(!isPushing&&!isBall)
+        else if (!isPushing && !isBall)
         {
-            GetComponent<SEnemyMove>().enabled=true;
+            GetComponent<SEnemyMove>().enabled = true;
         }
-        if(/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge) 
+        if (/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge)
         {
             isPushing = false;
         }
@@ -148,17 +149,17 @@ public class S_EnemyBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _collision)
     {
-        if(!isPushing)
+        if (!isPushing)
         {
             return;
         }
         //あたったオブジェクトが敵かつ押されていなければ吸収
-        ColObject= _collision.gameObject;
+        ColObject = _collision.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
-        if (ColObject.CompareTag("Enemy")||ColObject.CompareTag("EnemyBall"))
+        if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
-            if (!colEnemyBall.GetisPushing()||
-                (colEnemyBall.GetisPushing()&&fStickCnt > colEnemyBall.GetStickCount()))
+            if (!colEnemyBall.GetisPushing() ||
+                (colEnemyBall.GetisPushing() && fStickCnt > colEnemyBall.GetStickCount()))
             {
                 if (Eff_RollingObj)
                 {
@@ -167,8 +168,8 @@ public class S_EnemyBall : MonoBehaviour
 
                 isBall = true;
                 //Destroy(GetComponent<N_PlayerSearch>());
-                
-                if(fStickCnt==0)
+
+                if (fStickCnt == 0)
                 {
                     fStickCnt++;
                     transform.tag = "EnemyBall";
@@ -178,7 +179,7 @@ public class S_EnemyBall : MonoBehaviour
                 {
                     fStickCnt++;
                 }
-                else if(colEnemyBall.GetisBall())
+                else if (colEnemyBall.GetisBall())
                 {
                     fStickCnt += colEnemyBall.GetStickCount();
                 }
@@ -198,9 +199,9 @@ public class S_EnemyBall : MonoBehaviour
                 colEnemyBall.DeleteMember();
 
                 Destroy(ColObject);
-                rb.AddForce(vel*fBoost, ForceMode2D.Impulse);
+                rb.AddForce(vel * fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
-                GetComponent<AudioSource>().pitch+=0.2f;
+                GetComponent<AudioSource>().pitch += 0.2f;
 
                 StartCoroutine(HitStop());
                 StartCoroutine(M_Utility.GamePadMotor(fTime));
@@ -213,17 +214,17 @@ public class S_EnemyBall : MonoBehaviour
     }
     private void OnCollisionStay2D(Collision2D _collision)
     {
-        if(!isPushing)
+        if (!isPushing)
         {
             return;
         }
         //あたったオブジェクトが敵かつ押されていなければ吸収
-        ColObject= _collision.gameObject;
+        ColObject = _collision.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
         if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
-            if (!colEnemyBall.GetisPushing()||
-                (colEnemyBall.GetisPushing()&&fStickCnt > colEnemyBall.GetStickCount()))
+            if (!colEnemyBall.GetisPushing() ||
+                (colEnemyBall.GetisPushing() && fStickCnt > colEnemyBall.GetStickCount()))
             {
                 if (Eff_RollingObj)
                 {
@@ -249,7 +250,7 @@ public class S_EnemyBall : MonoBehaviour
                 colEnemyBall.DeleteMember();
 
                 Destroy(ColObject);
-                rb.AddForce(rb.velocity*fBoost, ForceMode2D.Impulse);
+                rb.AddForce(rb.velocity * fBoost, ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(audioclip);
                 StartCoroutine(HitStop());
                 if (Eff_ClashPrefab != null)
@@ -262,18 +263,18 @@ public class S_EnemyBall : MonoBehaviour
     IEnumerator HitStop()
     {
         //速度を保存し、0にする
-        Vector2 vel=rb.velocity;
-        if(vel.x>fLimitSpeedx)
+        Vector2 vel = rb.velocity;
+        if (vel.x > fLimitSpeedx)
         {
             vel.x = fLimitSpeedx;
         }
-        else if(vel.x<-fLimitSpeedx)
+        else if (vel.x < -fLimitSpeedx)
         {
             vel.x = -fLimitSpeedx;
         }
         rb.velocity = Vector2.zero;
         //指定のフレーム待つ
-        yield return new WaitForSecondsRealtime(fHitStop/60);
+        yield return new WaitForSecondsRealtime(fHitStop / 60);
         //保存した速度で再開する
         rb.velocity = vel;
         isPushing = true;
@@ -286,19 +287,27 @@ public class S_EnemyBall : MonoBehaviour
         int[] array = nGiantNum;
         int lv = 0;
         int i = 0;
-        while(i<nGiantNum.Length) 
+        while (i < nGiantNum.Length)
         {
             temp -= nGiantNum[i];
-            if(temp>=0)
+            if (temp >= 0)
             {
                 lv++;
             }
-            else if(temp<0)
+            else if (temp < 0)
             {
                 break;
             }
             i++;
         }
         return lv;
+    }
+
+    private void OnDestroy()
+    {
+        if(Eff_RollingObj)
+        {
+            Destroy(Eff_RollingObj);
+        }
     }
 }
