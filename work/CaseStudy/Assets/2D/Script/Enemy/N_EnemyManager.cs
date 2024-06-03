@@ -156,6 +156,12 @@ public class N_EnemyManager : MonoBehaviour
 
             init = true;
         }
+
+        if(iMemberNum == 0)
+        {
+            return;
+        }
+
         switch (managerState)
         {
             case ManagerState.IDLE:
@@ -257,7 +263,7 @@ public class N_EnemyManager : MonoBehaviour
         SetInfomation(false);
 
         // 新しいマネージャーの隊列に敵を参加させる
-        sc_mana.TeamAddEnemy(manager,otherTeam);
+        sc_mana.TeamAddEnemys(manager,otherTeam);
 
         // 壁発見者がいる方の隊列を待ち状態にする
         if (!IsReflectionX)
@@ -273,7 +279,7 @@ public class N_EnemyManager : MonoBehaviour
     public void UnionTeam(N_EnemyManager _manager)
     {
         // 自分の隊列に加える
-        TeamAddEnemy(this.gameObject, _manager.GetTeamMember());
+        TeamAddEnemys(this.gameObject, _manager.GetTeamMember());
 
         // X座標の小さい順に並び替え
         SortMember();
@@ -565,8 +571,8 @@ public class N_EnemyManager : MonoBehaviour
         managerState = _state;
     }
 
-    // 隊列に敵を追加する
-    private void TeamAddEnemy(GameObject _parent,List<GameObject> _others)
+    // 隊列に敵複数を追加する
+    private void TeamAddEnemys(GameObject _parent,List<GameObject> _others)
     {
         // リストに追加
         TeamMembers.AddRange(_others);
@@ -576,6 +582,26 @@ public class N_EnemyManager : MonoBehaviour
             obj.transform.parent = _parent.transform;
         }
         CountMemberNum();
+    }
+
+    public void TeamAddEnemy(GameObject _obj)
+    {
+        // リストに追加
+        TeamMembers.Add(_obj);
+        foreach(var obj in TeamMembers)
+        {
+            // 親オブジェクト変更
+            obj.transform.parent = gameObject.transform;
+        }
+        CountMemberNum();
+
+        // スクリプトをいったんリセット
+        sEnemyMoves.Clear();
+
+        // 隊列内の敵の移動スクリプトを取得
+        SetEnemyMoveScript();
+
+        SetInfomation(false);
     }
 
     // 敵情報

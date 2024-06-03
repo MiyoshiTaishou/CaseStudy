@@ -9,40 +9,40 @@ using UnityEngine;
 
 public class S_EnemyBall : MonoBehaviour
 {
-    [Header("‘•ŒW”"), SerializeField]
+    [Header("å¢—å¹…ä¿‚æ•°"), SerializeField]
     float fBoost = 1.5f;
 
     [Header("AudioClip"), SerializeField]
     AudioClip audioclip;
 
-    [Header("ƒqƒbƒgƒXƒgƒbƒv"), SerializeField]
+    [Header("ãƒ’ãƒƒãƒˆã‚¹ãƒˆãƒƒãƒ—"), SerializeField]
     float fHitStop = 0;
 
-    [Header("§ŒÀ‘¬“x(x)"), SerializeField]
+    [Header("åˆ¶é™é€Ÿåº¦(x)"), SerializeField]
     float fLimitSpeedx = 15.0f;
 
-    [Header("’â~”»’è"), SerializeField]
+    [Header("åœæ­¢åˆ¤å®š"), SerializeField]
     float fStopjudge = 0.0f;
 
-    [Header("‘å‚«‚³‚Ì’iŠK‚Æ•K—v‚È‹zû”"), SerializeField]
+    [Header("å¤§ãã•ã®æ®µéšã¨å¿…è¦ãªå¸åæ•°"), SerializeField]
     int[] nGiantNum;
 
-    [Header("U“®ŠÔ"), SerializeField]
+    [Header("æŒ¯å‹•æ™‚é–“"), SerializeField]
     private float fTime = 0.1f;
 
-    [Header("“GÕ“ËƒGƒtƒFƒNƒg"), SerializeField]
+    [Header("æ•µè¡çªã‚¨ãƒ•ã‚§ã‚¯ãƒˆ"), SerializeField]
     private GameObject Eff_ClashPrefab;
     private GameObject Eff_ClashObj;
 
-    [Header("“G‰ñ“]ƒGƒtƒFƒNƒg"), SerializeField]
+    [Header("æ•µå›è»¢ã‚¨ãƒ•ã‚§ã‚¯ãƒˆ"), SerializeField]
     private GameObject Eff_RollingPrefab;
     private GameObject Eff_RollingObj;
 
-    //‰ò‚É‚È‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+    //å¡Šã«ãªã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
     private bool isBall = false;
     public bool GetisBall() { return isBall; }
 
-    //ƒvƒŒƒCƒ„[‚É‚æ‚Á‚Ä‰Ÿ‚³‚ê‚Ä‚¢‚é‚©‚Ç‚¤‚©
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ã‚ˆã£ã¦æŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹
     private bool isPushing = false;
     public bool GetisPushing() { return isPushing; }
     public void SetisPushing(bool _flg) { isPushing = _flg; }
@@ -51,17 +51,17 @@ public class S_EnemyBall : MonoBehaviour
 
     private Vector3 defaultScale;
 
-    //‚­‚Á‚Â‚¢‚Ä‚¢‚éŒÂ”
+    //ãã£ã¤ã„ã¦ã„ã‚‹å€‹æ•°
     private float fStickCnt = 0;
 
     private Rigidbody2D rb;
 
     private Vector2 vel;
 
-    // ‘à—ñ‚©‚çœ–¼‚³‚ê‚Ä‚¢‚é‚©
+    // éšŠåˆ—ã‹ã‚‰é™¤åã•ã‚Œã¦ã„ã‚‹ã‹
     private bool isDeleteMember = false;
 
-    //¶Œü‚«‚ÉˆÚ“®‚µ‚Ä‚¢‚é‚©
+    //å·¦å‘ãã«ç§»å‹•ã—ã¦ã„ã‚‹ã‹
     private bool isLeft = false;
 
     public bool GetisLeft() { return isLeft; }
@@ -114,14 +114,27 @@ public class S_EnemyBall : MonoBehaviour
             {
                 isLeft = false;
             }
-            // ‘à—ñ‚©‚çœ–¼
+            // éšŠåˆ—ã‹ã‚‰é™¤å
             DeleteMember();
         }
         else if (!isPushing && !isBall)
         {
-            GetComponent<SEnemyMove>().enabled = true;
+            GetComponent<SEnemyMove>().enabled=true;
+
+            if (isDeleteMember)
+            {
+                // æŠ¼ã•ã‚Œã‚‹å‰ã«ã„ãŸéšŠåˆ—ã«æˆ»ã‚‹
+                SEnemyMove sEnemyMove = gameObject.GetComponent<SEnemyMove>();
+                N_EnemyManager enemyMana = sEnemyMove.GetManager();
+
+                // éšŠåˆ—ã«è¿½åŠ 
+                enemyMana.TeamAddEnemy(this.gameObject);
+
+                isDeleteMember = false;
+            }
+
         }
-        if (/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge)
+        if (/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge) 
         {
             isPushing = false;
         }
@@ -134,13 +147,13 @@ public class S_EnemyBall : MonoBehaviour
             SEnemyMove sEnemyMove = gameObject.GetComponent<SEnemyMove>();
             N_EnemyManager enemyMana = sEnemyMove.GetManager();
 
-            // Œ»İ‚Ìó‘Ôæ“¾
+            // ç¾åœ¨ã®çŠ¶æ…‹å–å¾—
             N_EnemyManager.ManagerState state = enemyMana.GetState();
 
-            // ó‘Ô•ÏX
+            // çŠ¶æ…‹å¤‰æ›´
             enemyMana.ChangeManagerState(N_EnemyManager.ManagerState.ECPULSION);
 
-            // œ–¼ŠÖ”ŒÄ‚Ño‚µ(‘à—ñ”Ô†AŒ»İ‚Ìƒ}ƒl[ƒWƒƒ[‚Ìó‘Ô)
+            // é™¤åé–¢æ•°å‘¼ã³å‡ºã—(éšŠåˆ—ç•ªå·ã€ç¾åœ¨ã®ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®çŠ¶æ…‹)
             enemyMana.EcpulsionMember(sEnemyMove.GetTeamNumber(), state);
 
             isDeleteMember = true;
@@ -153,7 +166,7 @@ public class S_EnemyBall : MonoBehaviour
         {
             return;
         }
-        //‚ ‚½‚Á‚½ƒIƒuƒWƒFƒNƒg‚ª“G‚©‚Â‰Ÿ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î‹zû
+        //ã‚ãŸã£ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ•µã‹ã¤æŠ¼ã•ã‚Œã¦ã„ãªã‘ã‚Œã°å¸å
         ColObject = _collision.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
         if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
@@ -183,7 +196,7 @@ public class S_EnemyBall : MonoBehaviour
                 {
                     fStickCnt += colEnemyBall.GetStickCount();
                 }
-                //‹zû‚µ‚½“G‚Ì”‚É‰‚¶‚Ä‹‘å‰»
+                //å¸åã—ãŸæ•µã®æ•°ã«å¿œã˜ã¦å·¨å¤§åŒ–
                 Vector3 nextScale = defaultScale;
                 float GiantLv = (float)GetGiantLv();
                 nextScale.x += GiantLv / 2;
@@ -195,7 +208,7 @@ public class S_EnemyBall : MonoBehaviour
                 Vector3 size = ColliderSize;
                 size.y *= 0.5f;
                 BocCol2D.size = size;
-                // ‘à—ñ‚©‚çœ–¼
+                // éšŠåˆ—ã‹ã‚‰é™¤å
                 colEnemyBall.DeleteMember();
 
                 Destroy(ColObject);
@@ -218,7 +231,7 @@ public class S_EnemyBall : MonoBehaviour
         {
             return;
         }
-        //‚ ‚½‚Á‚½ƒIƒuƒWƒFƒNƒg‚ª“G‚©‚Â‰Ÿ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î‹zû
+        //ã‚ãŸã£ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒæ•µã‹ã¤æŠ¼ã•ã‚Œã¦ã„ãªã‘ã‚Œã°å¸å
         ColObject = _collision.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
         if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
@@ -239,14 +252,14 @@ public class S_EnemyBall : MonoBehaviour
                     fStickCnt++;
                     transform.tag = "EnemyBall";
                 }
-                //‹zû‚µ‚½“G‚Ì”‚É‰‚¶‚Ä‹‘å‰»
+                //å¸åã—ãŸæ•µã®æ•°ã«å¿œã˜ã¦å·¨å¤§åŒ–
                 Vector3 nextScale = defaultScale;
                 float GiantLv = (float)GetGiantLv();
                 nextScale.x += GiantLv / 2;
                 nextScale.y += GiantLv / 2;
                 transform.localScale = nextScale;
 
-                // ‘à—ñ‚©‚çœ–¼
+                // éšŠåˆ—ã‹ã‚‰é™¤å
                 colEnemyBall.DeleteMember();
 
                 Destroy(ColObject);
@@ -262,7 +275,7 @@ public class S_EnemyBall : MonoBehaviour
     }
     IEnumerator HitStop()
     {
-        //‘¬“x‚ğ•Û‘¶‚µA0‚É‚·‚é
+        //é€Ÿåº¦ã‚’ä¿å­˜ã—ã€0ã«ã™ã‚‹
         Vector2 vel = rb.velocity;
         if (vel.x > fLimitSpeedx)
         {
@@ -273,14 +286,14 @@ public class S_EnemyBall : MonoBehaviour
             vel.x = -fLimitSpeedx;
         }
         rb.velocity = Vector2.zero;
-        //w’è‚ÌƒtƒŒ[ƒ€‘Ò‚Â
+        //æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¤
         yield return new WaitForSecondsRealtime(fHitStop / 60);
-        //•Û‘¶‚µ‚½‘¬“x‚ÅÄŠJ‚·‚é
+        //ä¿å­˜ã—ãŸé€Ÿåº¦ã§å†é–‹ã™ã‚‹
         rb.velocity = vel;
         isPushing = true;
     }
 
-    //‰½’iŠK‹‘å‰»‚µ‚½‚©‚ğæ“¾‚·‚éŠÖ”
+    //ä½•æ®µéšå·¨å¤§åŒ–ã—ãŸã‹ã‚’å–å¾—ã™ã‚‹é–¢æ•°
     private int GetGiantLv()
     {
         int temp = Mathf.FloorToInt(fStickCnt);
