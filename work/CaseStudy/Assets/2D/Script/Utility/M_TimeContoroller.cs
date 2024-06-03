@@ -22,6 +22,8 @@ public class M_TimeContoroller : MonoBehaviour
         if(Input.GetAxis(actionName) > 0.5)
         {
             Time.timeScale = 1.0f;
+
+            Destroy(this.gameObject);
         }
     }
 
