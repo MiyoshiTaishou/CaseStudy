@@ -226,8 +226,7 @@ public class M_PlayerMove : MonoBehaviour
                     
             // “ü—Í‚ÉŠî‚Ã‚¢‚ÄˆÚ“®‚·‚é
             Vector2 vecMoveDirection = new Vector2(_forizontal * fDashSpeed, rbPlayer.velocity.y);
-            rbPlayer.velocity = vecMoveDirection;
-            animator.SetBool("run", true);
+            rbPlayer.velocity = vecMoveDirection;            
 
             if (_forizontal > 0.0f)
             {
@@ -245,6 +244,7 @@ public class M_PlayerMove : MonoBehaviour
             {
                 fStamina -= fUseDashStamina * Time.deltaTime;
                 isNowDash = true;
+                animator.SetBool("run", true);
 
             }
             else
@@ -304,6 +304,11 @@ public class M_PlayerMove : MonoBehaviour
         {
             fStamina = 0;
             isStamina = false;
+        }
+
+        if (_forizontal == 0.0f)
+        {            
+            animator.SetBool("run", false);
         }
     }
 
