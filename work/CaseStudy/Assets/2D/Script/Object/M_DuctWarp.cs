@@ -118,6 +118,8 @@ public class M_DuctWarp : MonoBehaviour
             DuctManager.GetComponent<M_DuctManager>().SetContains(this.gameObject, true);
 
             StartCoroutine(IEDuctAnimStart(fAnimPlayTime));
+
+            DuctManager.GetComponent<M_DuctManager>().PlayDuctInSE();
         }
 
         if (DuctManager.GetComponent<M_DuctManager>().GetValue(gameObject))

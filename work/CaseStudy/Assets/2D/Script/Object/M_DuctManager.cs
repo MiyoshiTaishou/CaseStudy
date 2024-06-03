@@ -20,6 +20,8 @@ public class M_DuctManager : MonoBehaviour
 
     public bool GetIsMove() { return isMove; }
 
+    public void PlayDuctInSE() { GetComponent<AudioSource>().Play(); }
+
     /// <summary>
     /// プレイヤー
     /// </summary>
@@ -136,7 +138,7 @@ public class M_DuctManager : MonoBehaviour
         {
             Debug.Log("ダクトに入った");
 
-            GetComponent<AudioSource>().Play();
+            //GetComponent<AudioSource>().Play();
 
             // ダクトに入ったらプレイヤーのレイヤーを変更
             PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");
