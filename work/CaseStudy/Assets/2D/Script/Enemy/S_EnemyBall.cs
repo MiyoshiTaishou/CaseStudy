@@ -119,8 +119,21 @@ public class S_EnemyBall : MonoBehaviour
         else if(!isPushing&&!isBall)
         {
             GetComponent<SEnemyMove>().enabled=true;
+
+            if (isDeleteMember)
+            {
+                // ‰Ÿ‚³‚ê‚é‘O‚É‚¢‚½‘à—ñ‚É–ß‚é
+                SEnemyMove sEnemyMove = gameObject.GetComponent<SEnemyMove>();
+                N_EnemyManager enemyMana = sEnemyMove.GetManager();
+
+                // ‘à—ñ‚É’Ç‰Á
+                enemyMana.TeamAddEnemy(this.gameObject);
+
+                isDeleteMember = false;
+            }
+
         }
-        if(/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge) 
+        if (/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge) 
         {
             isPushing = false;
         }
