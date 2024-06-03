@@ -360,7 +360,7 @@ MonoBehaviour:
   nGiantNum: 00000000
   fTime: 0.1
   Eff_ClashPrefab: {fileID: 817287823798157542, guid: b115bacd7a802cf499a6978aa4b07e06, type: 3}
-  Eff_RollingPrefab: {fileID: 805547623497314194, guid: 86e726fe7f7f4e24897dba8a6b92ac90, type: 3}
+  Eff_RollingPrefab: {fileID: 1666395933393332442, guid: 5c2f5cc16750a7245af89109cdb92132, type: 3}
 --- !u!114 &1050243765183906609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb78c813edad5fd4299e884877dd47f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LostSightDistance: 6
   isSearch: 0
 --- !u!61 &6048266540860235369
 BoxCollider2D:
