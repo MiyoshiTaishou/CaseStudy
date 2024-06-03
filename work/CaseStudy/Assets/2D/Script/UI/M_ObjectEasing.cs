@@ -12,7 +12,7 @@ public class M_ObjectEasing : MonoBehaviour
 
     public void SetReverse(bool reverse) { isReverse = reverse; }
 
-    private Vector3 savePos;  // Vector2からVector3に変更
+    private Vector2 savePos;
     private Vector3 saveScale;
     private Vector3 saveRot;
 
@@ -21,7 +21,7 @@ public class M_ObjectEasing : MonoBehaviour
     {
         public bool isApply;
         public M_Easing.Ease ease;
-        public Vector3 amount;
+        public Vector2 amount;  // Vector3からVector2に変更
     }
 
     [Header("Animation Duration")]
@@ -35,14 +35,17 @@ public class M_ObjectEasing : MonoBehaviour
     [Header("開始時に行うか"), SerializeField]
     private bool isStart = true;
 
+    private RectTransform rectTransform;
+
     void Start()
     {
-        if (this.transform != null)
+        rectTransform = this.GetComponent<RectTransform>();
+        if (rectTransform != null)
         {
-            savePos = this.transform.position;
+            savePos = rectTransform.anchoredPosition;
         }
-        saveScale = this.transform.localScale;
-        saveRot = this.transform.rotation.eulerAngles;
+        saveScale = rectTransform.localScale;
+        saveRot = rectTransform.localRotation.eulerAngles;
         isEasing = isStart;
         fTime = 0.0f;
     }
@@ -67,22 +70,20 @@ public class M_ObjectEasing : MonoBehaviour
         isEasing = !isEasing;
         fTime = 0;
 
-        // Nullチェックを追加
-        if (this.transform != null)
+        if (rectTransform != null)
         {
-            Debug.Log("Transform is not null");
-            this.transform.position = savePos;
+            Debug.Log("RectTransform is not null");
+            rectTransform.anchoredPosition = savePos;
         }
         else
         {
-            Debug.LogError("Transform is null!");
+            Debug.LogError("RectTransform is null!");
         }
 
         Debug.Log("Setting scale and rotation");
-        this.transform.localScale = saveScale;
-        this.transform.rotation = Quaternion.Euler(saveRot);
+        rectTransform.localScale = saveScale;
+        rectTransform.localRotation = Quaternion.Euler(saveRot);
     }
-
 
     private void Easing()
     {
@@ -93,24 +94,23 @@ public class M_ObjectEasing : MonoBehaviour
             t = 1 - t;
         }
 
-        // Nullチェックを追加
-        if (this.transform != null && pos.isApply)
+        if (rectTransform != null && pos.isApply)
         {
             var func = M_Easing.GetEasingMethod(pos.ease);
-            this.transform.position = savePos + pos.amount * func(t);
+            rectTransform.anchoredPosition = savePos + pos.amount * func(t);
         }
 
         if (scale.isApply)
         {
             var func = M_Easing.GetEasingMethod(scale.ease);
-            this.transform.localScale = saveScale + scale.amount * func(t);
+            rectTransform.localScale = saveScale + new Vector3(scale.amount.x, scale.amount.y, 0) * func(t);
         }
 
         if (rot.isApply)
         {
             var func = M_Easing.GetEasingMethod(rot.ease);
-            Vector3 vecRot = saveRot + rot.amount * func(t);
-            this.transform.rotation = Quaternion.Euler(vecRot);
+            Vector3 vecRot = saveRot + new Vector3(0, 0, rot.amount.x) * func(t);  // 2DではZ回転のみ適用
+            rectTransform.localRotation = Quaternion.Euler(vecRot);
         }
     }
 }
