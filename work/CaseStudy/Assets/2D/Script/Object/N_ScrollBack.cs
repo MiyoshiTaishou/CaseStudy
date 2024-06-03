@@ -21,6 +21,11 @@ public class N_ScrollBack : MonoBehaviour
     [Header("移動量の元になる値"), SerializeField]
     private float BasicArea = 1.0f;
 
+    [Header("追従オブジェクト"), SerializeField]
+    private GameObject Target;
+
+    private Vector3 oldPos;
+
     // レイヤーを移動の強さとリンクさせる
     private int layer;
 
@@ -38,19 +43,38 @@ public class N_ScrollBack : MonoBehaviour
 
         layer = -100 + (int)(100 * TranckingStrength);
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = layer;
+
+        Target = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        // キーボード入力を受け取る
-        float fHorizontalInput = Input.GetAxis("Horizontal");
-
         // 追従するなら
         if (scrollMode == SCROLLMODE.DYNAMIC)
         {
-            Vector3 vec = new Vector3(-fHorizontalInput * TranckingStrength * BasicArea * Time.deltaTime,0.0f,0.0f);
-            gameObject.transform.Translate(vec, Space.Self);
+            if (Target == null) 
+            {
+                // キーボード入力を受け取る
+                float fHorizontalInput = Input.GetAxis("Horizontal");
+
+                Vector3 vec = new Vector3(-fHorizontalInput * TranckingStrength * BasicArea * Time.deltaTime, 0.0f, 0.0f);
+                gameObject.transform.Translate(vec, Space.Self);
+            }
+            else
+            {
+                Vector3 NowVec = Target.transform.position;
+
+                float result = oldPos.x - NowVec.x;
+
+                if (oldPos == Vector3.zero || Mathf.Abs(result) > (5.0f * Time.deltaTime) * (5.0f * Time.deltaTime))
+                {
+                    Vector3 vec = new Vector3(Mathf.Sign(result) * TranckingStrength * BasicArea * Time.deltaTime, 0.0f, 0.0f);
+                    gameObject.transform.Translate(vec, Space.Self);
+                }
+
+                oldPos = NowVec;
+            }
         }
     }
 }
