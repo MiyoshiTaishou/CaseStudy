@@ -92,7 +92,6 @@ public class N_ProjectHologram : MonoBehaviour
         }
 
         sc_col = GetComponent<N_SetColliderOffSet>();
-        sc_col.SetActive(isProjection);
 
         // 描画に必要な情報をセット
         SetInfomation(mode, HoloDirection);
@@ -184,7 +183,7 @@ public class N_ProjectHologram : MonoBehaviour
                 isActive = false;
 
                 // 当たり判定のオブジェクトを非アクティブに
-                sc_col.SetActive(true);
+                sc_col.SetActive(false);
             }
         }
     }
@@ -337,6 +336,8 @@ public class N_ProjectHologram : MonoBehaviour
                 sc_col.SetIsColliding(false);
                 break;
         }
+
+        sc_col.SetActive(isProjection);
 
         Prefab = gHolograms[(int)_mode];
 
