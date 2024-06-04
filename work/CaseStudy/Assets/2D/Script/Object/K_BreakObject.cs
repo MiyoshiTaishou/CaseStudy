@@ -38,6 +38,11 @@ public class K_BreakObject : MonoBehaviour
 
     private bool isQuitting;
 
+    /// <summary>
+    /// 三好大翔追記カメラオブジェクト
+    /// </summary>
+    GameObject camera;
+
     private void Start()
     {
         if(IsDisplayBreakNum == true)
@@ -54,6 +59,15 @@ public class K_BreakObject : MonoBehaviour
             burst.count = GenerateNum;
             Eff_BrokenPiece.GetComponent<ParticleSystem>().emission.SetBurst(0,burst);
         }
+
+        //三好大翔追記カメラ探す
+        camera = GameObject.FindWithTag("MainCamera");
+
+        if (!camera)
+        {
+            Debug.Log("カメラが見つかりません");
+        }
+
     }
 
     private void Update()
@@ -103,6 +117,8 @@ public class K_BreakObject : MonoBehaviour
             {
                 Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
             }
+
+            camera.GetComponent<M_CameraShake>().Shake();
         }
     }
 }
