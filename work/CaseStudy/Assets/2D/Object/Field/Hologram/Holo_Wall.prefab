@@ -108,7 +108,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806074594693296770}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -143,13 +143,13 @@ MonoBehaviour:
   pos:
     isApply: 0
     ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    amount: {x: 0, y: 0}
   rot:
     isApply: 0
     ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    amount: {x: 0, y: 0}
   scale:
     isApply: 1
     ease: 29
-    amount: {x: 0.2, y: 0.2, z: 0}
+    amount: {x: 0.2, y: 0.2}
   isStart: 0

@@ -76,6 +76,8 @@ public class N_ProjectHologram : MonoBehaviour
     /// </summary>
     private float fTime = 0.0f;
 
+    private N_SetColliderOffSet sc_col;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,11 +91,14 @@ public class N_ProjectHologram : MonoBehaviour
             Replacement();
         }
 
+        sc_col = GetComponent<N_SetColliderOffSet>();
+        sc_col.SetActive(isProjection);
+
         // 描画に必要な情報をセット
         SetInfomation(mode, HoloDirection);
 
         // ホログラム生成
-        GenerateHologram();       
+        GenerateHologram();
 
         // projectionUI.SetActive(false);
     }
@@ -128,6 +133,10 @@ public class N_ProjectHologram : MonoBehaviour
                     obj.SetActive(true);                   
                 }
                 isActive = true;
+
+                // 当たり判定のオブジェクトをアクティブに
+                sc_col.SetActive(true);
+
                 if (MeowingPrefab)
                 {
                     MeowingObj = Instantiate(MeowingPrefab, transform.position, Quaternion.identity);
@@ -173,6 +182,9 @@ public class N_ProjectHologram : MonoBehaviour
                     AudioSource.PlayClipAtPoint(audioclip, transform.position);
                 }
                 isActive = false;
+
+                // 当たり判定のオブジェクトを非アクティブに
+                sc_col.SetActive(true);
             }
         }
     }
@@ -185,7 +197,8 @@ public class N_ProjectHologram : MonoBehaviour
         float dirX = 1.0f;
         float dirY = 1.0f;
 
-        Vector3 sca = Prefab.transform.localScale;        
+        Vector3 sca = Prefab.transform.localScale;
+        
         
         // ホログラムの開始地点調整
         switch (HoloDirection)
@@ -201,16 +214,21 @@ public class N_ProjectHologram : MonoBehaviour
         vec.x = vec.x + AwayDistance.x * dirX;
         vec.y = vec.y + AwayDistance.y * dirY;
 
+        // 当たり判定用
+        Vector3 size = Vector3.zero;
+        
         switch (HoloDirection)
         {
             case HOLOGRAM_DIRECTION.UP:
             case HOLOGRAM_DIRECTION.DOWN:
                 dirX = 0.0f;
+
                 break;
 
             case HOLOGRAM_DIRECTION.LEFT:
             case HOLOGRAM_DIRECTION.RIGHT:
                 dirY = 0.0f;
+
                 break;
         }
 
@@ -222,7 +240,7 @@ public class N_ProjectHologram : MonoBehaviour
                 vec.z
                 );
 
-            Debug.Log(newVec);
+            //Debug.Log(newVec);
 
             // インスタンス生成
             GameObject obj = Instantiate(Prefab, newVec, Quaternion.identity);
@@ -233,8 +251,49 @@ public class N_ProjectHologram : MonoBehaviour
             // 最初非表示
             obj.SetActive(false);
             // リスト追加
-            Hologram.Add(obj);            
+            Hologram.Add(obj);
+            
         }
+
+        // 当たり判定系
+        Vector2 offset = Vector2.zero;
+
+        sca.x /= transform.localScale.x;
+        sca.y /= transform.localScale.y;
+        sca.z /= transform.localScale.z;
+
+        Vector2 away = AwayDistance;
+        away.x /= transform.localScale.x;
+        away.y /= transform.localScale.y;
+
+        switch (HoloDirection)
+        {
+            case HOLOGRAM_DIRECTION.UP:
+                size = new Vector3(sca.x, sca.y * iHowMany, sca.z);
+                offset.x += away.x;
+                offset.y += away.y + sca.y * iHowMany / 2 - sca.y / 2;
+                break;
+
+            case HOLOGRAM_DIRECTION.DOWN:
+                size = new Vector3(sca.x, sca.y * iHowMany, sca.z);
+                offset.x += away.x;
+                offset.y -= away.y + sca.y * iHowMany / 2 - sca.y / 2;
+                break;
+
+            case HOLOGRAM_DIRECTION.LEFT:
+                size = new Vector3(sca.x * iHowMany, sca.y, sca.z);
+                offset.x += away.x + sca.x * iHowMany / 2 + sca.x / 2 - sca.x;
+                offset.y += away.y;
+                break;
+
+            case HOLOGRAM_DIRECTION.RIGHT:
+                size = new Vector3(sca.x * iHowMany, sca.y, sca.z);
+                offset.x += away.x + sca.x * iHowMany / 2 + sca.x / 2 - sca.x;
+                offset.y += away.y;
+                break;
+        }
+
+        sc_col.SetOffSet(size, offset);
 
     }
 
@@ -262,14 +321,20 @@ public class N_ProjectHologram : MonoBehaviour
         {
             case HOLOGRAM_MODE.PLAYER:
                 iHowMany = 1;
+                // 当たり判定が必要か
+                sc_col.SetIsColliding(false);
                 break;
 
             case HOLOGRAM_MODE.WALL:
+                sc_col.SetIsColliding(true);
                 break;
 
             case HOLOGRAM_MODE.FLOOR:
+                sc_col.SetIsColliding(true);
                 break;
+
             case HOLOGRAM_MODE.TRANS:
+                sc_col.SetIsColliding(false);
                 break;
         }
 
