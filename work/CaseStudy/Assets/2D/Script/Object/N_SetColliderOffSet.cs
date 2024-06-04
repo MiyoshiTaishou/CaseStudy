@@ -23,7 +23,10 @@ public class N_SetColliderOffSet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (!isColliding)
+        {
+            ColObj.SetActive(false);
+        }
     }
 
     public void SetActive(bool _active)
