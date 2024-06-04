@@ -33,6 +33,11 @@ public class M_PlayerTrail : MonoBehaviour
 
     void Update()
     {
+        if(!M_GameMaster.GetGamePlay())
+        {
+            return;
+        }
+
         // プレイヤーがダッシュしているかどうかを確認
         if (player.GetComponent<M_PlayerMove>().GetIsDash())
         {

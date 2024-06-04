@@ -57,11 +57,15 @@ public class M_CameraSlideIn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<N_TrackingPlayer>().enabled = false;
+
         camPosZ = this.transform.position.z;
         cam = GetComponent<Camera>();
         camZoom = cam.orthographicSize;
 
         this.transform.position = new Vector3(StartObj.transform.position.x, StartObj.transform.position.y, camPosZ);
+
+        M_GameMaster.SetGamePlay(false);
     }
 
     // Update is called once per frame
@@ -78,6 +82,8 @@ public class M_CameraSlideIn : MonoBehaviour
             if (fTimeMove > durationMove)
             {
                 fTimeMove = durationMove;
+                GetComponent<N_TrackingPlayer>().enabled = true;
+                M_GameMaster.SetGamePlay(true);
             }
             EasingMove();
         }
