@@ -15,7 +15,7 @@ public class M_PlayerPush : MonoBehaviour
         None,
     }
 
-    [Header("押せる条件"),SerializeField]
+    [Header("押せる条件"), SerializeField]
     MODE mode;
 
     [Header("押す力"), SerializeField]
@@ -42,7 +42,7 @@ public class M_PlayerPush : MonoBehaviour
     /// ダクトマネージャ
     /// </summary>
     GameObject DuctManager;
-    
+
     /// <summary>
     /// 押すオブジェクト
     /// </summary>
@@ -58,10 +58,13 @@ public class M_PlayerPush : MonoBehaviour
     /// <summary>
     ///アニメーション関連
     /// </summary>
-    private Animator animator;   
-    private Animator animator2;   
-    
+    private Animator animator;
+    private Animator animator2;
+
     private AudioSource audioSource;
+
+    // 前フレームの入力状態を保持
+    private bool wasPushButtonPressed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -74,72 +77,78 @@ public class M_PlayerPush : MonoBehaviour
 
         // Animatorコンポーネントを取得
         animator = GetComponent<Animator>();
-        
-        audioSource= GetComponent<AudioSource>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
-    {      
-        if(!M_GameMaster.GetGamePlay() || DuctManager.GetComponent<M_DuctManager>().ContainsTrueValue())
+    {
+        if (!M_GameMaster.GetGamePlay() || DuctManager.GetComponent<M_DuctManager>().ContainsTrueValue())
         {
             return;
         }
 
-        if(isPush && PushObj && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        // 入力の状態を取得
+        bool isPushButtonPressed = Input.GetAxis("EnemyPush") > 0.5f;
+
+        if (isPushButtonPressed && !wasPushButtonPressed && isPush && PushObj && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             float Distance = 100.0f;
-            Vector3 pos=PlayerObj.transform.position;
-            for (int i = 0; i < PushList.Count; i ++)
+            Vector3 pos = PlayerObj.transform.position;
+            for (int i = 0; i < PushList.Count; i++)
             {
                 float check = (PushList[i].transform.position - pos).magnitude;
-                if(check<Distance)
+                if (check < Distance)
                 {
                     Distance = check;
                     PushObj = PushList[i];
                 }
             }
-            if(!PushObj)
+            if (!PushObj)
             {
                 PushObj = PushList[0];
             }
-            Push(PushObj);            
+            Push(PushObj);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0.5 && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
-        //if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush") && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
-        {           
+        if (Input.GetKeyDown(KeyCode.Return) || (isPushButtonPressed && !wasPushButtonPressed))
+        {
             animator2.SetTrigger("push");
             StartCoroutine(IEAnimDlay(fDlayAnim));
+
+            Debug.Log("押すぜ");
         }
-      
+
         //アニメーション再生中は動かないようにする
-        if(animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        if (animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-        }            
+        }
         else
         {
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
         }
+
+        // 前フレームの入力状態を更新
+        wasPushButtonPressed = isPushButtonPressed;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!collision.isTrigger)
-        {            
+        {
             if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
             {
                 isPush = true;
                 //押すオブジェクト代入
                 PushObj = collision.gameObject;
-                if (PushList.Contains(collision.gameObject) == false)
+                if (!PushList.Contains(collision.gameObject))
                 {
-                    //Debug.Log(collision.gameObject.name);
                     PushList.Add(collision.gameObject);
                 }
             }
-        }       
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -149,7 +158,6 @@ public class M_PlayerPush : MonoBehaviour
             if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
             {
                 isPush = false;
-
                 PushObj = null;
 
                 if (PushList.Contains(collision.gameObject))
@@ -162,72 +170,51 @@ public class M_PlayerPush : MonoBehaviour
 
     //押す処理
     void Push(GameObject push)
-    {      
+    {
         //押せる条件
         switch (mode)
         {
             //条件なし
             case MODE.None:
-
-                if (Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0)
-                //if (Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush"))
-                {
-                    Vector3 dir;
-
-                    if (this.transform.eulerAngles.y == 180.0f)
-                    {
-                        dir = transform.right;
-                    }
-                    else
-                    {
-                        dir = -transform.right;
-                    }
-
-                    push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
-                    push.GetComponent<S_EnemyBall>().SetisPushing(true);
-                }
-
+                ExecutePush(push);
                 break;
 
             //目くらまし中
             case MODE.Blinding:
-
-                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
-                //if ((Input.GetKeyDown(KeyCode.Return)|| Input.GetButtonDown("EnemyPush")) && push.GetComponent<M_BlindingMove>().GetIsBlinding())
+                if (push.GetComponent<M_BlindingMove>().GetIsBlinding())
                 {
-                    Vector3 dir;
-
-                    if (this.transform.eulerAngles.y == 180.0f)
-                    {
-                        dir = transform.right;
-                    }
-                    else
-                    {
-                        dir = -transform.right;
-                    }
-
-                    push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
-                    push.GetComponent<S_EnemyBall>().SetisPushing(true);
+                    ExecutePush(push);
                 }
-
                 break;
 
             //バレていない時
             case MODE.Back:
                 N_PlayerSearch search = push.gameObject.transform.GetChild(0).gameObject.GetComponent<N_PlayerSearch>();
-                if ((Input.GetKeyDown(KeyCode.Return) || Input.GetAxis("EnemyPush") > 0.5f) && !search.GetIsSearch()/*!push.GetComponent<N_PlayerSearch>().GetIsSearch()*/)
-                    //if ((Input.GetKeyDown(KeyCode.Return) || Input.GetButtonDown("EnemyPush")) && !push.GetComponent<N_PlayerSearch>().GetIsSearch())
+                if (!search.GetIsSearch())
                 {
-                 
-                    //push.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-
                     Debug.Log("押した");
                     StartCoroutine(HitStop(push));
-                    StartCoroutine(M_Utility.GamePadMotor(fTime));                   
+                    StartCoroutine(M_Utility.GamePadMotor(fTime));
                 }
-                
                 break;
-        }       
+        }
+    }
+
+    void ExecutePush(GameObject push)
+    {
+        Vector3 dir;
+
+        if (this.transform.eulerAngles.y == 180.0f)
+        {
+            dir = transform.right;
+        }
+        else
+        {
+            dir = -transform.right;
+        }
+
+        push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
+        push.GetComponent<S_EnemyBall>().SetisPushing(true);
     }
 
     IEnumerator IEAnimDlay(float _waitTime)
@@ -254,7 +241,7 @@ public class M_PlayerPush : MonoBehaviour
         audioSource.PlayOneShot(ac);
         //指定のフレーム待つ
         yield return new WaitForSecondsRealtime(fHitStop / 60);
-        
+
         push.GetComponent<Rigidbody2D>().AddForce(dir * fPower, ForceMode2D.Impulse);
         push.GetComponent<S_EnemyBall>().SetisPushing(true);
     }
