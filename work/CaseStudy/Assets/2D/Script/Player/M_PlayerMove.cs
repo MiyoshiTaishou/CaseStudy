@@ -118,7 +118,8 @@ public class M_PlayerMove : MonoBehaviour
         StaminaColor = StaminaImage.color;
 
         // 子オブジェクトの中から、アニメーターを取得
-        animator = GetComponentInChildren<Animator>();
+        animator = gameObject.transform.GetChild(3).GetComponent<Animator>();
+        Debug.Log(animator);
     }
 
     // Update is called once per frame
@@ -165,7 +166,6 @@ public class M_PlayerMove : MonoBehaviour
                 Teleport(fHorizontalInput);
                 break;
         }
-
     }
 
     // 瞬間移動
@@ -245,12 +245,13 @@ public class M_PlayerMove : MonoBehaviour
                 fStamina -= fUseDashStamina * Time.deltaTime;
                 isNowDash = true;
                 animator.SetBool("run", true);
-
             }
             else
             {
                 fStamina += fStayRecoverySpeed * Time.deltaTime;
                 isNowDash = false;
+                animator.SetBool("run", false);
+
             }
         }
         else
@@ -306,7 +307,7 @@ public class M_PlayerMove : MonoBehaviour
             isStamina = false;
         }
 
-        if (_forizontal == 0.0f)
+        if (_forizontal == 0.0f && Input.GetAxis("DashButton") == 0)
         {            
             animator.SetBool("run", false);
         }
