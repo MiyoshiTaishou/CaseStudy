@@ -38,6 +38,8 @@ public class M_PlayerPush : MonoBehaviour
     /// </summary>
     GameObject PlayerObj;
 
+    GameObject AnimBonePlayer;
+
     /// <summary>
     /// ダクトマネージャ
     /// </summary>
@@ -69,6 +71,8 @@ public class M_PlayerPush : MonoBehaviour
     void Start()
     {
         PlayerObj = GameObject.Find("Player");
+
+        AnimBonePlayer = GameObject.Find("T_idol_1");
 
         DuctManager = GameObject.Find("DuctManager");
 
@@ -214,11 +218,12 @@ public class M_PlayerPush : MonoBehaviour
     }
 
     IEnumerator IEAnimDlay(float _waitTime)
-    {
+    {        
         // 待機時間
         yield return new WaitForSeconds(_waitTime);
 
         animator.SetTrigger("Start");
+        AnimBonePlayer.GetComponent<Animator>().SetTrigger("push");
     }
 
     IEnumerator HitStop(GameObject push)
