@@ -16,6 +16,11 @@ public class M_DuctManager : MonoBehaviour
     /// </summary>
     private bool isMove = false;
 
+    /// <summary>
+    /// 入った瞬間
+    /// </summary>
+    private bool isDuctIn = false;
+
     public void SetIsMove(bool _move) { isMove = _move; }
 
     public bool GetIsMove() { return isMove; }
@@ -69,7 +74,8 @@ public class M_DuctManager : MonoBehaviour
 
     private void Update()
     {        
-        if(ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct") && !isMove)
+
+        if(ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct") && !isMove && !isDuctIn)
         {           
             Debug.Log("ダクトを出た");
 
@@ -93,7 +99,7 @@ public class M_DuctManager : MonoBehaviour
                 renderers[i].enabled = true;
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
+            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
@@ -111,12 +117,14 @@ public class M_DuctManager : MonoBehaviour
                 renderers[i].enabled = false;
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(false);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = false;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = false;
         }
+
+        isDuctIn = false;
     }
     //M_DuctWarpから呼ばれて指定したところまでプレイヤーを飛ばす
     public void DuctWarp(GameObject _duct1, GameObject _duct2)
@@ -152,13 +160,15 @@ public class M_DuctManager : MonoBehaviour
                 renderers[i].enabled = false;
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(false);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = false;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = false;
 
             Debug.Log(PlayerObj.GetComponent<M_PlayerMove>().GetIsMove());
+
+            isDuctIn = true;
         }
         else
         {
@@ -173,7 +183,7 @@ public class M_DuctManager : MonoBehaviour
                 renderers[i].enabled = true;
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
-            PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
+            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
