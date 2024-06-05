@@ -42889,15 +42889,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42954,26 +42954,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
   m_PrefabInstance: {fileID: 2111202551}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2111202553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1609188613567155283, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
-  m_PrefabInstance: {fileID: 2111202551}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2111202554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111202553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a252501a42e462f4c87299ea8a3fdc5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotAxis: 1
-  fRotateSpeed: 5
-  isReset: 0
 --- !u!1 &2122699773 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
@@ -43102,7 +43082,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8151198891805745506, guid: ed2ff6516e38cf8429576ec3b92f765f, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8151198891805745506, guid: ed2ff6516e38cf8429576ec3b92f765f, type: 3}
       propertyPath: m_LocalScale.x
