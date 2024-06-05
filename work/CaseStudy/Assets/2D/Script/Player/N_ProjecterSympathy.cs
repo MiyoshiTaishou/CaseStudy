@@ -62,7 +62,7 @@ public class N_ProjecterSympathy : MonoBehaviour
         }
         trans_Player = this.gameObject.transform;
 
-        playSound = transform.GetChild(3).gameObject.GetComponent<N_PlaySound>();
+        playSound = transform.GetChild(1).gameObject.GetComponent<N_PlaySound>();
     }
 
     // Update is called once per frame

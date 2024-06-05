@@ -59,7 +59,6 @@ public class M_PlayerPush : MonoBehaviour
     ///アニメーション関連
     /// </summary>
     private Animator animator;
-    private Animator animator2;
 
     private AudioSource audioSource;
 
@@ -70,8 +69,6 @@ public class M_PlayerPush : MonoBehaviour
     void Start()
     {
         PlayerObj = GameObject.Find("Player");
-
-        animator2 = GameObject.Find("T_main_chara").GetComponent<Animator>();
 
         DuctManager = GameObject.Find("DuctManager");
 
@@ -92,7 +89,7 @@ public class M_PlayerPush : MonoBehaviour
         // 入力の状態を取得
         bool isPushButtonPressed = Input.GetAxis("EnemyPush") > 0.5f;
 
-        if (isPushButtonPressed && !wasPushButtonPressed && isPush && PushObj && !animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        if (isPushButtonPressed && !wasPushButtonPressed && isPush && PushObj && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             float Distance = 100.0f;
             Vector3 pos = PlayerObj.transform.position;
@@ -114,14 +111,13 @@ public class M_PlayerPush : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) || (isPushButtonPressed && !wasPushButtonPressed))
         {
-            animator2.SetTrigger("push");
             StartCoroutine(IEAnimDlay(fDlayAnim));
 
             Debug.Log("押すぜ");
         }
 
         //アニメーション再生中は動かないようにする
-        if (animator2.GetCurrentAnimatorStateInfo(0).IsName("player_push") && animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
         }
