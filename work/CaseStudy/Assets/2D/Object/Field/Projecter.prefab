@@ -137,9 +137,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6679884408250321283}
   - component: {fileID: 4037397424653515890}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Collider
-  m_TagString: Untagged
+  m_TagString: TileMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
