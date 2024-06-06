@@ -17,6 +17,7 @@ public class N_PlayerSearch : MonoBehaviour
 
     [SerializeField]
     public bool isSearch = false;
+
     public bool GetIsSearch() { return isSearch; }
 
     // Start is called before the first frame update
@@ -32,6 +33,7 @@ public class N_PlayerSearch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //‹Êó‘Ô‚È‚ç’ÇÕó‘Ô‚ğ‰ğœ
         if(enemyBall.GetisBall())
         {

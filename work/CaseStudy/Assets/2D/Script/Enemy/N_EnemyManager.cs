@@ -109,6 +109,8 @@ public class N_EnemyManager : MonoBehaviour
     private GameObject Target;
     private Transform TargetTrans;
 
+    private N_PostProcess postProcess;
+
     // 移動ステータス初期化
     void InitMoveStatus()
     {
@@ -154,10 +156,12 @@ public class N_EnemyManager : MonoBehaviour
             // 隊列の敵に番号を付与
             SetInfomation(true);
 
+            postProcess = GameObject.Find("Volume").GetComponent<N_PostProcess>();
+
             init = true;
         }
 
-        if(iMemberNum == 0)
+        if (iMemberNum == 0)
         {
             return;
         }
@@ -467,7 +471,8 @@ public class N_EnemyManager : MonoBehaviour
 
     private void ChaseInit()
     {
-        
+        postProcess.AddSerachNum();
+
         managerState = ManagerState.CHASE;
     }
 
@@ -533,6 +538,8 @@ public class N_EnemyManager : MonoBehaviour
             Target = null;
             managerState = ManagerState.PATOROL;
             ElapsedLostSightTime = 0.0f;
+
+            postProcess.SubSerachNum();
 
             // クエスチョンマーク非表示
             foreach (var obj in TeamMembers)
