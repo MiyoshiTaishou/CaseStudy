@@ -12,16 +12,18 @@ public class M_DropAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {       
-        AnimBone.GetComponent<Animator>().SetBool("Drop", isDrop);                
+        AnimBone.GetComponent<Animator>().SetBool("Drop", isDrop);       
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
+        Debug.Log("“–‚½‚Á‚Ä‚¢‚é");
         isDrop = false;
-    }
+    }    
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        Debug.Log("“–‚½‚Á‚Ä‚¢‚È‚¢");
         isDrop = true;
     }
 }
