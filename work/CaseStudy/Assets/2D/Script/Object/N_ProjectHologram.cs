@@ -78,32 +78,68 @@ public class N_ProjectHologram : MonoBehaviour
 
     private N_SetColliderOffSet sc_col;
 
+    private bool isInit = false;
+
     // Start is called before the first frame update
     void Start()
     {
         // トランスフォーム取得
         trans_Projecter = this.gameObject.transform;
 
-        // インスペクターでマスに合わせると指定した時
-        if (AutoCombine)
-        {
-            // 置きなおし
-            Replacement();
-        }
+        //// インスペクターでマスに合わせると指定した時
+        //if (AutoCombine)
+        //{
+        //    // 置きなおし
+        //    Replacement();
+        //}
 
-        sc_col = GetComponent<N_SetColliderOffSet>();
+        //sc_col = GetComponent<N_SetColliderOffSet>();
 
-        // 描画に必要な情報をセット
-        SetInfomation(mode, HoloDirection);
+        //// 描画に必要な情報をセット
+        //SetInfomation(mode, HoloDirection);
 
         // ホログラム生成
-        GenerateHologram();
+        //GenerateHologram();
 
         // projectionUI.SetActive(false);
     }
 
     void Update()
     {
+
+        // 初期化されてなければ
+        if (!isInit)
+        {
+            // インスペクターでマスに合わせると指定した時
+            if (AutoCombine)
+            {
+                // 置きなおし
+                Replacement();
+            }
+
+            sc_col = GetComponent<N_SetColliderOffSet>();
+
+            // 描画に必要な情報をセット
+            SetInfomation(mode, HoloDirection);
+
+            // ホログラム生成
+            GenerateHologram();
+
+            isInit = true;
+
+            //Debug.Log("プロジェクター初期化");
+        }
+        //if (gameObject.name == "Projecter (8)")
+        //{
+        //    if (Input.GetKeyDown(KeyCode.L))
+        //    {
+        //        //N_DebugDisplay.pos = sc_col.transform.position;
+        //        //N_DebugDisplay.size = size;
+        //        GenerateHologram();
+        //        //N_DebugDisplay.offset = offset;
+        //    }
+        //}
+
         if (isReset)
         {
             // 生成したホログラム削除
@@ -192,6 +228,10 @@ public class N_ProjectHologram : MonoBehaviour
 
     private void GenerateHologram()
     {
+        if (gameObject.name == "Projecter (8)")
+        {
+            N_DebugDisplay.fNum = iHowMany;
+        }
         Vector3 vec = trans_Projecter.position;
         float dirX = 1.0f;
         float dirY = 1.0f;
@@ -293,6 +333,10 @@ public class N_ProjectHologram : MonoBehaviour
         }
 
         sc_col.SetOffSet(size, offset);
+
+        //N_DebugDisplay.pos = sc_col.transform.position;
+        //N_DebugDisplay.size = size;
+        //N_DebugDisplay.offset = offset;
 
     }
 
