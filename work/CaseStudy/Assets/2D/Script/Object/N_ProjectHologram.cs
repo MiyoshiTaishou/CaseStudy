@@ -236,7 +236,7 @@ public class N_ProjectHologram : MonoBehaviour
             Vector3 newVec = new Vector3(
                 vec.x + dirX * sca.x * i,
                 vec.y + dirY * sca.y * i,
-                vec.z
+                -1.0f
                 );
 
             //Debug.Log(newVec);
@@ -299,7 +299,7 @@ public class N_ProjectHologram : MonoBehaviour
     // タイルのマスにあうように座標をセットする
     private void Replacement()
     {
-        Vector2 vec = trans_Projecter.position;
+        Vector3 vec = trans_Projecter.position;
         Vector2 sca = trans_Projecter.localScale;
 
         //Debug.Log(gameObject.name);
