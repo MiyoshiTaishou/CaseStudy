@@ -71,8 +71,6 @@ public class SEnemyMove : MonoBehaviour
     //地に足ついてるか
     private bool isGround = false;
 
-    public bool GetIsGround() { return isGround; }
-
     private bool isLook = false;
 
     //ホログラムとの衝突を検知(2024/4/17 木村記載)
@@ -83,7 +81,7 @@ public class SEnemyMove : MonoBehaviour
 
     private N_EnemyManager enemyManager;
 
-    private Transform thisTrans;  
+    private Transform thisTrans;
 
     [Header("壁レイヤーマスク設定"), SerializeField]
     private LayerMask layerMask_Wall;
@@ -391,7 +389,7 @@ public class SEnemyMove : MonoBehaviour
         RaycastHit2D hit=Physics2D.Raycast(origin, Vector2.down,0.4f, layerMask_Ground);
         //Debug.Log(hit.collider);
         //Debug.DrawRay(origin,Vector2.down*0.2f, Color.yellow);
-        if(hit.collider != null && (hit.collider.CompareTag("TileMap") || hit.collider.CompareTag("Hologram"))) 
+        if(hit.collider != null && hit.collider.CompareTag("TileMap")) 
         {
             //ホロ床すり抜けなどで位置が大きく変わった場合に目標位置等の更新を行う
             //if(!isGround) 
@@ -409,13 +407,13 @@ public class SEnemyMove : MonoBehaviour
             //    defaultPos = transform.position;
             //}
           isGround= true;
-            //Debug.Log("地面当たり");           
+            //Debug.Log("地面当たり");
         }
         else
         {
             //Debug.Log("地面はずれ");
 
-            isGround = false;            
+            isGround = false;
         }
         return isGround;
     }

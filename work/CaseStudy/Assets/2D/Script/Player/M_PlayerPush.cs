@@ -67,8 +67,6 @@ public class M_PlayerPush : MonoBehaviour
     // 前フレームの入力状態を保持
     private bool wasPushButtonPressed = false;
 
-    private bool isWindAnim = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -113,17 +111,11 @@ public class M_PlayerPush : MonoBehaviour
                 PushObj = PushList[0];
             }
             Push(PushObj);
-
         }
 
         if (Input.GetKeyDown(KeyCode.Return) || (isPushButtonPressed && !wasPushButtonPressed))
         {
-            // 風のアニメーションが再生中で鳴ければ風を起こす
-            if (!isWindAnim)
-            {
-                StartCoroutine(IEAnimDlay(fDlayAnim));
-                audioSource.PlayOneShot(ac);
-            }
+            StartCoroutine(IEAnimDlay(fDlayAnim));
 
             Debug.Log("押すぜ");
         }
@@ -132,12 +124,10 @@ public class M_PlayerPush : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
-            isWindAnim = true;
         }
         else
         {
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
-            isWindAnim = false;
         }
 
         // 前フレームの入力状態を更新
@@ -202,7 +192,7 @@ public class M_PlayerPush : MonoBehaviour
                 N_PlayerSearch search = push.gameObject.transform.GetChild(0).gameObject.GetComponent<N_PlayerSearch>();
                 if (!search.GetIsSearch())
                 {
-                    //Debug.Log("押した");
+                    Debug.Log("押した");
                     StartCoroutine(HitStop(push));
                     StartCoroutine(M_Utility.GamePadMotor(fTime));
                 }
@@ -233,9 +223,7 @@ public class M_PlayerPush : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         animator.SetTrigger("Start");
-        Animator anim = AnimBonePlayer.GetComponent<Animator>();
-        anim.SetTrigger("push");
-        anim.SetBool("run", false);
+        AnimBonePlayer.GetComponent<Animator>().SetTrigger("push");
     }
 
     IEnumerator HitStop(GameObject push)
@@ -251,7 +239,7 @@ public class M_PlayerPush : MonoBehaviour
             Debug.Log(PlayerObj.transform.eulerAngles);
             dir = transform.right;
         }
-
+        audioSource.PlayOneShot(ac);
         //指定のフレーム待つ
         yield return new WaitForSecondsRealtime(fHitStop / 60);
 
