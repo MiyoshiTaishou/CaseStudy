@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 377446080215070972}
   - component: {fileID: 3559411171947690459}
   - component: {fileID: 5297312615223750310}
+  - component: {fileID: 3932744787676340386}
   m_Layer: 2
   m_Name: Enemy_Mark.1
   m_TagString: Enemy
@@ -430,6 +431,19 @@ MonoBehaviour:
   Eff_Scatter: {fileID: 2433704489725696160, guid: 4205230b5c3436f478bf08d5580b636a, type: 3}
   audioclip: {fileID: 0}
   fHitStop: 10
+--- !u!114 &3932744787676340386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905725172142954792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0669629d626da7a449107a44b39a17fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimBone: {fileID: 803734902209920363}
 --- !u!1 &7082092550742901115
 GameObject:
   m_ObjectHideFlags: 0
