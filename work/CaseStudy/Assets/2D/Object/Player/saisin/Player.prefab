@@ -681,6 +681,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound
       objectReference: {fileID: 0}
+    - target: {fileID: 8864757859108551898, guid: 087716dfde6294f4e940349bfcf167f9, type: 3}
+      propertyPath: SEInfo.Array.data[0].audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c5fa9a5d443d5524e840edb9628aac3a, type: 3}
+    - target: {fileID: 8864757859108551898, guid: 087716dfde6294f4e940349bfcf167f9, type: 3}
+      propertyPath: SEInfo.Array.data[0].SEPlayTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8864757859108551899, guid: 087716dfde6294f4e940349bfcf167f9, type: 3}
       propertyPath: m_RootOrder
       value: 1
