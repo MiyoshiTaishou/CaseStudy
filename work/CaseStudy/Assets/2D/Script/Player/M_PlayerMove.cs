@@ -244,12 +244,14 @@ public class M_PlayerMove : MonoBehaviour
             {
                 fStamina -= fUseDashStamina * Time.deltaTime;
                 isNowDash = true;
-                animator.SetBool("run", true);
+                animator.SetBool("glider", true);
+                animator.SetBool("run", false);
             }
             else
             {
                 fStamina += fStayRecoverySpeed * Time.deltaTime;
                 isNowDash = false;
+                animator.SetBool("glider", false);
                 animator.SetBool("run", false);
 
             }
@@ -260,6 +262,7 @@ public class M_PlayerMove : MonoBehaviour
             Vector2 vecMoveDirection = new Vector2(_forizontal * fMoveSpeed, rbPlayer.velocity.y);
             rbPlayer.velocity = vecMoveDirection;
             animator.SetBool("run", true);
+            animator.SetBool("glider", false);
 
             if (_forizontal > 0.0f)
             {
@@ -279,6 +282,7 @@ public class M_PlayerMove : MonoBehaviour
                 {                    
                     fStamina += fStayRecoverySpeed * Time.deltaTime;
                     animator.SetBool("run", false);
+                    animator.SetBool("glider", false);
                 }
                 else
                 {                    
