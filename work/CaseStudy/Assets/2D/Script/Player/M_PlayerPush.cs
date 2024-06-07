@@ -67,6 +67,8 @@ public class M_PlayerPush : MonoBehaviour
     // 前フレームの入力状態を保持
     private bool wasPushButtonPressed = false;
 
+    private bool isWindAnim = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -115,9 +117,12 @@ public class M_PlayerPush : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return) || (isPushButtonPressed && !wasPushButtonPressed))
         {
-            StartCoroutine(IEAnimDlay(fDlayAnim));
-
-            Debug.Log("押すぜ");
+            // 風のアニメーションが再生中で鳴ければ風を起こす
+            if (!isWindAnim)
+            {
+                StartCoroutine(IEAnimDlay(fDlayAnim));
+                audioSource.PlayOneShot(ac);
+            }
         }
 
         //アニメーション再生中は動かないようにする
@@ -223,7 +228,9 @@ public class M_PlayerPush : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         animator.SetTrigger("Start");
-        AnimBonePlayer.GetComponent<Animator>().SetTrigger("push");
+        Animator anim = AnimBonePlayer.GetComponent<Animator>();
+        anim.SetTrigger("push");
+        anim.SetBool("run", false);
     }
 
     IEnumerator HitStop(GameObject push)
@@ -239,7 +246,7 @@ public class M_PlayerPush : MonoBehaviour
             Debug.Log(PlayerObj.transform.eulerAngles);
             dir = transform.right;
         }
-        audioSource.PlayOneShot(ac);
+        //audioSource.PlayOneShot(ac);
         //指定のフレーム待つ
         yield return new WaitForSecondsRealtime(fHitStop / 60);
 
