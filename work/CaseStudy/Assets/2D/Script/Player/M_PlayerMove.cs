@@ -314,7 +314,7 @@ public class M_PlayerMove : MonoBehaviour
         if (_forizontal == 0.0f && Input.GetAxis("DashButton") == 0)
         {            
             animator.SetBool("run", false);
-        }
+        }       
     }
 
     //UIŠÖ˜A‚Ìˆ—‚ğ‚·‚é

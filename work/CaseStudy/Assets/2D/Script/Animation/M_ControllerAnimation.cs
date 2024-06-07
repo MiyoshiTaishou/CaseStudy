@@ -19,22 +19,27 @@ public class M_ControllerAnimation : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(isOnce)
-        {
-            return;
-        }
-
-        if(animator.GetBool("wark"))
+    {      
+        if(animator.GetBool("endWork") && !isOnce)
         {
             Debug.Log("アニメーション");
             M_GameMaster.SetGamePlay(true);
             isOnce = true;
         }
-        else
+        else if(!isOnce)
         {
             M_GameMaster.SetGamePlay(false);
         }
+
+        if(isOnce)
+        {
+            float hor = Input.GetAxis("Horizontal");
+
+            if(hor >= 0.3f)
+            {
+                animator.SetBool("wark", true);
+            }
+        }        
     }
 
     public void SetPushBool(bool _push)
