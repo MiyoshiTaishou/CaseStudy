@@ -39,7 +39,7 @@ public class K_EnemyExplosion : MonoBehaviour
         {
             //敵塊数取得、オブジェクトの耐久値と比較
             int checkNum = enemyBall.GetStickCount();
-            if(HitObj.GetComponent<K_BreakObject>() .GetBreakNum()<= checkNum)
+            if(HitObj.GetComponent<K_BreakObject>() .GetBreakNum()<= checkNum && GetComponent<S_EnemyBall>().GetisPushing())
             {
                 StartCoroutine(HitStop(HitObj));
                 Debug.Log("破壊");
@@ -71,7 +71,7 @@ public class K_EnemyExplosion : MonoBehaviour
         {
             //敵塊数取得、オブジェクトの耐久値と比較
             int checkNum = enemyBall.GetStickCount();
-            if (Break.GetBreakNum() <= checkNum)
+            if (Break.GetBreakNum() <= checkNum && GetComponent<S_EnemyBall>().GetisPushing())
             {
                 StartCoroutine(HitStop(HitObj));
                 // 敵爆散エフェクト
