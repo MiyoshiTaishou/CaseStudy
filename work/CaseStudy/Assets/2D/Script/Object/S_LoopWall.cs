@@ -13,7 +13,12 @@ public class S_LoopWall : MonoBehaviour
     [Header("右側に出る？"),SerializeField]
     private bool iswarpRight = false;
 
+    [Header("ワープ時の音"), SerializeField]
+    private AudioClip audioclip = null;
+
+    private AudioSource audioSource= null;
     public bool GetiswarpRight() { return iswarpRight; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +26,7 @@ public class S_LoopWall : MonoBehaviour
         {
             Debug.LogError("ワープ先にスクリプトがないけんです");
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -39,12 +45,13 @@ public class S_LoopWall : MonoBehaviour
             Vector3 newpos = warpObj.transform.position;
             if(warpObj.GetComponent<S_LoopWall>().GetiswarpRight() == true)
             {
-                newpos.x += 1.0f;
+                newpos.x += 2.0f;
             }
             else if(warpObj.GetComponent<S_LoopWall>().GetiswarpRight() == false)
             {
-                newpos.x -= 1.0f;
+                newpos.x -= 2.0f;
             }
+            audioSource.PlayOneShot(audioclip);
             collision.gameObject.transform.position=newpos;
         }
     }
@@ -53,10 +60,12 @@ public class S_LoopWall : MonoBehaviour
     IEnumerator HitStop()
     {   
         isWarped = true;
-
+        warpObj.GetComponent<S_LoopWall>().isWarped= true;
         //指定のフレーム待つ
         yield return new WaitForSecondsRealtime(1);
-
+        Debug.Log("ああああ");
         isWarped = false;
+        warpObj.GetComponent<S_LoopWall>().isWarped = false;
+
     }
 }
