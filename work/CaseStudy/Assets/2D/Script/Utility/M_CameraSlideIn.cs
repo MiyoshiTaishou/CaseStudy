@@ -52,6 +52,8 @@ public class M_CameraSlideIn : MonoBehaviour
     /// </summary>
     private float camZoom;
 
+    private bool isOnce = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,11 +79,13 @@ public class M_CameraSlideIn : MonoBehaviour
 
             //ˆÚ“®ˆ—
             fTimeMove += Time.deltaTime;
-            if (fTimeMove > durationMove)
+            if (fTimeMove > durationMove && isOnce)
             {
                 fTimeMove = durationMove;
                 GetComponent<N_TrackingPlayer>().enabled = true;
                 M_GameMaster.SetGamePlay(true);
+
+                isOnce = true;
             }
             EasingMove();
         }

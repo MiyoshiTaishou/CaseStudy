@@ -70,6 +70,8 @@ public class M_Pause : MonoBehaviour
             }
 
             isPaused = !isPaused;
+
+            M_GameMaster.SetGamePlay(!isPaused);
         }
     }
 }
