@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class N_ProjecterSympathy : MonoBehaviour
 {
+    [Header("鳴けるか"), SerializeField]
+    private bool canSympathy = true;
+
     [Header("広がるスピード"), SerializeField]
     private float fSpreadSpeed = 1.0f;
 
@@ -90,6 +93,12 @@ public class N_ProjecterSympathy : MonoBehaviour
             }
 
             isInitialized = true;
+        }
+
+        // 鳴けないようにする
+        if (!canSympathy)
+        {
+            return;
         }
 
         // キー入力があったら共鳴開始

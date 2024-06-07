@@ -129,6 +129,7 @@ public class M_PlayerPush : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
+            animator.SetBool("run", false);
         }
         else
         {
