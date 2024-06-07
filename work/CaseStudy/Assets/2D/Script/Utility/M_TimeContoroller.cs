@@ -13,6 +13,8 @@ public class M_TimeContoroller : MonoBehaviour
     private GameObject camera;
     private Camera cameraCom;
 
+    private GameObject panel;
+
     [Header("カメラのズーム距離"), SerializeField]
     private float camZoom = 1.0f;
 
@@ -28,15 +30,24 @@ public class M_TimeContoroller : MonoBehaviour
     //初期カメラズーム距離
     private float initZoom;
 
+    /// <summary>
+    /// プレイヤー
+    /// </summary>
+    private GameObject PlayerObj;
+
     // Start is called before the first frame update
     void Start()
     {
         camera = GameObject.FindWithTag("MainCamera"); 
         cameraCom = camera.GetComponent<Camera>();
 
+        panel = GameObject.Find("Tutorial_Panel");
+
         time = 0.0f;
 
         initZoom = cameraCom.orthographicSize;
+
+        PlayerObj = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -48,8 +59,14 @@ public class M_TimeContoroller : MonoBehaviour
             Time.timeScale = 1.0f;
             time = 0.0f;
 
-            Destroy(this.gameObject);
+            panel.GetComponent<M_ControllerAnimation>().SetPushBool(true);
             isReverse = true;
+
+            PlayerObj.GetComponent<M_PlayerMove>().enabled = true;
+            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            PlayerObj.GetComponent<N_ProjecterSympathy>().enabled = true;
+
+            Destroy(this.gameObject);            
         }
 
         //ズーム処理
@@ -90,6 +107,12 @@ public class M_TimeContoroller : MonoBehaviour
             isTouch = true;
 
             initZoom = cameraCom.orthographicSize;
+
+            panel.GetComponent<M_ControllerAnimation>().SetPushBool(false);
+
+            PlayerObj.GetComponent<M_PlayerMove>().enabled = false;
+            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+            PlayerObj.GetComponent<N_ProjecterSympathy>().enabled = false;
         }
     }
    
