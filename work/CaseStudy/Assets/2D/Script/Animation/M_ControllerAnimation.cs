@@ -8,6 +8,8 @@ public class M_ControllerAnimation : MonoBehaviour
     /// コントローラーのアニメーション
     /// </summary>
     Animator animator;
+
+    private bool isOnce = false;
     
     // Start is called before the first frame update
     void Start()
@@ -18,9 +20,16 @@ public class M_ControllerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isOnce)
+        {
+            return;
+        }
+
         if(animator.GetBool("wark"))
         {
+            Debug.Log("アニメーション");
             M_GameMaster.SetGamePlay(true);
+            isOnce = true;
         }
         else
         {
