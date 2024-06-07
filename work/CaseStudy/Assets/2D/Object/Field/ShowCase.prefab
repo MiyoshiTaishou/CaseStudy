@@ -311,7 +311,7 @@ Transform:
   m_Children:
   - {fileID: 3638201331154942469}
   - {fileID: 1286111865160516094}
-  - {fileID: 1105851647839387376}
+  - {fileID: 41273954333524119}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -546,7 +546,7 @@ MonoBehaviour:
   UpDownSpeed: 1
   fShakingRange: 1
   IsDisplayBreakNum: 1
-  Eff_Explosion: {fileID: 151244, guid: 8368975de5593844bbfaf74e342fb326, type: 3}
+  Eff_Explosion: {fileID: 8111725552830047418, guid: 8d36c3d409370a8439501b8136e2785c, type: 3}
   Eff_BrokenPiece: {fileID: 0}
   GenerateNum: 30
   audioclip: {fileID: 0}
@@ -557,6 +557,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1609188614443976412}
     m_Modifications:
+    - target: {fileID: 5994486123124190396, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102104, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: m_SortingOrder
       value: 100
@@ -643,9 +647,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
---- !u!4 &1105851647839387376 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6699901702288102107, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
+--- !u!224 &41273954333524119 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5994486123124190396, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
   m_PrefabInstance: {fileID: 6026400344787250219}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1105851647839387378 stripped
