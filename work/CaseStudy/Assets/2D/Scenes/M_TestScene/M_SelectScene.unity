@@ -592,7 +592,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1709488264}
+      - m_Target: {fileID: 1741276182}
         m_TargetAssemblyTypeName: M_Transition, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 1

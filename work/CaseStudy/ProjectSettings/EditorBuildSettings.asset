@@ -8,19 +8,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/2D/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
+  - enabled: 1
     path: Assets/2D/Scenes/M_TestScene/M_TestTitleScene.unity
     guid: 6d1406c76f5178242b154a9aeb361b77
   - enabled: 0
     path: Assets/Scenes/O_ProtoStage.unity
     guid: c3c1ff63ca4bbf847b0fcb19ce249350
-  - enabled: 0
+  - enabled: 1
     path: Assets/2D/Scenes/M_TestScene/M_SelectScene.unity
     guid: cf6b7c79d33f0bf4486fcba77aca443f
-  - enabled: 0
+  - enabled: 1
     path: Assets/2D/Scenes/SN_TestScenes/SNTestScene_5.unity
     guid: 6a13d8b4daad15740b9ed44ed110cd6a
-  - enabled: 0
+  - enabled: 1
     path: Assets/2D/Scenes/SN_TestScenes/SNTestScene_6.unity
     guid: 30c5d09f6d2da774bbc35baedb5c2ccd
   - enabled: 0
@@ -32,16 +32,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/2D/Scenes/TSTestScene/TSTestScene_1.unity
     guid: 98a6eadb928cb51489d2e943848906a0
-  - enabled: 0
+  - enabled: 1
     path: Assets/2D/Scenes/SN_TestScenes/SNTestScene_7.unity
     guid: 37ee8b051d6e1d34ba3a871b8216f1ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/2D/Scenes/SN_TestScenes/SNTestScene_8.unity
     guid: 92951410585b3ee46a47ae5203bd322a
-  - enabled: 0
+  - enabled: 1
     path: Assets/2D/Scenes/SN_TestScenes/SNTestScene_9.unity
     guid: 3b651c1c9526b0948aa8e2ee0df129b9
-  - enabled: 1
+  - enabled: 0
     path: Assets/2D/Scenes/N_TestScene/NTestScene_3.unity
     guid: dbe03dbe3e33e234cbddc42d26cac999
   - enabled: 1
