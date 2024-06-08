@@ -104,6 +104,13 @@ public class N_TrackingPlayer : MonoBehaviour
 
     private Vector2 WarpTargetVec;
 
+    private bool isWarp = false;
+
+    public bool GetisWarp()
+    {
+        return isWarp;
+    }
+
     // =================================================================================
 
     // Start is called before the first frame update
@@ -180,6 +187,8 @@ public class N_TrackingPlayer : MonoBehaviour
             float subX = AfterWarpPos.x - BeforeWarpPos.x;
             float subY = AfterWarpPos.y - BeforeWarpPos.y;
 
+            isWarp = true;
+
             // ‹L‰¯
             WarpTargetVec = new Vector2(subX, subY);
         }
@@ -207,6 +216,7 @@ public class N_TrackingPlayer : MonoBehaviour
             WarpTargetVec = Vector2.zero;
             AfterWarpPos = Vector2.zero;
             BeforeWarpPos = Vector2.zero;
+            isWarp = false;
         }
     }
 
