@@ -106,7 +106,7 @@ public class M_DuctWarp : MonoBehaviour
     void Update()
     {
         //ダクト移動中は処理しない
-        if (DuctManager.GetComponent<M_DuctManager>().GetIsMove())
+        if (DuctManager.GetComponent<M_DuctManager>().GetIsMove() || trackingPlayer.GetisWarp())
         {
             return;
         }
