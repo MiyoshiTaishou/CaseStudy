@@ -156,6 +156,9 @@ public class S_EnemyBall : MonoBehaviour
             // 除名関数呼び出し(隊列番号、現在のマネージャーの状態)
             enemyMana.EcpulsionMember(sEnemyMove.GetTeamNumber(), state);
 
+            // ディレクトリ変更
+            transform.parent = gameObject.transform.parent.transform.parent.transform;
+
             isDeleteMember = true;
         }
     }
