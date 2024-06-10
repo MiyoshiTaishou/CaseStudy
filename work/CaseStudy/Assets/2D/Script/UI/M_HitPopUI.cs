@@ -7,6 +7,9 @@ public class M_HitPopUI : MonoBehaviour
     [Header("表示したいオブジェクトを入れる"),SerializeField]
     private GameObject hitPopUI;
 
+    [Header("画面遷移の時間"), SerializeField]
+    private float waitTime = 2.0f;
+
     /// <summary>
     /// クリアUI
     /// </summary>
@@ -27,7 +30,9 @@ public class M_HitPopUI : MonoBehaviour
             hitPopUI.SetActive(true);
             hitPopUI.GetComponent<M_ObjectEasing>().EasingOnOff();
 
-            ClearUI.GetComponent<M_Transition>().LoadScene();
+            M_GameMaster.SetGamePlay(false);
+
+            StartCoroutine(WaitAndLoadScene());
         }
     }
 
@@ -38,5 +43,14 @@ public class M_HitPopUI : MonoBehaviour
             hitPopUI.GetComponent <M_ObjectEasing>().SetReverse(true);
             hitPopUI.GetComponent<M_ObjectEasing>().EasingOnOff();
         }
+    }
+
+    private IEnumerator WaitAndLoadScene()
+    {
+        // 指定秒数待機
+        yield return new WaitForSeconds(waitTime);
+
+        // シーンをロード
+        ClearUI.GetComponent<M_Transition>().LoadScene();
     }
 }
