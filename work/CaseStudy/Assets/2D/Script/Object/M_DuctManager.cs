@@ -151,7 +151,8 @@ public class M_DuctManager : MonoBehaviour
             // ダクトに入ったらプレイヤーのレイヤーを変更
             PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");
 
-            PlayerObj.transform.position = duct.transform.position;
+            Vector3 vecPos = duct.transform.position;
+            PlayerObj.transform.position = new Vector3(vecPos.x, vecPos.y, -1.0f);
             PlayerObj.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
             //見えないようにする
