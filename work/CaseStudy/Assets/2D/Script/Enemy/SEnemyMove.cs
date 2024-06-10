@@ -89,6 +89,12 @@ public class SEnemyMove : MonoBehaviour
     [Header("床レイヤーマスク設定"), SerializeField]
     private LayerMask layerMask_Ground;
 
+    [Header("当たり判定コライダー"), SerializeField]
+    private N_GroundCheck sc_GroundCheck;
+
+    private bool isGroundOld = false;
+    private bool isGroundNow = false;
+
     public void StartMove() { isLook = true; }
 
     public N_EnemyManager GetManager()
@@ -151,6 +157,10 @@ public class SEnemyMove : MonoBehaviour
                 return;
             }
         }
+
+        // 今フレームの接地判定を取得
+        isGroundNow = sc_GroundCheck.GroundCheck();
+
         //坂道計算
         //傾きを計算するためのポジションを取得
         slopeOrigin1 = transform.position;
@@ -222,7 +232,7 @@ public class SEnemyMove : MonoBehaviour
         }
 
         //壁判定用のRayがタイルマップに接触しているか、足元のRayが何も情報を得られなければ方向を切り替える
-        if (GroundCheck()&&
+        if (sc_GroundCheck.GroundCheck()&&
             hitWall.collider!=null&&hitWall.collider.CompareTag("TileMap")||
             hitWall.collider!=null&&hitWall.collider.CompareTag("Hologram")||
             hitWall.collider!=null&&hitWall.collider.CompareTag("Ground")||
@@ -245,11 +255,7 @@ public class SEnemyMove : MonoBehaviour
             IsCollidingHologram = false; ;
         }
 
-        if (hitWall.collider) {
-            Debug.Log(hitWall.collider);
-        }
-
-        if (GroundCheck() &&
+        if (sc_GroundCheck.GroundCheck() &&
             hitWall.collider != null && hitWall.collider.CompareTag("TileMap") ||
             hitWall.collider != null && hitWall.collider.CompareTag("Ground") ||
             hitWall.collider != null && hitWall.collider.CompareTag("FieldObj") ||
@@ -258,6 +264,19 @@ public class SEnemyMove : MonoBehaviour
             //Debug.Log("ホログラム以外検知");
             enemyManager.RequestRefletion();
         }
+
+        // 空中から地面に接地したなら
+        if(isGroundNow == true && isGroundOld == false && Time.time >= 0.5f)
+        {
+            // 隊列内でのy座標がバラバラになっている可能性があるので
+            // y座標が近いものどおしの隊列に組みなおし
+
+            Debug.Log("隊列組みなおし");
+            enemyManager.PartitionTeamHeight();
+        }
+
+        // 今フレームの接地判定を次フレームに持ち込み
+        isGroundOld = isGroundNow;
     }
 
     public bool GetIsReflection()
@@ -340,8 +359,7 @@ public class SEnemyMove : MonoBehaviour
                 {
                     // こっちの分岐に入る = どちらかのスピードがおおきい
                     // 大きい方が小さい方のケツからぶつかっているはずなので
-                    // スピードが大きい奴だけ方向転換
-                    if (this.enemyManager.GetMoveSpeed() > colManager.GetMoveSpeed())
+                    if (this.enemyManager.GetMoveSpeed() >= colManager.GetMoveSpeed())
                     {
                         // 方向転換
                         //enemyManager.RequestRefletion();
@@ -386,10 +404,10 @@ public class SEnemyMove : MonoBehaviour
     {
         Vector2 origin = transform.position;
         origin.y -= 1.2f;
-        RaycastHit2D hit=Physics2D.Raycast(origin, Vector2.down,0.4f, layerMask_Ground);
+        RaycastHit2D hit=Physics2D.Raycast(origin, Vector2.down,0.4f);
         //Debug.Log(hit.collider);
-        //Debug.DrawRay(origin,Vector2.down*0.2f, Color.yellow);
-        if(hit.collider != null && hit.collider.CompareTag("TileMap")) 
+        //Debug.DrawRay(origin, Vector2.down * 0.4f, Color.yellow);
+        if (hit.collider != null && (hit.collider.CompareTag("TileMap") || hit.collider.CompareTag("Hologram"))) 
         {
             //ホロ床すり抜けなどで位置が大きく変わった場合に目標位置等の更新を行う
             //if(!isGround) 

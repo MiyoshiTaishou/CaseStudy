@@ -49,24 +49,6 @@ public class N_EnemyManager : MonoBehaviour
     [Header("移動ステータス"), SerializeField]
     ManagerMoveStatus managerStatus;
 
-    //[Header("何秒"), SerializeField]
-    //private float MoveTime = 3.0f;
-
-    //[Header("移動速度"), SerializeField]
-    //private float MoveSpeed = 4.0f;
-
-    //[Header("追跡時の移動速度"), SerializeField]
-    //private float ChaseSpeed = 4.0f;
-
-    //[Header("方向転換時待機時間"), SerializeField]
-    //private float WaitTime = 0.5f;
-
-    //[Header("発見後追跡までの時間"), SerializeField]
-    //private float FoundTime = 0.5f;
-
-    //[Header("見失って巡回に戻る時間"), SerializeField]
-    //private float LostSightTime = 0.5f;
-
     // 経過時間
     private float ElapsedTime = 0.0f;
     private float ElapsedWaitTime = 0.0f;
@@ -139,7 +121,6 @@ public class N_EnemyManager : MonoBehaviour
         CountMemberNum();
         // 隊列内の敵の移動スクリプトを取得
         SetEnemyMoveScript();
-        
 
         // 名前でマネージャーを区別できるようにする
         this.gameObject.name = this.gameObject.name + GenerateOrder.ToString();
@@ -163,6 +144,7 @@ public class N_EnemyManager : MonoBehaviour
 
         if (iMemberNum == 0)
         {
+            Destroy(gameObject);
             return;
         }
 
@@ -200,7 +182,53 @@ public class N_EnemyManager : MonoBehaviour
                 break;
         }
 
-        //Debug.Log(IsRef);
+        if (GenerateNumber == 0)
+        {
+            //Debug.Log(managerState);
+        }
+    }
+
+    // 高さが一定以上離れたらチームを分ける
+    public void PartitionTeamHeight()
+    {
+        // マネージャー生成
+        GameObject manager = new GameObject();
+        manager.transform.parent = thisTrans.parent.gameObject.transform;
+        manager.name = "EnemyManager";
+        N_EnemyManager sc_mana = manager.AddComponent<N_EnemyManager>();
+        sc_mana.SetMoveStatus(managerStatus);
+        sc_mana.ChangeManagerState(ManagerState.PATOROL);
+
+        Vector3 pos = Vector3.zero;
+        int order = 0;
+        // 敵の高さを取得
+        foreach(var obj in TeamMembers)
+        {
+            // 最初の敵のY座標を元にする
+            if(order == 0)
+            {
+                pos = obj.transform.position;
+
+                EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
+
+                // 新チームに移動
+                sc_mana.TeamAddEnemy(obj);
+                Debug.Log("高さの違う新チームInit");
+                return;
+            }
+
+            // ある程度の範囲内の敵はチームに追加
+            if(obj.transform.position.y <= pos.y + 0.1f && obj.transform.position.y >= pos.y - 0.1f)
+            {
+                EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
+
+                // 新チームに移動
+                sc_mana.TeamAddEnemy(obj);
+                Debug.Log("高さの違う新チーム");
+            }
+            
+            order++;
+        }
     }
 
     // ホログラムによってチームを分割された時
@@ -636,7 +664,13 @@ public class N_EnemyManager : MonoBehaviour
     {
         foreach(var member in TeamMembers)
         {
-            sEnemyMoves.Add(member.GetComponent<SEnemyMove>());
+            SEnemyMove move = member.GetComponent<SEnemyMove>();
+            // リストに要素が無ければ追加
+            if (!sEnemyMoves.Contains(move))
+            {
+                // スクリプトを追加
+                sEnemyMoves.Add(move);
+            } 
         }
     }
 
