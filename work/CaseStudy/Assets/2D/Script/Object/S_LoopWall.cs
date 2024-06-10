@@ -32,7 +32,7 @@ public class S_LoopWall : MonoBehaviour
     {
         if (!warpObj.GetComponent<S_LoopWall>())
         {
-            Debug.LogError("ワープ先にスクリプトがないけんです");
+            Debug.LogError("ワープ先にこのスクリプトがないけんです");
         }
         audioSource = GetComponent<AudioSource>();
     }
@@ -45,6 +45,8 @@ public class S_LoopWall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //すり抜け時に物体の速度を保存
+
         Vector2 vel2 = collision.GetComponent<Rigidbody2D>().velocity;
         vel = vel2;
         speedx = vel2.x;
@@ -53,12 +55,20 @@ public class S_LoopWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //ワープ先がワープ出来る状態か
         bool OK = warpObj.GetComponent<S_LoopWall>().GetisWarped();
+
+        //自身がワープでき、ワープ先がワープでき、タグがプレイヤーかエネミーの時にワープ処理
         if (isWarped == false && OK == false &&
             (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Enemy")))
         {
-            StartCoroutine(HitStop());
+            //一定時間ワープ不可の状態にする
+            StartCoroutine(CoolTime());
+
+            //ワープ先の位置
             Vector3 newpos = warpObj.transform.position;
+
+            //右側に出るか左側に出るか、位置を微調整
             if (warpObj.GetComponent<S_LoopWall>().GetiswarpRight() == true)
             {
                 newpos.x += 2.0f;
@@ -68,14 +78,19 @@ public class S_LoopWall : MonoBehaviour
                 newpos.x -= 2.0f;
             }
             audioSource.PlayOneShot(audioclip);
+            //ワープ
             collision.gameObject.transform.position = newpos;
         }
+        //敵玉の場合(見返してみれば分ける必要無かったかも)
         else if (isWarped == false && OK == false &&
             collision.collider.CompareTag("EnemyBall"))
         {
             Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
             //speedx = rb.velocity.x;
-            StartCoroutine(HitStop());
+            //一定時間ワープ不可の状態にする
+            StartCoroutine(CoolTime());
+
+            //ワープ先の位置の設定と微調整
             Vector3 newpos = warpObj.transform.position;
             if (warpObj.GetComponent<S_LoopWall>().GetiswarpRight() == true)
             {
@@ -94,17 +109,18 @@ public class S_LoopWall : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
+        //敵玉が離れた場合に保存していた速度を再び与える
         if (collision.collider.CompareTag("EnemyBall"))
         {
             Debug.Log("すすめ");
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
             vel.x = speedx;
             rb.velocity = vel;
-            
+            collision.gameObject.GetComponent<S_EnemyBall>().SetisPushing(true);
         }
     }
 
-    IEnumerator HitStop()
+    IEnumerator CoolTime()
     {
         isWarped = true;
         warpObj.GetComponent<S_LoopWall>().isWarped = true;
