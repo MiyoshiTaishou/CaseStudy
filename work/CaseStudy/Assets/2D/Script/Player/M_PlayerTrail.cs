@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class M_PlayerTrail : MonoBehaviour
 {
-    [Header("プレイヤーオブジェクト"),SerializeField]
+    [Header("プレイヤーオブジェクト"), SerializeField]
     private GameObject player;
 
     [Header("残像オブジェクト"), SerializeField]
@@ -19,7 +19,7 @@ public class M_PlayerTrail : MonoBehaviour
     [Header("残像のフェードアウト時間"), SerializeField]
     private float fadeTime = 0.5f; // 残像のフェードアウト時間
 
-    [Header("残像の表示位置"),SerializeField]
+    [Header("残像の表示位置"), SerializeField]
     private Vector3 trailOffset = Vector3.zero;
 
     private int intervalCounter;
@@ -33,20 +33,19 @@ public class M_PlayerTrail : MonoBehaviour
 
     void Update()
     {
-        if(!M_GameMaster.GetGamePlay())
+        // ゲームプレイが有効な場合にのみ残像を生成
+        if (M_GameMaster.GetGamePlay())
         {
-            return;
-        }
-
-        // プレイヤーがダッシュしているかどうかを確認
-        if (player.GetComponent<M_PlayerMove>().GetIsDash())
-        {
-            intervalCounter--;
-            // 残像の間隔ごとに残像を生成
-            if (intervalCounter <= 0)
+            // プレイヤーがダッシュしているかどうかを確認
+            if (player.GetComponent<M_PlayerMove>().GetIsDash())
             {
-                intervalCounter = trailInterval;
-                GenerateTrail();
+                intervalCounter--;
+                // 残像の間隔ごとに残像を生成
+                if (intervalCounter <= 0)
+                {
+                    intervalCounter = trailInterval;
+                    GenerateTrail();
+                }
             }
         }
     }

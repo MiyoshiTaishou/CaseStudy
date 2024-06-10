@@ -117,6 +117,7 @@ public class M_DuctManager : MonoBehaviour
                 renderers[i].enabled = false;
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
+            PlayerObj.GetComponent<M_PlayerMove>().SetIsNowDahs(false);
             //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(false);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = false;
@@ -161,6 +162,7 @@ public class M_DuctManager : MonoBehaviour
                 renderers[i].enabled = false;
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
+            PlayerObj.GetComponent<M_PlayerMove>().SetIsNowDahs(false);
             //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
             PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(false);
             PlayerObj.GetComponent<BoxCollider2D>().enabled = false;
