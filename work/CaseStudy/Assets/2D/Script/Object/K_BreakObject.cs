@@ -118,7 +118,10 @@ public class K_BreakObject : MonoBehaviour
                 Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
             }
 
-            camera.GetComponent<M_CameraShake>().Shake();
+            if(camera)
+            {
+                camera.GetComponent<M_CameraShake>().Shake();
+            }            
         }
     }
 }
