@@ -90,6 +90,8 @@ public class M_PlayerMove : MonoBehaviour
     /// </summary>
     private bool isNowDash = true;
 
+    public void SetIsNowDahs(bool _dash) { isNowDash = _dash; }
+
     private Transform PlayerTrans;
 
     public bool GetIsDash() { return isNowDash; }
@@ -127,6 +129,7 @@ public class M_PlayerMove : MonoBehaviour
     {        
         if(!isMove || !M_GameMaster.GetGamePlay())
         {
+            isDash = false;
             return;
         }
 
