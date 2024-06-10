@@ -129,6 +129,7 @@ public class M_PlayerMove : MonoBehaviour
     {        
         if(!isMove || !M_GameMaster.GetGamePlay())
         {
+            rbPlayer.velocity = Vector3.zero;
             isDash = false;
             return;
         }
