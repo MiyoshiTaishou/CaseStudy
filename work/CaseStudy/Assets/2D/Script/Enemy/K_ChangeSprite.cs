@@ -22,11 +22,12 @@ public class K_ChangeSprite : MonoBehaviour
     {
         string strEnemySprites = EnemyObjNormal.name;
         EnemySpriteNormal = this.transform.Find(strEnemySprites).gameObject;
-
-        EnemySpriteRolling = Instantiate(EnemyObjRolling, transform.position, Quaternion.identity);
-        EnemySpriteRolling.SetActive(false);
-        EnemySpriteRolling.transform.parent = this.transform;
-
+        if(EnemyObjRolling)
+        {
+            EnemySpriteRolling = Instantiate(EnemyObjRolling, gameObject.transform.position, Quaternion.identity);
+            EnemySpriteRolling.SetActive(false);
+            EnemySpriteRolling.transform.parent = this.transform;
+        }
         EnemyBall = GetComponent<S_EnemyBall>();
     }
 

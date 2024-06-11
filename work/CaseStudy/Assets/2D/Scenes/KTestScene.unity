@@ -548,29 +548,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &150615594 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 150615593}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &150615595 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 150615593}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &150615596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150615594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &164916723
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7461009736470124191, guid: 7c95b1b7069c66341bc26ebe5b2d0f2c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c95b1b7069c66341bc26ebe5b2d0f2c, type: 3}
@@ -1040,29 +1022,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &271224247 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 271224246}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &271224248 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 271224246}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &271224249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 271224247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &302446412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1428,29 +1392,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &402793932 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 402793931}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &402793933 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 402793931}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &402793934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402793932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &423139879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2389,29 +2335,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &595777310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 595777309}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &595777311 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 595777309}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &595777312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 595777310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &600277151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34350,29 +34278,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &606229773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 606229772}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &606229774 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 606229772}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &606229775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 606229773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &621095010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34563,29 +34473,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &709640843 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 709640842}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &709640844 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 709640842}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &709640845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 709640843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &736841642
 GameObject:
   m_ObjectHideFlags: 0
@@ -34688,29 +34580,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &749917780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 749917779}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &749917781 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 749917779}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &749917782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749917780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &765929535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34780,29 +34654,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &765929536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 765929535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &765929537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 765929535}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &765929538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765929536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &797890976
 GameObject:
   m_ObjectHideFlags: 0
@@ -35141,29 +34997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &901534017 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 901534016}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &901534018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 901534016}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &901534019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 901534017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &941348104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35677,29 +35515,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &959492746 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 959492745}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &959492747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 959492745}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &959492748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 959492746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &960367451
 GameObject:
   m_ObjectHideFlags: 0
@@ -43216,29 +43036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &1008277058 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1008277057}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1008277059 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 1008277057}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1008277060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1008277058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &1031091365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43312,29 +43114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &1031091366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1031091365}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1031091367 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 1031091365}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1031091368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1031091366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &1033385988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44592,29 +44376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &1614897961 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1614897960}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1614897962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 1614897960}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1614897963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1614897961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &1650384985
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44688,29 +44454,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &1650384986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1650384985}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1650384987 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 1650384985}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1650384988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650384986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &1667778902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45004,29 +44752,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &1736554983 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1736554982}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1736554984 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 1736554982}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1736554985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1736554983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1001 &1767780265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45254,29 +44984,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &1850852031 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1850852030}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1850852032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 1850852030}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1850852033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1850852031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &1862212415
 GameObject:
   m_ObjectHideFlags: 0
@@ -45447,29 +45159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &1880029504 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1880029503}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1880029505 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 1880029503}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1880029506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880029504}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &1934033538
 GameObject:
   m_ObjectHideFlags: 0
@@ -46325,29 +46019,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
---- !u!1 &2108425326 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 2108425325}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2108425327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905725172142954792, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
   m_PrefabInstance: {fileID: 2108425325}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2108425328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2108425326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &2125013835
 GameObject:
   m_ObjectHideFlags: 0
