@@ -95,6 +95,8 @@ public class SEnemyMove : MonoBehaviour
     private bool isGroundOld = false;
     private bool isGroundNow = false;
 
+    private Animator animator;
+
     public void StartMove() { isLook = true; }
 
     public N_EnemyManager GetManager()
@@ -126,6 +128,8 @@ public class SEnemyMove : MonoBehaviour
 
         enemyManager = this.transform.parent.gameObject.GetComponent<N_EnemyManager>();
         thisTrans = this.GetComponent<Transform>();
+
+        animator = transform.GetChild(2).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -265,11 +269,19 @@ public class SEnemyMove : MonoBehaviour
             enemyManager.RequestRefletion();
         }
 
+        // 地面から離れたら
+        if(isGroundNow == false && Time.time >= 0.5f)
+        {
+            animator.SetBool("fall", true);
+        }
+
         // 空中から地面に接地したなら
         if(isGroundNow == true && isGroundOld == false && Time.time >= 0.5f)
         {
             // 隊列内でのy座標がバラバラになっている可能性があるので
             // y座標が近いものどおしの隊列に組みなおし
+
+            animator.SetBool("fall", false);
 
             Debug.Log("隊列組みなおし");
             enemyManager.PartitionTeamHeight();

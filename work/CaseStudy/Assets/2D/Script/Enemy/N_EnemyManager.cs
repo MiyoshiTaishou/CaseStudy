@@ -383,6 +383,7 @@ public class N_EnemyManager : MonoBehaviour
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().AllSetFalse();
+                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("dash", true);
             }
         }
 
@@ -475,6 +476,7 @@ public class N_EnemyManager : MonoBehaviour
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(true);
+                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("sight", true);
             }
         }
 
@@ -493,6 +495,7 @@ public class N_EnemyManager : MonoBehaviour
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(false);
+                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("sight", false);
             }
         }
     }
@@ -555,6 +558,8 @@ public class N_EnemyManager : MonoBehaviour
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsLostTarget(true);
+                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("sight", true);
+
             }
         }
 
@@ -573,6 +578,8 @@ public class N_EnemyManager : MonoBehaviour
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsLostTarget(false);
+                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("sight", false);
+
             }
         }
     }
