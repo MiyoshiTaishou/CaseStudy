@@ -603,6 +603,9 @@ public class N_EnemyManager : MonoBehaviour
     // ボールになった敵をリストから削除
     public void EcpulsionMember(int _number,ManagerState _state) 
     {
+        // マネージャー管理を外す
+        sEnemyMoves[_number].NullEnemyManager();
+
         TeamMembers.RemoveAt(_number);
         sEnemyMoves.RemoveAt(_number);
         // 隊列の人数を計測

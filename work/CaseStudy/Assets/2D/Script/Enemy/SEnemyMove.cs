@@ -303,6 +303,12 @@ public class SEnemyMove : MonoBehaviour
             SEnemyMove enemyMove = _collision.gameObject.GetComponent<SEnemyMove>();
             N_EnemyManager colManager = enemyMove.GetManager();
 
+            // どちらかがマネージャーを持っていないなら
+            if (!colManager || !this.enemyManager)
+            {
+                return;
+            }
+
             // 違う隊列に所属している敵同士なら
             if (this.enemyManager.name != colManager.name)
             {
@@ -347,6 +353,12 @@ public class SEnemyMove : MonoBehaviour
         {
             SEnemyMove enemyMove = _collision.gameObject.GetComponent<SEnemyMove>();
             N_EnemyManager colManager = enemyMove.GetManager();
+
+            // どちらかがマネージャーを持っていないなら
+            if(!colManager || !this.enemyManager)
+            {
+                return;
+            }
 
             // 違う隊列に所属している敵同士なら
             if (this.enemyManager.name != colManager.name)
@@ -456,6 +468,11 @@ public class SEnemyMove : MonoBehaviour
     public void SetEnemyManager()
     {
         enemyManager = this.transform.parent.gameObject.GetComponent<N_EnemyManager>();
+    }
+
+    public void NullEnemyManager()
+    {
+        enemyManager = null;
     }
 
     public void EnemyMove(float _move, bool _ref)
