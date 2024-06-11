@@ -65,6 +65,10 @@ public class N_PlayerSearch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isSearch)
+        {
+            return;
+        }
         if (enemyManager != null)
         {
             if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
@@ -79,6 +83,10 @@ public class N_PlayerSearch : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (isSearch)
+        {
+            return;
+        }
         if (enemyManager != null)
         {
             if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))

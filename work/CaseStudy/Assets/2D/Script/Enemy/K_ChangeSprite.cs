@@ -23,7 +23,7 @@ public class K_ChangeSprite : MonoBehaviour
         string strEnemySprites = EnemyObjNormal.name;
         EnemySpriteNormal = this.transform.Find(strEnemySprites).gameObject;
 
-        EnemySpriteRolling= Instantiate(EnemyObjRolling, transform.position, Quaternion.identity);
+        EnemySpriteRolling = Instantiate(EnemyObjRolling, transform.position, Quaternion.identity);
         EnemySpriteRolling.SetActive(false);
         EnemySpriteRolling.transform.parent = this.transform;
 
@@ -44,7 +44,7 @@ public class K_ChangeSprite : MonoBehaviour
         else
         {
             EnemySpriteNormal.SetActive(true);
-            EnemySpriteNormal.transform.position = this.transform.position;
+            EnemySpriteNormal.transform.position = new Vector3(transform.position.x,EnemySpriteNormal.transform.position.y,transform.position.z);
             EnemySpriteRolling.SetActive(false);
         }
     }
