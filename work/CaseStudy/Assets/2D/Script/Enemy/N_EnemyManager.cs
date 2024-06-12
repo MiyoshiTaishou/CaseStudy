@@ -476,7 +476,7 @@ public class N_EnemyManager : MonoBehaviour
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(true);
-                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("sight", true);
+                obj.transform.GetChild(2).GetComponent<Animator>().SetTrigger("sight");
             }
         }
 
@@ -495,7 +495,6 @@ public class N_EnemyManager : MonoBehaviour
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(false);
-                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("sight", false);
             }
         }
     }

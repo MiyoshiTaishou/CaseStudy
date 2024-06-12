@@ -283,8 +283,11 @@ public class SEnemyMove : MonoBehaviour
 
             animator.SetBool("fall", false);
 
-            Debug.Log("隊列組みなおし");
-            enemyManager.PartitionTeamHeight();
+            if (enemyManager != null)
+            {
+                Debug.Log("隊列組みなおし");
+                enemyManager.PartitionTeamHeight();
+            }
         }
 
         // 今フレームの接地判定を次フレームに持ち込み
