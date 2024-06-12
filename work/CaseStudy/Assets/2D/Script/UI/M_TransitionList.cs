@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class M_Transition : MonoBehaviour
+public class M_TransitionList : MonoBehaviour
 {
     private Image image;
     private Material material;
@@ -18,7 +18,7 @@ public class M_Transition : MonoBehaviour
     /// <summary>
     /// シーン遷移先の名前
     /// </summary>
-    public string sceneName;
+    public string[] sceneName;
 
     /// <summary>
     /// シーン遷移開始
@@ -44,6 +44,10 @@ public class M_Transition : MonoBehaviour
     [SerializeField] private float duration = 1.0f;
 
     private GameObject pause;
+
+    private int index = 0;
+
+    public void SetIndex(int _index) { index = _index; }
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +93,7 @@ public class M_Transition : MonoBehaviour
 
             if (val <= -0.9f)
             {
-                SceneManager.LoadScene(sceneName);
+                SceneManager.LoadScene(sceneName[index]);
             }
                      
         }
