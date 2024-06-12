@@ -128,8 +128,23 @@ public class S_EnemyBall : MonoBehaviour
                 N_EnemyManager enemyMana = sEnemyMove.GetManager();
 
                 // 隊列に追加
-                enemyMana.TeamAddEnemy(this.gameObject);
+                if (enemyMana != null)
+                {
+                    enemyMana.TeamAddEnemy(this.gameObject);
+                }
+                else
+                {
+                    // マネージャー生成
+                    GameObject manager = new GameObject();
+                    manager.transform.parent = this.gameObject.transform.parent.transform;
+                    manager.name = "EnemyManager";
+                    N_EnemyManager sc_mana = manager.AddComponent<N_EnemyManager>();
+                    sc_mana.InitMoveStatus();
+                    sc_mana.ChangeManagerState(N_EnemyManager.ManagerState.PATOROL);
 
+                    sc_mana.TeamAddEnemy(this.gameObject);
+
+                }
                 isDeleteMember = false;
             }
 
