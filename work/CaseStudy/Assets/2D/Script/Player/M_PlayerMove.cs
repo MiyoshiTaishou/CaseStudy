@@ -208,12 +208,12 @@ public class M_PlayerMove : MonoBehaviour
             rbPlayer.velocity = vecMoveDirection;
             animator.SetBool("run", true);
 
-            if (_fhorizontal > 0.0f)
+            if (_fhorizontal > 0.9f)
             {
                 vecDir = new Vector3(1.0f,0.0f,0.0f);
                 transform.eulerAngles = Vector3.zero;
             }
-            else if (_fhorizontal < 0.0f)
+            else if (_fhorizontal < -0.9f)
             {
                 vecDir = new Vector3(-1.0f,0.0f,0.0f);
                 transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
@@ -232,12 +232,12 @@ public class M_PlayerMove : MonoBehaviour
             Vector2 vecMoveDirection = new Vector2(_forizontal * fDashSpeed, rbPlayer.velocity.y);
             rbPlayer.velocity = vecMoveDirection;            
 
-            if (_forizontal > 0.0f)
+            if (_forizontal > 0.9f)
             {
                 vecDir = transform.right;
                 transform.eulerAngles = Vector3.zero;
             }
-            else if (_forizontal < 0.0f)
+            else if (_forizontal < -0.9f)
             {
                 vecDir = -transform.right;
                 transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
@@ -268,12 +268,12 @@ public class M_PlayerMove : MonoBehaviour
             animator.SetBool("run", true);
             animator.SetBool("glider", false);
 
-            if (_forizontal > 0.0f)
+            if (_forizontal > 0.9f)
             {
                 vecDir = transform.right;
                 transform.eulerAngles = Vector3.zero;
             }
-            else if (_forizontal < 0.0f)
+            else if (_forizontal < -0.9f)
             {
                 vecDir = -transform.right;
                 transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
