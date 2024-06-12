@@ -762,6 +762,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2773838742743219090, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773838742743219090, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773838742743219090, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773838742743219090, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773838742743219090, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2773838742743219090, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.size
       value: 8
@@ -12544,7 +12568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3842537663613904508, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8635032465683963522, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_Size.x
@@ -33358,7 +33382,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391747641}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f76baa9d6dff4c41ba39a54fccbe6f7, type: 3}
   m_Name: 
