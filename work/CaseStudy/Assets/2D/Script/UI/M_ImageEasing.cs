@@ -14,11 +14,16 @@ public class M_ImageEasing : MonoBehaviour
 
     private bool isReverse = false;
 
+    private bool isResset = false;
+
     public void SetReverse(bool reverse) { isReverse = reverse; }
 
     private Vector2 savePos;
     private Vector3 saveScale;
     private Vector3 saveRot;
+
+    [Header("ƒ‹[ƒv‚³‚¹‚é‚©"),SerializeField]
+    private bool isLoop = false;
 
     [System.Serializable]
     struct ApplyEasing
@@ -51,7 +56,13 @@ public class M_ImageEasing : MonoBehaviour
 
     void Update()
     {
-        if (isEasing)
+        if(isResset)
+        {
+            Resset();
+            return;
+        }
+
+        if (isEasing && !isLoop)
         {
             fTime += Time.deltaTime;
             if (fTime > duration)
@@ -59,6 +70,31 @@ public class M_ImageEasing : MonoBehaviour
                 fTime = 1;
                 isEasing = false;
             }
+            Easing();
+        }
+
+        if(isLoop)
+        {
+            if(isReverse)
+            {
+                fTime -= Time.deltaTime;
+            }
+            else
+            {
+                fTime += Time.deltaTime;
+            }
+
+            if(fTime > duration)
+            {
+                fTime = 1;
+                isReverse = true;
+            }
+            else if(fTime < 0.0f)
+            {
+                fTime = 0.0f;
+                isReverse = false;
+            }
+
             Easing();
         }
     }
@@ -76,7 +112,7 @@ public class M_ImageEasing : MonoBehaviour
     {
         float t = Mathf.Clamp01(fTime / duration);
 
-        if (isReverse)
+        if (isReverse && !isLoop)
         {
             t = 1 - t;
         }
@@ -99,5 +135,12 @@ public class M_ImageEasing : MonoBehaviour
             Vector3 vecRot = saveRot + rot.amount * func(t);
             image.transform.rotation = Quaternion.Euler(vecRot);
         }
+    }
+
+    public void Resset()
+    {
+        rectTransform.anchoredPosition = savePos;
+        image.transform.localScale = saveScale;
+        image.transform.rotation = Quaternion.Euler(saveRot);
     }
 }
