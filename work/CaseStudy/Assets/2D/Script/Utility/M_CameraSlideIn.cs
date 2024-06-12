@@ -70,7 +70,7 @@ public class M_CameraSlideIn : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {      
         //アウト処理
         fTimeOut += Time.deltaTime;
         if(fTimeOut > durationOut)
@@ -83,16 +83,29 @@ public class M_CameraSlideIn : MonoBehaviour
             {
                 fTimeMove = durationMove;
                 GetComponent<N_TrackingPlayer>().enabled = true;
-                M_GameMaster.SetGamePlay(true);
-
-                isOnce = true;
+                M_GameMaster.SetGamePlay(true);                
             }
+
             EasingMove();
         }
         else
         {
             EasingOut();
-        }             
+        }
+
+        if (fTimeMove > durationMove && !isOnce)
+        {
+            Debug.Log("時間オーバー");
+            if(!M_GameMaster.GetGamePlay() && !isOnce)
+            {
+                fTimeMove = durationMove;
+                GetComponent<N_TrackingPlayer>().enabled = true;
+                M_GameMaster.SetGamePlay(true);
+                isOnce = true;
+
+                Debug.Log("今じゃ！");
+            }
+        }
     }
 
     //移動のイージング
