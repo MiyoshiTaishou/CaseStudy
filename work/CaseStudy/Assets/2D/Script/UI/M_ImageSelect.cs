@@ -9,6 +9,9 @@ public class M_ImageSelect : MonoBehaviour
 
     private bool once = false;
 
+    [Header("トランジション"), SerializeField]
+    private GameObject tran;
+
     private void Start()
     {        
         //images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
@@ -78,6 +81,7 @@ public class M_ImageSelect : MonoBehaviour
 
     void PressSelectedButton()
     {
-        //buttons[currentIndex].onClick.Invoke(); // 選択中のボタンを押す
+        tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
+        tran.GetComponent<M_TransitionList>().LoadScene();
     }
 }
