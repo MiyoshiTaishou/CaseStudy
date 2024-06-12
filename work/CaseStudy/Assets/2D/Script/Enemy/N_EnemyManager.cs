@@ -415,6 +415,17 @@ public class N_EnemyManager : MonoBehaviour
     // 待ち状態
     private void Wait()
     {
+        if(ElapsedWaitTime == 0.0f)
+        {
+            // 全リアクション非表示
+            foreach (var obj in TeamMembers)
+            {
+                obj.GetComponent<K_EnemyReaction>().AllSetFalse();
+                //obj.transform.GetChild(2).GetComponent<Animator>().SetBool("dash", true);
+            }
+        }
+
+
         ElapsedTime = 0.0f;
         ElapsedWaitTime += Time.deltaTime;
         //Debug.Log(ElapsedWaitTime);

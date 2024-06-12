@@ -86,8 +86,12 @@ public class K_EnemyReaction : MonoBehaviour
     public void AllSetFalse()
     {
         IsSearchTarget = false;
+        IsSearchHologram = false;
+        IsTargetLost = false;
         EnemyQuestion.SetActive(false);
         EnemyFoundTarget.SetActive(false);
+
+        Debug.Log("リアクションリセット");
     }
 
     //敵が消えたら
