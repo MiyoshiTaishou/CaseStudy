@@ -1061,8 +1061,12 @@ MonoBehaviour:
   ease: 0
   isInOut: 1
   sceneName:
+  - "TS_Stage_\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB"
   - SNTestScene_8
   - SNTestScene_9
+  - SNTestScene_7
+  - SNTestScene_6
+  - SNTestScene_10
   duration: 1
 --- !u!114 &1356250026
 MonoBehaviour:

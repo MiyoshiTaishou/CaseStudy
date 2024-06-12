@@ -21,8 +21,10 @@ public class S_EnemyBall : MonoBehaviour
     [Header("制限速度(x)"), SerializeField]
     float fLimitSpeedx = 15.0f;
 
-    [Header("停止判定"), SerializeField]
-    float fStopjudge = 0.0f;
+    //停止判定X
+    float fStopjudge = 1.0f;
+    //停止判定Y
+    float fStopjudgeY = 1.0f;
 
     [Header("大きさの段階と必要な吸収数"), SerializeField]
     int[] nGiantNum;
@@ -95,6 +97,7 @@ public class S_EnemyBall : MonoBehaviour
         {
             Eff_RollingObj = Instantiate(Eff_RollingPrefab, transform.position, Quaternion.identity);
             Eff_RollingObj.SetActive(false);
+            Eff_RollingObj.transform.parent = gameObject.transform;
         }
         BocCol2D = this.GetComponent<BoxCollider2D>();
         ColliderSize = BocCol2D.size / this.transform.localScale;
@@ -159,9 +162,16 @@ public class S_EnemyBall : MonoBehaviour
             }
 
         }
-        if (/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge) 
+        if (/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge && Mathf.Abs(rb.velocity.y) < fStopjudgeY) 
         {
             isPushing = false;
+        }
+        if(isBall && gameObject.GetComponent<Rigidbody2D>().velocity.x >= 1.0f)
+        {
+            if (Eff_RollingObj)
+            {
+                Eff_RollingObj.SetActive(false);
+            }
         }
     }
 
