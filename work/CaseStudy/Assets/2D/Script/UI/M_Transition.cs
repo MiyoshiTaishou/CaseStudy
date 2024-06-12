@@ -38,6 +38,8 @@ public class M_Transition : MonoBehaviour
     [Header("Animation Duration")]
     [SerializeField] private float duration = 1.0f;
 
+    private GameObject pause;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,13 +56,20 @@ public class M_Transition : MonoBehaviour
         }
 
         this.material.SetFloat("_Val", val);
+
+        pause = GameObject.Find("PauseCanvas");
     }
 
     // Update is called once per frame
     void Update()
     {
         if(isTransition)
-        {                                   
+        {
+            if(pause)
+            {
+                pause.GetComponent<M_Pause>().enabled = false;
+            }
+
             fTime += Time.deltaTime;
 
             //関数登録
