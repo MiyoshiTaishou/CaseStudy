@@ -23449,6 +23449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875107849e733fc40b10555c78d3a714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSympathy: 1
   fSpreadSpeed: 1
   fMaxRadius: 4
   fLineWidth: 0.1
