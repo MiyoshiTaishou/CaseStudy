@@ -94,7 +94,7 @@ public class N_EnemyManager : MonoBehaviour
     private N_PostProcess postProcess;
 
     // 移動ステータス初期化
-    void InitMoveStatus()
+    public void InitMoveStatus()
     {
         managerStatus.MoveTime = 3.0f;
         managerStatus.MoveSpeed = 4.0f;
@@ -180,11 +180,6 @@ public class N_EnemyManager : MonoBehaviour
             case ManagerState.LOSTSIGHT:
                 LostSight();
                 break;
-        }
-
-        if (GenerateNumber == 0)
-        {
-            //Debug.Log(managerState);
         }
     }
 

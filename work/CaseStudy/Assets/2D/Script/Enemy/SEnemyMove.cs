@@ -243,11 +243,14 @@ public class SEnemyMove : MonoBehaviour
             hitGround.collider==null)
         {
             //ホログラムとの衝突を検知(2024/4/17 木村記載)
-            if (hitWall.collider != null &&  hitWall.collider.CompareTag("Hologram"))
+            if (hitWall.collider != null && hitWall.collider.CompareTag("Hologram"))
             {
-                //Debug.Log("ホログラム検知");
-                IsCollidingHologram = true;
-                enemyManager.DetectionHologram(TeamNumber);
+                if (enemyManager != null)
+                {
+                    //Debug.Log("ホログラム検知");
+                    IsCollidingHologram = true;
+                    enemyManager.DetectionHologram(TeamNumber);
+                }
             }
             else
             {
@@ -265,8 +268,11 @@ public class SEnemyMove : MonoBehaviour
             hitWall.collider != null && hitWall.collider.CompareTag("FieldObj") ||
             hitGround.collider == null)
         {
-            //Debug.Log("ホログラム以外検知");
-            enemyManager.RequestRefletion();
+            if (enemyManager != null)
+            {
+                //Debug.Log("ホログラム以外検知");
+                enemyManager.RequestRefletion();
+            }
         }
 
         // 地面から離れたら
