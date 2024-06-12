@@ -126,12 +126,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd271d4c844696d4486236d41571d2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fMoveSpeed: 5
+  fMoveSpeed: 8
   DashMode: 0
   fDashSpeed: 20
   iTeleportFlame: 5
   fTeleportDistance: 3
-  fStaminaMax: 100
+  fStaminaMax: 10
   fUseDashStamina: 10
   fRecoverySpeed: 20
   fStayRecoverySpeed: 40
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875107849e733fc40b10555c78d3a714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSympathy: 1
   fSpreadSpeed: 30
   fMaxRadius: 8
   fLineWidth: 0.1
