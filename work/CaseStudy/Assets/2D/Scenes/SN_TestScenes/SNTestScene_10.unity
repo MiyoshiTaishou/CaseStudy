@@ -946,6 +946,10 @@ PrefabInstance:
       propertyPath: fHitStop
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
 --- !u!1 &136379379 stripped
@@ -35379,6 +35383,10 @@ PrefabInstance:
       propertyPath: fHitStop
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
 --- !u!1 &301413204 stripped
@@ -35506,6 +35514,10 @@ PrefabInstance:
     - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
       propertyPath: fHitStop
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
@@ -36124,6 +36136,10 @@ PrefabInstance:
       propertyPath: fHitStop
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
 --- !u!1001 &452286041
@@ -36558,6 +36574,10 @@ PrefabInstance:
     - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
       propertyPath: fHitStop
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
@@ -38404,7 +38424,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
       propertyPath: fStopjudge
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
@@ -42408,6 +42432,10 @@ PrefabInstance:
       propertyPath: fHitStop
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
 --- !u!1 &1276679797 stripped
@@ -43412,6 +43440,10 @@ PrefabInstance:
       propertyPath: fHitStop
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
 --- !u!1001 &1647140695
@@ -43917,6 +43949,10 @@ PrefabInstance:
       propertyPath: fHitStop
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
 --- !u!1 &1723078827 stripped
@@ -44321,6 +44357,10 @@ PrefabInstance:
     - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
       propertyPath: fHitStop
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
@@ -44753,6 +44793,10 @@ PrefabInstance:
     - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
       propertyPath: fHitStop
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
@@ -45442,6 +45486,10 @@ PrefabInstance:
     - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
       propertyPath: fHitStop
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fStopjudgeY
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}

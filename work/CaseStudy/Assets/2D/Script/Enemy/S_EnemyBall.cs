@@ -23,6 +23,9 @@ public class S_EnemyBall : MonoBehaviour
 
     [Header("停止判定"), SerializeField]
     float fStopjudge = 0.0f;
+    
+    [Header("停止判定(Y)"), SerializeField]
+    private float fStopjudgeY = 1.0f;
 
     [Header("大きさの段階と必要な吸収数"), SerializeField]
     int[] nGiantNum;
@@ -149,7 +152,7 @@ public class S_EnemyBall : MonoBehaviour
             }
 
         }
-        if (/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge) 
+        if (/*isBall&& */Mathf.Abs(rb.velocity.x) < fStopjudge&& Mathf.Abs(rb.velocity.y) < fStopjudgeY) 
         {
             isPushing = false;
         }
@@ -198,12 +201,12 @@ public class S_EnemyBall : MonoBehaviour
                 }
 
                 isBall = true;
+                transform.tag = "EnemyBall";
                 //Destroy(GetComponent<N_PlayerSearch>());
 
                 if (fStickCnt == 0)
                 {
                     fStickCnt++;
-                    transform.tag = "EnemyBall";
                 }
 
                 if (!colEnemyBall.GetisBall())
@@ -261,14 +264,23 @@ public class S_EnemyBall : MonoBehaviour
                 {
                     Eff_RollingObj.SetActive(true);
                 }
-
+                Debug.Log("吸収の民");
                 isBall = true;
                 //Destroy(GetComponent<N_PlayerSearch>());
                 fStickCnt++;
-                if (fStickCnt == 1)
+                if (fStickCnt == 0)
                 {
                     fStickCnt++;
                     transform.tag = "EnemyBall";
+                }
+
+                if (!colEnemyBall.GetisBall())
+                {
+                    fStickCnt++;
+                }
+                else if (colEnemyBall.GetisBall())
+                {
+                    fStickCnt += colEnemyBall.GetStickCount();
                 }
                 //吸収した敵の数に応じて巨大化
                 Vector3 nextScale = defaultScale;
