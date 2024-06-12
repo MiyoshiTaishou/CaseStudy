@@ -91,7 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ease: 2
   isInOut: 0
-  sceneName: M_SelectScene
+  sceneName: M_SelectSceneNo2
   duration: 3
 --- !u!1 &1396957527025504797
 GameObject:
@@ -333,6 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoop: 0
   duration: 0.8
   pos:
     isApply: 1
@@ -573,6 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoop: 0
   duration: 0.5
   pos:
     isApply: 0
@@ -1173,6 +1175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoop: 0
   duration: 0.6
   pos:
     isApply: 1

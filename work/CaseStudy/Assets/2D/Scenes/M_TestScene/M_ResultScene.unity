@@ -291,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ease: 2
   isInOut: 1
-  sceneName: M_SelectScene
+  sceneName: M_SelectSceneNo2
   duration: 3
 --- !u!114 &785672665
 MonoBehaviour:
@@ -629,6 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLoop: 0
   duration: 0.7
   pos:
     isApply: 1
