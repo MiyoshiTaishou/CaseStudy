@@ -40,11 +40,18 @@ public class S_EnemyBall : MonoBehaviour
 
     //塊になっているかどうか
     private bool isBall = false;
+    // たまになって動いているか
+    private bool isHitStop = false;
     public bool GetisBall() { return isBall; }
 
     //プレイヤーによって押されているかどうか
     private bool isPushing = false;
     public bool GetisPushing() { return isPushing; }
+
+    public bool GetisHitStop()
+    {
+        return isHitStop;
+    }
     public void SetisPushing(bool _flg) { isPushing = _flg; }
 
     private GameObject ColObject;
@@ -69,6 +76,8 @@ public class S_EnemyBall : MonoBehaviour
     private BoxCollider2D BocCol2D;
     private Vector3 ColliderSize;
     private Vector3 ColliderOffset;
+
+    private Animator animator;
 
     public int GetStickCount()
     {
@@ -116,6 +125,7 @@ public class S_EnemyBall : MonoBehaviour
             }
             // 隊列から除名
             DeleteMember();
+
         }
         else if (!isPushing && !isBall)
         {
@@ -198,6 +208,7 @@ public class S_EnemyBall : MonoBehaviour
                 }
 
                 isBall = true;
+
                 //Destroy(GetComponent<N_PlayerSearch>());
 
                 if (fStickCnt == 0)
@@ -263,6 +274,7 @@ public class S_EnemyBall : MonoBehaviour
                 }
 
                 isBall = true;
+
                 //Destroy(GetComponent<N_PlayerSearch>());
                 fStickCnt++;
                 if (fStickCnt == 1)
@@ -293,6 +305,7 @@ public class S_EnemyBall : MonoBehaviour
     }
     IEnumerator HitStop()
     {
+        isHitStop = true;
         //速度を保存し、0にする
         Vector2 vel = rb.velocity;
         if (vel.x > fLimitSpeedx)
@@ -309,6 +322,7 @@ public class S_EnemyBall : MonoBehaviour
         //保存した速度で再開する
         rb.velocity = vel;
         isPushing = true;
+        isHitStop = false;
     }
 
     //何段階巨大化したかを取得する関数
