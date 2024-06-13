@@ -21,6 +21,13 @@ public class M_SelectSlide : MonoBehaviour
 
     private Vector3 Startpos;
 
+    /// <summary>
+    /// ƒXƒ‰ƒCƒh’†‚©
+    /// </summary>
+    private bool isSlide = false;
+
+    public bool GetIsSlide() { return isSlide; }
+
     private void Start()
     {
         Startpos = this.transform.position;
@@ -35,6 +42,7 @@ public class M_SelectSlide : MonoBehaviour
             {
                 fTime = fMoveTime;
                 isEasing = false;
+                isSlide = false;
             }
             Easing();
         }
@@ -45,6 +53,8 @@ public class M_SelectSlide : MonoBehaviour
         isEasing = !isEasing;
         fTime = 0;
         Startpos = this.transform.position;
+
+        isSlide = true;
     }
 
     public void Add()

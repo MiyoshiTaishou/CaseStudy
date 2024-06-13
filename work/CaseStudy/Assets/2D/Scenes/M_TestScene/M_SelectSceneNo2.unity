@@ -123,6 +123,82 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &46588668
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 46588669}
+  - component: {fileID: 46588671}
+  - component: {fileID: 46588670}
+  m_Layer: 5
+  m_Name: Stage (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &46588669
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46588668}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1527813373}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -946, y: 426.6}
+  m_SizeDelta: {x: 900, y: 900}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &46588670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46588668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 855585dda4ce2be4cba1013d7c6f1d5d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &46588671
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46588668}
+  m_CullTransparentMesh: 1
 --- !u!1 &89984911
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -165,9 +241,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!114 &89984913
 MonoBehaviour:
@@ -325,8 +401,8 @@ RectTransform:
   - {fileID: 436573449}
   - {fileID: 910973592}
   - {fileID: 746283694}
-  - {fileID: 831155405}
   - {fileID: 1356250024}
+  - {fileID: 1266473788}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -453,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -464,9 +540,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!1 &355781876
 GameObject:
@@ -499,7 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -510,9 +586,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!114 &355781878
 MonoBehaviour:
@@ -604,7 +680,7 @@ MonoBehaviour:
   xMove: 2000
   moveMultiplier: 1
   fMoveTime: 1
-  ease: 23
+  ease: 18
 --- !u!224 &400247759
 RectTransform:
   m_ObjectHideFlags: 0
@@ -734,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -745,9 +821,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!114 &661698546
 MonoBehaviour:
@@ -1054,13 +1130,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 831155404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 135326779}
-  m_RootOrder: 5
+  m_Father: {fileID: 1787278211}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1274,6 +1350,82 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: c5779ff177180aa4fb3b37f036e86046, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+--- !u!1 &1266473787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1266473788}
+  - component: {fileID: 1266473791}
+  - component: {fileID: 1266473790}
+  m_Layer: 5
+  m_Name: Crow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1266473788
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266473787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 135326779}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -750, y: -330}
+  m_SizeDelta: {x: 400, y: 400}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1266473790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266473787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ee628df0151f4e64181a91f01ad53d99, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1266473791
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266473787}
+  m_CullTransparentMesh: 1
 --- !u!1 &1322881289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -1374,9 +1526,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!1 &1356250023
 GameObject:
@@ -1410,7 +1562,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 135326779}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1574,7 +1726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -1585,9 +1737,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!1 &1389571223
 GameObject:
@@ -1700,6 +1852,7 @@ RectTransform:
   - {fileID: 1799263990}
   - {fileID: 89984915}
   - {fileID: 2121892343}
+  - {fileID: 46588669}
   m_Father: {fileID: 400247759}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1720,10 +1873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ea1870c11c7646ae6d1e98f62d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 0.3
   pos:
     isApply: 1
-    ease: 0
+    ease: 23
     amount: {x: -2000, y: 0}
   rot:
     isApply: 0
@@ -1823,7 +1976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -1834,9 +1987,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!1 &1787278210
 GameObject:
@@ -1873,6 +2026,7 @@ RectTransform:
   - {fileID: 1532913338}
   - {fileID: 252841263}
   - {fileID: 2014017161}
+  - {fileID: 831155405}
   m_Father: {fileID: 400247759}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1893,10 +2047,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ea1870c11c7646ae6d1e98f62d0b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 1
+  duration: 0.3
   pos:
     isApply: 1
-    ease: 0
+    ease: 23
     amount: {x: -2000, y: 0}
   rot:
     isApply: 0
@@ -1938,7 +2092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -1949,9 +2103,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!114 &1799263988
 MonoBehaviour:
@@ -2100,7 +2254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -2111,9 +2265,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!1 &2014017160
 GameObject:
@@ -2204,7 +2358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -2215,9 +2369,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!1 &2021165226
 GameObject:
@@ -2250,7 +2404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -2261,9 +2415,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!114 &2021165228
 MonoBehaviour:
@@ -2422,7 +2576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLoop: 0
+  isLoop: 1
   duration: 0.3
   pos:
     isApply: 1
@@ -2433,9 +2587,9 @@ MonoBehaviour:
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 0
-    ease: 0
-    amount: {x: 0, y: 0, z: 0}
+    isApply: 1
+    ease: 17
+    amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
 --- !u!114 &2121892341
 MonoBehaviour:
