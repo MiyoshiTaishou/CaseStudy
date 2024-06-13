@@ -1,10 +1,18 @@
 using UnityEngine;
-using UnityEngine.UI;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class SceneImages
+{
+    public List<GameObject> images; // シーンごとのボタンのリスト
+}
 
 public class M_ImageSelect : MonoBehaviour
 {
-    public GameObject[] images; // UIボタンの配列
+    [Header("シーンごとに表示する画像")]
+    public List<SceneImages> sceneImages; // シーンごとのボタンのリスト
     private int currentIndex = 0; // 現在選択中のボタンのインデックス
+    private int sceneIndex = 0; // 現在選択中のシーンのインデックス
     private bool stickMoved = false; // スティックが動いたかどうかのフラグ
 
     private bool once = false;
@@ -12,32 +20,35 @@ public class M_ImageSelect : MonoBehaviour
     [Header("トランジション"), SerializeField]
     private GameObject tran;
 
+    [Header("スライド"), SerializeField]
+    private GameObject sla;
+
     private void Start()
-    {        
-        //images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+    {
+        // 初期化処理が必要な場合はここに記述します
     }
 
     void Update()
     {
-        if(!once)
+        if (!once)
         {
-            images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+            sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
             once = true;
         }
 
-        float verticalInput = Input.GetAxisRaw("Horizontal"); // 横方向のスティック入力を取得
+        float horizontalInput = Input.GetAxisRaw("Horizontal"); // 横方向のスティック入力を取得
 
-        if (verticalInput > 0.5f && !stickMoved)
+        if (horizontalInput > 0.5f && !stickMoved)
         {
-            SelectImage(currentIndex + 1); // 右方向に移動したら前のボタンを選択
+            SelectImage(currentIndex + 1); // 右方向に移動したら次のボタンを選択
             stickMoved = true; // スティックが動いたフラグを立てる
         }
-        else if (verticalInput < -0.5f && !stickMoved)
+        else if (horizontalInput < -0.5f && !stickMoved)
         {
-            SelectImage(currentIndex - 1); // 左方向に移動したら次のボタンを選択
+            SelectImage(currentIndex - 1); // 左方向に移動したら前のボタンを選択
             stickMoved = true; // スティックが動いたフラグを立てる
         }
-        else if (verticalInput == 0)
+        else if (horizontalInput == 0)
         {
             stickMoved = false; // スティックが中立位置に戻ったらフラグをリセット
         }
@@ -47,15 +58,29 @@ public class M_ImageSelect : MonoBehaviour
             PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
         }
 
-        //選択されているもの以外
-        int count = 0;
-        foreach (var image in images)
+        if (Input.GetButtonDown("LButton"))
         {
-            if(count != currentIndex)
+            SelectScene(sceneIndex - 1); // Lボタンでシーンインデックスを減少
+            sla.GetComponent<M_SelectSlide>().Sub();
+        }
+
+        if (Input.GetButtonDown("RButton"))
+        {
+            SelectScene(sceneIndex + 1); // Rボタンでシーンインデックスを増加
+            sla.GetComponent<M_SelectSlide>().Add();
+        }
+
+        // 選択されているもの以外をリセット
+        for (int i = 0; i < sceneImages.Count; i++)
+        {
+            for (int j = 0; j < sceneImages[i].images.Count; j++)
             {
-                image.GetComponent<M_ImageEasing>().Resset();
+                if (i != sceneIndex || j != currentIndex)
+                {
+                    Debug.Log(sceneImages[i].images[j]);
+                    sceneImages[i].images[j].GetComponent<M_ImageEasing>().Resset();
+                }
             }
-            count++;
         }
     }
 
@@ -64,19 +89,42 @@ public class M_ImageSelect : MonoBehaviour
         // インデックスが範囲外の場合はインデックスをループさせる
         if (newIndex < 0)
         {
-            newIndex = images.Length - 1;
+            newIndex = sceneImages[sceneIndex].images.Count - 1;
         }
-        else if (newIndex >= images.Length)
+        else if (newIndex >= sceneImages[sceneIndex].images.Count)
         {
             newIndex = 0;
         }
 
         // 現在のボタンの選択を解除
-        images[currentIndex].GetComponent<M_ImageEasing>().Resset();
+        sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().Resset();
 
         // 新しいボタンを選択
         currentIndex = newIndex;
-        images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();       
+        sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+    }
+
+    void SelectScene(int newIndex)
+    {
+        // インデックスが範囲外の場合はインデックスをループさせる
+        if (newIndex < 0)
+        {
+            newIndex = sceneImages.Count - 1;
+        }
+        else if (newIndex >= sceneImages.Count)
+        {
+            newIndex = 0;
+        }
+
+        // 現在のシーンのボタンの選択を解除
+        sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().Resset();
+
+        // 新しいシーンを選択
+        sceneIndex = newIndex;
+        currentIndex = 0; // 新しいシーンでは最初のボタンを選択
+        sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+
+        tran.GetComponent<M_TransitionList>().SetSceneIndex(sceneIndex);
     }
 
     void PressSelectedButton()
