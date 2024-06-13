@@ -62,6 +62,7 @@ public class K_ChangeSprite : MonoBehaviour
             // “]‚ª‚Á‚Ä‚¢‚È‚¢
             else
             {
+                EnemyBall.SetEffectActivation(false);
                 EnemySpriteNormal.SetActive(true);
                 EnemySpriteNormal.transform.position = new Vector3(transform.position.x, EnemySpriteNormal.transform.position.y, transform.position.z);
                 EnemySpriteRolling.SetActive(false);
