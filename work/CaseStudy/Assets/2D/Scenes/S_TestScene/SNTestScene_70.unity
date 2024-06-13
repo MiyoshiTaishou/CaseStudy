@@ -1793,24 +1793,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &618461531 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1389413462}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &618461534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 618461531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &626399034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2775,7 +2757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061781000752379446, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.99
+      value: 10.71
       objectReference: {fileID: 0}
     - target: {fileID: 1061781000752379446, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3187,7 +3169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: managerStatus.WaitTime
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7083271406795752283, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: sEnemyMoves.Array.size
@@ -39803,24 +39785,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationName: enemy_walk
---- !u!1 &1673941025 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 2102150209}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1673941028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1673941025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &1686315548 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1222617881103884951, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
@@ -41527,24 +41491,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1609188614443976412, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
   m_PrefabInstance: {fileID: 2111202551}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2122699773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 803734902209920363, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
-  m_PrefabInstance: {fileID: 1010989953}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2122699776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122699773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99e9d7c79faffe4687f05a71dc47129, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationName: enemy_walk
 --- !u!1 &2124194345 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1396957527884846909, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}

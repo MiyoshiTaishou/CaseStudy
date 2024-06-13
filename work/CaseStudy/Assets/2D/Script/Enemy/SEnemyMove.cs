@@ -104,6 +104,12 @@ public class SEnemyMove : MonoBehaviour
         return enemyManager;
     }
 
+    //ワープしたかどうか
+    private bool isWarped = false;
+    //セッターとゲッター
+    public void SetisWarped(bool _flg) { isWarped = _flg; }
+    public bool GetIsWarped() { return isWarped; }
+
     public bool GetIsCollidingHologram() { return IsCollidingHologram; }
 
     // Start is called before the first frame update
@@ -139,7 +145,11 @@ public class SEnemyMove : MonoBehaviour
         {
             return;
         }
-
+        //ワープ状態になっていたら一定時間後に解除
+        if(isWarped)
+        {
+            StartCoroutine(ChangeWarped());
+        }
         //if(this.GetComponent<MPlayerSearch>().GetIsSearch())
         //{
         //    return;
@@ -432,7 +442,13 @@ public class SEnemyMove : MonoBehaviour
     //        rb.isKinematic = false;
     //    }
     //}
+    IEnumerator ChangeWarped()
+    {
 
+        //指定のフレーム待つ
+        yield return new WaitForSecondsRealtime(10);
+        isWarped = false;
+    }
     private bool GroundCheck()
     {
         Vector2 origin = transform.position;

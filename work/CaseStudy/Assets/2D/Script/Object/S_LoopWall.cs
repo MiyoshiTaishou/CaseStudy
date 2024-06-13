@@ -17,6 +17,8 @@ public class S_LoopWall : MonoBehaviour
     private AudioClip audioclip = null;
 
     private AudioSource audioSource = null;
+
+    //ワープ時に右側に出るかを取得
     public bool GetiswarpRight() { return iswarpRight; }
 
     GameObject ColObject = null;
@@ -64,6 +66,12 @@ public class S_LoopWall : MonoBehaviour
         {
             //一定時間ワープ不可の状態にする
             StartCoroutine(CoolTime());
+            
+            //当たったのが敵ならワープしたという情報を付与
+            if(collision.collider.CompareTag("Enemy"))
+            {
+                collision.collider.GetComponent<SEnemyMove>().SetisWarped(true);
+            }
 
             //ワープ先の位置
             Vector3 newpos = warpObj.transform.position;
