@@ -9,13 +9,10 @@ public class N_DebugDisplay : MonoBehaviour
     [Header("•\Ž¦‚·‚é?"), SerializeField]
     private bool isDisplay = false;
 
+    [Header("“G"), SerializeField]
+    private List<Rigidbody2D> ListRigid = new List<Rigidbody2D>();
+
     private TextMeshProUGUI textMesh;
-
-    public static float fNum = 0.0f;
-    public static Vector3 pos = Vector3.zero;
-    public static Vector3 size = Vector3.zero;
-    public static Vector2 offset = Vector2.zero;
-
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +25,22 @@ public class N_DebugDisplay : MonoBehaviour
     {
         if (isDisplay)
         {
-            textMesh.text = fNum.ToString();
-            textMesh.text = textMesh.text + "\n" + "pos " + pos.ToString();
-            textMesh.text = textMesh.text + "\n" + "size " + size.ToString();
-            textMesh.text = textMesh.text + "\n" + "offset " + offset.ToString();
+            textMesh.text = "";
+            foreach (var r in ListRigid)
+            {
+                if (r != null)
+                {
+                    textMesh.text = textMesh.text + r.velocity.ToString() + "\n";
+                }
+                else
+                {
+                    textMesh.text = textMesh.text + "\n";
+                }
+            }
+            //textMesh.text = fNum.ToString();
+            //textMesh.text = textMesh.text + "\n" + "pos " + pos.ToString();
+            //textMesh.text = textMesh.text + "\n" + "size " + size.ToString();
+            //textMesh.text = textMesh.text + "\n" + "offset " + offset.ToString();
         }
     }
 }

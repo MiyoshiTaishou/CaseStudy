@@ -228,10 +228,6 @@ public class N_ProjectHologram : MonoBehaviour
 
     private void GenerateHologram()
     {
-        if (gameObject.name == "Projecter (8)")
-        {
-            N_DebugDisplay.fNum = iHowMany;
-        }
         Vector3 vec = trans_Projecter.position;
         float dirX = 1.0f;
         float dirY = 1.0f;
