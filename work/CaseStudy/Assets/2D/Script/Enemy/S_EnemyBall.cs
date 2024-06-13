@@ -81,6 +81,14 @@ public class S_EnemyBall : MonoBehaviour
 
     private Animator animator;
 
+    public void SetEffectActivation(bool flg)
+    {
+        if(Eff_RollingObj)
+        {
+            Eff_RollingObj.SetActive(flg);
+        }
+    }
+
     public int GetStickCount()
     {
         int temp = 0;
