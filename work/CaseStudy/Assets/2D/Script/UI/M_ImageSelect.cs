@@ -13,6 +13,7 @@ public class M_ImageSelect : MonoBehaviour
     public List<SceneImages> sceneImages; // シーンごとのボタンのリスト
     private int currentIndex = 0; // 現在選択中のボタンのインデックス
     private int sceneIndex = 0; // 現在選択中のシーンのインデックス
+    private int slideIndex = 0;//スライドのインデックス
     private bool stickMoved = false; // スティックが動いたかどうかのフラグ
 
     private bool once = false;
@@ -25,7 +26,7 @@ public class M_ImageSelect : MonoBehaviour
 
     private void Start()
     {
-        // 初期化処理が必要な場合はここに記述します
+        slideIndex = sceneImages.Count - 1;
     }
 
     void Update()
@@ -34,6 +35,11 @@ public class M_ImageSelect : MonoBehaviour
         {
             sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
             once = true;
+        }
+
+        if(sla.GetComponent<M_SelectSlide>().GetIsSlide())
+        {
+            return;
         }
 
         float horizontalInput = Input.GetAxisRaw("Horizontal"); // 横方向のスティック入力を取得
@@ -60,15 +66,26 @@ public class M_ImageSelect : MonoBehaviour
 
         if (Input.GetButtonDown("LButton"))
         {
-            SelectScene(sceneIndex - 1); // Lボタンでシーンインデックスを減少
-            sla.GetComponent<M_SelectSlide>().Sub();
+            if (slideIndex > 0)
+            {
+                sla.GetComponent<M_SelectSlide>().Sub();
+                SelectScene(sceneIndex + 1); // Lボタンでシーンインデックスを減少
+                slideIndex--;
+            }            
         }
 
         if (Input.GetButtonDown("RButton"))
         {
-            SelectScene(sceneIndex + 1); // Rボタンでシーンインデックスを増加
-            sla.GetComponent<M_SelectSlide>().Add();
+            if (slideIndex < sceneImages.Count - 1)
+            {
+                sla.GetComponent<M_SelectSlide>().Add();
+                SelectScene(sceneIndex - 1); // Rボタンでシーンインデックスを増加
+
+                slideIndex++;
+            }           
         }
+
+        Debug.Log(slideIndex);
 
         // 選択されているもの以外をリセット
         for (int i = 0; i < sceneImages.Count; i++)
@@ -94,7 +111,7 @@ public class M_ImageSelect : MonoBehaviour
         else if (newIndex >= sceneImages[sceneIndex].images.Count)
         {
             newIndex = 0;
-        }
+        }       
 
         // 現在のボタンの選択を解除
         sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().Resset();
@@ -109,11 +126,11 @@ public class M_ImageSelect : MonoBehaviour
         // インデックスが範囲外の場合はインデックスをループさせる
         if (newIndex < 0)
         {
-            newIndex = sceneImages.Count - 1;
+            return;
         }
         else if (newIndex >= sceneImages.Count)
         {
-            newIndex = 0;
+            return;
         }
 
         // 現在のシーンのボタンの選択を解除

@@ -73,7 +73,7 @@ public class M_ImageEasing : MonoBehaviour
             Easing();
         }
 
-        if(isLoop)
+        if(isEasing && isLoop)
         {
             if(isReverse)
             {
@@ -86,7 +86,7 @@ public class M_ImageEasing : MonoBehaviour
 
             if(fTime > duration)
             {
-                fTime = 1;
+                fTime = duration;
                 isReverse = true;
             }
             else if(fTime < 0.0f)
@@ -142,5 +142,6 @@ public class M_ImageEasing : MonoBehaviour
         rectTransform.anchoredPosition = savePos;
         image.transform.localScale = saveScale;
         image.transform.rotation = Quaternion.Euler(saveRot);
+        isEasing = false;
     }
 }
