@@ -80,6 +80,9 @@ public class N_ProjectHologram : MonoBehaviour
 
     private bool isInit = false;
 
+    //プレイヤーホログラム初期位置
+    Vector2 InitHoloPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -115,7 +118,7 @@ public class N_ProjectHologram : MonoBehaviour
             {
                 // 置きなおし
                 Replacement();
-            }
+            } 
 
             sc_col = GetComponent<N_SetColliderOffSet>();
 
@@ -165,7 +168,12 @@ public class N_ProjectHologram : MonoBehaviour
                 foreach (GameObject obj in Hologram)
                 {
                     fTime = 0.0f;
-                    obj.SetActive(true);                   
+                    obj.SetActive(true);
+
+                    if(mode==HOLOGRAM_MODE.PLAYER)
+                    {
+                        obj.transform.position = InitHoloPos;
+                    }
                 }
                 isActive = true;
 
@@ -289,6 +297,8 @@ public class N_ProjectHologram : MonoBehaviour
             obj.transform.parent = this.gameObject.transform;           
             // 最初非表示
             obj.SetActive(false);
+
+            InitHoloPos = obj.transform.position;
             // リスト追加
             Hologram.Add(obj);
             
