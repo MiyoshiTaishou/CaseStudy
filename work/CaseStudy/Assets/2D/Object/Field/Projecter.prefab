@@ -114,6 +114,7 @@ MonoBehaviour:
   isReset: 0
   MeowingPrefab: {fileID: 5573310245492036228, guid: 5ab908b9d8dbfa149b197b90a2cde571, type: 3}
   audioclip: {fileID: 8300000, guid: a88b4ac882c83124a8a93698035cbcf5, type: 3}
+  rootSprite: {fileID: 888564597, guid: 38ab08c71b16a514a92d61beded847cb, type: 3}
 --- !u!114 &7792237611820218312
 MonoBehaviour:
   m_ObjectHideFlags: 0

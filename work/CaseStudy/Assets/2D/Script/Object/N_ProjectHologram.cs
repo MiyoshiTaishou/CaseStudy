@@ -54,6 +54,9 @@ public class N_ProjectHologram : MonoBehaviour
     [Header("共鳴音"), SerializeField]
     private AudioClip audioclip;
 
+    [Header("壁の根元スプライト"), SerializeField]
+    private Sprite rootSprite;
+
     //[Header("プロジェクター起動時に出す演出"), SerializeField]
     //private GameObject projectionUI;
 
@@ -298,6 +301,28 @@ public class N_ProjectHologram : MonoBehaviour
             // リスト追加
             Hologram.Add(obj);
             
+        }
+
+        // 壁の場合根元だけスプライト変更
+        SpriteRenderer renderer;
+        switch (mode)
+        {
+            case HOLOGRAM_MODE.WALL:
+                switch (HoloDirection)
+                {
+                    case HOLOGRAM_DIRECTION.UP:
+                        renderer = Hologram[0].GetComponent<SpriteRenderer>();
+                        renderer.sprite = rootSprite;
+
+                        break;
+
+                    case HOLOGRAM_DIRECTION.DOWN:
+                        renderer = Hologram[iHowMany].GetComponent<SpriteRenderer>();
+                        renderer.sprite = rootSprite;
+
+                        break;
+                }
+                break;
         }
 
         // 当たり判定系

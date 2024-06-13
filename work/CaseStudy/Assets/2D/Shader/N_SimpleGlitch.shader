@@ -60,11 +60,12 @@ Shader "Unlit/N_SimpleGlitch"
                     float noise = blockNoise(i.uv.y * _BlockScale);
                     noise += random(i.uv.x) * 0.3;
                     float2 randomvalue = noiserandom(float2(i.uv.y, _Time.y * _NoiseSpeed));
-                    gv.x += randomvalue * sin(sin(_GlitchIntensity) * .5) * sin(-sin(noise) * .2) * frac(_Time.y);
+                    gv.x += randomvalue * sin(sin(_GlitchIntensity) * 2.0) * sin(-sin(noise) * 1.6) * frac(_Time.y); //.5 .2
+                    //gv.y += randomvalue * sin(sin(_GlitchIntensity) * 2.0) * sin(-sin(noise) * 1.6) * frac(_Time.y); //.5 .2
                     color.r = tex2D(_MainTex, gv + float2(0.006, 0)).r;
                     color.g = tex2D(_MainTex, gv).g;
                     color.b = tex2D(_MainTex, gv - float2(0.008, 0)).b;
-                    color.a = 1.0;
+                    color.a = 1.0f;
 
                     return color;
                 }

@@ -80,7 +80,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BlockScale: 13.9
+    - _BlockScale: 5
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -90,12 +90,12 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GlitchIntensity: 0.167
+    - _GlitchIntensity: 0.15
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _NoiseSpeed: 4.56
+    - _NoiseSpeed: 2.21
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
