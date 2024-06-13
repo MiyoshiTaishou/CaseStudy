@@ -14,9 +14,19 @@ public class N_PlayerSearch : MonoBehaviour
     private float LostSightDistance = 6.0f;
 
     private Transform transTarget;
+    private GameObject Target;
 
     [SerializeField]
     public bool isSearch = false;
+
+    public bool isRaycast = false;
+
+    public bool isCheck = false;
+
+    public float elapsedTime = 0.0f;
+
+    [Header("レイヤーマスク設定"), SerializeField]
+    private LayerMask layerMask;
 
     public bool GetIsSearch() { return isSearch; }
 
@@ -38,6 +48,8 @@ public class N_PlayerSearch : MonoBehaviour
         if(enemyBall.GetisBall())
         {
             isSearch = false;
+            isRaycast = false;
+            elapsedTime = 0.0f;
             enemyManager = null;
         }
         else
@@ -45,6 +57,13 @@ public class N_PlayerSearch : MonoBehaviour
             if (enemyManager == null)
             {
                 enemyManager = enemyMove.GetManager();
+            }
+
+            // 追跡対象が視野範囲内に入った時
+            // 壁を挟んでいるかを判定する
+            if (isRaycast && !isCheck)
+            {
+                RayCastCheck();
             }
 
             // 見つけているときのみ見失うための計算実行
@@ -58,6 +77,8 @@ public class N_PlayerSearch : MonoBehaviour
                 if (dis > LostSightDistance * LostSightDistance)
                 {
                     isSearch = false;
+                    isRaycast = false;
+                    elapsedTime = 0.0f;
                 }
             }
         }
@@ -65,7 +86,7 @@ public class N_PlayerSearch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isSearch)
+        if (isRaycast || isSearch)
         {
             return;
         }
@@ -73,29 +94,78 @@ public class N_PlayerSearch : MonoBehaviour
         {
             if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
             {
-                //Debug.Log("発見");
-                transTarget = collision.gameObject.transform;
-                enemyManager.SetTarget(collision.gameObject);
-                isSearch = true;
+                Target = collision.gameObject;
+                transTarget = Target.transform;
+
+                //Debug.Log("エンター");
+
+                isRaycast = true;
             }
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (isSearch)
-        {
-            return;
-        }
         if (enemyManager != null)
         {
             if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
             {
-                //Debug.Log("追跡");
-                enemyManager.SetTarget(collision.gameObject);
+                isRaycast = false;
+                elapsedTime = 0.0f;
 
-                isSearch = true;
+                isCheck = false;
             }
+        }
+    }
+
+    // プレイヤーが視界に入った時にその間に壁があるかどうか判断するレイを飛ばす
+    private void RayCastCheck()
+    {
+        //Debug.Log("例とバス");
+
+        Vector3 startPoint = gameObject.transform.position;
+        Vector2 direction = Vector2.right;
+        if (enemyMove.GetIsReflection())
+        {
+            direction = Vector2.left;
+        }
+        float distance = elapsedTime * 6.0f;
+        elapsedTime += Time.deltaTime;
+
+        RaycastHit2D hit = Physics2D.Raycast(startPoint, direction,distance,layerMask);
+
+        //Debug.DrawRay(startPoint, direction * distance, Color.black, 0.0f, false);
+
+        // 先に敵に当たったら追跡
+        // 壁に当たったらなにもなし
+        if (hit.collider != null)
+        {
+            //Debug.Log("ヒットした");
+            elapsedTime = 0.0f;
+            isCheck = true;
+
+            if (hit.collider.gameObject.CompareTag("Player") || hit.collider.gameObject.CompareTag("Decoy"))
+            {
+                //Debug.Log("接敵");
+                isSearch = true;
+                enemyManager.SetTarget(Target);
+                isRaycast = false;
+            }
+            else if(hit.collider.gameObject.name == "Tilemap_Col")
+            {
+                //Debug.Log("壁検知");
+
+                isSearch = false;
+                isRaycast = false;
+            }
+            else
+            {
+                //Debug.Log("なんか違うもの");
+            }
+        }
+        else
+        {
+            //Debug.Log("ヒットなし");
         }
     }
 
