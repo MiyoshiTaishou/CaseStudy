@@ -106,6 +106,8 @@ public class SEnemyMove : MonoBehaviour
 
     //ワープしたかどうか
     private bool isWarped = false;
+    public bool OldisWarped = false;
+    Coroutine coroutine = null;
     //セッターとゲッター
     public void SetisWarped(bool _flg) { isWarped = _flg; }
     public bool GetIsWarped() { return isWarped; }
@@ -146,9 +148,14 @@ public class SEnemyMove : MonoBehaviour
             return;
         }
         //ワープ状態になっていたら一定時間後に解除
-        if(isWarped)
+        if(isWarped && OldisWarped)
         {
-            StartCoroutine(ChangeWarped());
+            OldisWarped = false;
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }   
+            coroutine = StartCoroutine(ChangeWarped());
         }
         //if(this.GetComponent<MPlayerSearch>().GetIsSearch())
         //{
@@ -444,7 +451,7 @@ public class SEnemyMove : MonoBehaviour
     //}
     IEnumerator ChangeWarped()
     {
-
+        isWarped = true;
         //指定のフレーム待つ
         yield return new WaitForSecondsRealtime(10);
         isWarped = false;

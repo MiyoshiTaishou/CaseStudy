@@ -225,7 +225,8 @@ public class N_EnemyManager : MonoBehaviour
                 {
                     sc_mana.isClone = true;
                     sc_mana.OldWaitTime = OldWaitTime;
-                    sc_mana.managerStatus.WaitTime = 0.001f;
+                    //sc_mana.managerStatus.WaitTime = 0.001f;
+                    sc_mana.managerStatus.WaitTime = OldWaitTime;
                 }
                 return;
             }
@@ -348,7 +349,7 @@ public class N_EnemyManager : MonoBehaviour
         }
         if(!flg) 
         {
-           
+            Debug.Log("Ç‚Ç◊Ç¶Ç¡Ç∑ÅI");
             managerState = ManagerState.WAIT;
         }
         else
