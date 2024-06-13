@@ -43,12 +43,14 @@ public class N_EnemyManager : MonoBehaviour
         public float LostSightTime;
 
     }
-
     // 敵の移動方式変える
     // 指定秒数正面に移動する
     [Header("移動ステータス"), SerializeField]
     ManagerMoveStatus managerStatus;
 
+    //保存された隊列分裂前の待機時間
+    [Header("おーるどたいむ"),SerializeField]
+    private float OldWaitTime=0.2f;
     // 経過時間
     private float ElapsedTime = 0.0f;
     private float ElapsedWaitTime = 0.0f;
@@ -70,6 +72,9 @@ public class N_EnemyManager : MonoBehaviour
     {
         return GenerateNumber;
     }
+
+    //複製された隊列かどうか
+    private bool isClone = false;
 
     // ステートマシン
     public enum ManagerState
@@ -126,6 +131,12 @@ public class N_EnemyManager : MonoBehaviour
         this.gameObject.name = this.gameObject.name + GenerateOrder.ToString();
         GenerateNumber = GenerateOrder;
         GenerateOrder++;
+
+        if (!isClone)
+        {
+            OldWaitTime = managerStatus.WaitTime;
+            Debug.Log("オールドタイム" + OldWaitTime);
+        }
     }
 
     // Update is called once per frame
@@ -209,6 +220,13 @@ public class N_EnemyManager : MonoBehaviour
                 // 新チームに移動
                 sc_mana.TeamAddEnemy(obj);
                 Debug.Log("高さの違う新チームInit");
+                Debug.Log("状況" + obj.GetComponent<SEnemyMove>().GetIsWarped());
+                if(obj.GetComponent<SEnemyMove>().GetIsWarped()==true)
+                {
+                    sc_mana.isClone = true;
+                    sc_mana.OldWaitTime = OldWaitTime;
+                    sc_mana.managerStatus.WaitTime = 0.001f;
+                }
                 return;
             }
 
@@ -221,7 +239,7 @@ public class N_EnemyManager : MonoBehaviour
                 sc_mana.TeamAddEnemy(obj);
                 Debug.Log("高さの違う新チーム");
             }
-            
+
             order++;
         }
     }
@@ -318,7 +336,25 @@ public class N_EnemyManager : MonoBehaviour
         SetInfomation(true);
 
         // 待ち時間にする
-        managerState = ManagerState.WAIT;
+        bool  flg = false;
+        foreach (var obj in TeamMembers) 
+        {
+            if(obj.GetComponent<SEnemyMove>().GetIsWarped()==true)
+            {
+                flg = true;
+                //obj.GetComponent<SEnemyMove>().SetisWarped(false);
+                Debug.Log("あああ遠田");
+            }
+        }
+        if(!flg) 
+        {
+           
+            managerState = ManagerState.WAIT;
+        }
+        else
+        {
+            managerStatus.WaitTime = OldWaitTime;
+        }
         IsRef = true;
 
         // 敵のいなくなったマネージャー削除
