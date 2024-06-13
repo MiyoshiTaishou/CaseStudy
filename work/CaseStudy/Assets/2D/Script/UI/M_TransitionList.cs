@@ -4,12 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[System.Serializable]
+public class SceneList
+{
+    public List<string> scenes;
+}
+
+
 public class M_TransitionList : MonoBehaviour
 {
     private Image image;
     private Material material;
 
-    [Header("イージング関数"),SerializeField]
+    [Header("イージング関数"), SerializeField]
     private M_Easing.Ease ease;
 
     [Header("フェードインアウト"), SerializeField]
@@ -18,7 +25,8 @@ public class M_TransitionList : MonoBehaviour
     /// <summary>
     /// シーン遷移先の名前
     /// </summary>
-    public string[] sceneName;
+    [SerializeField]
+    public List<SceneList> sceneName = new List<SceneList>(); // シリアライズ可能にし、初期化
 
     /// <summary>
     /// シーン遷移開始
@@ -49,13 +57,17 @@ public class M_TransitionList : MonoBehaviour
 
     public void SetIndex(int _index) { index = _index; }
 
+    private int sceneIndex = 0;
+
+    public void SetSceneIndex(int _index) { sceneIndex = _index; }
+
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
         material = image.material;
 
-        if(isInOut)
+        if (isInOut)
         {
             val = -1.0f;
         }
@@ -72,9 +84,9 @@ public class M_TransitionList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isTransition)
+        if (isTransition)
         {
-            if(pause)
+            if (pause)
             {
                 pause.GetComponent<M_Pause>().enabled = false;
             }
@@ -93,11 +105,9 @@ public class M_TransitionList : MonoBehaviour
 
             if (val <= -0.9f)
             {
-                SceneManager.LoadScene(sceneName[index]);
+                SceneManager.LoadScene(sceneName[sceneIndex].scenes[index]);
             }
-                     
         }
-       
 
         if (isInOut)
         {
@@ -110,18 +120,18 @@ public class M_TransitionList : MonoBehaviour
 
             val = func(t) * 2f;
 
-            this.material.SetFloat("_Val", val);  
-            
-            if(val >= 1.0f)
+            this.material.SetFloat("_Val", val);
+
+            if (val >= 1.0f)
             {
                 isInOut = false;
             }
         }
-    }    
+    }
 
     public void LoadScene()
     {
-        if(!once)
+        if (!once)
         {
             isTransition = true;
             M_GameMaster.SetGamePlay(true);
@@ -129,6 +139,6 @@ public class M_TransitionList : MonoBehaviour
             fTime = 0.0f;
 
             once = true;
-        }       
+        }
     }
 }
