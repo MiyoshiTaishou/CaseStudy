@@ -71,6 +71,7 @@ public class S_LoopWall : MonoBehaviour
             if(collision.collider.CompareTag("Enemy"))
             {
                 collision.collider.GetComponent<SEnemyMove>().SetisWarped(true);
+                collision.collider.GetComponent<SEnemyMove>().OldisWarped = true;
             }
 
             //ƒ[ƒvæ‚ÌˆÊ’u
