@@ -44117,7 +44117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061781000752379446, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.48
+      value: 22.99
       objectReference: {fileID: 0}
     - target: {fileID: 1061781000752379446, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -44151,6 +44151,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1061781000752379451, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 5f1ddecf6b654444aaa7bf024e298d85, type: 2}
     - target: {fileID: 1061781001127465577, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: m_Name
       value: Player
@@ -44178,8 +44182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afb904d2a274fd44a42abd8f629f4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGround: 0
-  colList: []
 --- !u!4 &1366207612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6372921232022759937, guid: c793d23110b397448b2ff7991f372973, type: 3}
