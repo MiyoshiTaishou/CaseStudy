@@ -161,6 +161,7 @@ public class M_DuctManager : MonoBehaviour
             {
                 renderers[i].enabled = false;
             }
+            PlayerObj.GetComponent<M_PlayerMove>().FullStamina();
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
             PlayerObj.GetComponent<M_PlayerMove>().SetIsNowDahs(false);
             //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
@@ -168,6 +169,7 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<BoxCollider2D>().enabled = false;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = false;
+
 
             Debug.Log(PlayerObj.GetComponent<M_PlayerMove>().GetIsMove());
 
