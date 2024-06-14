@@ -14,6 +14,8 @@ public class M_ResultScore : MonoBehaviour
         {
             item.gameObject.SetActive(false);
         }
+
+        m_Score[1].gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -22,6 +24,11 @@ public class M_ResultScore : MonoBehaviour
         if(M_GameMaster.GetDethCount() == 0)
         {
             m_Score[0].gameObject.SetActive(true);
+        }        
+
+        if(M_GameMaster.GetEnemyAllKill())
+        {
+            m_Score[2].gameObject.SetActive(true);
         }
     }
 }

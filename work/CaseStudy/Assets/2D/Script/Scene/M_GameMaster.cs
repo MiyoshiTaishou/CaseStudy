@@ -17,6 +17,11 @@ static public class M_GameMaster
     /// Ž€–SƒJƒEƒ“ƒg
     /// </summary>
     private static int nDethCount = 0;
+
+    /// <summary>
+    /// “G‚ð‘S‚Ä“|‚·
+    /// </summary>
+    private static bool isEnemyAllKill = false;
     
     public static bool GetGamePlay() { return isGamePlay; }
     public static void SetGamePlay(bool gamePlay) {  isGamePlay = gamePlay; }
@@ -24,4 +29,7 @@ static public class M_GameMaster
     public static int GetDethCount() {  return nDethCount; }
 
     public static void SetDethCount(int _count) { nDethCount = _count; }
+
+    public static bool GetEnemyAllKill() { return isEnemyAllKill; }
+    public static void SetEneymAllKill(bool kill) { isEnemyAllKill = kill; }
 }
