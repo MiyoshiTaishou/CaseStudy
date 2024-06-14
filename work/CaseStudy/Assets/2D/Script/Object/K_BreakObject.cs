@@ -99,29 +99,79 @@ public class K_BreakObject : MonoBehaviour
 
     }
 
-    private void OnDestroy()
-    {
-        if(!isQuitting)
-        {
-            //爆発エフェクト再生
-            if(Eff_Explosion)
-            {
-                Instantiate(Eff_Explosion, transform.position, Quaternion.identity);
-            }
-            if (audioclip)
-            {
-                AudioSource.PlayClipAtPoint(audioclip, transform.position);
-            }
-            // 破片エフェクト生成
-            if (Eff_BrokenPiece)
-            {
-                Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
-            }
 
-            if(camera)
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //オブジェクト取得
+        GameObject HitObj = collision.transform.gameObject;
+        //オブジェクトからS_EnemyBall取得
+        S_EnemyBall enemyBall = HitObj.GetComponent<S_EnemyBall>();
+
+        //相手にS_EnemyBallスクリプトが付いていたら
+        if (enemyBall)
+        {
+            //敵塊数取得、オブジェクトの耐久値と比較
+            int checkNum = enemyBall.GetStickCount();
+            if (this.GetBreakNum() <= checkNum && enemyBall.GetisPushing())
             {
-                camera.GetComponent<M_CameraShake>().Shake();
-            }            
+                //爆発エフェクト再生
+                if (Eff_Explosion)
+                {
+                    Instantiate(Eff_Explosion, transform.position, Quaternion.identity);
+                }
+                if (audioclip)
+                {
+                    AudioSource.PlayClipAtPoint(audioclip, transform.position);
+                }
+                // 破片エフェクト生成
+                if (Eff_BrokenPiece)
+                {
+                    Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
+                }
+                if (camera)
+                {
+                    camera.GetComponent<M_CameraShake>().Shake();
+                }
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //オブジェクト取得
+        GameObject HitObj = collision.transform.gameObject;
+        //オブジェクトからS_EnemyBall取得
+        S_EnemyBall enemyBall = HitObj.GetComponent<S_EnemyBall>();
+
+        //相手にS_EnemyBallスクリプトが付いていたら
+        if (enemyBall)
+        {
+            //敵塊数取得、オブジェクトの耐久値と比較
+            int checkNum = enemyBall.GetStickCount();
+            if (this.GetBreakNum() <= checkNum && enemyBall.GetisPushing())
+            {
+                //爆発エフェクト再生
+                if (Eff_Explosion)
+                {
+                    Instantiate(Eff_Explosion, transform.position, Quaternion.identity);
+                }
+                if (audioclip)
+                {
+                    AudioSource.PlayClipAtPoint(audioclip, transform.position);
+                }
+                // 破片エフェクト生成
+                if (Eff_BrokenPiece)
+                {
+                    Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
+                }
+                if (camera)
+                {
+                    camera.GetComponent<M_CameraShake>().Shake();
+                }
+                Destroy(gameObject);
+            }
         }
     }
 }
