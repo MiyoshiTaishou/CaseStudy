@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class S_Respawn : MonoBehaviour
 {
@@ -17,6 +18,21 @@ public class S_Respawn : MonoBehaviour
     AudioClip acHit= null;
     [Header("チェックポイント取得時SE"),SerializeField]
     AudioClip acCheckPoint= null;
+
+    [Header("復活演出時間"), SerializeField]
+    private float RespwanTime = 0.0f;
+
+    private float ElapsedRespawnTime = 0.0f;
+
+    [Header("煙幕エフェクト"), SerializeField]
+    private GameObject SmokePrefab;
+
+    [Header("煙幕SE"), SerializeField]
+    AudioClip acSmokeScreen = null;
+
+    private GameObject effectPanel;
+
+    public bool isRespawn = false;
 
     //コルーチン中かどうか
     bool isCoroutine = false;
@@ -42,12 +58,67 @@ public class S_Respawn : MonoBehaviour
         {
             Debug.LogError("プレイヤーのスポーンのやつにAudioSourceがないって話だよね");
         }
+
+        if (!SmokePrefab)
+        {
+            Debug.LogError("煙幕エフェクトがセットされてないって話だよん");
+        }
+
+        //effectPanel = GameObject.Find("SceneEffect_Panel");
+        //if (!effectPanel)
+        //{
+        //    Debug.Log("トランジションのパネルがシーンにないってハナシ");
+        //}
+    }
+
+    public void Retry()
+    {
+        isRespawn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isRespawn)
+        {
+            // 初期化
+            if(ElapsedRespawnTime == 0.0f)
+            {
+                Vector3 initpos = new Vector3(
+                    transform.position.x,
+                    transform.position.y + 2.0f, 
+                    SmokePrefab.transform.position.z);
+
+                // 煙幕エフェクト生成
+                GameObject smoke = Instantiate(SmokePrefab, initpos, Quaternion.identity);
+                //smoke.transform.parent = gameObject.transform;
+                smoke.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+                audiosource.PlayOneShot(acSmokeScreen);
+            }
+
+            if (ElapsedRespawnTime > RespwanTime / 3.0f)
+            {
+                // プレイヤー非表示
+                transform.parent.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+            }
+
+            if(ElapsedRespawnTime >= RespwanTime)
+            {
+                Debug.Log("リスポオオオオオオオオオオオオオオオオオオオオオオオオオオオオん");
+                // 現在のSceneを取得
+                Scene loadScene = SceneManager.GetActiveScene();
+                // 現在のシーンを再読み込みする
+                SceneManager.LoadScene(loadScene.name);
+            }
+
+            ElapsedRespawnTime += Time.deltaTime;
+        }
+        else
+        {
+            ElapsedRespawnTime = 0.0f;
+            transform.parent.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -81,6 +152,8 @@ public class S_Respawn : MonoBehaviour
 
         //Positionに関するコンポーネントのオンオフ
         transform.root.GetComponent<M_PlayerMove>().enabled = false;
+        //transform.root.GetComponent<M_PlayerPush>().enabled = false;
+        //transform.root.GetComponent<N_ProjecterSympathy>().enabled = false;
         transform.root.GetComponent<BoxCollider2D>().enabled = false;
         
         //指定のフレーム待つ
@@ -89,22 +162,24 @@ public class S_Respawn : MonoBehaviour
         transform.root.GetComponent<BoxCollider2D>().enabled = true;
         transform.root.GetComponent<M_PlayerMove>().enabled = true;
 
-        //復活orでっど
-        if (nRespawn > 0)
-        {
-            //復活位置に転送
-            transform.root.position = vecRespawnPos;
-        }
-        else if(nRespawn <= 0)
-        {
-            //ゲームオーバーのフラグをオンにするとかの処理が入るのかもしれないよねって話だよね
-            //デストロイ
-            Destroy(transform.root.gameObject);
-        }
-        nRespawn--;
+        isRespawn = true;
 
-       //復活時音声再生
-       audiosource.PlayOneShot(acRespawn);
+       // //復活orでっど
+       // if (nRespawn > 0)
+       // {
+       //     //復活位置に転送
+       //     transform.root.position = vecRespawnPos;
+       // }
+       // else if(nRespawn <= 0)
+       // {
+       //     //ゲームオーバーのフラグをオンにするとかの処理が入るのかもしれないよねって話だよね
+       //     //デストロイ
+       //     Destroy(transform.root.gameObject);
+       // }
+       // nRespawn--;
+
+       ////復活時音声再生
+       //audiosource.PlayOneShot(acRespawn);
 
        isCoroutine= false;
     }

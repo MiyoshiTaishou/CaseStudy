@@ -15,6 +15,9 @@ public class M_Transition : MonoBehaviour
     [Header("フェードインアウト"), SerializeField]
     private bool isInOut = true;
 
+    [Header("リトライか"), SerializeField]
+    private bool isRetry = false;
+
     /// <summary>
     /// シーン遷移先の名前
     /// </summary>
@@ -63,6 +66,11 @@ public class M_Transition : MonoBehaviour
         this.material.SetFloat("_Val", val);
 
         pause = GameObject.Find("PauseCanvas");
+
+        if (isRetry)
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+        }
     }
 
     // Update is called once per frame
