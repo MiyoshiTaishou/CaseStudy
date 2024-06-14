@@ -91,7 +91,7 @@ public class K_EnemyReaction : MonoBehaviour
         EnemyQuestion.SetActive(false);
         EnemyFoundTarget.SetActive(false);
 
-        Debug.Log("リアクションリセット");
+        //Debug.Log("リアクションリセット");
     }
 
     //敵が消えたら
