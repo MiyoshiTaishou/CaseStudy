@@ -211,6 +211,8 @@ GameObject:
   - component: {fileID: 89984914}
   - component: {fileID: 89984913}
   - component: {fileID: 89984912}
+  - component: {fileID: 89984917}
+  - component: {fileID: 89984916}
   m_Layer: 5
   m_Name: Letter5 (1)
   m_TagString: Untagged
@@ -231,17 +233,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
@@ -303,6 +305,34 @@ RectTransform:
   m_AnchoredPosition: {x: -913, y: -300}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &89984916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89984911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &89984917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 89984911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &135326775
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +482,8 @@ GameObject:
   - component: {fileID: 252841265}
   - component: {fileID: 252841264}
   - component: {fileID: 252841266}
+  - component: {fileID: 252841268}
+  - component: {fileID: 252841267}
   m_Layer: 5
   m_Name: Letter5
   m_TagString: Untagged
@@ -530,20 +562,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
+--- !u!114 &252841267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252841262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &252841268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252841262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &355781876
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +616,8 @@ GameObject:
   - component: {fileID: 355781879}
   - component: {fileID: 355781878}
   - component: {fileID: 355781877}
+  - component: {fileID: 355781882}
+  - component: {fileID: 355781881}
   m_Layer: 5
   m_Name: Letter2 (1)
   m_TagString: Untagged
@@ -576,17 +638,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
@@ -648,6 +710,34 @@ RectTransform:
   m_AnchoredPosition: {x: -913, y: 0}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &355781881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355781876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &355781882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355781876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &400247757
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,6 +881,8 @@ GameObject:
   - component: {fileID: 661698547}
   - component: {fileID: 661698546}
   - component: {fileID: 661698545}
+  - component: {fileID: 661698550}
+  - component: {fileID: 661698549}
   m_Layer: 5
   m_Name: Letter3 (1)
   m_TagString: Untagged
@@ -811,17 +903,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
@@ -883,6 +975,34 @@ RectTransform:
   m_AnchoredPosition: {x: -663, y: 0}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &661698549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661698544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &661698550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661698544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &714142357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,6 +1558,8 @@ GameObject:
   - component: {fileID: 1322881292}
   - component: {fileID: 1322881291}
   - component: {fileID: 1322881293}
+  - component: {fileID: 1322881295}
+  - component: {fileID: 1322881294}
   m_Layer: 5
   m_Name: Letter2
   m_TagString: Untagged
@@ -1516,20 +1638,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
+--- !u!114 &1322881294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322881289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &1322881295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322881289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1356250023
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,6 +1799,8 @@ GameObject:
   - component: {fileID: 1371377284}
   - component: {fileID: 1371377283}
   - component: {fileID: 1371377285}
+  - component: {fileID: 1371377287}
+  - component: {fileID: 1371377286}
   m_Layer: 5
   m_Name: Letter1
   m_TagString: Untagged
@@ -1727,20 +1879,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
+--- !u!114 &1371377286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371377281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &1371377287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371377281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1389571223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1899,6 +2079,8 @@ GameObject:
   - component: {fileID: 1532913340}
   - component: {fileID: 1532913339}
   - component: {fileID: 1532913341}
+  - component: {fileID: 1532913343}
+  - component: {fileID: 1532913342}
   m_Layer: 5
   m_Name: Letter4
   m_TagString: Untagged
@@ -1977,20 +2159,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
+--- !u!114 &1532913342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532913337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &1532913343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532913337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1787278210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,6 +2283,8 @@ GameObject:
   - component: {fileID: 1799263989}
   - component: {fileID: 1799263988}
   - component: {fileID: 1799263987}
+  - component: {fileID: 1799263992}
+  - component: {fileID: 1799263991}
   m_Layer: 5
   m_Name: Letter4 (1)
   m_TagString: Untagged
@@ -2093,17 +2305,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
@@ -2165,6 +2377,34 @@ RectTransform:
   m_AnchoredPosition: {x: -1163, y: -300}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1799263991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799263986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &1799263992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799263986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1841632527
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,6 +2417,8 @@ GameObject:
   - component: {fileID: 1841632530}
   - component: {fileID: 1841632529}
   - component: {fileID: 1841632531}
+  - component: {fileID: 1841632533}
+  - component: {fileID: 1841632532}
   m_Layer: 5
   m_Name: Letter3
   m_TagString: Untagged
@@ -2255,20 +2497,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
+--- !u!114 &1841632532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841632527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &1841632533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841632527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2014017160
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2551,8 @@ GameObject:
   - component: {fileID: 2014017163}
   - component: {fileID: 2014017162}
   - component: {fileID: 2014017164}
+  - component: {fileID: 2014017166}
+  - component: {fileID: 2014017165}
   m_Layer: 5
   m_Name: Letter6
   m_TagString: Untagged
@@ -2359,20 +2631,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
+--- !u!114 &2014017165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014017160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &2014017166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014017160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2021165226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,6 +2685,8 @@ GameObject:
   - component: {fileID: 2021165229}
   - component: {fileID: 2021165228}
   - component: {fileID: 2021165227}
+  - component: {fileID: 2021165232}
+  - component: {fileID: 2021165231}
   m_Layer: 5
   m_Name: Letter1 (1)
   m_TagString: Untagged
@@ -2405,17 +2707,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
@@ -2477,6 +2779,34 @@ RectTransform:
   m_AnchoredPosition: {x: -1163, y: 0}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2021165231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021165226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &2021165232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021165226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2078693587
 GameObject:
   m_ObjectHideFlags: 0
@@ -2557,6 +2887,8 @@ GameObject:
   - component: {fileID: 2121892342}
   - component: {fileID: 2121892341}
   - component: {fileID: 2121892340}
+  - component: {fileID: 2121892345}
+  - component: {fileID: 2121892344}
   m_Layer: 5
   m_Name: Letter6 (1)
   m_TagString: Untagged
@@ -2577,17 +2909,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 1
-  duration: 0.3
+  duration: 1
   pos:
     isApply: 1
     ease: 0
-    amount: {x: 0, y: 50, z: 0}
+    amount: {x: 0, y: 20, z: 0}
   rot:
     isApply: 0
     ease: 0
     amount: {x: 0, y: 0, z: 0}
   scale:
-    isApply: 1
+    isApply: 0
     ease: 17
     amount: {x: 0.3, y: 0.3, z: 0}
   isStart: 0
@@ -2649,3 +2981,31 @@ RectTransform:
   m_AnchoredPosition: {x: -663, y: -300}
   m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2121892344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121892339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b034434d47d190b45b3ea82e4c31ece7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectColor: {r: 1, g: 1, b: 0, a: 1}
+--- !u!114 &2121892345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121892339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 0, a: 1}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
