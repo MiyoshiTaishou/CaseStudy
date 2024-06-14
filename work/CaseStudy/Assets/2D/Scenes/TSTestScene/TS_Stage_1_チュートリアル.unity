@@ -636,6 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ease: 2
   isInOut: 1
+  isRetry: 0
   sceneName: M_ResultScene
   duration: 3
 --- !u!114 &64928753
