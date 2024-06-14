@@ -99,6 +99,15 @@ public class M_PlayerMove : MonoBehaviour
     public bool GetIsMove() { return isMove; }
     public void SetIsMove(bool _move) { isMove = _move; }
 
+    //スタミナを全回復する関数
+    public void FullStamina() 
+    {
+        fStamina = fStaminaMax;
+        StaminaImage.color = StaminaColor;
+        StaminaImage.fillAmount = fStamina;
+
+    }
+
     /// <summary>
     ///アニメーション関連
     /// </summary>
