@@ -164,6 +164,8 @@ public class S_Respawn : MonoBehaviour
 
         isRespawn = true;
 
+        M_GameMaster.SetDethCount(1);
+
        // //復活orでっど
        // if (nRespawn > 0)
        // {
