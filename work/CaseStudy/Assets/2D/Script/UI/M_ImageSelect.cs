@@ -76,22 +76,22 @@ public class M_ImageSelect : MonoBehaviour
             PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
         }
 
-        if (Input.GetButtonDown("LButton"))
+        if (Input.GetButtonDown("RButton"))
         {
             if (slideIndex > 0)
             {
                 sla.GetComponent<M_SelectSlide>().Sub();
-                SelectScene(sceneIndex - 1); // Lボタンでシーンインデックスを減少
+                SelectScene(sceneIndex + 1); // Lボタンでシーンインデックスを減少
                 slideIndex--;
             }
         }
 
-        if (Input.GetButtonDown("RButton"))
+        if (Input.GetButtonDown("LButton"))
         {
             if (slideIndex < sceneImages.Count - 1)
             {
                 sla.GetComponent<M_SelectSlide>().Add();
-                SelectScene(sceneIndex + 1); // Rボタンでシーンインデックスを増加
+                SelectScene(sceneIndex - 1); // Rボタンでシーンインデックスを増加
                 slideIndex++;
             }
         }
@@ -109,6 +109,8 @@ public class M_ImageSelect : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log(sceneIndex);
     }
 
     void SelectImage(int newIndex)
