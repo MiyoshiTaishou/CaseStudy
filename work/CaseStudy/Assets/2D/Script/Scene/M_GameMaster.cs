@@ -12,7 +12,16 @@ static public class M_GameMaster
     /// ƒQ[ƒ€’†’f
     /// </summary>
     private static bool isGamePlay = true;
+
+    /// <summary>
+    /// ƒvƒŒƒCƒ„[‚Ìu–]‰ñ”
+    /// </summary>
+    private static int nDethCount = 0;
     
     public static bool GetGamePlay() { return isGamePlay; }
     public static void SetGamePlay(bool gamePlay) {  isGamePlay = gamePlay; }
+
+    public static int GetDethCount() {  return nDethCount; }
+
+    public static void SetDethCount(int _deth) { nDethCount = _deth; }
 }

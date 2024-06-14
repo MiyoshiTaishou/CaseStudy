@@ -94,6 +94,8 @@ public class S_Respawn : MonoBehaviour
         {
             //復活位置に転送
             transform.root.position = vecRespawnPos;
+
+            M_GameMaster.SetDethCount(1);
         }
         else if(nRespawn <= 0)
         {
