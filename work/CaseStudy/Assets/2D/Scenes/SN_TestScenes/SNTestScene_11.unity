@@ -35019,7 +35019,7 @@ PrefabInstance:
       objectReference: {fileID: 663085114}
     - target: {fileID: 1396957527884846909, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8044572239165803442, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
       propertyPath: m_Pivot.x
@@ -40898,7 +40898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061781000752379446, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.76
+      value: 10.81
       objectReference: {fileID: 0}
     - target: {fileID: 1061781000752379446, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41792,7 +41792,7 @@ PrefabInstance:
       objectReference: {fileID: 983229436}
     - target: {fileID: 6585438994767444666, guid: 9b95bb7ad1ad52540bff17d7343f58d9, type: 3}
       propertyPath: trailOffset.y
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6585438994767444667, guid: 9b95bb7ad1ad52540bff17d7343f58d9, type: 3}
       propertyPath: m_Name
@@ -42124,6 +42124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ease: 2
   isInOut: 1
+  isRetry: 0
   sceneName: M_ResultScene
   duration: 3
 --- !u!114 &2147251872
