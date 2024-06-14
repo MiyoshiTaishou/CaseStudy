@@ -26,11 +26,15 @@ public class M_SelectSlide : MonoBehaviour
     /// </summary>
     private bool isSlide = false;
 
+    private RectTransform rectTransform;
+
     public bool GetIsSlide() { return isSlide; }
 
     private void Start()
     {
-        Startpos = this.transform.position;
+        rectTransform = GetComponent<RectTransform>();
+
+        Startpos = rectTransform.anchoredPosition;     
     }
 
     private void Update()
@@ -52,7 +56,7 @@ public class M_SelectSlide : MonoBehaviour
     {
         isEasing = !isEasing;
         fTime = 0;
-        Startpos = this.transform.position;
+        Startpos = rectTransform.anchoredPosition;
 
         isSlide = true;
     }
@@ -78,11 +82,11 @@ public class M_SelectSlide : MonoBehaviour
 
         if (isAdd)
         {
-            transform.position = Startpos + Vector3.Lerp(Vector3.zero, new Vector3(actualMove, 0, 0), easedValue);
+            rectTransform.anchoredPosition = Startpos + Vector3.Lerp(Vector3.zero, new Vector3(actualMove, 0, 0), easedValue);
         }
         else
         {
-            transform.position = Startpos - Vector3.Lerp(Vector3.zero, new Vector3(actualMove, 0, 0), easedValue);
+            rectTransform.anchoredPosition = Startpos - Vector3.Lerp(Vector3.zero, new Vector3(actualMove, 0, 0), easedValue);
         }
     }
 }
