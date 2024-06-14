@@ -27,12 +27,21 @@ public class S_Respawn : MonoBehaviour
     [Header("煙幕エフェクト"), SerializeField]
     private GameObject SmokePrefab;
 
+    [Header("煙幕出現位置オフセット"), SerializeField]
+    private Vector2 SmokeOffset = Vector2.zero;
+
     [Header("煙幕SE"), SerializeField]
     AudioClip acSmokeScreen = null;
 
     private GameObject effectPanel;
 
     public bool isRespawn = false;
+
+    private GameObject smoke;
+
+    private bool Init = false;
+
+    private Animator TransitionAnimator;
 
     //コルーチン中かどうか
     bool isCoroutine = false;
@@ -52,23 +61,7 @@ public class S_Respawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        vecRespawnPos=transform.position;
-        audiosource=GetComponent<AudioSource>();
-        if(!audiosource)
-        {
-            Debug.LogError("プレイヤーのスポーンのやつにAudioSourceがないって話だよね");
-        }
-
-        if (!SmokePrefab)
-        {
-            Debug.LogError("煙幕エフェクトがセットされてないって話だよん");
-        }
-
-        //effectPanel = GameObject.Find("SceneEffect_Panel");
-        //if (!effectPanel)
-        //{
-        //    Debug.Log("トランジションのパネルがシーンにないってハナシ");
-        //}
+        
     }
 
     public void Retry()
@@ -79,18 +72,43 @@ public class S_Respawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Init)
+        {
+            vecRespawnPos = transform.position;
+            audiosource = GetComponent<AudioSource>();
+            if (!audiosource)
+            {
+                Debug.LogError("プレイヤーのスポーンのやつにAudioSourceがないって話だよね");
+            }
+
+            if (!SmokePrefab)
+            {
+                Debug.LogError("煙幕エフェクトがセットされてないって話だよん");
+            }
+
+            effectPanel = GameObject.Find("SceneEffect_Panel");
+            if (!effectPanel)
+            {
+                Debug.Log("トランジションのパネルがシーンにないってハナシ");
+            }
+            else
+            {
+                TransitionAnimator = effectPanel.GetComponent<Animator>();
+            }
+        }
+
         if (isRespawn)
         {
             // 初期化
             if(ElapsedRespawnTime == 0.0f)
             {
                 Vector3 initpos = new Vector3(
-                    transform.position.x,
-                    transform.position.y + 2.0f, 
+                    transform.position.x + SmokeOffset.x,
+                    transform.position.y + SmokeOffset.y, 
                     SmokePrefab.transform.position.z);
 
                 // 煙幕エフェクト生成
-                GameObject smoke = Instantiate(SmokePrefab, initpos, Quaternion.identity);
+                smoke = Instantiate(SmokePrefab, initpos, Quaternion.identity);
                 //smoke.transform.parent = gameObject.transform;
                 smoke.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
@@ -101,6 +119,12 @@ public class S_Respawn : MonoBehaviour
             {
                 // プレイヤー非表示
                 transform.parent.transform.GetChild(3).gameObject.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+            }
+
+            if (!smoke)
+            {
+                // 画面遷移アニメーション
+                TransitionAnimator.SetBool("End", true);
             }
 
             if(ElapsedRespawnTime >= RespwanTime)
@@ -146,6 +170,7 @@ public class S_Respawn : MonoBehaviour
     IEnumerator HitStop()
     {
         isCoroutine= true;
+        isRespawn = true;
 
         //敵接触時音声再生
         audiosource.PlayOneShot(acHit);
@@ -161,8 +186,6 @@ public class S_Respawn : MonoBehaviour
 
         transform.root.GetComponent<BoxCollider2D>().enabled = true;
         transform.root.GetComponent<M_PlayerMove>().enabled = true;
-
-        isRespawn = true;
 
         M_GameMaster.SetDethCount(1);
 
