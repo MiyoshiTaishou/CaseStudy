@@ -13,9 +13,8 @@ public class M_ImageSelect : MonoBehaviour
     public List<SceneImages> sceneImages; // シーンごとのボタンのリスト
     private int currentIndex = 0; // 現在選択中のボタンのインデックス
     private int sceneIndex = 0; // 現在選択中のシーンのインデックス
-    private int slideIndex = 0;//スライドのインデックス
+    private int slideIndex = 0; // スライドのインデックス
     private bool stickMoved = false; // スティックが動いたかどうかのフラグ
-
     private bool once = false;
 
     [Header("トランジション"), SerializeField]
@@ -24,9 +23,21 @@ public class M_ImageSelect : MonoBehaviour
     [Header("スライド"), SerializeField]
     private GameObject sla;
 
+    // 元の位置を保存するための辞書
+    private Dictionary<GameObject, int> originalSiblingIndices = new Dictionary<GameObject, int>();
+
     private void Start()
     {
         slideIndex = sceneImages.Count - 1;
+
+        // 元の位置を保存
+        foreach (var scene in sceneImages)
+        {
+            foreach (var image in scene.images)
+            {
+                originalSiblingIndices[image] = image.transform.GetSiblingIndex();
+            }
+        }
     }
 
     void Update()
@@ -34,10 +45,11 @@ public class M_ImageSelect : MonoBehaviour
         if (!once)
         {
             sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+            MoveToFront(sceneImages[sceneIndex].images[currentIndex]);
             once = true;
         }
 
-        if(sla.GetComponent<M_SelectSlide>().GetIsSlide())
+        if (sla.GetComponent<M_SelectSlide>().GetIsSlide())
         {
             return;
         }
@@ -69,9 +81,9 @@ public class M_ImageSelect : MonoBehaviour
             if (slideIndex > 0)
             {
                 sla.GetComponent<M_SelectSlide>().Sub();
-                SelectScene(sceneIndex + 1); // Lボタンでシーンインデックスを減少
+                SelectScene(sceneIndex - 1); // Lボタンでシーンインデックスを減少
                 slideIndex--;
-            }            
+            }
         }
 
         if (Input.GetButtonDown("RButton"))
@@ -79,13 +91,10 @@ public class M_ImageSelect : MonoBehaviour
             if (slideIndex < sceneImages.Count - 1)
             {
                 sla.GetComponent<M_SelectSlide>().Add();
-                SelectScene(sceneIndex - 1); // Rボタンでシーンインデックスを増加
-
+                SelectScene(sceneIndex + 1); // Rボタンでシーンインデックスを増加
                 slideIndex++;
-            }           
+            }
         }
-
-        Debug.Log(slideIndex);
 
         // 選択されているもの以外をリセット
         for (int i = 0; i < sceneImages.Count; i++)
@@ -94,8 +103,9 @@ public class M_ImageSelect : MonoBehaviour
             {
                 if (i != sceneIndex || j != currentIndex)
                 {
-                    Debug.Log(sceneImages[i].images[j]);
                     sceneImages[i].images[j].GetComponent<M_ImageEasing>().Resset();
+                    sceneImages[i].images[j].GetComponent<M_OutLine>().OutLineOff();
+                    ResetPosition(sceneImages[i].images[j]); // 元の位置に戻す                    
                 }
             }
         }
@@ -111,35 +121,39 @@ public class M_ImageSelect : MonoBehaviour
         else if (newIndex >= sceneImages[sceneIndex].images.Count)
         {
             newIndex = 0;
-        }       
+        }
 
         // 現在のボタンの選択を解除
         sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().Resset();
+        ResetPosition(sceneImages[sceneIndex].images[currentIndex]); // 元の位置に戻す
 
         // 新しいボタンを選択
         currentIndex = newIndex;
         sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+        sceneImages[sceneIndex].images[currentIndex].GetComponent<M_OutLine>().OutLineOn();
+        MoveToFront(sceneImages[sceneIndex].images[currentIndex]);
+
+        Debug.Log(sceneImages[sceneIndex].images[currentIndex].transform.GetSiblingIndex());
     }
 
     void SelectScene(int newIndex)
     {
         // インデックスが範囲外の場合はインデックスをループさせる
-        if (newIndex < 0)
-        {
-            return;
-        }
-        else if (newIndex >= sceneImages.Count)
+        if (newIndex < 0 || newIndex >= sceneImages.Count)
         {
             return;
         }
 
         // 現在のシーンのボタンの選択を解除
         sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().Resset();
+        ResetPosition(sceneImages[sceneIndex].images[currentIndex]); // 元の位置に戻す
 
         // 新しいシーンを選択
         sceneIndex = newIndex;
         currentIndex = 0; // 新しいシーンでは最初のボタンを選択
         sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+        sceneImages[sceneIndex].images[currentIndex].GetComponent<M_OutLine>().OutLineOn();
+        MoveToFront(sceneImages[sceneIndex].images[currentIndex]);
 
         tran.GetComponent<M_TransitionList>().SetSceneIndex(sceneIndex);
     }
@@ -148,5 +162,24 @@ public class M_ImageSelect : MonoBehaviour
     {
         tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
         tran.GetComponent<M_TransitionList>().LoadScene();
+    }
+
+    // オブジェクトを最前列に移動させるメソッド
+    void MoveToFront(GameObject obj)
+    {
+        int count = obj.transform.parent.childCount; // 親の子オブジェクトの数を取得
+        Debug.Log($"Moving {obj.name} to front. Parent has {count} children.");
+        obj.transform.SetAsLastSibling(); // 最前列に移動
+        Debug.Log($"{obj.name} new sibling index: {obj.transform.GetSiblingIndex()}");
+    }
+
+    // オブジェクトを元の位置に戻すメソッド
+    void ResetPosition(GameObject obj)
+    {
+        if (originalSiblingIndices.ContainsKey(obj))
+        {
+            obj.transform.SetSiblingIndex(originalSiblingIndices[obj]);
+            Debug.Log($"{obj.name} reset to original index: {originalSiblingIndices[obj]}");
+        }
     }
 }
