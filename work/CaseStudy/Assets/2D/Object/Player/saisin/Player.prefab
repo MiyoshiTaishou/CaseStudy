@@ -167,7 +167,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061781001127465577}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3a468caa6c1ad246853ab47f1ad8a6e, type: 3}
   m_Name: 
@@ -386,6 +386,7 @@ MonoBehaviour:
   acCheckPoint: {fileID: 8300000, guid: 3c57f0472cee5cc44a8ab08032b4d8d2, type: 3}
   RespwanTime: 3
   SmokePrefab: {fileID: 7367885248579283801, guid: 0ee9ef57aada90a46848a92f5e86d45d, type: 3}
+  SmokeOffset: {x: 0, y: 0}
   acSmokeScreen: {fileID: 8300000, guid: 4f5008068b5b96d4a9928bbce96a3e11, type: 3}
   isRespawn: 0
 --- !u!82 &2382190773623950448
