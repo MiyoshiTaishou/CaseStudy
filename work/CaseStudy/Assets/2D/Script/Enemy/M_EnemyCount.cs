@@ -6,7 +6,7 @@ public class M_EnemyCount : MonoBehaviour
 {
     private int m_EnemyCount;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -21,5 +21,5 @@ public class M_EnemyCount : MonoBehaviour
                 M_GameMaster.SetEneymAllKill(true);
             }
         }
-    }
+    }   
 }
