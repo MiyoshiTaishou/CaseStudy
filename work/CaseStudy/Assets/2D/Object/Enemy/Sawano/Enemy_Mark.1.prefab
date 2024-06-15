@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 377446080215070972}
   - component: {fileID: 3559411171947690459}
   - component: {fileID: 5297312615223750310}
-  m_Layer: 2
+  m_Layer: 7
   m_Name: Enemy_Mark.1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -246,6 +246,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 321
   sc_GroundCheck: {fileID: 1141245237961300279}
+  OldisWarped: 0
 --- !u!82 &7695652855729107506
 AudioSource:
   m_ObjectHideFlags: 0

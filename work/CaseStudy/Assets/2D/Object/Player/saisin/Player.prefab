@@ -564,6 +564,10 @@ PrefabInstance:
       propertyPath: fDlayAnim
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 7310569821080857450, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 448
+      objectReference: {fileID: 0}
     - target: {fileID: 7455578348281846349, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: m_Name
       value: kaze02]_00000 1

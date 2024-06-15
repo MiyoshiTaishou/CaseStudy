@@ -38,6 +38,8 @@ public class M_PlayerPush : MonoBehaviour
     /// </summary>
     GameObject PlayerObj;
 
+    private M_PlayerMove PlayerMove;
+
     GameObject AnimBonePlayer;
 
     /// <summary>
@@ -69,10 +71,23 @@ public class M_PlayerPush : MonoBehaviour
 
     private bool isWindAnim = false;
 
+    private float ElapsedRayTime = 0.0f;
+
+    private bool isCheck = false;
+
+    private bool isRaycast = false;
+
+    private bool isSearch = false;
+
+    [Header("レイヤーマスク設定"), SerializeField]
+    private LayerMask layerMask;
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerObj = GameObject.Find("Player");
+
+        PlayerMove = PlayerObj.GetComponent<M_PlayerMove>();
 
         AnimBonePlayer = GameObject.Find("T_idol_1");
 
@@ -94,6 +109,13 @@ public class M_PlayerPush : MonoBehaviour
 
         // 入力の状態を取得
         bool isPushButtonPressed = Input.GetAxis("EnemyPush") > 0.5f;
+
+        // 追跡対象が視野範囲内に入った時
+        // 壁を挟んでいるかを判定する
+        if (isRaycast/* && !isCheck*/)
+        {
+            RayCastCheck();
+        }
 
         if (isPushButtonPressed && !wasPushButtonPressed && isPush && PushObj && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
@@ -140,18 +162,97 @@ public class M_PlayerPush : MonoBehaviour
         wasPushButtonPressed = isPushButtonPressed;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isRaycast || isSearch)
+        {
+            return;
+        }
+
+        if (!collision.isTrigger)
+        {
+            if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
+            {
+                isRaycast = true;
+            }
+        }
+    }
+
+    private void RayCastCheck()
+    {
+        //Debug.Log("例とバス");
+
+        Vector3 startPoint = PlayerObj.transform.position;
+        // プレイヤーの向き取得
+        Vector2 direction = Vector2.right;
+        if(PlayerObj.transform.eulerAngles.y == 180.0f)
+        {
+            direction = Vector2.left;
+        }
+
+        float distance = ElapsedRayTime * 30.0f;
+        ElapsedRayTime += Time.deltaTime;
+
+        RaycastHit2D hit = Physics2D.Raycast(startPoint, direction, distance, layerMask);
+
+        Debug.DrawRay(startPoint, direction * distance, Color.black, 0.0f, false);
+
+        // 先に敵に当たったら追跡
+        // 壁に当たったらなにもなし
+        if (hit.collider != null)
+        {
+            //Debug.Log("ヒットした");
+            ElapsedRayTime = 0.0f;
+            isCheck = true;
+
+            if (hit.collider.gameObject.CompareTag("Enemy") || hit.collider.gameObject.CompareTag("EnemyBall"))
+            {
+                //Debug.Log("押せる");
+                isSearch = true;
+
+                isRaycast = false;
+            }
+            else if (hit.collider.gameObject.CompareTag("Ground") /*|| hit.collider.gameObject.CompareTag("EnemyBall")*/)
+            {
+                Debug.Log("壁検知");
+
+                isSearch = false;
+                isRaycast = false;
+            }
+            else
+            {
+                Debug.Log("なんか違うもの");
+            }
+        }
+        else
+        {
+            //Debug.Log("ヒットなし");
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (!collision.isTrigger)
         {
             if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
             {
-                isPush = true;
-                //押すオブジェクト代入
-                PushObj = collision.gameObject;
-                if (!PushList.Contains(collision.gameObject))
+                //// 敵とヒット中にホログラムの壁を非表示にした際
+                //// レイキャストが終了していた場合、押せなくなるのを修正する
+                //if (Input.GetButtonDown("SympathyButton"))
+                //{
+                //    isCheck = false;
+                //    isRaycast = true;
+                //}
+
+                if (isSearch)
                 {
-                    PushList.Add(collision.gameObject);
+                    isPush = true;
+                    //押すオブジェクト代入
+                    PushObj = collision.gameObject;
+                    if (!PushList.Contains(collision.gameObject))
+                    {
+                        PushList.Add(collision.gameObject);
+                    }
                 }
             }
         }
@@ -165,6 +266,10 @@ public class M_PlayerPush : MonoBehaviour
             {
                 isPush = false;
                 PushObj = null;
+
+                isRaycast = false;
+                isSearch = false;
+                isCheck = false;
 
                 if (PushList.Contains(collision.gameObject))
                 {
