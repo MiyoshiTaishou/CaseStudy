@@ -386,6 +386,7 @@ MonoBehaviour:
   acCheckPoint: {fileID: 8300000, guid: 3c57f0472cee5cc44a8ab08032b4d8d2, type: 3}
   RespwanTime: 3
   SmokePrefab: {fileID: 7367885248579283801, guid: 0ee9ef57aada90a46848a92f5e86d45d, type: 3}
+  SmokeOffset: {x: 0, y: 0}
   acSmokeScreen: {fileID: 8300000, guid: 4f5008068b5b96d4a9928bbce96a3e11, type: 3}
   isRespawn: 0
 --- !u!82 &2382190773623950448
@@ -562,6 +563,10 @@ PrefabInstance:
     - target: {fileID: 7310569821080857450, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: fDlayAnim
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7310569821080857450, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 448
       objectReference: {fileID: 0}
     - target: {fileID: 7455578348281846349, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: m_Name

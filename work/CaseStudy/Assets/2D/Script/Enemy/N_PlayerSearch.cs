@@ -61,7 +61,7 @@ public class N_PlayerSearch : MonoBehaviour
 
             // ’ÇÕ‘ÎÛ‚ª‹–ì”ÍˆÍ“à‚É“ü‚Á‚½
             // •Ç‚ğ‹²‚ñ‚Å‚¢‚é‚©‚ğ”»’è‚·‚é
-            if (isRaycast && !isCheck)
+            if (isRaycast /*&& !isCheck*/)
             {
                 RayCastCheck();
             }
@@ -129,12 +129,12 @@ public class N_PlayerSearch : MonoBehaviour
         {
             direction = Vector2.left;
         }
-        float distance = elapsedTime * 6.0f;
+        float distance = elapsedTime * 30.0f;
         elapsedTime += Time.deltaTime;
 
         RaycastHit2D hit = Physics2D.Raycast(startPoint, direction,distance,layerMask);
 
-        //Debug.DrawRay(startPoint, direction * distance, Color.black, 0.0f, false);
+        Debug.DrawRay(startPoint, direction * distance, Color.black, 0.0f, false);
 
         // æ‚É“G‚É“–‚½‚Á‚½‚ç’ÇÕ
         // •Ç‚É“–‚½‚Á‚½‚ç‚È‚É‚à‚È‚µ
@@ -149,14 +149,14 @@ public class N_PlayerSearch : MonoBehaviour
                 //Debug.Log("Ú“G");
                 isSearch = true;
                 enemyManager.SetTarget(Target);
-                isRaycast = false;
+                //isRaycast = false;
             }
             else if(hit.collider.gameObject.name == "Tilemap_Col")
             {
                 //Debug.Log("•ÇŒŸ’m");
 
                 isSearch = false;
-                isRaycast = false;
+                //isRaycast = false;
             }
             else
             {

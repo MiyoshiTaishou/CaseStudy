@@ -182,55 +182,55 @@ public class SEnemyMove : MonoBehaviour
         // 今フレームの接地判定を取得
         isGroundNow = sc_GroundCheck.GroundCheck();
 
-        //坂道計算
-        //傾きを計算するためのポジションを取得
-        slopeOrigin1 = transform.position;
-        slopeOrigin1.x += slopeGup1.x;
-        slopeOrigin1.y += slopeGup1.y;
-        slopeOrigin2 = transform.position;
-        slopeOrigin2.x += slopeGup2.x;
-        slopeOrigin2.y += slopeGup2.y;
+        ////坂道計算
+        ////傾きを計算するためのポジションを取得
+        //slopeOrigin1 = transform.position;
+        //slopeOrigin1.x += slopeGup1.x;
+        //slopeOrigin1.y += slopeGup1.y;
+        //slopeOrigin2 = transform.position;
+        //slopeOrigin2.x += slopeGup2.x;
+        //slopeOrigin2.y += slopeGup2.y;
 
-        RaycastHit2D hitSlope1 = Physics2D.Raycast(slopeOrigin1, Vector2.down, 2.0f);
-        RaycastHit2D hitSlope2 = Physics2D.Raycast(slopeOrigin2, Vector2.down, 2.0f);
-        if (hitSlope1.collider != null && hitSlope2.collider != null &&
-            hitSlope1.collider.CompareTag("TileMap") && hitSlope2.collider.CompareTag("TileMap"))
-        {
-            //2点間の傾きを計算
-            Vector2 point1 = hitSlope1.point;
-            Vector2 point2 = hitSlope2.point;
-            float slopeAngle = Mathf.Atan2(point2.y - point1.y, point2.x - point1.x) * Mathf.Rad2Deg;
-            int isRight = IsReflectionX ? -1 : 1;
+        //RaycastHit2D hitSlope1 = Physics2D.Raycast(slopeOrigin1, Vector2.down, 2.0f);
+        //RaycastHit2D hitSlope2 = Physics2D.Raycast(slopeOrigin2, Vector2.down, 2.0f);
+        //if (hitSlope1.collider != null && hitSlope2.collider != null &&
+        //    hitSlope1.collider.CompareTag("TileMap") && hitSlope2.collider.CompareTag("TileMap"))
+        //{
+        //    //2点間の傾きを計算
+        //    Vector2 point1 = hitSlope1.point;
+        //    Vector2 point2 = hitSlope2.point;
+        //    float slopeAngle = Mathf.Atan2(point2.y - point1.y, point2.x - point1.x) * Mathf.Rad2Deg;
+        //    int isRight = IsReflectionX ? -1 : 1;
 
-            if (slopeAngle < 170 && slopeAngle > 10)
-            {
-                Vector2 vel = rb.velocity;
-                vel.x = fLimitSpeed * isRight;
-                rb.velocity = vel;
-                isSlope = true;
-            }
-            else
-            {
-                rb.drag = 1;
-                isSlope = false;
-            }
-            //傾斜の角度が一定以上なら傾いていると判断
+        //    if (slopeAngle < 170 && slopeAngle > 10)
+        //    {
+        //        Vector2 vel = rb.velocity;
+        //        vel.x = fLimitSpeed * isRight;
+        //        rb.velocity = vel;
+        //        isSlope = true;
+        //    }
+        //    else
+        //    {
+        //        rb.drag = 1;
+        //        isSlope = false;
+        //    }
+        //    //傾斜の角度が一定以上なら傾いていると判断
 
-            //傾きに対する抵抗力を計算
-            //傾斜に対する水平方向の抗力を計算
-            float horizontalResistance = rb.mass * Mathf.Abs(rb.gravityScale) * frictionCoefficient * Mathf.Sin(slopeAngle * Mathf.Deg2Rad);
-            Vector2 vecAngle = new Vector2(Mathf.Cos(slopeAngle * Mathf.Deg2Rad), Mathf.Sin(slopeAngle * Mathf.Deg2Rad));
+        //    //傾きに対する抵抗力を計算
+        //    //傾斜に対する水平方向の抗力を計算
+        //    float horizontalResistance = rb.mass * Mathf.Abs(rb.gravityScale) * frictionCoefficient * Mathf.Sin(slopeAngle * Mathf.Deg2Rad);
+        //    Vector2 vecAngle = new Vector2(Mathf.Cos(slopeAngle * Mathf.Deg2Rad), Mathf.Sin(slopeAngle * Mathf.Deg2Rad));
 
-            Vector2 resistanceForce = vecAngle * horizontalResistance;
-            if (IsReflectionX)
-            {
-                rb.AddForce(resistanceForce * Power * 20, ForceMode2D.Force);
-            }
-            else
-            {
-                rb.AddForce(resistanceForce * (Power / 2), ForceMode2D.Force);
-            }
-        }
+        //    Vector2 resistanceForce = vecAngle * horizontalResistance;
+        //    if (IsReflectionX)
+        //    {
+        //        rb.AddForce(resistanceForce * Power * 20, ForceMode2D.Force);
+        //    }
+        //    else
+        //    {
+        //        rb.AddForce(resistanceForce * (Power / 2), ForceMode2D.Force);
+        //    }
+        //}
 
 
         //この辺コードくっそ汚いので気が向いたら直しておきます

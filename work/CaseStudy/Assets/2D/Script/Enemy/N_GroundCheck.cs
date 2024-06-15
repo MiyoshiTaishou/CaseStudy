@@ -44,7 +44,7 @@ public class N_GroundCheck : MonoBehaviour
 
         foreach(var a in colList)
         {
-            Debug.Log(a.name);
+            //Debug.Log(a.name);
 
         }
     }
