@@ -32,4 +32,10 @@ static public class M_GameMaster
 
     public static bool GetEnemyAllKill() { return isEnemyAllKill; }
     public static void SetEneymAllKill(bool kill) { isEnemyAllKill = kill; }
+
+    public static void RessetScore()
+    {
+        nDethCount = 0;
+        isEnemyAllKill = false;
+    }
 }

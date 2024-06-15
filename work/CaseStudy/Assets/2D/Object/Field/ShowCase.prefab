@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1544618792125113003}
   - component: {fileID: 6800270824773611408}
   - component: {fileID: 5667778652657883682}
+  - component: {fileID: 5400804666008472850}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPopUI: {fileID: 1105851647839387378}
+  waitTime: 2
 --- !u!114 &5667778652657883682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +148,18 @@ MonoBehaviour:
   rotAxis: 1
   fRotateSpeed: 5
   isReset: 0
+--- !u!114 &5400804666008472850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227106901023077025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e5f86c86095d646a7232715ef62975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1414204448639718219
 GameObject:
   m_ObjectHideFlags: 0

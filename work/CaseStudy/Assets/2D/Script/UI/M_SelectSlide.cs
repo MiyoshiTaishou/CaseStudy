@@ -34,7 +34,10 @@ public class M_SelectSlide : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
 
-        Startpos = rectTransform.anchoredPosition;     
+        Startpos = rectTransform.anchoredPosition;
+
+        //このシーンに来たらスコアを全てリセットする
+        M_GameMaster.RessetScore();
     }
 
     private void Update()
