@@ -25,6 +25,12 @@ public class K_EnemyReaction : MonoBehaviour
 
     private SEnemyMove EnemyMove;
 
+    private Transform TransQuestion;
+    private Transform TransFound;
+
+    private Vector2 InitScale_Que = Vector2.zero;
+    private Vector2 InitScale_Fou = Vector2.zero;
+
     public void SetIsSearchHologram(bool _search)
     {
         IsSearchHologram = _search;
@@ -46,17 +52,22 @@ public class K_EnemyReaction : MonoBehaviour
         EnemyQuestion = Instantiate(EnemyReactionPrefab, transform.position, Quaternion.identity);
         EnemyQuestion.SetActive(false);
         EnemyQuestion.transform.parent = gameObject.transform;
+        TransQuestion = EnemyQuestion.GetComponent<Transform>();
+        InitScale_Que = TransQuestion.localScale;
 
         EnemyFoundTarget = Instantiate(EnemyFoundPrefab, transform.position, Quaternion.identity);
         EnemyFoundTarget.SetActive(false);
         EnemyFoundTarget.transform.parent = gameObject.transform;
+        TransFound = EnemyQuestion.GetComponent<Transform>();
+        InitScale_Fou = TransFound.localScale;
+
 
         EnemyMove = GetComponent<SEnemyMove>();
     }
 
     private void Update()
     {
-        //IsSearchHologram = EnemyMove.GetIsCollidingHologram();
+        IsSearchHologram = EnemyMove.GetIsCollidingHologram();
         //ホログラム検知したら
         if (IsSearchHologram || IsTargetLost)
         {
@@ -80,6 +91,21 @@ public class K_EnemyReaction : MonoBehaviour
         else
         {
             EnemyFoundTarget.SetActive(false);
+        }
+
+        //Debug.Log(EnemyMove.GetIsReflection());
+
+        // 向きを取得
+        // その向きにあったスケールをセット
+        if (EnemyMove.GetIsReflection())
+        {
+            TransQuestion.localScale = new Vector3(-InitScale_Que.x, InitScale_Que.y, 0.0f);
+            TransFound.localScale = new Vector3(-InitScale_Fou.x, InitScale_Que.y, 0.0f);
+        }
+        else
+        {
+            TransQuestion.localScale = new Vector3(InitScale_Que.x, InitScale_Que.y, 0.0f);
+            TransFound.localScale = new Vector3(InitScale_Fou.x, InitScale_Que.y, 0.0f);
         }
     }
 
