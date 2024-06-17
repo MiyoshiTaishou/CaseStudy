@@ -102,7 +102,7 @@ public class M_PlayerPush : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!M_GameMaster.GetGamePlay() || DuctManager.GetComponent<M_DuctManager>().ContainsTrueValue())
+        if (!M_GameMaster.GetGamePlay() || DuctManager.GetComponent<M_DuctManager>().ContainsTrueValue() || M_GameMaster.GetGameClear())
         {
             return;
         }

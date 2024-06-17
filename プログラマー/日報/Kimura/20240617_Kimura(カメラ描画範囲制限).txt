@@ -1,0 +1,4 @@
+ステージの外を映さないようにした。
+MainCameraのN_TrackingPlayerのタイルマップにTilemap_Colを入れてください。
+
+Tilemap_Colの余計な部分は消してください

@@ -136,6 +136,15 @@ public class M_PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {        
+        if(M_GameMaster.GetGameClear())
+        {
+            Vector2 vec = rbPlayer.velocity;
+            vec.x = 0.0f;
+            rbPlayer.velocity = vec;
+            isDash = false;                       
+            return;
+        }
+
         if(!isMove || !M_GameMaster.GetGamePlay())
         {
             Vector2 vec = rbPlayer.velocity;

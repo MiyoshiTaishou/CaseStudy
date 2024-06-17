@@ -112,6 +112,10 @@ public class SEnemyMove : MonoBehaviour
     public void SetisWarped(bool _flg) { isWarped = _flg; }
     public bool GetIsWarped() { return isWarped; }
 
+    S_LoopWall Warp;
+    public void SetWarp(S_LoopWall wall) { Warp = wall; }
+    public S_LoopWall GetWarp() { return Warp; }
+
     public bool GetIsCollidingHologram() { return IsCollidingHologram; }
 
     // Start is called before the first frame update
@@ -324,6 +328,12 @@ public class SEnemyMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _collision)
     {
+        if(_collision.transform.GetComponent<S_LoopWall>())
+        {
+            Debug.Log("隊列組みなおし2");
+            isWarped = true;
+            enemyManager.PartitionTeamHeight();
+        }
         if (_collision.transform.CompareTag("Enemy"))
         {
             SEnemyMove enemyMove = _collision.gameObject.GetComponent<SEnemyMove>();
@@ -453,7 +463,7 @@ public class SEnemyMove : MonoBehaviour
     {
         isWarped = true;
         //指定のフレーム待つ
-        yield return new WaitForSecondsRealtime(10);
+        yield return new WaitForSecondsRealtime(0.2f);
         isWarped = false;
     }
     private bool GroundCheck()

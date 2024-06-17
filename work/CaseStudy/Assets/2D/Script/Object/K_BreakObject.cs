@@ -20,6 +20,9 @@ public class K_BreakObject : MonoBehaviour
     [Header("耐久値を表示するか?"), SerializeField]
     private bool IsDisplayBreakNum = true;
 
+    [Header("耐久値表示の座標"), SerializeField]
+    private Vector2Int TextOffset;
+
     private TextMeshProUGUI TextEndurance;
 
     [Header("破壊時のエフェクト"), SerializeField]
@@ -82,7 +85,7 @@ public class K_BreakObject : MonoBehaviour
            {
                 // オブジェクト位置にテキスト要素を追従させる
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-                TextEndurance.transform.position = new Vector3(screenPos.x, screenPos.y + Mathf.PingPong(Time.time * UpDownSpeed, fShakingRange), screenPos.z); // 適切なオフセットを持たせる
+                TextEndurance.transform.position = new Vector3(screenPos.x + TextOffset.x, screenPos.y + Mathf.PingPong(Time.time * UpDownSpeed, fShakingRange) + TextOffset.y, screenPos.z); // 適切なオフセットを持たせる
             }
         }
     }
