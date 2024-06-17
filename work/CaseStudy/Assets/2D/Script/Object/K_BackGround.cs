@@ -10,9 +10,13 @@ public class K_BackGround : MonoBehaviour
     [Header("タイルマップ"), SerializeField]
     private Tilemap tilemap; // タイルマップ
 
+    [Header("カメラの描画範囲"), SerializeField]
+    private float fViewSize = 7;
+
+    //キャンバス
     GameObject CanvasObj;
 
-    
+    //使う変数共
     private Vector2 minBounds;
     private Vector2 maxBounds;
     private float camHalfHeight;
@@ -24,29 +28,30 @@ public class K_BackGround : MonoBehaviour
         //キャンバス取得
         CanvasObj = transform.GetChild(0).gameObject;
 
-
         // カメラの半分の高さと幅を計算
-        camHalfHeight = Camera.main.orthographicSize;
+        camHalfHeight = fViewSize;
         camHalfWidth = camHalfHeight * Camera.main.aspect;
-
+        Debug.Log(Camera.main.orthographicSize * Camera.main.aspect);
         if (tilemap)
         {
             // タイルマップの範囲を計算
             CalculateBounds();
         }
-        //マップの中心座標計算
-        Vector3 pos;
-        pos.x = (minBounds.x + maxBounds.x) / 2.0f;
-        pos.y = (minBounds.y + (maxBounds.y + camHalfHeight)) / 2.0f;
-        pos.z = gameObject.transform.position.z;
-        gameObject.transform.position = pos;
 
         //サイズ設定
-        RectTransform canvasRectTransform = CanvasObj.GetComponentInParent<Canvas>().GetComponent<RectTransform>();
-        float originalWidth = canvasRectTransform.rect.width;
-        float width = (maxBounds.x + camHalfWidth) - (minBounds.x - camHalfWidth);
-        float ReductionRatio = width / originalWidth;
-        this.gameObject.transform.localScale=new Vector3(ReductionRatio, ReductionRatio, ReductionRatio);
+        RectTransform canvasRectTransform = CanvasObj.GetComponentInParent<Canvas>().GetComponent<RectTransform>(); //キャンバス情報取得
+        float CanvasWidth = canvasRectTransform.rect.width;  //キャンバス幅
+        float OnScreenWidth = Mathf.Abs((maxBounds.x + camHalfWidth) - (minBounds.x- camHalfWidth)); //スクリーン上で設定したい幅
+        float ReductionRatio = OnScreenWidth / CanvasWidth;   //上二つの割合を求める
+        this.gameObject.transform.localScale=new Vector3(ReductionRatio, ReductionRatio, ReductionRatio);   //サイズ変更
+
+        //マップの中心座標計算
+        Vector3 pos;
+        pos.x = (minBounds.x + maxBounds.x) / 2.0f; //右端と左端の真ん中
+        float CanvasHalfHeighth = canvasRectTransform.rect.height * ReductionRatio / 2.0f;  //キャンバス高さ
+        pos.y = CanvasHalfHeighth+ minBounds.y;
+        pos.z = gameObject.transform.position.z;
+        gameObject.transform.position = pos;
     }
 
     // Update is called once per frame
@@ -55,6 +60,7 @@ public class K_BackGround : MonoBehaviour
         
     }
 
+    //タイルマップの最大座標、最小座標を求める
     void CalculateBounds()
     {
         // 初期値を非常に大きな/小さな値に設定
@@ -79,8 +85,6 @@ public class K_BackGround : MonoBehaviour
         // タイルマップの左下端と右上端のワールド座標を計算
         Vector3 minWorld = tilemap.CellToWorld(minCell);
         Vector3 maxWorld = tilemap.CellToWorld(maxCell) + tilemap.cellSize;
-
-        // オフセットを追加してカメラがステージ外を映さないようにする
         minBounds = new Vector2(minWorld.x, minWorld.y);
         maxBounds = new Vector2(maxWorld.x, maxWorld.y);
     }
