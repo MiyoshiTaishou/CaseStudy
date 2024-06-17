@@ -71,6 +71,11 @@ public class N_ProjecterSympathy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(M_GameMaster.GetGameClear())
+        {
+            return;
+        }
+
         // false‚ÅŸƒtƒŒ[ƒ€‚Ö
         if (!isPossible)
         {
