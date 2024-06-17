@@ -99,6 +99,8 @@ public class N_EnemyManager : MonoBehaviour
 
     private N_PostProcess postProcess;
 
+    private M_DuctManager ductManager;
+
     // 移動ステータス初期化
     public void InitMoveStatus()
     {
@@ -150,6 +152,7 @@ public class N_EnemyManager : MonoBehaviour
             SetInfomation(true);
 
             postProcess = GameObject.Find("Volume").GetComponent<N_PostProcess>();
+            ductManager = GameObject.Find("DuctManager").GetComponent<M_DuctManager>();
 
             init = true;
         }
@@ -608,6 +611,12 @@ public class N_EnemyManager : MonoBehaviour
         {
             managerState = ManagerState.LOSTSIGHT;
         }
+
+        // プレイヤーがダクトに入ったら状態遷移
+        if (ductManager.GetNowDuct())
+        {
+            managerState = ManagerState.LOSTSIGHT;
+        }
     }
 
     private void LostSight()
@@ -725,7 +734,7 @@ public class N_EnemyManager : MonoBehaviour
         // 隊列内の敵の移動スクリプトを取得
         SetEnemyMoveScript();
 
-        SetInfomation(false);
+        SetInfomation(true);
     }
 
     // 敵情報

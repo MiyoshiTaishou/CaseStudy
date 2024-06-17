@@ -25,6 +25,8 @@ public class N_PlayerSearch : MonoBehaviour
 
     public float elapsedTime = 0.0f;
 
+    private bool init = false;
+
     [Header("レイヤーマスク設定"), SerializeField]
     private LayerMask layerMask;
 
@@ -33,19 +35,26 @@ public class N_PlayerSearch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 親オブジェクト取得
-        Parent = transform.parent.gameObject;
-        enemyMove = Parent.GetComponent<SEnemyMove>();
-        enemyBall = Parent.GetComponent<S_EnemyBall>();
-        enemyManager = enemyMove.GetManager();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (!init)
+        {
+            // 親オブジェクト取得
+            Parent = transform.parent.gameObject;
+            enemyMove = Parent.GetComponent<SEnemyMove>();
+            enemyBall = Parent.GetComponent<S_EnemyBall>();
+            enemyManager = enemyMove.GetManager();
+
+            init = true;
+        }
+
         //玉状態なら追跡状態を解除
-        if(enemyBall.GetisBall())
+        if (enemyBall.GetisBall())
         {
             isSearch = false;
             isRaycast = false;
@@ -86,6 +95,27 @@ public class N_PlayerSearch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isRaycast || isSearch)
+        {
+            return;
+        }
+        if (enemyManager != null)
+        {
+            if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
+            {
+                Target = collision.gameObject;
+                transTarget = Target.transform;
+
+                //Debug.Log("エンター");
+
+                isRaycast = true;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
         if (isRaycast || isSearch)
         {
             return;
