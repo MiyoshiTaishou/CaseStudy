@@ -67,12 +67,6 @@ public class S_LoopWall : MonoBehaviour
             //一定時間ワープ不可の状態にする
             StartCoroutine(CoolTime());
             
-            //当たったのが敵ならワープしたという情報を付与
-            if(collision.collider.CompareTag("Enemy"))
-            {
-                collision.collider.GetComponent<SEnemyMove>().SetisWarped(true);
-                collision.collider.GetComponent<SEnemyMove>().OldisWarped = true;
-            }
 
             //ワープ先の位置
             Vector3 newpos = warpObj.transform.position;
@@ -89,6 +83,14 @@ public class S_LoopWall : MonoBehaviour
             audioSource.PlayOneShot(audioclip);
             //ワープ
             collision.gameObject.transform.position = newpos;
+
+            //当たったのが敵ならワープしたという情報を付与
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                collision.collider.GetComponent<SEnemyMove>().SetisWarped(true);
+                collision.collider.GetComponent<SEnemyMove>().OldisWarped = true;
+                collision.collider.GetComponent<SEnemyMove>().SetWarp(warpObj.GetComponent<S_LoopWall>());
+            }
         }
         //敵玉の場合(見返してみれば分ける必要無かったかも)
         else if (isWarped == false && OK == false &&
