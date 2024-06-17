@@ -330,6 +330,8 @@ public class SEnemyMove : MonoBehaviour
     {
         if(_collision.transform.GetComponent<S_LoopWall>())
         {
+            Debug.Log("隊列組みなおし2");
+            isWarped = true;
             enemyManager.PartitionTeamHeight();
         }
         if (_collision.transform.CompareTag("Enemy"))
@@ -461,7 +463,7 @@ public class SEnemyMove : MonoBehaviour
     {
         isWarped = true;
         //指定のフレーム待つ
-        yield return new WaitForSecondsRealtime(1);
+        yield return new WaitForSecondsRealtime(0.2f);
         isWarped = false;
     }
     private bool GroundCheck()
