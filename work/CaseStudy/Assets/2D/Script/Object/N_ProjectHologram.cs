@@ -176,6 +176,9 @@ public class N_ProjectHologram : MonoBehaviour
                     if(mode==HOLOGRAM_MODE.PLAYER)
                     {
                         obj.transform.position = InitHoloPos;
+
+                        // 消えたホログラムを見えるようにする
+                        obj.GetComponent<N_HoloPlayerDestroy>().OnAlpha();
                     }
                 }
                 isActive = true;
@@ -296,6 +299,7 @@ public class N_ProjectHologram : MonoBehaviour
             obj.transform.parent = this.gameObject.transform;           
             // 最初非表示
             obj.SetActive(false);
+            obj.name = Prefab.name;
 
             InitHoloPos = obj.transform.position;
             // リスト追加
@@ -444,6 +448,11 @@ public class N_ProjectHologram : MonoBehaviour
             isProjection = !isProjection;
             isAlreadySwitch = true;
         }
+    }
+
+    public void SetOnOff(bool _OnOff)
+    {
+        isProjection = _OnOff;
     }
 
     public void Initialize()

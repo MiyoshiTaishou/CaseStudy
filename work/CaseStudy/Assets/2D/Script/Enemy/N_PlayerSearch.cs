@@ -181,7 +181,7 @@ public class N_PlayerSearch : MonoBehaviour
                 enemyManager.SetTarget(Target);
                 //isRaycast = false;
             }
-            else if(hit.collider.gameObject.name == "Tilemap_Col")
+            else if(hit.collider.gameObject.CompareTag("Ground"))
             {
                 //Debug.Log("•ÇŒŸ’m");
 
