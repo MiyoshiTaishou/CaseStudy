@@ -214,7 +214,7 @@ public class N_EnemyManager : MonoBehaviour
         // 敵の高さを取得
         foreach(var obj in TeamMembers)
         {
-            if (IsMemberWarped() == null || (IsMemberWarped() == obj))
+            if (IsMemberWarped() == null || (IsMemberWarped()!=null &&  IsMemberWarped() == obj))
             {
                 Debug.Log("こいつううう～" + obj.name+"なんでや！？"+obj.GetComponent<SEnemyMove>().GetIsWarped());
                 // 最初の敵のY座標を元にする
@@ -227,7 +227,7 @@ public class N_EnemyManager : MonoBehaviour
                     //ワープ後の隊列配備に関する処理、先頭の敵を隊列から分裂させる
                     sc_mana.TeamAddEnemy(obj);
 
-                    if (IsReflectionX == obj.GetComponent<SEnemyMove>().GetWarp().GetiswarpRight())
+                    if (obj.GetComponent<SEnemyMove>().GetWarp() && IsReflectionX == obj.GetComponent<SEnemyMove>().GetWarp().GetiswarpRight())
                     {
                         sc_mana.IsReflectionX = !IsReflectionX;
 
