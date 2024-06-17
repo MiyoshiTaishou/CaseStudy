@@ -3221,7 +3221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7499987602488542441, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.3
+      value: 5.59
       objectReference: {fileID: 0}
     - target: {fileID: 7499987602488542441, guid: 65133dadd0e7b634ea2df3cb1a179ab0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -40331,7 +40331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   warpObj: {fileID: 557300249}
-  iswarpRight: 1
+  iswarpRight: 0
   audioclip: {fileID: 8300000, guid: d508deed9aa851c409274800a6e69022, type: 3}
 --- !u!212 &1854332260
 SpriteRenderer:
@@ -40393,7 +40393,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1854332258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.69, y: 15.95, z: 0}
+  m_LocalPosition: {x: 57.07, y: 14.91, z: 0}
   m_LocalScale: {x: 1.2209, y: 4.0042, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41670,11 +41670,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4667141550512423243, guid: 09a00eadcdb1dce40aaf328a2c09c0c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 68.63
+      value: 62.39
       objectReference: {fileID: 0}
     - target: {fileID: 4667141550512423243, guid: 09a00eadcdb1dce40aaf328a2c09c0c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.88
+      value: 20.79
       objectReference: {fileID: 0}
     - target: {fileID: 4667141550512423243, guid: 09a00eadcdb1dce40aaf328a2c09c0c4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -41712,6 +41712,10 @@ PrefabInstance:
       propertyPath: warpObj
       value: 
       objectReference: {fileID: 1854332258}
+    - target: {fileID: 4667141550512423245, guid: 09a00eadcdb1dce40aaf328a2c09c0c4, type: 3}
+      propertyPath: iswarpRight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4667141550512423247, guid: 09a00eadcdb1dce40aaf328a2c09c0c4, type: 3}
       propertyPath: m_Name
       value: WarpWall
