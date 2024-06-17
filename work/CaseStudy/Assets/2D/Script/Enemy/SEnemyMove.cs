@@ -97,6 +97,14 @@ public class SEnemyMove : MonoBehaviour
 
     private Animator animator;
 
+    [Header("落下中エフェクト"), SerializeField]
+    private GameObject Eff_FallPrefab;
+    private GameObject Eff_FallObj;
+
+    [Header("摂津エフェクト"), SerializeField]
+    private GameObject Eff_TouchGroundPrefab;
+    private GameObject Eff_TouchGroundObj;
+
     public void StartMove() { isLook = true; }
 
     public N_EnemyManager GetManager()
@@ -142,6 +150,24 @@ public class SEnemyMove : MonoBehaviour
         thisTrans = this.GetComponent<Transform>();
 
         animator = transform.GetChild(2).GetComponent<Animator>();
+
+        if(Eff_TouchGroundPrefab)
+        {
+            Vector3 pos = gameObject.transform.position;
+            pos.y += 1.0f;
+            Eff_TouchGroundObj = Instantiate(Eff_TouchGroundPrefab, pos, Quaternion.identity);
+            Eff_TouchGroundObj.transform.parent = gameObject.transform;
+            Eff_TouchGroundObj.SetActive(false);
+            Eff_TouchGroundObj.GetComponent<Animator>().speed = 2.0f;
+        }
+        if(Eff_FallPrefab)
+        {
+            Vector3 pos = gameObject.transform.position;
+            pos.z += 1.0f;
+            Eff_FallObj = Instantiate(Eff_FallPrefab, pos, Quaternion.identity);
+            Eff_FallObj.transform.parent = gameObject.transform;
+            Eff_FallObj.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -300,6 +326,15 @@ public class SEnemyMove : MonoBehaviour
         if(isGroundNow == false && Time.time >= 0.5f)
         {
             animator.SetBool("fall", true);
+
+            if (Eff_FallObj)
+            {
+                Eff_FallObj.SetActive(true);
+            }
+            if (Eff_TouchGroundObj)
+            {
+                Eff_TouchGroundObj.SetActive(false);
+            }
         }
 
         // 空中から地面に接地したなら
@@ -309,6 +344,15 @@ public class SEnemyMove : MonoBehaviour
             // y座標が近いものどおしの隊列に組みなおし
 
             animator.SetBool("fall", false);
+
+            if (Eff_TouchGroundObj)
+            {
+                Eff_TouchGroundObj.SetActive(true);
+            }
+            if (Eff_FallObj)
+            {
+                Eff_FallObj.SetActive(false);
+            }
 
             if (enemyManager != null)
             {
