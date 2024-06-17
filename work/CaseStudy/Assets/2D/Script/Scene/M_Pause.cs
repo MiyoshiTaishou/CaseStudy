@@ -18,6 +18,12 @@ public class M_Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ƒNƒŠƒAŽž‚Í‰Ÿ‚¹‚È‚¢‚æ‚¤‚É‚·‚é
+        if(M_GameMaster.GetGameClear())
+        {
+            return;
+        }
+
         foreach (var item in m_PauseList)
         {
             if (item.GetComponent<M_ImageEasing>())

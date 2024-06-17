@@ -44,6 +44,8 @@ public class K_Treasure : MonoBehaviour
             {
                 AudioSource.PlayClipAtPoint(audioclip, transform.position);
             }
+
+            M_GameMaster.SetGameClear(true);            
             Destroy(gameObject);
         }
     }
