@@ -206,11 +206,10 @@ public class N_TrackingPlayer : MonoBehaviour
 
         if (tilemap)
         {
-            // カメラの位置をステージの範囲内に制限
-            float clampedX = Mathf.Clamp(CameraTransform.position.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
-            float clampedY = Mathf.Clamp(CameraTransform.position.y, minBounds.y + camHalfHeight, maxBounds.y - camHalfHeight);
-
-            CameraTransform.position = new Vector3(clampedX, clampedY, CameraTransform.position.z);
+            if(CameraTransform.position.y<= minBounds.y + camHalfHeight)
+            {
+                CameraTransform.position = new Vector3(CameraTransform.position.x, minBounds.y + camHalfHeight, CameraTransform.position.z);
+            }
         }
     }
 
@@ -244,11 +243,10 @@ public class N_TrackingPlayer : MonoBehaviour
 
         if (tilemap)
         {
-            // カメラの位置をステージの範囲内に制限
-            float clampedX = Mathf.Clamp(CameraTransform.position.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
-            float clampedY = Mathf.Clamp(CameraTransform.position.y, minBounds.y + camHalfHeight, maxBounds.y - camHalfHeight);
-
-            CameraTransform.position = new Vector3(clampedX, clampedY, CameraTransform.position.z);
+            if (CameraTransform.position.y <= minBounds.y + camHalfHeight)
+            {
+                CameraTransform.position = new Vector3(CameraTransform.position.x, minBounds.y + camHalfHeight, CameraTransform.position.z);
+            }
         }
         // 終了処理
         if (warpElapsedTime >= warpTrackTime)
