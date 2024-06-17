@@ -11,6 +11,10 @@ public class M_ImageSelect : MonoBehaviour
 {
     [Header("シーンごとに表示する画像")]
     public List<SceneImages> sceneImages; // シーンごとのボタンのリスト
+
+    [Header("シーンごとに表示する招待状画像")]
+    public List<SceneImages> ChallengeImages; // シーンごとのボタンのリスト
+
     private int currentIndex = 0; // 現在選択中のボタンのインデックス
     private int sceneIndex = 0; // 現在選択中のシーンのインデックス
     private int slideIndex = 0; // スライドのインデックス
@@ -25,6 +29,9 @@ public class M_ImageSelect : MonoBehaviour
 
     // 元の位置を保存するための辞書
     private Dictionary<GameObject, int> originalSiblingIndices = new Dictionary<GameObject, int>();
+
+    //招待状開いているか？
+    private bool isChallenge = false;
 
     private void Start()
     {
@@ -41,6 +48,34 @@ public class M_ImageSelect : MonoBehaviour
     }
 
     void Update()
+    {
+       if(isChallenge)
+        {
+            ChallengeUpdate();
+        }
+       else
+        {
+            SelectUpdate();
+        }
+    }
+
+    void ChallengeUpdate()
+    {
+        if (Input.GetButtonDown("SympathyButton"))
+        {
+            PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
+        }
+
+        if(Input.GetButtonDown("Cancel"))
+        {
+            Debug.Log("挑戦状閉じる");
+            ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(true);
+            ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();           
+            isChallenge = false;
+        }
+    }
+
+    void SelectUpdate()
     {
         if (!once)
         {
@@ -73,7 +108,10 @@ public class M_ImageSelect : MonoBehaviour
 
         if (Input.GetButtonDown("SympathyButton"))
         {
-            PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
+           isChallenge = true;
+
+            ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(false);
+            ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
         }
 
         if (Input.GetButtonDown("RButton"))
