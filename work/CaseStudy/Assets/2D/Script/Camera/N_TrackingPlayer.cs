@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class N_TrackingPlayer : MonoBehaviour
 {
@@ -106,6 +107,14 @@ public class N_TrackingPlayer : MonoBehaviour
 
     private bool isWarp = false;
 
+    [Header("タイルマップ"), SerializeField]
+    public Tilemap tilemap; // タイルマップ
+
+    private Vector2 minBounds;
+    private Vector2 maxBounds;
+    private float camHalfHeight;
+    private float camHalfWidth;
+
     public bool GetisWarp()
     {
         return isWarp;
@@ -143,6 +152,16 @@ public class N_TrackingPlayer : MonoBehaviour
             bSet_RightDown = true;
         }
 
+        // カメラの半分の高さと幅を計算
+        camHalfHeight = Camera.main.orthographicSize;
+        camHalfWidth = camHalfHeight * Camera.main.aspect;
+
+        if(tilemap)
+        {
+            // タイルマップの範囲を計算
+            CalculateBounds();
+        }
+
     }
 
     // Update is called once per frame
@@ -168,6 +187,15 @@ public class N_TrackingPlayer : MonoBehaviour
             // 範囲チェック
             AreaCheck();
         }
+
+        //// カメラが追従する対象の位置を取得
+        //Vector3 newPosition = trans_Target.position;
+        //
+        //// カメラの位置をステージの範囲内に制限
+        //float clampedX = Mathf.Clamp(newPosition.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
+        //float clampedY = Mathf.Clamp(newPosition.y, minBounds.y + camHalfHeight, maxBounds.y - camHalfHeight);
+        //
+        //CameraTransform.position = new Vector3(clampedX, clampedY, CameraTransform.position.z);
     }
 
     // 通常時の対象追跡
@@ -175,6 +203,15 @@ public class N_TrackingPlayer : MonoBehaviour
     {
         // 追跡対象の座標をカメラにセット
         CameraTransform.position = new Vector3(trans_Target.position.x, trans_Target.position.y, CameraTransform.position.z);
+
+        if (tilemap)
+        {
+            // カメラの位置をステージの範囲内に制限
+            float clampedX = Mathf.Clamp(CameraTransform.position.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
+            float clampedY = Mathf.Clamp(CameraTransform.position.y, minBounds.y + camHalfHeight, maxBounds.y - camHalfHeight);
+
+            CameraTransform.position = new Vector3(clampedX, clampedY, CameraTransform.position.z);
+        }
     }
 
     // ワープ時の対象追跡
@@ -205,6 +242,14 @@ public class N_TrackingPlayer : MonoBehaviour
             BeforeWarpPos.y + moveVec.y,
             CameraTransform.position.z);
 
+        if (tilemap)
+        {
+            // カメラの位置をステージの範囲内に制限
+            float clampedX = Mathf.Clamp(CameraTransform.position.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
+            float clampedY = Mathf.Clamp(CameraTransform.position.y, minBounds.y + camHalfHeight, maxBounds.y - camHalfHeight);
+
+            CameraTransform.position = new Vector3(clampedX, clampedY, CameraTransform.position.z);
+        }
         // 終了処理
         if (warpElapsedTime >= warpTrackTime)
         {
@@ -283,5 +328,35 @@ public class N_TrackingPlayer : MonoBehaviour
                 CameraTransform.position.y,
                 CameraTransform.position.z);
         }
+    }
+
+    void CalculateBounds()
+    {
+        // 初期値を非常に大きな/小さな値に設定
+        Vector3Int minCell = new Vector3Int(int.MaxValue, int.MaxValue, int.MaxValue);
+        Vector3Int maxCell = new Vector3Int(int.MinValue, int.MinValue, int.MinValue);
+
+        // タイルマップのすべてのセルをチェック
+        foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+        {
+            if (tilemap.HasTile(pos))
+            {
+                if (pos.x < minCell.x) minCell.x = pos.x;
+                if (pos.y < minCell.y) minCell.y = pos.y;
+                if (pos.z < minCell.z) minCell.z = pos.z;
+
+                if (pos.x > maxCell.x) maxCell.x = pos.x;
+                if (pos.y > maxCell.y) maxCell.y = pos.y;
+                if (pos.z > maxCell.z) maxCell.z = pos.z;
+            }
+        }
+
+        // タイルマップの左下端と右上端のワールド座標を計算
+        Vector3 minWorld = tilemap.CellToWorld(minCell);
+        Vector3 maxWorld = tilemap.CellToWorld(maxCell) + tilemap.cellSize;
+
+        // オフセットを追加してカメラがステージ外を映さないようにする
+        minBounds = new Vector2(minWorld.x, minWorld.y);
+        maxBounds = new Vector2(maxWorld.x, maxWorld.y);
     }
 }
