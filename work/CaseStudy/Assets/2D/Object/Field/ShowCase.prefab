@@ -594,11 +594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.x
-      value: 0.8
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.y
-      value: 0.8
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.z
