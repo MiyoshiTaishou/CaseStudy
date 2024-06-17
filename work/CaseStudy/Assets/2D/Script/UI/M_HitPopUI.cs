@@ -31,6 +31,7 @@ public class M_HitPopUI : MonoBehaviour
             hitPopUI.GetComponent<M_ObjectEasing>().EasingOnOff();
 
             M_GameMaster.SetGamePlay(false);
+            M_GameMaster.SetGameClear(true);
 
             StartCoroutine(WaitAndLoadScene());
         }

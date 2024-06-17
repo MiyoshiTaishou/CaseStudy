@@ -138,6 +138,10 @@ public class M_PlayerMove : MonoBehaviour
     {        
         if(M_GameMaster.GetGameClear())
         {
+            Vector2 vec = rbPlayer.velocity;
+            vec.x = 0.0f;
+            rbPlayer.velocity = vec;
+            isDash = false;                       
             return;
         }
 
