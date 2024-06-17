@@ -1,0 +1,46 @@
+シーンを構成するのに必要なものリスト
+
+キャンバス　　　　　　　　　　　　　役割
+第一層（検証してないけど多分まとめてもいけそうかも）
+・Canvas　　　　　　　　　　　　　　キャンバス系をまとめる
+
+第二層
+・K_UIStickEnemyNumText　　　　　 　わかんない。多分いらないとのこと
+・PauseCanvas　　　　　　　　　　　 ポーズ画面表示
+・CanvasClear　　　　　　　　　　　 わかんない。多分リザルトシーンへの遷移？
+・StaminaCanvas　　　　　　　　　　 スタミナ表示
+・SceneEffect_Canvas　　　　　　　　黒い翼の画面遷移エフェクト
+・Canvas_BackGround　　　　　　　　 背景のビルや森を表示する、値要調整
+・ChainCountUI　　　　　　　　　　　敵玉の吸収した数を表示する
+
+ステージ
+第一層
+・Stage　　　　　　　　　　　　　　 ステージ系のオブジェクトをまとめる
+
+第二層
+・Grid　　　　　　　　　　　　　　　地面と建物の背景を表示
+　>Tilemap_Col　　　　　　　　	　　　コライダーを持つ
+  >Tilemap_notCol　　　　　　　　　 　コライダーを持たない
+・Projecters　　　　　　　　　　　　プロジェクターをまとめるようの空のオブジェクト。ないとエラーでる
+　>Projecter　　　　　　　　　　　　　プロジェクターのオブジェクト。各ステージで変わる
+・BreakBlock　　　　　　　　　　　　壊れるブロックをまとめる用の空のオブジェクト。
+　>BreakBlock　　　　　　　　　　　 　壊れるブロックのオブジェクト。各ステージで変わる
+・Duct　　　　　　　　　　　　　　　ダクトをまとめる用の空のオブジェクト。
+　>Duct　　　　　　　　　　　　　　 　ダクトのオブジェクト。各ステージで変わる。インスペクターの設定必須。
+・ShowCase　　　　　　　　　　　　　ゴール用のオブジェクト。
+・Enemy　　　　　　　　　　　　　　 敵のマネージャーをまとめる空のオブジェクト。
+　>EnemyManager　　　　　　　　　　 　敵の隊列を管理するオブジェクト。隊列内に入れたい敵のセット必須。各パラメータ項目あり
+　　>Enemy_Mark.1　　　　　　　　　 　　敵本体。そのシーンのメインカメラのセット必須。
+・bottom　　　　　　　　　　　　　　いらない。
+
+その他
+第一層　　　　　　　　　　　　　　　これらはまとめなくてもいいかも
+・Player　　　　　　　　　　　　　　プレイヤー。調整項目多々あり
+・Main Camera　　　　　　　　　　　 プレイヤーに追従するカメラ。追従対象のセット必須。
+・SwitchBGM　　　　　　　　　　　　 BGMを鳴らす。
+・DuctManager　　　　　　　　　　　 多分いる。ダクトを管理してるのかな？
+・M_TrailObject　　　　　　　　　　 残像系
+・PlayerTrail　　　　　　　　　　　 残像系
+・Volume　　　　　　　　　　　　　　画面全体にエフェクトを掛ける。必須。
+
+
