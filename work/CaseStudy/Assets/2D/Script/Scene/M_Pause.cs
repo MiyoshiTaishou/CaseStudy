@@ -20,7 +20,7 @@ public class M_Pause : MonoBehaviour
     {
         //ƒNƒŠƒAŽž‚Í‰Ÿ‚¹‚È‚¢‚æ‚¤‚É‚·‚é
         if(M_GameMaster.GetGameClear())
-        {
+        {            
             return;
         }
 
