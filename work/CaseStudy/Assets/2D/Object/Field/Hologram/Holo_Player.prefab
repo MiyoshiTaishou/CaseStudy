@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 6035749312733321631}
   - component: {fileID: 6883019623941804465}
   - component: {fileID: 2224604798233059860}
+  - component: {fileID: 4047328490233746729}
   m_Layer: 3
   m_Name: Holo_Player
-  m_TagString: Player
+  m_TagString: Decoy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +201,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fDestroyTimer: 0
   isDestroy: 0
+--- !u!114 &4047328490233746729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061781001127465577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3c8eb67ad24ab458845871a4d45fe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DisappearTime: 0.5
+  spriteRenderer: {fileID: 0}
+  AlphaDown: 0
 --- !u!1 &5265588556653879650
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,6 +462,10 @@ PrefabInstance:
     - target: {fileID: 7310569821080857450, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: fDlayAnim
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7310569821080857450, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 448
       objectReference: {fileID: 0}
     - target: {fileID: 7455578348281846349, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: m_Name
