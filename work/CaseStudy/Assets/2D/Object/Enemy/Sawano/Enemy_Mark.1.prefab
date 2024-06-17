@@ -246,6 +246,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 321
   sc_GroundCheck: {fileID: 1141245237961300279}
+  Eff_FallPrefab: {fileID: 2638210585609723948, guid: c6a095df052bda2478adf10195c5a7f1, type: 3}
+  Eff_TouchGroundPrefab: {fileID: 5074303854680840471, guid: 5b9031c9be67cd84cbecc81af0812208, type: 3}
   OldisWarped: 0
 --- !u!82 &7695652855729107506
 AudioSource:
