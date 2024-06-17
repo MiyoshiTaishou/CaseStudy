@@ -253,8 +253,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -556,10 +556,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iBreakNum: 3
-  iTexSize: 3
+  iTexSize: 50
   UpDownSpeed: 1
   fShakingRange: 1
   IsDisplayBreakNum: 1
+  TextOffset: {x: 0, y: 50}
   Eff_Explosion: {fileID: 8111725552830047418, guid: 8d36c3d409370a8439501b8136e2785c, type: 3}
   Eff_BrokenPiece: {fileID: 0}
   GenerateNum: 30
