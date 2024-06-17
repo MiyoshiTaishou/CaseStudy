@@ -21,6 +21,13 @@ public class M_DuctManager : MonoBehaviour
     /// </summary>
     private bool isDuctIn = false;
 
+    public bool isNowDuct = false;
+
+    public bool GetNowDuct()
+    {
+        return isNowDuct;
+    }
+
     public void SetIsMove(bool _move) { isMove = _move; }
 
     public bool GetIsMove() { return isMove; }
@@ -104,6 +111,9 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
+
+            isNowDuct = false;
+
         }
 
         if (ductDictionary.ContainsValue(true))
@@ -173,6 +183,7 @@ public class M_DuctManager : MonoBehaviour
 
             Debug.Log(PlayerObj.GetComponent<M_PlayerMove>().GetIsMove());
 
+            isNowDuct = true;
             isDuctIn = true;
         }
         else
@@ -193,6 +204,8 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
+
+            isNowDuct = false;
         }
     }
 
@@ -206,5 +219,10 @@ public class M_DuctManager : MonoBehaviour
     public bool GetValue(GameObject _duct)
     {
         return ductDictionary[_duct];
+    }
+
+    public bool GetIsDuctIn()
+    {
+        return isDuctIn;
     }
 }
