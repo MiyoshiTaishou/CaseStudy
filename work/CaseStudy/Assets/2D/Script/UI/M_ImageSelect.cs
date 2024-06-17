@@ -45,6 +45,8 @@ public class M_ImageSelect : MonoBehaviour
                 originalSiblingIndices[image] = image.transform.GetSiblingIndex();
             }
         }
+
+        M_GameMaster.SetGameClear(false);
     }
 
     void Update()
@@ -90,6 +92,7 @@ public class M_ImageSelect : MonoBehaviour
         }
 
         float horizontalInput = Input.GetAxisRaw("Horizontal"); // 横方向のスティック入力を取得
+        float verticalInput = Input.GetAxisRaw("Vertical"); // 横方向のスティック入力を取得
 
         if (horizontalInput > 0.5f && !stickMoved)
         {
@@ -101,7 +104,17 @@ public class M_ImageSelect : MonoBehaviour
             SelectImage(currentIndex - 1); // 左方向に移動したら前のボタンを選択
             stickMoved = true; // スティックが動いたフラグを立てる
         }
-        else if (horizontalInput == 0)
+        else if (verticalInput < -0.5f && !stickMoved)
+        {
+            SelectImage(currentIndex + 3); // 左方向に移動したら前のボタンを選択
+            stickMoved = true; // スティックが動いたフラグを立てる
+        }
+        else if (verticalInput > 0.5f && !stickMoved)
+        {
+            SelectImage(currentIndex - 3); // 左方向に移動したら前のボタンを選択
+            stickMoved = true; // スティックが動いたフラグを立てる
+        }
+        else if (horizontalInput == 0 && verticalInput == 0)
         {
             stickMoved = false; // スティックが中立位置に戻ったらフラグをリセット
         }
@@ -156,11 +169,11 @@ public class M_ImageSelect : MonoBehaviour
         // インデックスが範囲外の場合はインデックスをループさせる
         if (newIndex < 0)
         {
-            newIndex = sceneImages[sceneIndex].images.Count - 1;
+            return;            
         }
         else if (newIndex >= sceneImages[sceneIndex].images.Count)
         {
-            newIndex = 0;
+            return;
         }
 
         // 現在のボタンの選択を解除
