@@ -216,6 +216,7 @@ public class N_EnemyManager : MonoBehaviour
         {
             if (IsMemberWarped() == null || (IsMemberWarped() == obj))
             {
+                Debug.Log("‚±‚¢‚Â‚¤‚¤‚¤`" + obj.name+"‚È‚ñ‚Å‚âIH"+obj.GetComponent<SEnemyMove>().GetIsWarped());
                 // Å‰‚Ì“G‚ÌYÀ•W‚ğŒ³‚É‚·‚é
                 if (order == 0)
                 {
