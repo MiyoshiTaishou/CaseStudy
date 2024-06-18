@@ -89,6 +89,15 @@ public class N_PlayerSearch : MonoBehaviour
                     isRaycast = false;
                     elapsedTime = 0.0f;
                 }
+
+                if(Target.GetComponent<BoxCollider2D>().enabled == false)
+                {
+                    isSearch = false;
+                    isRaycast = false;
+                    elapsedTime = 0.0f;
+                    isCheck = false;
+
+                }
             }
         }
     }

@@ -15,6 +15,10 @@ public class N_HoloPlayerDestroy : MonoBehaviour
 
     private bool init = false;
 
+    private bool onAlpha = false;
+
+    private BoxCollider2D boxCol;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,8 +32,14 @@ public class N_HoloPlayerDestroy : MonoBehaviour
         {
             spriteRenderer = transform.GetChild(3).GetComponent<SpriteRenderer>();
             projectHologram = gameObject.transform.parent.GetComponent<N_ProjectHologram>();
+            boxCol = gameObject.GetComponent<BoxCollider2D>();
 
             init = true;
+        }
+
+        if (onAlpha)
+        {
+            OnAlpha();
         }
 
         if (AlphaDown)
@@ -44,6 +54,8 @@ public class N_HoloPlayerDestroy : MonoBehaviour
                 if(color.a < 0.0f)
                 {
                     color.a = 0.0f;
+
+                    boxCol.enabled = false;
 
                     AlphaDown = false;
                     projectHologram.SetOnOff(false);
@@ -64,10 +76,20 @@ public class N_HoloPlayerDestroy : MonoBehaviour
 
     public void OnAlpha()
     {
-        Color color = spriteRenderer.color;
+        if (spriteRenderer != null)
+        {
+            boxCol.enabled = true;
+            Color color = spriteRenderer.color;
 
-        color = new Color(color.a, color.g, color.b, 1.0f);
+            color = new Color(color.a, color.g, color.b, 1.0f);
 
-        spriteRenderer.color = color;
+            spriteRenderer.color = color;
+
+            onAlpha = false;
+        }
+        else
+        {
+            onAlpha = true;
+        }
     }
 }

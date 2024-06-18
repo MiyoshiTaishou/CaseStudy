@@ -178,7 +178,7 @@ public class N_ProjectHologram : MonoBehaviour
                         obj.transform.position = InitHoloPos;
 
                         // è¡Ç¶ÇΩÉzÉçÉOÉâÉÄÇå©Ç¶ÇÈÇÊÇ§Ç…Ç∑ÇÈ
-                        obj.GetComponent<N_HoloPlayerDestroy>().OnAlpha();
+                        //obj.GetComponent<N_HoloPlayerDestroy>().OnAlpha();
                     }
                 }
                 isActive = true;
