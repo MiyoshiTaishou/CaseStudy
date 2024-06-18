@@ -27,6 +27,16 @@ public class N_PostProcess : MonoBehaviour
 
     private bool isInit = false;
 
+    public int GetSearchNum()
+    {
+        return SearchManagerNum;
+    }
+
+    public void SetSearchNum(int _num)
+    {
+        SearchManagerNum = _num;
+    }
+
     private void Initialize()
     {
         postVolume = GetComponent<Volume>();

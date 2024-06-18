@@ -565,6 +565,7 @@ public class N_EnemyManager : MonoBehaviour
 
     private void ChaseInit()
     {
+        Debug.Log("Add");
         postProcess.AddSerachNum();
 
         managerState = ManagerState.CHASE;
@@ -640,6 +641,7 @@ public class N_EnemyManager : MonoBehaviour
             Target = null;
             managerState = ManagerState.PATOROL;
             ElapsedLostSightTime = 0.0f;
+            Debug.Log("Sub");
 
             postProcess.SubSerachNum();
 
@@ -676,6 +678,10 @@ public class N_EnemyManager : MonoBehaviour
     {
         if (Target == null || Target != _obj)
         {
+            if(postProcess.GetSearchNum() > 0)
+            {
+                postProcess.SetSearchNum(0);
+            }
             Target = _obj;
             TargetTrans = Target.GetComponent<Transform>();
             managerState = ManagerState.FOUND;
