@@ -52,17 +52,15 @@ public class S_LoopWall : MonoBehaviour
         Vector2 vel2 = collision.GetComponent<Rigidbody2D>().velocity;
         vel = vel2;
         speedx = vel2.x;
-        Debug.Log("ｓぴーーーーーーーーーど" + speedx);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //ワープ先がワープ出来る状態か
         bool OK = warpObj.GetComponent<S_LoopWall>().GetisWarped();
-
         //自身がワープでき、ワープ先がワープでき、タグがプレイヤーかエネミーの時にワープ処理
-        if (isWarped == false && OK == false &&
-            (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Enemy")))
+        if ((isWarped == false && OK == false) &&
+            (collision.collider.CompareTag("Player") ||( collision.collider.CompareTag("Enemy")&&collision.collider.GetComponent<SEnemyMove>().GetIsWarped()==false)))
         {
             //一定時間ワープ不可の状態にする
             StartCoroutine(CoolTime());
@@ -125,7 +123,14 @@ public class S_LoopWall : MonoBehaviour
         {
             Debug.Log("すすめ");
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            vel.x = speedx;
+            if (iswarpRight == warpObj.GetComponent<S_LoopWall>().iswarpRight)
+            {
+                vel.x = -speedx;
+            }
+            else 
+            {
+                vel.x = speedx;
+            }
             rb.velocity = vel;
             collision.gameObject.GetComponent<S_EnemyBall>().SetisPushing(true);
         }

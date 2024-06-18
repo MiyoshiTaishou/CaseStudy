@@ -376,6 +376,7 @@ public class SEnemyMove : MonoBehaviour
         {
             Debug.Log("隊列組みなおし2");
             isWarped = true;
+            StartCoroutine(ChangeWarped());
             enemyManager.PartitionTeamHeight();
         }
         if (_collision.transform.CompareTag("Enemy"))
