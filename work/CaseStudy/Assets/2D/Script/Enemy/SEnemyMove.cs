@@ -97,6 +97,14 @@ public class SEnemyMove : MonoBehaviour
 
     private Animator animator;
 
+    [Header("落下中エフェクト"), SerializeField]
+    private GameObject Eff_FallPrefab;
+    private GameObject Eff_FallObj;
+
+    [Header("摂津エフェクト"), SerializeField]
+    private GameObject Eff_TouchGroundPrefab;
+    private GameObject Eff_TouchGroundObj;
+
     public void StartMove() { isLook = true; }
 
     public N_EnemyManager GetManager()
@@ -111,6 +119,10 @@ public class SEnemyMove : MonoBehaviour
     //セッターとゲッター
     public void SetisWarped(bool _flg) { isWarped = _flg; }
     public bool GetIsWarped() { return isWarped; }
+
+    S_LoopWall Warp;
+    public void SetWarp(S_LoopWall wall) { Warp = wall; }
+    public S_LoopWall GetWarp() { return Warp; }
 
     public bool GetIsCollidingHologram() { return IsCollidingHologram; }
 
@@ -138,6 +150,24 @@ public class SEnemyMove : MonoBehaviour
         thisTrans = this.GetComponent<Transform>();
 
         animator = transform.GetChild(2).GetComponent<Animator>();
+
+        if(Eff_TouchGroundPrefab)
+        {
+            Vector3 pos = gameObject.transform.position;
+            pos.y += 1.0f;
+            Eff_TouchGroundObj = Instantiate(Eff_TouchGroundPrefab, pos, Quaternion.identity);
+            Eff_TouchGroundObj.transform.parent = gameObject.transform;
+            Eff_TouchGroundObj.SetActive(false);
+            Eff_TouchGroundObj.GetComponent<Animator>().speed = 2.0f;
+        }
+        if(Eff_FallPrefab)
+        {
+            Vector3 pos = gameObject.transform.position;
+            pos.z += 1.0f;
+            Eff_FallObj = Instantiate(Eff_FallPrefab, pos, Quaternion.identity);
+            Eff_FallObj.transform.parent = gameObject.transform;
+            Eff_FallObj.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -182,55 +212,55 @@ public class SEnemyMove : MonoBehaviour
         // 今フレームの接地判定を取得
         isGroundNow = sc_GroundCheck.GroundCheck();
 
-        //坂道計算
-        //傾きを計算するためのポジションを取得
-        slopeOrigin1 = transform.position;
-        slopeOrigin1.x += slopeGup1.x;
-        slopeOrigin1.y += slopeGup1.y;
-        slopeOrigin2 = transform.position;
-        slopeOrigin2.x += slopeGup2.x;
-        slopeOrigin2.y += slopeGup2.y;
+        ////坂道計算
+        ////傾きを計算するためのポジションを取得
+        //slopeOrigin1 = transform.position;
+        //slopeOrigin1.x += slopeGup1.x;
+        //slopeOrigin1.y += slopeGup1.y;
+        //slopeOrigin2 = transform.position;
+        //slopeOrigin2.x += slopeGup2.x;
+        //slopeOrigin2.y += slopeGup2.y;
 
-        RaycastHit2D hitSlope1 = Physics2D.Raycast(slopeOrigin1, Vector2.down, 2.0f);
-        RaycastHit2D hitSlope2 = Physics2D.Raycast(slopeOrigin2, Vector2.down, 2.0f);
-        if (hitSlope1.collider != null && hitSlope2.collider != null &&
-            hitSlope1.collider.CompareTag("TileMap") && hitSlope2.collider.CompareTag("TileMap"))
-        {
-            //2点間の傾きを計算
-            Vector2 point1 = hitSlope1.point;
-            Vector2 point2 = hitSlope2.point;
-            float slopeAngle = Mathf.Atan2(point2.y - point1.y, point2.x - point1.x) * Mathf.Rad2Deg;
-            int isRight = IsReflectionX ? -1 : 1;
+        //RaycastHit2D hitSlope1 = Physics2D.Raycast(slopeOrigin1, Vector2.down, 2.0f);
+        //RaycastHit2D hitSlope2 = Physics2D.Raycast(slopeOrigin2, Vector2.down, 2.0f);
+        //if (hitSlope1.collider != null && hitSlope2.collider != null &&
+        //    hitSlope1.collider.CompareTag("TileMap") && hitSlope2.collider.CompareTag("TileMap"))
+        //{
+        //    //2点間の傾きを計算
+        //    Vector2 point1 = hitSlope1.point;
+        //    Vector2 point2 = hitSlope2.point;
+        //    float slopeAngle = Mathf.Atan2(point2.y - point1.y, point2.x - point1.x) * Mathf.Rad2Deg;
+        //    int isRight = IsReflectionX ? -1 : 1;
 
-            if (slopeAngle < 170 && slopeAngle > 10)
-            {
-                Vector2 vel = rb.velocity;
-                vel.x = fLimitSpeed * isRight;
-                rb.velocity = vel;
-                isSlope = true;
-            }
-            else
-            {
-                rb.drag = 1;
-                isSlope = false;
-            }
-            //傾斜の角度が一定以上なら傾いていると判断
+        //    if (slopeAngle < 170 && slopeAngle > 10)
+        //    {
+        //        Vector2 vel = rb.velocity;
+        //        vel.x = fLimitSpeed * isRight;
+        //        rb.velocity = vel;
+        //        isSlope = true;
+        //    }
+        //    else
+        //    {
+        //        rb.drag = 1;
+        //        isSlope = false;
+        //    }
+        //    //傾斜の角度が一定以上なら傾いていると判断
 
-            //傾きに対する抵抗力を計算
-            //傾斜に対する水平方向の抗力を計算
-            float horizontalResistance = rb.mass * Mathf.Abs(rb.gravityScale) * frictionCoefficient * Mathf.Sin(slopeAngle * Mathf.Deg2Rad);
-            Vector2 vecAngle = new Vector2(Mathf.Cos(slopeAngle * Mathf.Deg2Rad), Mathf.Sin(slopeAngle * Mathf.Deg2Rad));
+        //    //傾きに対する抵抗力を計算
+        //    //傾斜に対する水平方向の抗力を計算
+        //    float horizontalResistance = rb.mass * Mathf.Abs(rb.gravityScale) * frictionCoefficient * Mathf.Sin(slopeAngle * Mathf.Deg2Rad);
+        //    Vector2 vecAngle = new Vector2(Mathf.Cos(slopeAngle * Mathf.Deg2Rad), Mathf.Sin(slopeAngle * Mathf.Deg2Rad));
 
-            Vector2 resistanceForce = vecAngle * horizontalResistance;
-            if (IsReflectionX)
-            {
-                rb.AddForce(resistanceForce * Power * 20, ForceMode2D.Force);
-            }
-            else
-            {
-                rb.AddForce(resistanceForce * (Power / 2), ForceMode2D.Force);
-            }
-        }
+        //    Vector2 resistanceForce = vecAngle * horizontalResistance;
+        //    if (IsReflectionX)
+        //    {
+        //        rb.AddForce(resistanceForce * Power * 20, ForceMode2D.Force);
+        //    }
+        //    else
+        //    {
+        //        rb.AddForce(resistanceForce * (Power / 2), ForceMode2D.Force);
+        //    }
+        //}
 
 
         //この辺コードくっそ汚いので気が向いたら直しておきます
@@ -296,6 +326,15 @@ public class SEnemyMove : MonoBehaviour
         if(isGroundNow == false && Time.time >= 0.5f)
         {
             animator.SetBool("fall", true);
+
+            if (Eff_FallObj)
+            {
+                Eff_FallObj.SetActive(true);
+            }
+            if (Eff_TouchGroundObj)
+            {
+                Eff_TouchGroundObj.SetActive(false);
+            }
         }
 
         // 空中から地面に接地したなら
@@ -305,6 +344,15 @@ public class SEnemyMove : MonoBehaviour
             // y座標が近いものどおしの隊列に組みなおし
 
             animator.SetBool("fall", false);
+
+            if (Eff_TouchGroundObj)
+            {
+                Eff_TouchGroundObj.SetActive(true);
+            }
+            if (Eff_FallObj)
+            {
+                Eff_FallObj.SetActive(false);
+            }
 
             if (enemyManager != null)
             {
@@ -324,6 +372,13 @@ public class SEnemyMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D _collision)
     {
+        if(_collision.transform.GetComponent<S_LoopWall>())
+        {
+            Debug.Log("隊列組みなおし2");
+            isWarped = true;
+            StartCoroutine(ChangeWarped());
+            enemyManager.PartitionTeamHeight();
+        }
         if (_collision.transform.CompareTag("Enemy"))
         {
             SEnemyMove enemyMove = _collision.gameObject.GetComponent<SEnemyMove>();
@@ -453,7 +508,7 @@ public class SEnemyMove : MonoBehaviour
     {
         isWarped = true;
         //指定のフレーム待つ
-        yield return new WaitForSecondsRealtime(10);
+        yield return new WaitForSecondsRealtime(0.2f);
         isWarped = false;
     }
     private bool GroundCheck()

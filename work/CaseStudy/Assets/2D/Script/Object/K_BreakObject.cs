@@ -20,6 +20,9 @@ public class K_BreakObject : MonoBehaviour
     [Header("耐久値を表示するか?"), SerializeField]
     private bool IsDisplayBreakNum = true;
 
+    [Header("耐久値表示の座標"), SerializeField]
+    private Vector2Int TextOffset;
+
     private TextMeshProUGUI TextEndurance;
 
     [Header("破壊時のエフェクト"), SerializeField]
@@ -82,7 +85,7 @@ public class K_BreakObject : MonoBehaviour
            {
                 // オブジェクト位置にテキスト要素を追従させる
                 Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-                TextEndurance.transform.position = new Vector3(screenPos.x, screenPos.y + Mathf.PingPong(Time.time * UpDownSpeed, fShakingRange), screenPos.z); // 適切なオフセットを持たせる
+                TextEndurance.transform.position = new Vector3(screenPos.x + TextOffset.x, screenPos.y + Mathf.PingPong(Time.time * UpDownSpeed, fShakingRange) + TextOffset.y, screenPos.z); // 適切なオフセットを持たせる
             }
         }
     }
@@ -99,29 +102,79 @@ public class K_BreakObject : MonoBehaviour
 
     }
 
-    private void OnDestroy()
-    {
-        if(!isQuitting)
-        {
-            //爆発エフェクト再生
-            if(Eff_Explosion)
-            {
-                Instantiate(Eff_Explosion, transform.position, Quaternion.identity);
-            }
-            if (audioclip)
-            {
-                AudioSource.PlayClipAtPoint(audioclip, transform.position);
-            }
-            // 破片エフェクト生成
-            if (Eff_BrokenPiece)
-            {
-                Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
-            }
 
-            if(camera)
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //オブジェクト取得
+        GameObject HitObj = collision.transform.gameObject;
+        //オブジェクトからS_EnemyBall取得
+        S_EnemyBall enemyBall = HitObj.GetComponent<S_EnemyBall>();
+
+        //相手にS_EnemyBallスクリプトが付いていたら
+        if (enemyBall)
+        {
+            //敵塊数取得、オブジェクトの耐久値と比較
+            int checkNum = enemyBall.GetStickCount();
+            if (this.GetBreakNum() <= checkNum && enemyBall.GetisPushing())
             {
-                camera.GetComponent<M_CameraShake>().Shake();
-            }            
+                //爆発エフェクト再生
+                if (Eff_Explosion)
+                {
+                    Instantiate(Eff_Explosion, transform.position, Quaternion.identity);
+                }
+                if (audioclip)
+                {
+                    AudioSource.PlayClipAtPoint(audioclip, transform.position);
+                }
+                // 破片エフェクト生成
+                if (Eff_BrokenPiece)
+                {
+                    Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
+                }
+                if (camera)
+                {
+                    camera.GetComponent<M_CameraShake>().Shake();
+                }
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //オブジェクト取得
+        GameObject HitObj = collision.transform.gameObject;
+        //オブジェクトからS_EnemyBall取得
+        S_EnemyBall enemyBall = HitObj.GetComponent<S_EnemyBall>();
+
+        //相手にS_EnemyBallスクリプトが付いていたら
+        if (enemyBall)
+        {
+            //敵塊数取得、オブジェクトの耐久値と比較
+            int checkNum = enemyBall.GetStickCount();
+            if (this.GetBreakNum() <= checkNum && enemyBall.GetisPushing())
+            {
+                //爆発エフェクト再生
+                if (Eff_Explosion)
+                {
+                    Instantiate(Eff_Explosion, transform.position, Quaternion.identity);
+                }
+                if (audioclip)
+                {
+                    AudioSource.PlayClipAtPoint(audioclip, transform.position);
+                }
+                // 破片エフェクト生成
+                if (Eff_BrokenPiece)
+                {
+                    Instantiate(Eff_BrokenPiece, transform.position, Quaternion.identity);
+                }
+                if (camera)
+                {
+                    camera.GetComponent<M_CameraShake>().Shake();
+                }
+                Destroy(gameObject);
+            }
         }
     }
 }

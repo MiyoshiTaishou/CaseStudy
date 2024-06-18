@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1544618792125113003}
   - component: {fileID: 6800270824773611408}
   - component: {fileID: 5667778652657883682}
+  - component: {fileID: 5400804666008472850}
   m_Layer: 0
   m_Name: Treasure
   m_TagString: Untagged
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPopUI: {fileID: 1105851647839387378}
+  waitTime: 2
 --- !u!114 &5667778652657883682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +148,18 @@ MonoBehaviour:
   rotAxis: 1
   fRotateSpeed: 5
   isReset: 0
+--- !u!114 &5400804666008472850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227106901023077025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e5f86c86095d646a7232715ef62975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1414204448639718219
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,8 +253,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -542,10 +556,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iBreakNum: 3
-  iTexSize: 3
+  iTexSize: 50
   UpDownSpeed: 1
   fShakingRange: 1
   IsDisplayBreakNum: 1
+  TextOffset: {x: 0, y: 50}
   Eff_Explosion: {fileID: 8111725552830047418, guid: 8d36c3d409370a8439501b8136e2785c, type: 3}
   Eff_BrokenPiece: {fileID: 0}
   GenerateNum: 30
@@ -579,11 +594,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.x
-      value: 0.8
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.y
-      value: 0.8
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 6699901702288102106, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
       propertyPath: scale.amount.z

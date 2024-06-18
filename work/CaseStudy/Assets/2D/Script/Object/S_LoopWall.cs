@@ -52,27 +52,19 @@ public class S_LoopWall : MonoBehaviour
         Vector2 vel2 = collision.GetComponent<Rigidbody2D>().velocity;
         vel = vel2;
         speedx = vel2.x;
-        Debug.Log("ｓぴーーーーーーーーーど" + speedx);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //ワープ先がワープ出来る状態か
         bool OK = warpObj.GetComponent<S_LoopWall>().GetisWarped();
-
         //自身がワープでき、ワープ先がワープでき、タグがプレイヤーかエネミーの時にワープ処理
-        if (isWarped == false && OK == false &&
-            (collision.collider.CompareTag("Player") || collision.collider.CompareTag("Enemy")))
+        if ((isWarped == false && OK == false) &&
+            (collision.collider.CompareTag("Player") ||( collision.collider.CompareTag("Enemy")&&collision.collider.GetComponent<SEnemyMove>().GetIsWarped()==false)))
         {
             //一定時間ワープ不可の状態にする
             StartCoroutine(CoolTime());
             
-            //当たったのが敵ならワープしたという情報を付与
-            if(collision.collider.CompareTag("Enemy"))
-            {
-                collision.collider.GetComponent<SEnemyMove>().SetisWarped(true);
-                collision.collider.GetComponent<SEnemyMove>().OldisWarped = true;
-            }
 
             //ワープ先の位置
             Vector3 newpos = warpObj.transform.position;
@@ -89,6 +81,14 @@ public class S_LoopWall : MonoBehaviour
             audioSource.PlayOneShot(audioclip);
             //ワープ
             collision.gameObject.transform.position = newpos;
+
+            //当たったのが敵ならワープしたという情報を付与
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                collision.collider.GetComponent<SEnemyMove>().SetisWarped(true);
+                collision.collider.GetComponent<SEnemyMove>().OldisWarped = true;
+                collision.collider.GetComponent<SEnemyMove>().SetWarp(warpObj.GetComponent<S_LoopWall>());
+            }
         }
         //敵玉の場合(見返してみれば分ける必要無かったかも)
         else if (isWarped == false && OK == false &&
@@ -123,7 +123,14 @@ public class S_LoopWall : MonoBehaviour
         {
             Debug.Log("すすめ");
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
-            vel.x = speedx;
+            if (iswarpRight == warpObj.GetComponent<S_LoopWall>().iswarpRight)
+            {
+                vel.x = -speedx;
+            }
+            else 
+            {
+                vel.x = speedx;
+            }
             rb.velocity = vel;
             collision.gameObject.GetComponent<S_EnemyBall>().SetisPushing(true);
         }

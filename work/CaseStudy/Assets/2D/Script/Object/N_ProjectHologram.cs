@@ -176,6 +176,9 @@ public class N_ProjectHologram : MonoBehaviour
                     if(mode==HOLOGRAM_MODE.PLAYER)
                     {
                         obj.transform.position = InitHoloPos;
+
+                        // 消えたホログラムを見えるようにする
+                        //obj.GetComponent<N_HoloPlayerDestroy>().OnAlpha();
                     }
                 }
                 isActive = true;
@@ -296,6 +299,7 @@ public class N_ProjectHologram : MonoBehaviour
             obj.transform.parent = this.gameObject.transform;           
             // 最初非表示
             obj.SetActive(false);
+            obj.name = Prefab.name;
 
             InitHoloPos = obj.transform.position;
             // リスト追加
@@ -304,26 +308,26 @@ public class N_ProjectHologram : MonoBehaviour
         }
 
         // 壁の場合根元だけスプライト変更
-        SpriteRenderer renderer;
-        switch (mode)
-        {
-            case HOLOGRAM_MODE.WALL:
-                switch (HoloDirection)
-                {
-                    case HOLOGRAM_DIRECTION.UP:
-                        renderer = Hologram[0].GetComponent<SpriteRenderer>();
-                        renderer.sprite = rootSprite;
+        //SpriteRenderer renderer;
+        //switch (mode)
+        //{
+        //    case HOLOGRAM_MODE.WALL:
+        //        switch (HoloDirection)
+        //        {
+        //            case HOLOGRAM_DIRECTION.UP:
+        //                renderer = Hologram[0].GetComponent<SpriteRenderer>();
+        //                renderer.sprite = rootSprite;
 
-                        break;
+        //                break;
 
-                    case HOLOGRAM_DIRECTION.DOWN:
-                        renderer = Hologram[iHowMany].GetComponent<SpriteRenderer>();
-                        renderer.sprite = rootSprite;
+        //            case HOLOGRAM_DIRECTION.DOWN:
+        //                renderer = Hologram[iHowMany].GetComponent<SpriteRenderer>();
+        //                renderer.sprite = rootSprite;
 
-                        break;
-                }
-                break;
-        }
+        //                break;
+        //        }
+        //        break;
+        //}
 
         // 当たり判定系
         Vector2 offset = Vector2.zero;
@@ -444,6 +448,11 @@ public class N_ProjectHologram : MonoBehaviour
             isProjection = !isProjection;
             isAlreadySwitch = true;
         }
+    }
+
+    public void SetOnOff(bool _OnOff)
+    {
+        isProjection = _OnOff;
     }
 
     public void Initialize()

@@ -25,6 +25,8 @@ public class N_PlayerSearch : MonoBehaviour
 
     public float elapsedTime = 0.0f;
 
+    private bool init = false;
+
     [Header("レイヤーマスク設定"), SerializeField]
     private LayerMask layerMask;
 
@@ -33,19 +35,26 @@ public class N_PlayerSearch : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // 親オブジェクト取得
-        Parent = transform.parent.gameObject;
-        enemyMove = Parent.GetComponent<SEnemyMove>();
-        enemyBall = Parent.GetComponent<S_EnemyBall>();
-        enemyManager = enemyMove.GetManager();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (!init)
+        {
+            // 親オブジェクト取得
+            Parent = transform.parent.gameObject;
+            enemyMove = Parent.GetComponent<SEnemyMove>();
+            enemyBall = Parent.GetComponent<S_EnemyBall>();
+            enemyManager = enemyMove.GetManager();
+
+            init = true;
+        }
+
         //玉状態なら追跡状態を解除
-        if(enemyBall.GetisBall())
+        if (enemyBall.GetisBall())
         {
             isSearch = false;
             isRaycast = false;
@@ -61,7 +70,7 @@ public class N_PlayerSearch : MonoBehaviour
 
             // 追跡対象が視野範囲内に入った時
             // 壁を挟んでいるかを判定する
-            if (isRaycast && !isCheck)
+            if (isRaycast /*&& !isCheck*/)
             {
                 RayCastCheck();
             }
@@ -80,12 +89,42 @@ public class N_PlayerSearch : MonoBehaviour
                     isRaycast = false;
                     elapsedTime = 0.0f;
                 }
+
+                if(Target.GetComponent<BoxCollider2D>().enabled == false)
+                {
+                    isSearch = false;
+                    isRaycast = false;
+                    elapsedTime = 0.0f;
+                    isCheck = false;
+
+                }
             }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isRaycast || isSearch)
+        {
+            return;
+        }
+        if (enemyManager != null)
+        {
+            if (collision.CompareTag("Player") || collision.CompareTag("Decoy"))
+            {
+                Target = collision.gameObject;
+                transTarget = Target.transform;
+
+                //Debug.Log("エンター");
+
+                isRaycast = true;
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
         if (isRaycast || isSearch)
         {
             return;
@@ -129,12 +168,12 @@ public class N_PlayerSearch : MonoBehaviour
         {
             direction = Vector2.left;
         }
-        float distance = elapsedTime * 6.0f;
+        float distance = elapsedTime * 30.0f;
         elapsedTime += Time.deltaTime;
 
         RaycastHit2D hit = Physics2D.Raycast(startPoint, direction,distance,layerMask);
 
-        //Debug.DrawRay(startPoint, direction * distance, Color.black, 0.0f, false);
+        Debug.DrawRay(startPoint, direction * distance, Color.black, 0.0f, false);
 
         // 先に敵に当たったら追跡
         // 壁に当たったらなにもなし
@@ -149,14 +188,14 @@ public class N_PlayerSearch : MonoBehaviour
                 //Debug.Log("接敵");
                 isSearch = true;
                 enemyManager.SetTarget(Target);
-                isRaycast = false;
+                //isRaycast = false;
             }
-            else if(hit.collider.gameObject.name == "Tilemap_Col")
+            else if(hit.collider.gameObject.CompareTag("Ground"))
             {
                 //Debug.Log("壁検知");
 
                 isSearch = false;
-                isRaycast = false;
+                //isRaycast = false;
             }
             else
             {

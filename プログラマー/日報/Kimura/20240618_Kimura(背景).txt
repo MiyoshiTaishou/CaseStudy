@@ -1,0 +1,4 @@
+背景表示
+ステージのタイルマップをもとにリサイズ、配置される。
+
+SuperBackGroundプレハブを配置し、TileMap_ColをK_BackGroundのタイルマップに入れると動くはず

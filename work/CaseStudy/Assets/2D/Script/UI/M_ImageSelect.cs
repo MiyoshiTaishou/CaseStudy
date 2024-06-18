@@ -11,6 +11,10 @@ public class M_ImageSelect : MonoBehaviour
 {
     [Header("シーンごとに表示する画像")]
     public List<SceneImages> sceneImages; // シーンごとのボタンのリスト
+
+    [Header("シーンごとに表示する招待状画像")]
+    public List<SceneImages> ChallengeImages; // シーンごとのボタンのリスト
+
     private int currentIndex = 0; // 現在選択中のボタンのインデックス
     private int sceneIndex = 0; // 現在選択中のシーンのインデックス
     private int slideIndex = 0; // スライドのインデックス
@@ -26,6 +30,9 @@ public class M_ImageSelect : MonoBehaviour
     // 元の位置を保存するための辞書
     private Dictionary<GameObject, int> originalSiblingIndices = new Dictionary<GameObject, int>();
 
+    //招待状開いているか？
+    private bool isChallenge = false;
+
     private void Start()
     {
         slideIndex = sceneImages.Count - 1;
@@ -38,9 +45,39 @@ public class M_ImageSelect : MonoBehaviour
                 originalSiblingIndices[image] = image.transform.GetSiblingIndex();
             }
         }
+
+        M_GameMaster.SetGameClear(false);
     }
 
     void Update()
+    {
+       if(isChallenge)
+        {
+            ChallengeUpdate();
+        }
+       else
+        {
+            SelectUpdate();
+        }
+    }
+
+    void ChallengeUpdate()
+    {
+        if (Input.GetButtonDown("SympathyButton"))
+        {
+            PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
+        }
+
+        if(Input.GetButtonDown("Cancel"))
+        {
+            Debug.Log("挑戦状閉じる");
+            ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(true);
+            ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();           
+            isChallenge = false;
+        }
+    }
+
+    void SelectUpdate()
     {
         if (!once)
         {
@@ -55,6 +92,7 @@ public class M_ImageSelect : MonoBehaviour
         }
 
         float horizontalInput = Input.GetAxisRaw("Horizontal"); // 横方向のスティック入力を取得
+        float verticalInput = Input.GetAxisRaw("Vertical"); // 横方向のスティック入力を取得
 
         if (horizontalInput > 0.5f && !stickMoved)
         {
@@ -66,14 +104,27 @@ public class M_ImageSelect : MonoBehaviour
             SelectImage(currentIndex - 1); // 左方向に移動したら前のボタンを選択
             stickMoved = true; // スティックが動いたフラグを立てる
         }
-        else if (horizontalInput == 0)
+        else if (verticalInput < -0.5f && !stickMoved)
+        {
+            SelectImage(currentIndex + 3); // 左方向に移動したら前のボタンを選択
+            stickMoved = true; // スティックが動いたフラグを立てる
+        }
+        else if (verticalInput > 0.5f && !stickMoved)
+        {
+            SelectImage(currentIndex - 3); // 左方向に移動したら前のボタンを選択
+            stickMoved = true; // スティックが動いたフラグを立てる
+        }
+        else if (horizontalInput == 0 && verticalInput == 0)
         {
             stickMoved = false; // スティックが中立位置に戻ったらフラグをリセット
         }
 
         if (Input.GetButtonDown("SympathyButton"))
         {
-            PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
+           isChallenge = true;
+
+            ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(false);
+            ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
         }
 
         if (Input.GetButtonDown("RButton"))
@@ -118,11 +169,11 @@ public class M_ImageSelect : MonoBehaviour
         // インデックスが範囲外の場合はインデックスをループさせる
         if (newIndex < 0)
         {
-            newIndex = sceneImages[sceneIndex].images.Count - 1;
+            return;            
         }
         else if (newIndex >= sceneImages[sceneIndex].images.Count)
         {
-            newIndex = 0;
+            return;
         }
 
         // 現在のボタンの選択を解除

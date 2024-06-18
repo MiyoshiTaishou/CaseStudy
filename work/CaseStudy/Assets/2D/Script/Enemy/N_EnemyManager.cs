@@ -87,6 +87,7 @@ public class N_EnemyManager : MonoBehaviour
         CHASEINIT,  // 追跡準備
         CHASE,      // 追跡
         LOSTSIGHT,  // 見失った
+        Warped,     // ワープした
     }
 
     [SerializeField]
@@ -97,6 +98,8 @@ public class N_EnemyManager : MonoBehaviour
     private Transform TargetTrans;
 
     private N_PostProcess postProcess;
+
+    private M_DuctManager ductManager;
 
     // 移動ステータス初期化
     public void InitMoveStatus()
@@ -149,6 +152,7 @@ public class N_EnemyManager : MonoBehaviour
             SetInfomation(true);
 
             postProcess = GameObject.Find("Volume").GetComponent<N_PostProcess>();
+            ductManager = GameObject.Find("DuctManager").GetComponent<M_DuctManager>();
 
             init = true;
         }
@@ -191,6 +195,9 @@ public class N_EnemyManager : MonoBehaviour
             case ManagerState.LOSTSIGHT:
                 LostSight();
                 break;
+            case ManagerState.Warped:
+                Warped();
+                break;
         }
     }
 
@@ -210,38 +217,52 @@ public class N_EnemyManager : MonoBehaviour
         // 敵の高さを取得
         foreach(var obj in TeamMembers)
         {
-            // 最初の敵のY座標を元にする
-            if(order == 0)
+            if (IsMemberWarped() == null || (IsMemberWarped()!=null &&  IsMemberWarped() == obj))
             {
-                pos = obj.transform.position;
-
-                EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
-
-                // 新チームに移動
-                sc_mana.TeamAddEnemy(obj);
-                Debug.Log("高さの違う新チームInit");
-                Debug.Log("状況" + obj.GetComponent<SEnemyMove>().GetIsWarped());
-                if(obj.GetComponent<SEnemyMove>().GetIsWarped()==true)
+                Debug.Log("こいつううう～" + obj.name+"なんでや！？"+obj.GetComponent<SEnemyMove>().GetIsWarped());
+                // 最初の敵のY座標を元にする
+                if (order == 0)
                 {
-                    sc_mana.isClone = true;
-                    sc_mana.OldWaitTime = OldWaitTime;
-                    //sc_mana.managerStatus.WaitTime = 0.001f;
-                    sc_mana.managerStatus.WaitTime = OldWaitTime;
+                    pos = obj.transform.position;
+
+                    EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
+
+                    //ワープ後の隊列配備に関する処理、先頭の敵を隊列から分裂させる
+                    sc_mana.TeamAddEnemy(obj);
+
+                    if (obj.GetComponent<SEnemyMove>().GetWarp() && IsReflectionX == obj.GetComponent<SEnemyMove>().GetWarp().GetiswarpRight())
+                    {
+                        sc_mana.IsReflectionX = !IsReflectionX;
+
+                        managerState = ManagerState.Warped;
+                    }
+
+                    if (obj.GetComponent<SEnemyMove>().GetIsWarped() == true)
+                    {
+                        sc_mana.isClone = true;
+                        sc_mana.OldWaitTime = OldWaitTime;
+                        //sc_mana.managerStatus.WaitTime = 0.001f;
+                        sc_mana.managerStatus.WaitTime = OldWaitTime;
+                    }
+                    return;
                 }
-                return;
+
+                // ある程度の範囲内の敵はチームに追加
+                if (obj.transform.position.y <= pos.y + 0.1f && obj.transform.position.y >= pos.y - 0.1f)
+                {
+                    EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
+                    if (IsReflectionX == obj.GetComponent<SEnemyMove>().GetWarp().GetiswarpRight())
+                    {
+                        sc_mana.IsReflectionX = !IsReflectionX;
+                        managerState = ManagerState.Warped;
+                    }
+                    // 新チームに移動
+                    sc_mana.TeamAddEnemy(obj);
+                    Debug.Log("高さの違う新チーム");
+                }
+
+                order++;
             }
-
-            // ある程度の範囲内の敵はチームに追加
-            if(obj.transform.position.y <= pos.y + 0.1f && obj.transform.position.y >= pos.y - 0.1f)
-            {
-                EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
-
-                // 新チームに移動
-                sc_mana.TeamAddEnemy(obj);
-                Debug.Log("高さの違う新チーム");
-            }
-
-            order++;
         }
     }
 
@@ -544,6 +565,7 @@ public class N_EnemyManager : MonoBehaviour
 
     private void ChaseInit()
     {
+        Debug.Log("Add");
         postProcess.AddSerachNum();
 
         managerState = ManagerState.CHASE;
@@ -590,6 +612,12 @@ public class N_EnemyManager : MonoBehaviour
         {
             managerState = ManagerState.LOSTSIGHT;
         }
+
+        // プレイヤーがダクトに入ったら状態遷移
+        if (ductManager.GetNowDuct())
+        {
+            managerState = ManagerState.LOSTSIGHT;
+        }
     }
 
     private void LostSight()
@@ -613,6 +641,7 @@ public class N_EnemyManager : MonoBehaviour
             Target = null;
             managerState = ManagerState.PATOROL;
             ElapsedLostSightTime = 0.0f;
+            Debug.Log("Sub");
 
             postProcess.SubSerachNum();
 
@@ -626,10 +655,33 @@ public class N_EnemyManager : MonoBehaviour
         }
     }
 
+    private void Warped()
+    {
+        
+        ElapsedTime = 0.0f;
+        ElapsedWaitTime += Time.deltaTime;
+
+        // 待つ
+        if (ElapsedWaitTime >= 0.2f)
+        {
+            ElapsedWaitTime = 0.0f;
+            // 巡回状態
+            managerState = ManagerState.PATOROL;
+
+            foreach (var obj in TeamMembers)
+            {
+                obj.GetComponent<K_EnemyReaction>().SetIsSearchHologram(false);
+            }
+        }
+    }
     public void SetTarget(GameObject _obj)
     {
         if (Target == null || Target != _obj)
         {
+            if(postProcess.GetSearchNum() > 0)
+            {
+                postProcess.SetSearchNum(0);
+            }
             Target = _obj;
             TargetTrans = Target.GetComponent<Transform>();
             managerState = ManagerState.FOUND;
@@ -688,7 +740,7 @@ public class N_EnemyManager : MonoBehaviour
         // 隊列内の敵の移動スクリプトを取得
         SetEnemyMoveScript();
 
-        SetInfomation(false);
+        SetInfomation(true);
     }
 
     // 敵情報
@@ -830,5 +882,18 @@ public class N_EnemyManager : MonoBehaviour
     private List<GameObject> GetTeamMember()
     {
         return TeamMembers;
+    }
+
+    //隊列内にワープしたやつがいるかどうか
+    private GameObject IsMemberWarped() 
+    {
+        foreach(var obj in TeamMembers)
+        {
+            if(obj.GetComponent<SEnemyMove>().GetIsWarped())
+            {
+                return obj;
+            }
+        }
+        return null; 
     }
 }
