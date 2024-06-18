@@ -67,7 +67,7 @@ public class M_ImageEasing : MonoBehaviour
             fTime += Time.deltaTime;
             if (fTime > duration)
             {
-                fTime = 1;
+                fTime = duration;
                 isEasing = false;
             }
             Easing();
