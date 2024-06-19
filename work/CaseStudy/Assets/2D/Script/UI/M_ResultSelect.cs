@@ -15,11 +15,14 @@ public class M_ResultSelect : MonoBehaviour
 
     private bool stickMoved = false; // スティックが動いたかどうかのフラグ
 
+    [Header("オンオフの画像を入れる"), SerializeField]
+    private Sprite[] OnOff;
+
+    bool isOnce = false;
+  
     // Start is called before the first frame update
     void Start()
-    {
-        sceneImages[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
-        sceneImages[currentIndex].GetComponent<M_OutLine>().OutLineOn();
+    {       
         M_GameMaster.SetGameClear(false);
         M_GameMaster.SetGamePlay(false);
     }
@@ -27,6 +30,14 @@ public class M_ResultSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isOnce)
+        {
+            sceneImages[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+            sceneImages[currentIndex].GetComponent<M_OutLine>().OutLineOn();
+
+            isOnce = true;
+        }
+
         int count = 0;
 
         foreach (var scene in sceneImages)
@@ -74,13 +85,15 @@ public class M_ResultSelect : MonoBehaviour
         }
 
         // 現在のボタンの選択を解除
-        sceneImages[currentIndex].GetComponent<M_ImageEasing>().Resset();       
+        sceneImages[currentIndex].GetComponent<M_ImageEasing>().Resset();
+        sceneImages[currentIndex].GetComponent<Image>().sprite = OnOff[currentIndex * 2];
 
         // 新しいボタンを選択
         currentIndex = newIndex;
 
         sceneImages[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
-        sceneImages[currentIndex].GetComponent<M_OutLine>().OutLineOn();             
+        sceneImages[currentIndex].GetComponent<M_OutLine>().OutLineOn();
+        sceneImages[currentIndex].GetComponent<Image>().sprite = OnOff[currentIndex * 2 + 1];
     }
 
     void PressSelectedButton()
