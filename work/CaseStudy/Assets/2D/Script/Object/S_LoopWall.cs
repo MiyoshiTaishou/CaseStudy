@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class S_LoopWall : MonoBehaviour
 {
-    [Header("ƒ[ƒvæ‚ÌƒIƒuƒWƒFƒNƒg"), SerializeField]
+    [Header("ãƒ¯ãƒ¼ãƒ—å…ˆã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ"), SerializeField]
     private GameObject warpObj;
 
     bool isWarped = false;
     public bool GetisWarped() { return isWarped; }
 
-    [Header("‰E‘¤‚Éo‚éH"), SerializeField]
+    [Header("å³å´ã«å‡ºã‚‹ï¼Ÿ"), SerializeField]
     private bool iswarpRight = false;
 
-    [Header("ƒ[ƒv‚Ì‰¹"), SerializeField]
+    [Header("ãƒ¯ãƒ¼ãƒ—æ™‚ã®éŸ³"), SerializeField]
     private AudioClip audioclip = null;
 
     private AudioSource audioSource = null;
 
-    //ƒ[ƒv‚É‰E‘¤‚Éo‚é‚©‚ğæ“¾
+    //ãƒ¯ãƒ¼ãƒ—æ™‚ã«å³å´ã«å‡ºã‚‹ã‹ã‚’å–å¾—
     public bool GetiswarpRight() { return iswarpRight; }
 
     GameObject ColObject = null;
     float speedx = 0;
 
     /// <summary>
-    /// ‘¬“x‚ğ•Û‘¶‚·‚é‚½‚ß‚Ì•Ï”
+    /// é€Ÿåº¦ã‚’ä¿å­˜ã™ã‚‹ãŸã‚ã®å¤‰æ•°
     /// </summary>
     Vector3 vel;
 
@@ -34,7 +34,7 @@ public class S_LoopWall : MonoBehaviour
     {
         if (!warpObj.GetComponent<S_LoopWall>())
         {
-            Debug.LogError("ƒ[ƒvæ‚É‚±‚ÌƒXƒNƒŠƒvƒg‚ª‚È‚¢‚¯‚ñ‚Å‚·");
+            Debug.LogError("ãƒ¯ãƒ¼ãƒ—å…ˆã«ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆãŒãªã„ã‘ã‚“ã§ã™");
         }
         audioSource = GetComponent<AudioSource>();
     }
@@ -47,7 +47,7 @@ public class S_LoopWall : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //‚·‚è”²‚¯‚É•¨‘Ì‚Ì‘¬“x‚ğ•Û‘¶
+        //ã™ã‚ŠæŠœã‘æ™‚ã«ç‰©ä½“ã®é€Ÿåº¦ã‚’ä¿å­˜
 
         Vector2 vel2 = collision.GetComponent<Rigidbody2D>().velocity;
         vel = vel2;
@@ -56,20 +56,20 @@ public class S_LoopWall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //ƒ[ƒvæ‚ªƒ[ƒvo—ˆ‚éó‘Ô‚©
+        //ãƒ¯ãƒ¼ãƒ—å…ˆãŒãƒ¯ãƒ¼ãƒ—å‡ºæ¥ã‚‹çŠ¶æ…‹ã‹
         bool OK = warpObj.GetComponent<S_LoopWall>().GetisWarped();
-        //©g‚ªƒ[ƒv‚Å‚«Aƒ[ƒvæ‚ªƒ[ƒv‚Å‚«Aƒ^ƒO‚ªƒvƒŒƒCƒ„[‚©ƒGƒlƒ~[‚Ì‚Éƒ[ƒvˆ—
+        //è‡ªèº«ãŒãƒ¯ãƒ¼ãƒ—ã§ãã€ãƒ¯ãƒ¼ãƒ—å…ˆãŒãƒ¯ãƒ¼ãƒ—ã§ãã€ã‚¿ã‚°ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚¨ãƒãƒŸãƒ¼ã®æ™‚ã«ãƒ¯ãƒ¼ãƒ—å‡¦ç†
         if ((isWarped == false && OK == false) &&
            (collision.collider.CompareTag("Player") || (collision.collider.CompareTag("Enemy"))))
         {
-            //ˆê’èŠÔƒ[ƒv•s‰Â‚Ìó‘Ô‚É‚·‚é
+            //ä¸€å®šæ™‚é–“ãƒ¯ãƒ¼ãƒ—ä¸å¯ã®çŠ¶æ…‹ã«ã™ã‚‹
             StartCoroutine(CoolTime());
             
 
-            //ƒ[ƒvæ‚ÌˆÊ’u
+            //ãƒ¯ãƒ¼ãƒ—å…ˆã®ä½ç½®
             Vector3 newpos = warpObj.transform.position;
 
-            //‰E‘¤‚Éo‚é‚©¶‘¤‚Éo‚é‚©AˆÊ’u‚ğ”÷’²®
+            //å³å´ã«å‡ºã‚‹ã‹å·¦å´ã«å‡ºã‚‹ã‹ã€ä½ç½®ã‚’å¾®èª¿æ•´
             if (warpObj.GetComponent<S_LoopWall>().GetiswarpRight() == true)
             {
                 newpos.x += 2.0f;
@@ -79,10 +79,10 @@ public class S_LoopWall : MonoBehaviour
                 newpos.x -= 2.0f;
             }
             audioSource.PlayOneShot(audioclip);
-            //ƒ[ƒv
+            //ãƒ¯ãƒ¼ãƒ—
             collision.gameObject.transform.position = newpos;
 
-            //“–‚½‚Á‚½‚Ì‚ª“G‚È‚çƒ[ƒv‚µ‚½‚Æ‚¢‚¤î•ñ‚ğ•t—^
+            //å½“ãŸã£ãŸã®ãŒæ•µãªã‚‰ãƒ¯ãƒ¼ãƒ—ã—ãŸã¨ã„ã†æƒ…å ±ã‚’ä»˜ä¸
             if (collision.collider.CompareTag("Enemy"))
             {
                 collision.collider.GetComponent<SEnemyMove>().SetisWarped(true);
@@ -90,16 +90,16 @@ public class S_LoopWall : MonoBehaviour
                 collision.collider.GetComponent<SEnemyMove>().SetWarp(warpObj.GetComponent<S_LoopWall>());
             }
         }
-        //“G‹Ê‚Ìê‡(Œ©•Ô‚µ‚Ä‚İ‚ê‚Î•ª‚¯‚é•K—v–³‚©‚Á‚½‚©‚à)
+        //æ•µç‰ã®å ´åˆ(è¦‹è¿”ã—ã¦ã¿ã‚Œã°åˆ†ã‘ã‚‹å¿…è¦ç„¡ã‹ã£ãŸã‹ã‚‚)
         else if (isWarped == false && OK == false &&
             collision.collider.CompareTag("EnemyBall"))
         {
             Rigidbody2D rb = collision.collider.GetComponent<Rigidbody2D>();
             //speedx = rb.velocity.x;
-            //ˆê’èŠÔƒ[ƒv•s‰Â‚Ìó‘Ô‚É‚·‚é
+            //ä¸€å®šæ™‚é–“ãƒ¯ãƒ¼ãƒ—ä¸å¯ã®çŠ¶æ…‹ã«ã™ã‚‹
             StartCoroutine(CoolTime());
 
-            //ƒ[ƒvæ‚ÌˆÊ’u‚Ìİ’è‚Æ”÷’²®
+            //ãƒ¯ãƒ¼ãƒ—å…ˆã®ä½ç½®ã®è¨­å®šã¨å¾®èª¿æ•´
             Vector3 newpos = warpObj.transform.position;
             if (warpObj.GetComponent<S_LoopWall>().GetiswarpRight() == true)
             {
@@ -118,10 +118,10 @@ public class S_LoopWall : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        //“G‹Ê‚ª—£‚ê‚½ê‡‚É•Û‘¶‚µ‚Ä‚¢‚½‘¬“x‚ğÄ‚Ñ—^‚¦‚é
+        //æ•µç‰ãŒé›¢ã‚ŒãŸå ´åˆã«ä¿å­˜ã—ã¦ã„ãŸé€Ÿåº¦ã‚’å†ã³ä¸ãˆã‚‹
         if (collision.collider.CompareTag("EnemyBall"))
         {
-            Debug.Log("‚·‚·‚ß");
+            Debug.Log("ã™ã™ã‚");
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
             if (iswarpRight == warpObj.GetComponent<S_LoopWall>().iswarpRight)
             {
@@ -140,9 +140,9 @@ public class S_LoopWall : MonoBehaviour
     {
         isWarped = true;
         warpObj.GetComponent<S_LoopWall>().isWarped = true;
-        //w’è‚ÌƒtƒŒ[ƒ€‘Ò‚Â
+        //æŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ å¾…ã¤
         yield return new WaitForSecondsRealtime(0.2f);
-        Debug.Log("‚ ‚ ‚ ‚ ");
+        Debug.Log("ã‚ã‚ã‚ã‚");
         isWarped = false;
         warpObj.GetComponent<S_LoopWall>().isWarped = false;
         //if(ColObject.CompareTag("EnemyBall"))
