@@ -63,6 +63,10 @@ public class M_TransitionList : MonoBehaviour
 
     private Animator Animator;
 
+    private bool isRe = false;
+
+    public void SetRe(bool _isRe) {  isRe = _isRe; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +88,11 @@ public class M_TransitionList : MonoBehaviour
             // アニメーションが終了したかどうかをチェック
             if (stateInfo.normalizedTime >= 1.0f && stateInfo.IsName("SceneEnd"))
             {
+                if(isRe)
+                {
+                    SceneManager.LoadScene(M_GameMaster.GetAfetrScene());
+                    return;
+                }
                 SceneManager.LoadScene(sceneName[sceneIndex].scenes[index]);
             }           
         }       

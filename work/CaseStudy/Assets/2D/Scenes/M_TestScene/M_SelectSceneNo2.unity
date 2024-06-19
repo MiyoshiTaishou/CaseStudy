@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 38029053}
   - component: {fileID: 38029055}
   - component: {fileID: 38029054}
+  - component: {fileID: 38029056}
   m_Layer: 5
   m_Name: StageImage1-2
   m_TagString: Untagged
@@ -199,6 +200,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38029052}
   m_CullTransparentMesh: 1
+--- !u!114 &38029056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 38029052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &46588668
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +448,7 @@ GameObject:
   - component: {fileID: 109074374}
   - component: {fileID: 109074376}
   - component: {fileID: 109074375}
+  - component: {fileID: 109074377}
   m_Layer: 5
   m_Name: StageImage2-6
   m_TagString: Untagged
@@ -485,6 +514,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109074373}
   m_CullTransparentMesh: 1
+--- !u!114 &109074377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109074373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &135326775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,6 +1062,7 @@ GameObject:
   - component: {fileID: 281061007}
   - component: {fileID: 281061009}
   - component: {fileID: 281061008}
+  - component: {fileID: 281061010}
   m_Layer: 5
   m_Name: StageImage2-1
   m_TagString: Untagged
@@ -1071,6 +1128,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281061006}
   m_CullTransparentMesh: 1
+--- !u!114 &281061010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281061006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &355781876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,6 +1641,7 @@ GameObject:
   - component: {fileID: 463221978}
   - component: {fileID: 463221980}
   - component: {fileID: 463221979}
+  - component: {fileID: 463221981}
   m_Layer: 5
   m_Name: StageImage2-5
   m_TagString: Untagged
@@ -1622,6 +1707,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 463221977}
   m_CullTransparentMesh: 1
+--- !u!114 &463221981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463221977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &661698544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,6 +2102,7 @@ GameObject:
   - component: {fileID: 729451432}
   - component: {fileID: 729451434}
   - component: {fileID: 729451433}
+  - component: {fileID: 729451435}
   m_Layer: 5
   m_Name: StageImage2-4
   m_TagString: Untagged
@@ -2055,6 +2168,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729451431}
   m_CullTransparentMesh: 1
+--- !u!114 &729451435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729451431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &746283693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2310,7 @@ GameObject:
   - component: {fileID: 754380737}
   - component: {fileID: 754380739}
   - component: {fileID: 754380738}
+  - component: {fileID: 754380740}
   m_Layer: 5
   m_Name: StageImage1-3
   m_TagString: Untagged
@@ -2235,6 +2376,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754380736}
   m_CullTransparentMesh: 1
+--- !u!114 &754380740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754380736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &831155404
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,6 +2804,7 @@ GameObject:
   - component: {fileID: 957864635}
   - component: {fileID: 957864637}
   - component: {fileID: 957864636}
+  - component: {fileID: 957864638}
   m_Layer: 5
   m_Name: StageImage1-4
   m_TagString: Untagged
@@ -2701,6 +2870,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957864634}
   m_CullTransparentMesh: 1
+--- !u!114 &957864638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957864634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &1007707636
 GameObject:
   m_ObjectHideFlags: 0
@@ -3239,6 +3435,7 @@ GameObject:
   - component: {fileID: 1351719655}
   - component: {fileID: 1351719657}
   - component: {fileID: 1351719656}
+  - component: {fileID: 1351719658}
   m_Layer: 5
   m_Name: StageImage1-5
   m_TagString: Untagged
@@ -3304,6 +3501,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351719654}
   m_CullTransparentMesh: 1
+--- !u!114 &1351719658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351719654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &1362659510
 GameObject:
   m_ObjectHideFlags: 0
@@ -4424,6 +4648,7 @@ GameObject:
   - component: {fileID: 1786801660}
   - component: {fileID: 1786801662}
   - component: {fileID: 1786801661}
+  - component: {fileID: 1786801663}
   m_Layer: 5
   m_Name: StageImage2-2
   m_TagString: Untagged
@@ -4489,6 +4714,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786801659}
   m_CullTransparentMesh: 1
+--- !u!114 &1786801663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1786801659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &1787278210
 GameObject:
   m_ObjectHideFlags: 0
@@ -4838,6 +5090,7 @@ GameObject:
   - component: {fileID: 1849307527}
   - component: {fileID: 1849307529}
   - component: {fileID: 1849307528}
+  - component: {fileID: 1849307530}
   m_Layer: 5
   m_Name: StageImage2-3
   m_TagString: Untagged
@@ -4903,6 +5156,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849307526}
   m_CullTransparentMesh: 1
+--- !u!114 &1849307530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849307526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &1863856258
 GameObject:
   m_ObjectHideFlags: 0
@@ -4914,6 +5194,7 @@ GameObject:
   - component: {fileID: 1863856259}
   - component: {fileID: 1863856261}
   - component: {fileID: 1863856260}
+  - component: {fileID: 1863856262}
   m_Layer: 5
   m_Name: StageImage1-6
   m_TagString: Untagged
@@ -4979,6 +5260,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863856258}
   m_CullTransparentMesh: 1
+--- !u!114 &1863856262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863856258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3ccf6510af1114fbf4c10ce44bcf94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLoop: 0
+  duration: 1
+  pos:
+    isApply: 1
+    ease: 2
+    amount: {x: -300, y: 50, z: 0}
+  rot:
+    isApply: 0
+    ease: 0
+    amount: {x: 0, y: 0, z: 0}
+  scale:
+    isApply: 1
+    ease: 0
+    amount: {x: 1, y: 1, z: 1}
+  isStart: 0
 --- !u!1 &2014017160
 GameObject:
   m_ObjectHideFlags: 0
