@@ -57,7 +57,7 @@ public class M_ObjectEasing : MonoBehaviour
             fTime += Time.deltaTime;
             if (fTime > duration)
             {
-                fTime = 1;
+                fTime = duration;
                 isEasing = false;
             }
             Easing();
