@@ -60,7 +60,7 @@ public class S_LoopWall : MonoBehaviour
         bool OK = warpObj.GetComponent<S_LoopWall>().GetisWarped();
         //自身がワープでき、ワープ先がワープでき、タグがプレイヤーかエネミーの時にワープ処理
         if ((isWarped == false && OK == false) &&
-            (collision.collider.CompareTag("Player") ||( collision.collider.CompareTag("Enemy")&&collision.collider.GetComponent<SEnemyMove>().GetIsWarped()==false)))
+           (collision.collider.CompareTag("Player") || (collision.collider.CompareTag("Enemy"))))
         {
             //一定時間ワープ不可の状態にする
             StartCoroutine(CoolTime());

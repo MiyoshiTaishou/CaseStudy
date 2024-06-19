@@ -204,6 +204,10 @@ public class N_EnemyManager : MonoBehaviour
     // 高さが一定以上離れたらチームを分ける
     public void PartitionTeamHeight()
     {
+        if (managerState == ManagerState.Warped)
+        {
+            return;
+        }
         // マネージャー生成
         GameObject manager = new GameObject();
         manager.transform.parent = thisTrans.parent.gameObject.transform;
@@ -234,6 +238,7 @@ public class N_EnemyManager : MonoBehaviour
                     {
                         sc_mana.IsReflectionX = !IsReflectionX;
 
+                        sc_mana.managerState = ManagerState.Warped;
                         managerState = ManagerState.Warped;
                     }
 
@@ -662,7 +667,7 @@ public class N_EnemyManager : MonoBehaviour
         ElapsedWaitTime += Time.deltaTime;
 
         // 待つ
-        if (ElapsedWaitTime >= 0.2f)
+        if (ElapsedWaitTime >= 0.15f)
         {
             ElapsedWaitTime = 0.0f;
             // 巡回状態
