@@ -131,6 +131,8 @@ public class M_PlayerMove : MonoBehaviour
         // 子オブジェクトの中から、アニメーターを取得
         animator = gameObject.transform.GetChild(3).GetComponent<Animator>();
         Debug.Log(animator);
+
+        M_GameMaster.SetGameClear(false);
     }
 
     // Update is called once per frame
