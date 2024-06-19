@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// “G‚Ì‘à—ñ‚²‚Æ‚Éˆê‚Â
-// ‘à—ñ‚Ì“®‚«‚ğŠÇ—‚·‚é
+// æ•µã®éšŠåˆ—ã”ã¨ã«ä¸€ã¤
+// éšŠåˆ—ã®å‹•ãã‚’ç®¡ç†ã™ã‚‹
 
 public class N_EnemyManager : MonoBehaviour
 {
-    [Header("‘à—ñ‚ÉŠ‘®‚·‚é“GƒvƒŒƒnƒu"), SerializeField]
+    [Header("éšŠåˆ—ã«æ‰€å±ã™ã‚‹æ•µãƒ—ãƒ¬ãƒãƒ–"), SerializeField]
     private List<GameObject> TeamMembers = new List<GameObject>();
 
     private int iMemberNum = 0;
 
     public bool IsReflectionX = false;
 
-    // ‘à—ñ‚Ìˆê‘Ñ‚Å‚àƒJƒƒ‰‚ÉˆÚ‚Á‚Ä‚¢‚½‚çtrue
+    // éšŠåˆ—ã®ä¸€å¸¯ã§ã‚‚ã‚«ãƒ¡ãƒ©ã«ç§»ã£ã¦ã„ãŸã‚‰true
     private bool isLook = false;
 
     private Transform thisTrans;
@@ -24,34 +24,34 @@ public class N_EnemyManager : MonoBehaviour
     [System.Serializable]
     struct ManagerMoveStatus
     {
-        [Header("‰½•b"), SerializeField]
+        [Header("ä½•ç§’"), SerializeField]
         public float MoveTime;
 
-        [Header("ˆÚ“®‘¬“x"), SerializeField]
+        [Header("ç§»å‹•é€Ÿåº¦"), SerializeField]
         public float MoveSpeed;
 
-        [Header("’ÇÕ‚ÌˆÚ“®‘¬“x"), SerializeField]
+        [Header("è¿½è·¡æ™‚ã®ç§»å‹•é€Ÿåº¦"), SerializeField]
         public float ChaseSpeed;
 
-        [Header("•ûŒü“]Š·‘Ò‹@ŠÔ"), SerializeField]
+        [Header("æ–¹å‘è»¢æ›æ™‚å¾…æ©Ÿæ™‚é–“"), SerializeField]
         public float WaitTime;
 
-        [Header("”­Œ©Œã’ÇÕ‚Ü‚Å‚ÌŠÔ"), SerializeField]
+        [Header("ç™ºè¦‹å¾Œè¿½è·¡ã¾ã§ã®æ™‚é–“"), SerializeField]
         public float FoundTime;
 
-        [Header("Œ©¸‚Á‚Ä„‰ñ‚É–ß‚éŠÔ"), SerializeField]
+        [Header("è¦‹å¤±ã£ã¦å·¡å›ã«æˆ»ã‚‹æ™‚é–“"), SerializeField]
         public float LostSightTime;
 
     }
-    // “G‚ÌˆÚ“®•û®•Ï‚¦‚é
-    // w’è•b”³–Ê‚ÉˆÚ“®‚·‚é
-    [Header("ˆÚ“®ƒXƒe[ƒ^ƒX"), SerializeField]
+    // æ•µã®ç§»å‹•æ–¹å¼å¤‰ãˆã‚‹
+    // æŒ‡å®šç§’æ•°æ­£é¢ã«ç§»å‹•ã™ã‚‹
+    [Header("ç§»å‹•ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹"), SerializeField]
     ManagerMoveStatus managerStatus;
 
-    //•Û‘¶‚³‚ê‚½‘à—ñ•ª—ô‘O‚Ì‘Ò‹@ŠÔ
-    [Header("‚¨[‚é‚Ç‚½‚¢‚Ş"),SerializeField]
+    //ä¿å­˜ã•ã‚ŒãŸéšŠåˆ—åˆ†è£‚å‰ã®å¾…æ©Ÿæ™‚é–“
+    [Header("ãŠãƒ¼ã‚‹ã©ãŸã„ã‚€"),SerializeField]
     private float OldWaitTime=0.2f;
-    // Œo‰ßŠÔ
+    // çµŒéæ™‚é–“
     private float ElapsedTime = 0.0f;
     private float ElapsedWaitTime = 0.0f;
     private float ElapsedFoundTime = 0.0f;
@@ -63,9 +63,9 @@ public class N_EnemyManager : MonoBehaviour
 
     private bool init = false;
 
-    // ƒ}ƒl[ƒWƒƒ[‚Ì¶¬‡
+    // ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ç”Ÿæˆé †
     private static int GenerateOrder = 0;
-    // ¶¬‡
+    // ç”Ÿæˆé †
     private int GenerateNumber = 0;
 
     public int GetGenerateNumber()
@@ -73,27 +73,27 @@ public class N_EnemyManager : MonoBehaviour
         return GenerateNumber;
     }
 
-    //•¡»‚³‚ê‚½‘à—ñ‚©‚Ç‚¤‚©
+    //è¤‡è£½ã•ã‚ŒãŸéšŠåˆ—ã‹ã©ã†ã‹
     private bool isClone = false;
 
-    // ƒXƒe[ƒgƒ}ƒVƒ“
+    // ã‚¹ãƒ†ãƒ¼ãƒˆãƒã‚·ãƒ³
     public enum ManagerState
     {
-        IDLE,       // ƒAƒCƒhƒ‹
-        PATOROL,    // „‰ñ
-        WAIT,       // ‘Ò‹@
-        ECPULSION,  // œ–¼
-        FOUND,      // ”­Œ©
-        CHASEINIT,  // ’ÇÕ€”õ
-        CHASE,      // ’ÇÕ
-        LOSTSIGHT,  // Œ©¸‚Á‚½
-        Warped,     // ƒ[ƒv‚µ‚½
+        IDLE,       // ã‚¢ã‚¤ãƒ‰ãƒ«
+        PATOROL,    // å·¡å›
+        WAIT,       // å¾…æ©Ÿ
+        ECPULSION,  // é™¤å
+        FOUND,      // ç™ºè¦‹
+        CHASEINIT,  // è¿½è·¡æº–å‚™
+        CHASE,      // è¿½è·¡
+        LOSTSIGHT,  // è¦‹å¤±ã£ãŸ
+        Warped,     // ãƒ¯ãƒ¼ãƒ—ã—ãŸ
     }
 
     [SerializeField]
     private ManagerState managerState = ManagerState.PATOROL;
 
-    // ’ÇÕ‘ÎÛ‚ÌÀ•W
+    // è¿½è·¡å¯¾è±¡ã®åº§æ¨™
     private GameObject Target;
     private Transform TargetTrans;
 
@@ -101,7 +101,7 @@ public class N_EnemyManager : MonoBehaviour
 
     private M_DuctManager ductManager;
 
-    // ˆÚ“®ƒXƒe[ƒ^ƒX‰Šú‰»
+    // ç§»å‹•ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹åˆæœŸåŒ–
     public void InitMoveStatus()
     {
         managerStatus.MoveTime = 3.0f;
@@ -122,15 +122,15 @@ public class N_EnemyManager : MonoBehaviour
     {
         thisTrans = this.transform;
 
-        // ‰Šú‰»
+        // åˆæœŸåŒ–
         //InitMoveStatus();
 
-        // ‘à—ñ‚Ìl”‚ğŒv‘ª
+        // éšŠåˆ—ã®äººæ•°ã‚’è¨ˆæ¸¬
         CountMemberNum();
-        // ‘à—ñ“à‚Ì“G‚ÌˆÚ“®ƒXƒNƒŠƒvƒg‚ğæ“¾
+        // éšŠåˆ—å†…ã®æ•µã®ç§»å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å–å¾—
         SetEnemyMoveScript();
 
-        // –¼‘O‚Åƒ}ƒl[ƒWƒƒ[‚ğ‹æ•Ê‚Å‚«‚é‚æ‚¤‚É‚·‚é
+        // åå‰ã§ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’åŒºåˆ¥ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
         this.gameObject.name = this.gameObject.name + GenerateOrder.ToString();
         GenerateNumber = GenerateOrder;
         GenerateOrder++;
@@ -138,7 +138,7 @@ public class N_EnemyManager : MonoBehaviour
         if (!isClone)
         {
             OldWaitTime = managerStatus.WaitTime;
-            Debug.Log("ƒI[ƒ‹ƒhƒ^ƒCƒ€" + OldWaitTime);
+            Debug.Log("ã‚ªãƒ¼ãƒ«ãƒ‰ã‚¿ã‚¤ãƒ " + OldWaitTime);
         }
     }
 
@@ -148,7 +148,7 @@ public class N_EnemyManager : MonoBehaviour
 
         if (!init)
         {
-            // ‘à—ñ‚Ì“G‚É”Ô†‚ğ•t—^
+            // éšŠåˆ—ã®æ•µã«ç•ªå·ã‚’ä»˜ä¸
             SetInfomation(true);
 
             postProcess = GameObject.Find("Volume").GetComponent<N_PostProcess>();
@@ -201,14 +201,14 @@ public class N_EnemyManager : MonoBehaviour
         }
     }
 
-    // ‚‚³‚ªˆê’èˆÈã—£‚ê‚½‚çƒ`[ƒ€‚ğ•ª‚¯‚é
+    // é«˜ã•ãŒä¸€å®šä»¥ä¸Šé›¢ã‚ŒãŸã‚‰ãƒãƒ¼ãƒ ã‚’åˆ†ã‘ã‚‹
     public void PartitionTeamHeight()
     {
-        if(managerState == ManagerState.Warped)
+        if (managerState == ManagerState.Warped)
         {
             return;
         }
-        // ƒ}ƒl[ƒWƒƒ[¶¬
+        // ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç”Ÿæˆ
         GameObject manager = new GameObject();
         manager.transform.parent = thisTrans.parent.gameObject.transform;
         manager.name = "EnemyManager";
@@ -218,25 +218,25 @@ public class N_EnemyManager : MonoBehaviour
 
         Vector3 pos = Vector3.zero;
         int order = 0;
-        // “G‚Ì‚‚³‚ğæ“¾
+        // æ•µã®é«˜ã•ã‚’å–å¾—
         foreach(var obj in TeamMembers)
         {
             if (IsMemberWarped() == null || (IsMemberWarped()!=null &&  IsMemberWarped() == obj))
             {
-                Debug.Log("‚±‚¢‚Â‚¤‚¤‚¤`" + obj.name+"‚È‚ñ‚Å‚âIH"+obj.GetComponent<SEnemyMove>().GetIsWarped());
-                // Å‰‚Ì“G‚ÌYÀ•W‚ğŒ³‚É‚·‚é
+                Debug.Log("ã“ã„ã¤ã†ã†ã†ï½" + obj.name+"ãªã‚“ã§ã‚„ï¼ï¼Ÿ"+obj.GetComponent<SEnemyMove>().GetIsWarped());
+                // æœ€åˆã®æ•µã®Yåº§æ¨™ã‚’å…ƒã«ã™ã‚‹
                 if (order == 0)
                 {
                     pos = obj.transform.position;
 
                     EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
 
-                    //ƒ[ƒvŒã‚Ì‘à—ñ”z”õ‚ÉŠÖ‚·‚éˆ—Aæ“ª‚Ì“G‚ğ‘à—ñ‚©‚ç•ª—ô‚³‚¹‚é
+                    //ãƒ¯ãƒ¼ãƒ—å¾Œã®éšŠåˆ—é…å‚™ã«é–¢ã™ã‚‹å‡¦ç†ã€å…ˆé ­ã®æ•µã‚’éšŠåˆ—ã‹ã‚‰åˆ†è£‚ã•ã›ã‚‹
                     sc_mana.TeamAddEnemy(obj);
 
                     if (obj.GetComponent<SEnemyMove>().GetWarp() && IsReflectionX == obj.GetComponent<SEnemyMove>().GetWarp().GetiswarpRight())
                     {
-                        Debug.Log("’Ê‚Á‚Ä‚Ä‚­‚ê`" + obj.name + "‚È‚ñ‚Å‚âIH" + obj.GetComponent<SEnemyMove>().GetIsWarped());
+                        Debug.Log("é€šã£ã¦ã¦ãã‚Œï½" + obj.name + "ãªã‚“ã§ã‚„ï¼ï¼Ÿ" + obj.GetComponent<SEnemyMove>().GetIsWarped());
                         sc_mana.IsReflectionX = !IsReflectionX;
 
                         sc_mana.managerState = ManagerState.Warped;
@@ -253,7 +253,7 @@ public class N_EnemyManager : MonoBehaviour
                     return;
                 }
 
-                // ‚ ‚é’ö“x‚Ì”ÍˆÍ“à‚Ì“G‚Íƒ`[ƒ€‚É’Ç‰Á
+                // ã‚ã‚‹ç¨‹åº¦ã®ç¯„å›²å†…ã®æ•µã¯ãƒãƒ¼ãƒ ã«è¿½åŠ 
                 if (obj.transform.position.y <= pos.y + 0.1f && obj.transform.position.y >= pos.y - 0.1f)
                 {
                     EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
@@ -262,9 +262,9 @@ public class N_EnemyManager : MonoBehaviour
                         sc_mana.IsReflectionX = !IsReflectionX;
                         managerState = ManagerState.Warped;
                     }
-                    // Vƒ`[ƒ€‚ÉˆÚ“®
+                    // æ–°ãƒãƒ¼ãƒ ã«ç§»å‹•
                     sc_mana.TeamAddEnemy(obj);
-                    Debug.Log("‚‚³‚Ìˆá‚¤Vƒ`[ƒ€");
+                    Debug.Log("é«˜ã•ã®é•ã†æ–°ãƒãƒ¼ãƒ ");
                 }
 
                 order++;
@@ -272,16 +272,16 @@ public class N_EnemyManager : MonoBehaviour
         }
     }
 
-    // ƒzƒƒOƒ‰ƒ€‚É‚æ‚Á‚Äƒ`[ƒ€‚ğ•ªŠ„‚³‚ê‚½
+    // ãƒ›ãƒ­ã‚°ãƒ©ãƒ ã«ã‚ˆã£ã¦ãƒãƒ¼ãƒ ã‚’åˆ†å‰²ã•ã‚ŒãŸæ™‚
     void PartitionTeam(int _num)
     {
-        // •ªŠ„‚Ì•K—v‚ª‚È‚¢
+        // åˆ†å‰²ã®å¿…è¦ãŒãªã„
         if(iMemberNum <= 1)
         {
             return;
         }
 
-        // V‚µ‚¢ƒ}ƒl[ƒWƒƒ[ƒIƒuƒWƒFƒNƒg¶¬
+        // æ–°ã—ã„ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
         GameObject manager = new GameObject();
         manager.transform.parent = thisTrans.parent.gameObject.transform;
         manager.name = "EnemyManager";
@@ -289,23 +289,23 @@ public class N_EnemyManager : MonoBehaviour
         sc_mana.SetMoveStatus(managerStatus);
 
         int i = 0;
-        // •ªŠ„
+        // åˆ†å‰²
         List<GameObject> otherTeam = new List<GameObject>();
         foreach(var obj in TeamMembers)
         {
-            // ‰Eis’†
+            // å³é€²è¡Œä¸­
             if (!IsReflectionX)
             {
-                // ŒŸ’m‚µ‚½“G‚æ‚èŒã‚É“o˜^‚³‚ê‚½“G
+                // æ¤œçŸ¥ã—ãŸæ•µã‚ˆã‚Šå¾Œã«ç™»éŒ²ã•ã‚ŒãŸæ•µ
                 if (i > _num)
                 {
                     otherTeam.Add(obj);
                 }
             }
-            // ¶is’†
+            // å·¦é€²è¡Œä¸­
             else
             {
-                // ŒŸ’m‚µ‚½“GŠÜ‚ßŒã‚É“o˜^‚³‚ê‚½“G
+                // æ¤œçŸ¥ã—ãŸæ•µå«ã‚å¾Œã«ç™»éŒ²ã•ã‚ŒãŸæ•µ
                 if (i >= _num)
                 {
                     otherTeam.Add(obj);
@@ -314,31 +314,31 @@ public class N_EnemyManager : MonoBehaviour
             i++;
         }
 
-        // ‘à—ñ‚ğŠO‚ê‚½“G‚ğƒŠƒXƒg‚©‚çíœ
-        // ‰Eis’†
+        // éšŠåˆ—ã‚’å¤–ã‚ŒãŸæ•µã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
+        // å³é€²è¡Œä¸­
         if (!IsReflectionX)
         {
-            // “G‚Æ‚»‚¢‚Â‚ª‚ÂƒXƒNƒŠƒvƒg‚ğƒŠƒXƒg‚©‚çíœ
+            // æ•µã¨ãã„ã¤ãŒæŒã¤ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
             TeamMembers.RemoveRange(_num + 1, iMemberNum - _num - 1);
             sEnemyMoves.RemoveRange(_num + 1, iMemberNum - _num - 1);
 
         }
-        // ¶is’†
+        // å·¦é€²è¡Œä¸­
         else
         {
             TeamMembers.RemoveRange(_num, iMemberNum - _num);
             sEnemyMoves.RemoveRange(_num, iMemberNum - _num);
         }
 
-        // ‘à—ñ‚Ìl”‚ğŒv‘ª
+        // éšŠåˆ—ã®äººæ•°ã‚’è¨ˆæ¸¬
         CountMemberNum();
-        // ©g‚Ì‘à—ñ‚É”Ô†Ä•t—^
+        // è‡ªèº«ã®éšŠåˆ—ã«ç•ªå·å†ä»˜ä¸
         SetInfomation(false);
 
-        // V‚µ‚¢ƒ}ƒl[ƒWƒƒ[‚Ì‘à—ñ‚É“G‚ğQ‰Á‚³‚¹‚é
+        // æ–°ã—ã„ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®éšŠåˆ—ã«æ•µã‚’å‚åŠ ã•ã›ã‚‹
         sc_mana.TeamAddEnemys(manager,otherTeam);
 
-        // •Ç”­Œ©Ò‚ª‚¢‚é•û‚Ì‘à—ñ‚ğ‘Ò‚¿ó‘Ô‚É‚·‚é
+        // å£ç™ºè¦‹è€…ãŒã„ã‚‹æ–¹ã®éšŠåˆ—ã‚’å¾…ã¡çŠ¶æ…‹ã«ã™ã‚‹
         if (!IsReflectionX)
         {
             ChangeManagerState(ManagerState.WAIT);
@@ -351,19 +351,19 @@ public class N_EnemyManager : MonoBehaviour
 
     public void UnionTeam(N_EnemyManager _manager)
     {
-        // ©•ª‚Ì‘à—ñ‚É‰Á‚¦‚é
+        // è‡ªåˆ†ã®éšŠåˆ—ã«åŠ ãˆã‚‹
         TeamAddEnemys(this.gameObject, _manager.GetTeamMember());
 
-        // XÀ•W‚Ì¬‚³‚¢‡‚É•À‚Ñ‘Ö‚¦
+        // Xåº§æ¨™ã®å°ã•ã„é †ã«ä¸¦ã³æ›¿ãˆ
         SortMember();
 
         sEnemyMoves.Clear();
         SetEnemyMoveScript();
 
-        // ©g‚Ì‘à—ñ‚É”Ô†Ä•t—^
+        // è‡ªèº«ã®éšŠåˆ—ã«ç•ªå·å†ä»˜ä¸
         SetInfomation(true);
 
-        // ‘Ò‚¿ŠÔ‚É‚·‚é
+        // å¾…ã¡æ™‚é–“ã«ã™ã‚‹
         bool  flg = false;
         foreach (var obj in TeamMembers) 
         {
@@ -371,12 +371,12 @@ public class N_EnemyManager : MonoBehaviour
             {
                 flg = true;
                 //obj.GetComponent<SEnemyMove>().SetisWarped(false);
-                Debug.Log("‚ ‚ ‚ ‰““c");
+                Debug.Log("ã‚ã‚ã‚é ç”°");
             }
         }
         if(!flg) 
         {
-            Debug.Log("‚â‚×‚¦‚Á‚·I");
+            Debug.Log("ã‚„ã¹ãˆã£ã™ï¼");
             managerState = ManagerState.WAIT;
         }
         else
@@ -385,11 +385,11 @@ public class N_EnemyManager : MonoBehaviour
         }
         IsRef = true;
 
-        // “G‚Ì‚¢‚È‚­‚È‚Á‚½ƒ}ƒl[ƒWƒƒ[íœ
+        // æ•µã®ã„ãªããªã£ãŸãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼å‰Šé™¤
         Destroy(_manager.gameObject);
     }
 
-    // XÀ•W¬‚³‚¢‡‚É•À‚Ñ‘Ö‚¦
+    // Xåº§æ¨™å°ã•ã„é †ã«ä¸¦ã³æ›¿ãˆ
     private void SortMember()
     {
         List<GameObject> list = new List<GameObject>();
@@ -405,7 +405,7 @@ public class N_EnemyManager : MonoBehaviour
 
             for(int j = 0;j < i; j++)
             {
-                // ¶‚É‚¢‚½‚ç‘}“ü
+                // å·¦ã«ã„ãŸã‚‰æŒ¿å…¥
                 if(TeamMembers[i].transform.position.x < list[j].transform.position.x)
                 {
                     list.Insert(j, TeamMembers[i]);
@@ -414,10 +414,10 @@ public class N_EnemyManager : MonoBehaviour
                 }
                 else
                 {
-                    // VƒŠƒXƒg‚ÉÅŒã‚Ü‚Å’Ç‰Á‚³‚ê‚È‚¯‚ê‚Î
+                    // æ–°ãƒªã‚¹ãƒˆã«æœ€å¾Œã¾ã§è¿½åŠ ã•ã‚Œãªã‘ã‚Œã°
                     if(j == i - 1)
                     {
-                        // ––”ö‚É’Ç‰Á
+                        // æœ«å°¾ã«è¿½åŠ 
                         list.Add(TeamMembers[i]);
                         //Debug.Log(TeamMembers[i].gameObject.name);
                     }
@@ -438,7 +438,7 @@ public class N_EnemyManager : MonoBehaviour
     {
         if(ElapsedTime == 0.0f)
         {
-            // ‘SƒŠƒAƒNƒVƒ‡ƒ“”ñ•\¦
+            // å…¨ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³éè¡¨ç¤º
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().AllSetFalse();
@@ -451,32 +451,32 @@ public class N_EnemyManager : MonoBehaviour
         {
             dir *= -1.0f;
         }
-        // ‚±‚ÌƒtƒŒ[ƒ€‚ÅˆÚ“®‚·‚é‹——£
+        // ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§ç§»å‹•ã™ã‚‹è·é›¢
         float distance = dir * managerStatus.MoveSpeed * Time.deltaTime;
 
         ElapsedTime += Time.deltaTime;
 
-        // ˆê’èŠÔŒo‰ß
+        // ä¸€å®šæ™‚é–“çµŒé
         if (ElapsedTime >= managerStatus.MoveTime)
         {
             ElapsedTime = 0.0f;
-            // ‘Ò‚¿ó‘Ô‚É‘JˆÚ
+            // å¾…ã¡çŠ¶æ…‹ã«é·ç§»
             managerState = ManagerState.WAIT;
         }
 
-        // ‘à—ñ‚Ì“G‚ğˆÚ“®‚³‚¹‚é
+        // éšŠåˆ—ã®æ•µã‚’ç§»å‹•ã•ã›ã‚‹
         foreach (var enemy in sEnemyMoves)
         {
             enemy.EnemyMove(distance, IsReflectionX);
         }
     }
 
-    // ‘Ò‚¿ó‘Ô
+    // å¾…ã¡çŠ¶æ…‹
     private void Wait()
     {
         if(ElapsedWaitTime == 0.0f)
         {
-            // ‘SƒŠƒAƒNƒVƒ‡ƒ“”ñ•\¦
+            // å…¨ãƒªã‚¢ã‚¯ã‚·ãƒ§ãƒ³éè¡¨ç¤º
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().AllSetFalse();
@@ -498,11 +498,11 @@ public class N_EnemyManager : MonoBehaviour
             }
         }
 
-        // ‘Ò‚Â
+        // å¾…ã¤
         if (ElapsedWaitTime >= managerStatus.WaitTime)
         {
             ElapsedWaitTime = 0.0f;
-            // „‰ñó‘Ô
+            // å·¡å›çŠ¶æ…‹
             managerState = ManagerState.PATOROL;
             IsRef = false;
 
@@ -526,23 +526,23 @@ public class N_EnemyManager : MonoBehaviour
         {
             int num = 0;
 
-            // Œü‚«ƒZƒbƒg
+            // å‘ãã‚»ãƒƒãƒˆ
             foreach (var obj in TeamMembers)
             {
                 if (TargetTrans.position.x < obj.transform.position.x)
                 {
-                    // Œü‚«•ÏX
+                    // å‘ãå¤‰æ›´
                     sEnemyMoves[num].EnemyMove(0.0f, true);
                 }
                 if (TargetTrans.position.x > obj.transform.position.x)
                 {
-                    // Œü‚«•ÏX
+                    // å‘ãå¤‰æ›´
                     sEnemyMoves[num].EnemyMove(0.0f, false);
                 }
                 num++;
             }
 
-            // ƒrƒbƒNƒŠƒ}[ƒN•\¦
+            // ãƒ“ãƒƒã‚¯ãƒªãƒãƒ¼ã‚¯è¡¨ç¤º
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(true);
@@ -550,18 +550,18 @@ public class N_EnemyManager : MonoBehaviour
             }
         }
 
-        // “G‚ğ”­Œ©Œãˆê’èŠÔw‚³‚µŠm”F
+        // æ•µã‚’ç™ºè¦‹å¾Œä¸€å®šæ™‚é–“æŒ‡ã•ã—ç¢ºèª
         ElapsedFoundTime += Time.deltaTime;
 
-        // ’ÇÕó‘Ô‚É‘JˆÚ
+        // è¿½è·¡çŠ¶æ…‹ã«é·ç§»
         if(ElapsedFoundTime >= managerStatus.FoundTime)
         {
-            // ‰Šú‰»Œn
+            // åˆæœŸåŒ–ç³»
             ElapsedFoundTime = 0.0f;
 
             managerState = ManagerState.CHASEINIT;
 
-            // ƒrƒbƒNƒŠƒ}[ƒN”ñ•\¦
+            // ãƒ“ãƒƒã‚¯ãƒªãƒãƒ¼ã‚¯éè¡¨ç¤º
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(false);
@@ -594,7 +594,7 @@ public class N_EnemyManager : MonoBehaviour
             {
                 float dir = -1.0f;
 
-                // ‚±‚ÌƒtƒŒ[ƒ€‚ÅˆÚ“®‚·‚é‹——£
+                // ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§ç§»å‹•ã™ã‚‹è·é›¢
                 float distance = dir * managerStatus.ChaseSpeed * Time.deltaTime;
 
                 sEnemyMoves[num].ChaseTarget(distance);
@@ -603,7 +603,7 @@ public class N_EnemyManager : MonoBehaviour
             {
                 float dir = 1.0f;
 
-                // ‚±‚ÌƒtƒŒ[ƒ€‚ÅˆÚ“®‚·‚é‹——£
+                // ã“ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã§ç§»å‹•ã™ã‚‹è·é›¢
                 float distance = dir * managerStatus.ChaseSpeed * Time.deltaTime;
 
                 sEnemyMoves[num].ChaseTarget(distance);
@@ -611,15 +611,15 @@ public class N_EnemyManager : MonoBehaviour
             num++;
         }
 
-        // ’ÇÕ‘ÎÛ‚ğŒ©¸‚Á‚½‚çó‘Ô‘JˆÚ
-        // ‰E’[‚Æ¶’[‚Ì“G‚ªŒ©¸‚Á‚½ = ‘à—ñ‚ªŒ©¸‚Á‚½
+        // è¿½è·¡å¯¾è±¡ã‚’è¦‹å¤±ã£ãŸã‚‰çŠ¶æ…‹é·ç§»
+        // å³ç«¯ã¨å·¦ç«¯ã®æ•µãŒè¦‹å¤±ã£ãŸ = éšŠåˆ—ãŒè¦‹å¤±ã£ãŸ
         if(TeamMembers[0].transform.GetChild(0).GetComponent<N_PlayerSearch>().GetIsSearch() == false &&
             TeamMembers[iMemberNum - 1].transform.GetChild(0).GetComponent<N_PlayerSearch>().GetIsSearch() == false)
         {
             managerState = ManagerState.LOSTSIGHT;
         }
 
-        // ƒvƒŒƒCƒ„[‚ªƒ_ƒNƒg‚É“ü‚Á‚½‚çó‘Ô‘JˆÚ
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒãƒ€ã‚¯ãƒˆã«å…¥ã£ãŸã‚‰çŠ¶æ…‹é·ç§»
         if (ductManager.GetNowDuct())
         {
             managerState = ManagerState.LOSTSIGHT;
@@ -630,7 +630,7 @@ public class N_EnemyManager : MonoBehaviour
     {
         if (ElapsedLostSightTime == 0.0f)
         {
-            // ƒNƒGƒXƒ`ƒ‡ƒ“ƒ}[ƒN•\¦
+            // ã‚¯ã‚¨ã‚¹ãƒãƒ§ãƒ³ãƒãƒ¼ã‚¯è¡¨ç¤º
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsLostTarget(true);
@@ -643,7 +643,7 @@ public class N_EnemyManager : MonoBehaviour
 
         if(ElapsedLostSightTime >= managerStatus.LostSightTime)
         {
-            // ‰Šú‰»
+            // åˆæœŸåŒ–
             Target = null;
             managerState = ManagerState.PATOROL;
             ElapsedLostSightTime = 0.0f;
@@ -651,7 +651,7 @@ public class N_EnemyManager : MonoBehaviour
 
             postProcess.SubSerachNum();
 
-            // ƒNƒGƒXƒ`ƒ‡ƒ“ƒ}[ƒN”ñ•\¦
+            // ã‚¯ã‚¨ã‚¹ãƒãƒ§ãƒ³ãƒãƒ¼ã‚¯éè¡¨ç¤º
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsLostTarget(false);
@@ -667,11 +667,11 @@ public class N_EnemyManager : MonoBehaviour
         ElapsedTime = 0.0f;
         ElapsedWaitTime += Time.deltaTime;
 
-        // ‘Ò‚Â
+        // å¾…ã¤
         if (ElapsedWaitTime >= 0.15f)
         {
             ElapsedWaitTime = 0.0f;
-            // „‰ñó‘Ô
+            // å·¡å›çŠ¶æ…‹
             managerState = ManagerState.PATOROL;
 
             foreach (var obj in TeamMembers)
@@ -694,36 +694,36 @@ public class N_EnemyManager : MonoBehaviour
         }
     }
 
-    // œ–¼
+    // é™¤å
     private void Ecpulsion()
     {
-        // ‰½‚à‚¹‚¸‘Ò‹@
+        // ä½•ã‚‚ã›ãšå¾…æ©Ÿ
     }
 
-    // ƒ{[ƒ‹‚É‚È‚Á‚½“G‚ğƒŠƒXƒg‚©‚çíœ
+    // ãƒœãƒ¼ãƒ«ã«ãªã£ãŸæ•µã‚’ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
     public void EcpulsionMember(int _number,ManagerState _state) 
     {
-        // ƒ}ƒl[ƒWƒƒ[ŠÇ—‚ğŠO‚·
+        // ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ç®¡ç†ã‚’å¤–ã™
         sEnemyMoves[_number].NullEnemyManager();
 
         TeamMembers.RemoveAt(_number);
         sEnemyMoves.RemoveAt(_number);
-        // ‘à—ñ‚Ìl”‚ğŒv‘ª
+        // éšŠåˆ—ã®äººæ•°ã‚’è¨ˆæ¸¬
         CountMemberNum();
-        // ©g‚Ì‘à—ñ‚É”Ô†Ä•t—^
+        // è‡ªèº«ã®éšŠåˆ—ã«ç•ªå·å†ä»˜ä¸
         SetInfomation(false);
 
         managerState = _state;
     }
 
-    // ‘à—ñ‚É“G•¡”‚ğ’Ç‰Á‚·‚é
+    // éšŠåˆ—ã«æ•µè¤‡æ•°ã‚’è¿½åŠ ã™ã‚‹
     private void TeamAddEnemys(GameObject _parent,List<GameObject> _others)
     {
-        // ƒŠƒXƒg‚É’Ç‰Á
+        // ãƒªã‚¹ãƒˆã«è¿½åŠ 
         TeamMembers.AddRange(_others);
         foreach(var obj in TeamMembers)
         {
-            // eƒIƒuƒWƒFƒNƒg•ÏX
+            // è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¤‰æ›´
             obj.transform.parent = _parent.transform;
         }
         CountMemberNum();
@@ -731,54 +731,54 @@ public class N_EnemyManager : MonoBehaviour
 
     public void TeamAddEnemy(GameObject _obj)
     {
-        // ƒŠƒXƒg‚É’Ç‰Á
+        // ãƒªã‚¹ãƒˆã«è¿½åŠ 
         TeamMembers.Add(_obj);
         foreach(var obj in TeamMembers)
         {
-            // eƒIƒuƒWƒFƒNƒg•ÏX
+            // è¦ªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå¤‰æ›´
             obj.transform.parent = gameObject.transform;
         }
         CountMemberNum();
 
-        // ƒXƒNƒŠƒvƒg‚ğ‚¢‚Á‚½‚ñƒŠƒZƒbƒg
+        // ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’ã„ã£ãŸã‚“ãƒªã‚»ãƒƒãƒˆ
         sEnemyMoves.Clear();
 
-        // ‘à—ñ“à‚Ì“G‚ÌˆÚ“®ƒXƒNƒŠƒvƒg‚ğæ“¾
+        // éšŠåˆ—å†…ã®æ•µã®ç§»å‹•ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’å–å¾—
         SetEnemyMoveScript();
 
         SetInfomation(true);
     }
 
-    // “Gî•ñ
+    // æ•µæƒ…å ±
     private void SetInfomation(bool _isNewMana)
     {
         for(int i = 0; i < iMemberNum; i++)
         {
             SEnemyMove move = sEnemyMoves[i];
             
-            // ‘à—ñ“à‚Ì”Ô†•t—^
+            // éšŠåˆ—å†…ã®ç•ªå·ä»˜ä¸
             move.SetNumber(i);
             if (_isNewMana)
             {
-                // V‚µ‚¢ƒ}ƒl[ƒWƒƒ[‚ğ“G‚É“o˜^
+                // æ–°ã—ã„ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’æ•µã«ç™»éŒ²
                 move.SetEnemyManager();
                 move.EnemyMove(0.0f, IsReflectionX);
             }
-            // ‘à—ñ“à‚Ì“G‚ÌŒü‚«‚ğæ“¾
+            // éšŠåˆ—å†…ã®æ•µã®å‘ãã‚’å–å¾—
             IsReflectionX = move.GetIsReflection();
         }
     }
 
-    // ‚Â‚¢‚Å‚É‚â‚èæ‚è‚·‚éƒXƒNƒŠƒvƒg‚àƒŠƒXƒg‚É’Ç‰Á
+    // ã¤ã„ã§ã«ã‚„ã‚Šå–ã‚Šã™ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚‚ãƒªã‚¹ãƒˆã«è¿½åŠ 
     private void SetEnemyMoveScript()
     {
         foreach(var member in TeamMembers)
         {
             SEnemyMove move = member.GetComponent<SEnemyMove>();
-            // ƒŠƒXƒg‚É—v‘f‚ª–³‚¯‚ê‚Î’Ç‰Á
+            // ãƒªã‚¹ãƒˆã«è¦ç´ ãŒç„¡ã‘ã‚Œã°è¿½åŠ 
             if (!sEnemyMoves.Contains(move))
             {
-                // ƒXƒNƒŠƒvƒg‚ğ’Ç‰Á
+                // ã‚¹ã‚¯ãƒªãƒ—ãƒˆã‚’è¿½åŠ 
                 sEnemyMoves.Add(move);
             } 
         }
@@ -793,20 +793,20 @@ public class N_EnemyManager : MonoBehaviour
         }
     }
 
-    // ‘à—ñ‚Ì“G‚ªˆê‘Ì‚Å‚àƒJƒƒ‰“à‚ÉˆÚ‚Á‚½‚ç‘à—ñ“à‚Ì“G‚ÍˆÚ“®ŠJn
+    // éšŠåˆ—ã®æ•µãŒä¸€ä½“ã§ã‚‚ã‚«ãƒ¡ãƒ©å†…ã«ç§»ã£ãŸã‚‰éšŠåˆ—å†…ã®æ•µã¯ç§»å‹•é–‹å§‹
     public void IsLook(bool _isLook)
     {
         if (_isLook)
         {
             foreach (var sc in sEnemyMoves)
             {
-                // ˆÚ“®“™‚Ìˆ—ŠJn
+                // ç§»å‹•ç­‰ã®å‡¦ç†é–‹å§‹
                 sc.StartMove();
             }
         }
     }
 
-    // ‘à—ñ‚Ì’N‚©‚ªØ‚è•Ô‚µˆË—Š‚ğ‚·‚éŒÄ‚Ño‚µ
+    // éšŠåˆ—ã®èª°ã‹ãŒåˆ‡ã‚Šè¿”ã—ä¾é ¼ã‚’ã™ã‚‹æ™‚å‘¼ã³å‡ºã—
     public void RequestRefletion()
     {
         //if (managerState == ManagerState.PATOROL)
@@ -817,25 +817,25 @@ public class N_EnemyManager : MonoBehaviour
 
     }
 
-    // ƒzƒƒOƒ‰ƒ€‚Ì•Ç‚ğŒŸ’m‚µ‚½ŒÄ‚Ño‚µ
+    // ãƒ›ãƒ­ã‚°ãƒ©ãƒ ã®å£ã‚’æ¤œçŸ¥ã—ãŸæ™‚å‘¼ã³å‡ºã—
     public void DetectionHologram(int _number)
     {
         if (IsDitection || managerState == ManagerState.WAIT)
         {
-            //Debug.Log("‚Å‚Ä‚¯");
+            //Debug.Log("ã§ã¦ã‘");
             return;
         }
         IsDitection = true;
 
-        // ‰E‚Éis’†
+        // å³ã«é€²è¡Œä¸­
         if (!IsReflectionX)
         {
-            // ˆê”Ô‰E‚Ì“G‚ªƒzƒƒOƒ‰ƒ€‚Ì•Ç‚ğŒŸ’m
+            // ä¸€ç•ªå³ã®æ•µãŒãƒ›ãƒ­ã‚°ãƒ©ãƒ ã®å£ã‚’æ¤œçŸ¥
             if (_number == iMemberNum - 1)
             {
                 managerState = ManagerState.WAIT;
 
-                // ƒNƒGƒXƒ`ƒ‡ƒ“ƒ}[ƒN•\¦
+                // ã‚¯ã‚¨ã‚¹ãƒãƒ§ãƒ³ãƒãƒ¼ã‚¯è¡¨ç¤º
                 foreach (var obj in TeamMembers)
                 {
                     obj.GetComponent<K_EnemyReaction>().SetIsSearchHologram(true);
@@ -844,18 +844,18 @@ public class N_EnemyManager : MonoBehaviour
             }
             else/* if(_number != 0)*/
             {
-                // ‘à—ñ•ªŠ„
+                // éšŠåˆ—åˆ†å‰²
                 PartitionTeam(_number);
             }
         }
-        // ¶‚Éis’†
+        // å·¦ã«é€²è¡Œä¸­
         else
         {
-            // ˆê”Ô¶‚Ì“G‚ªƒzƒƒOƒ‰ƒ€‚Ì•Ç‚ğŒŸ’m
+            // ä¸€ç•ªå·¦ã®æ•µãŒãƒ›ãƒ­ã‚°ãƒ©ãƒ ã®å£ã‚’æ¤œçŸ¥
             if (_number == 0)
             {
                 managerState = ManagerState.WAIT;
-                // ƒNƒGƒXƒ`ƒ‡ƒ“ƒ}[ƒN•\¦
+                // ã‚¯ã‚¨ã‚¹ãƒãƒ§ãƒ³ãƒãƒ¼ã‚¯è¡¨ç¤º
                 foreach (var obj in TeamMembers)
                 {
                     obj.GetComponent<K_EnemyReaction>().SetIsSearchHologram(true);
@@ -863,7 +863,7 @@ public class N_EnemyManager : MonoBehaviour
             }
             else/* if(_number != 0)*/
             {
-                // ‘à—ñ•ªŠ„
+                // éšŠåˆ—åˆ†å‰²
                 PartitionTeam(_number);
             }
         }
@@ -890,7 +890,7 @@ public class N_EnemyManager : MonoBehaviour
         return TeamMembers;
     }
 
-    //‘à—ñ“à‚Éƒ[ƒv‚µ‚½‚â‚Â‚ª‚¢‚é‚©‚Ç‚¤‚©
+    //éšŠåˆ—å†…ã«ãƒ¯ãƒ¼ãƒ—ã—ãŸã‚„ã¤ãŒã„ã‚‹ã‹ã©ã†ã‹
     private GameObject IsMemberWarped() 
     {
         foreach(var obj in TeamMembers)
