@@ -103,4 +103,9 @@ public class M_TransitionList : MonoBehaviour
             Animator.SetBool("End", true);
         }
     }
+
+    public string GetScene()
+    {
+        return sceneName[sceneIndex].scenes[index];
+    }
 }

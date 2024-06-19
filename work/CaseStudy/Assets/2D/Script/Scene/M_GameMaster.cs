@@ -27,7 +27,12 @@ static public class M_GameMaster
     /// 敵を全て倒す
     /// </summary>
     private static bool isEnemyAllKill = false;
-    
+
+    /// <summary>
+    /// 前のシーン
+    /// </summary>
+    private static string afterScene;
+
     public static bool GetGamePlay() { return isGamePlay; }
     public static void SetGamePlay(bool gamePlay) {  isGamePlay = gamePlay; }
 
@@ -40,6 +45,9 @@ static public class M_GameMaster
 
     public static bool GetEnemyAllKill() { return isEnemyAllKill; }
     public static void SetEneymAllKill(bool kill) { isEnemyAllKill = kill; }
+
+    public static string GetAfetrScene() { return afterScene; }
+    public static void SetAferScene(string scene) { afterScene = scene; }
 
     public static void RessetScore()
     {

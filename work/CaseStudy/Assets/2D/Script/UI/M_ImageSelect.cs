@@ -253,6 +253,7 @@ public class M_ImageSelect : MonoBehaviour
     void PressSelectedButton()
     {
         tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
+        M_GameMaster.SetAferScene(tran.GetComponent<M_TransitionList>().GetScene());
         tran.GetComponent<M_TransitionList>().LoadScene();
     }
 
