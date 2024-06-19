@@ -61,24 +61,12 @@ public class M_TransitionList : MonoBehaviour
 
     public void SetSceneIndex(int _index) { sceneIndex = _index; }
 
+    private Animator Animator;
+
     // Start is called before the first frame update
     void Start()
     {
-        image = GetComponent<Image>();
-        material = image.material;
-
-        if (isInOut)
-        {
-            val = -1.0f;
-        }
-        else
-        {
-            val = 1.0f;
-        }
-
-        this.material.SetFloat("_Val", val);
-
-        pause = GameObject.Find("PauseCanvas");
+        Animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -91,42 +79,14 @@ public class M_TransitionList : MonoBehaviour
                 pause.GetComponent<M_Pause>().enabled = false;
             }
 
-            fTime += Time.deltaTime;
+            AnimatorStateInfo stateInfo = Animator.GetCurrentAnimatorStateInfo(0);
 
-            //関数登録
-            var func = M_Easing.GetEasingMethod(ease);
-
-            float t = Mathf.Clamp01(fTime / duration);
-
-            // 値を1から-1に減少させる
-            val = 1.0f - func(t) * 2f;
-
-            this.material.SetFloat("_Val", val);
-
-            if (val <= -0.9f)
+            // アニメーションが終了したかどうかをチェック
+            if (stateInfo.normalizedTime >= 1.0f && stateInfo.IsName("SceneEnd"))
             {
                 SceneManager.LoadScene(sceneName[sceneIndex].scenes[index]);
-            }
-        }
-
-        if (isInOut)
-        {
-            fTime += Time.deltaTime;
-
-            //関数登録
-            var func = M_Easing.GetEasingMethod(ease);
-
-            float t = Mathf.Clamp01(fTime / duration);
-
-            val = func(t) * 2f;
-
-            this.material.SetFloat("_Val", val);
-
-            if (val >= 1.0f)
-            {
-                isInOut = false;
-            }
-        }
+            }           
+        }       
     }
 
     public void LoadScene()
@@ -139,6 +99,8 @@ public class M_TransitionList : MonoBehaviour
             fTime = 0.0f;
 
             once = true;
+
+            Animator.SetBool("End", true);
         }
     }
 }

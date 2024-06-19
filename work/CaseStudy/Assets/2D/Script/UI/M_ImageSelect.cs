@@ -15,6 +15,9 @@ public class M_ImageSelect : MonoBehaviour
     [Header("シーンごとに表示する招待状画像")]
     public List<SceneImages> ChallengeImages; // シーンごとのボタンのリスト
 
+    [Header("シーンごとに表示する拡大画像")]
+    public List<SceneImages> UpImages; // シーンごとのボタンのリスト
+
     private int currentIndex = 0; // 現在選択中のボタンのインデックス
     private int sceneIndex = 0; // 現在選択中のシーンのインデックス
     private int slideIndex = 0; // スライドのインデックス
@@ -32,6 +35,9 @@ public class M_ImageSelect : MonoBehaviour
 
     //招待状開いているか？
     private bool isChallenge = false;
+
+    //画像を拡大しているか
+    private bool isUp = false;
 
     private void Start()
     {
@@ -51,7 +57,11 @@ public class M_ImageSelect : MonoBehaviour
 
     void Update()
     {
-       if(isChallenge)
+        if (isUp)
+        {
+            UpUpdate();
+        }
+        else if (isChallenge)
         {
             ChallengeUpdate();
         }
@@ -61,8 +71,29 @@ public class M_ImageSelect : MonoBehaviour
         }
     }
 
+    private void UpUpdate()
+    {
+        if(UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().GetEasing())
+        {
+            return;
+        }
+
+        if (Input.GetButtonDown("Zoom"))
+        {
+            Debug.Log("拡大閉じる");
+            UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(true);
+            UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+            isUp = false;
+        }
+    }
+
     void ChallengeUpdate()
     {
+        if (ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().GetEasing() || UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().GetEasing())
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("SympathyButton"))
         {
             PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
@@ -75,10 +106,18 @@ public class M_ImageSelect : MonoBehaviour
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();           
             isChallenge = false;
         }
+
+        if (Input.GetButtonDown("Zoom"))
+        {
+            isUp = true;
+
+            UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(false);
+            UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+        }
     }
 
     void SelectUpdate()
-    {
+    {        
         if (!once)
         {
             sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
