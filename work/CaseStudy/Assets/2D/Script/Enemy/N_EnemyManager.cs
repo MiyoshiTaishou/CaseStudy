@@ -145,6 +145,10 @@ public class N_EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!M_GameMaster.GetGamePlay())
+        {
+            return;
+        }
 
         if (!init)
         {
