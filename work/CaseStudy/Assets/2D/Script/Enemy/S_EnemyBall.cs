@@ -41,13 +41,13 @@ public class S_EnemyBall : MonoBehaviour
     private GameObject Eff_RollingObj;
 
     //塊になっているかどうか
-    public bool isBall = false;
+    private bool isBall = false;
     // たまになって動いているか
     private bool isHitStop = false;
     public bool GetisBall() { return isBall; }
 
     //プレイヤーによって押されているかどうか
-    public bool isPushing = false;
+    private bool isPushing = false;
     public bool GetisPushing() { return isPushing; }
 
     public bool GetisHitStop()
@@ -61,7 +61,7 @@ public class S_EnemyBall : MonoBehaviour
     private Vector3 defaultScale;
 
     //くっついている個数
-    public float fStickCnt = 0;
+    private float fStickCnt = 0;
 
     private Rigidbody2D rb;
 
@@ -206,76 +206,6 @@ public class S_EnemyBall : MonoBehaviour
         }
     }
 
-    public void SetFallHitChangeBall(GameObject _obj)
-    {
-        //あたったオブジェクトが敵かつ押されていなければ吸収
-        ColObject = _obj.gameObject;
-        S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
-        if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
-        {
-            if (!colEnemyBall.GetisPushing() ||
-                fStickCnt > colEnemyBall.GetStickCount())
-            {
-                if (Eff_RollingObj)
-                {
-                    Eff_RollingObj.SetActive(true);
-                }
-
-                isBall = true;
-
-                //Destroy(GetComponent<N_PlayerSearch>());
-
-                if (fStickCnt == 0)
-                {
-                    fStickCnt++;
-                    transform.tag = "EnemyBall";
-                }
-
-                if (!colEnemyBall.GetisBall())
-                {
-                    fStickCnt++;
-                    Debug.Log("相手が玉ちゃう");
-                }
-                else if (colEnemyBall.GetisBall())
-                {
-                    Debug.Log(fStickCnt + colEnemyBall.GetStickCount() + "=");
-
-                    fStickCnt += colEnemyBall.GetStickCount();
-
-                    Debug.Log(fStickCnt);
-                }
-                //吸収した敵の数に応じて巨大化
-                Vector3 nextScale = defaultScale;
-                float GiantLv = (float)GetGiantLv();
-                nextScale.x += GiantLv / 2;
-                nextScale.y += GiantLv / 2;
-                transform.localScale = nextScale;
-                Vector3 offset = ColliderOffset;
-                offset.y -= 0.5f;
-                BocCol2D.offset = offset;
-                Vector3 size = ColliderSize;
-                size.y *= 0.5f;
-                BocCol2D.size = size;
-                // 隊列から除名
-                colEnemyBall.DeleteMember();
-
-                Destroy(ColObject);
-                //rb.AddForce(vel * fBoost, ForceMode2D.Impulse);
-                GetComponent<AudioSource>().PlayOneShot(audioclip);
-                GetComponent<AudioSource>().pitch += 0.2f;
-
-                StartCoroutine(HitStop());
-                //StartCoroutine(M_Utility.GamePadMotor(fTime));
-                if (Eff_ClashPrefab != null)
-                {
-                    Eff_ClashObj = Instantiate(Eff_ClashPrefab, transform.position, Quaternion.identity);
-                }
-
-                isPushing = true;
-            }
-        }
-    }
-
     private void OnCollisionEnter2D(Collision2D _collision)
     {
         if (!isPushing)
@@ -307,18 +237,11 @@ public class S_EnemyBall : MonoBehaviour
 
                 if (!colEnemyBall.GetisBall())
                 {
-                    Debug.Log("相手が玉ちゃう");
-
                     fStickCnt++;
                 }
                 else if (colEnemyBall.GetisBall())
                 {
-                    Debug.Log(fStickCnt.ToString() + colEnemyBall.GetStickCount().ToString() + "=");
-
                     fStickCnt += colEnemyBall.GetStickCount();
-
-                    Debug.Log(fStickCnt);
-
                 }
                 //吸収した敵の数に応じて巨大化
                 Vector3 nextScale = defaultScale;
