@@ -85,7 +85,7 @@ public class M_PlayerPush : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerObj = GameObject.Find("Player");
+        PlayerObj = gameObject.transform.parent.gameObject;
 
         PlayerMove = PlayerObj.GetComponent<M_PlayerMove>();
 
