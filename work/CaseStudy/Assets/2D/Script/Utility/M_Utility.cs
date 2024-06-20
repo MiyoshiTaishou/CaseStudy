@@ -13,7 +13,7 @@ public static class M_Utility
         var gamepad = Gamepad.current;
         if (gamepad == null)
         {
-            Debug.Log("ゲームパッド未接続");
+            //Debug.Log("ゲームパッド未接続");
             yield break;
         }
 
@@ -21,11 +21,11 @@ public static class M_Utility
         //gamepad.SetMotorSpeeds(1.0f, 0.0f);
         //yield return new WaitForSeconds(1.0f);
 
-        Debug.Log("右モーター振動");
+        //Debug.Log("右モーター振動");
         gamepad.SetMotorSpeeds(0.0f, 1.0f);
         yield return new WaitForSeconds(_time);
 
-        Debug.Log("モーター停止");
+        //Debug.Log("モーター停止");
         gamepad.SetMotorSpeeds(0.0f, 0.0f);
     }
 }

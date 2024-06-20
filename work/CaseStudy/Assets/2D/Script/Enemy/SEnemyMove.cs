@@ -356,7 +356,7 @@ public class SEnemyMove : MonoBehaviour
 
             if (enemyManager != null)
             {
-                Debug.Log("隊列組みなおし");
+                //Debug.Log("隊列組みなおし");
                 enemyManager.PartitionTeamHeight();
             }
         }
