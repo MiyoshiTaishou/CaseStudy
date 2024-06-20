@@ -162,6 +162,7 @@ public class M_PlayerMove : MonoBehaviour
             }
             rbPlayer.velocity = vec;
             isDash = false;
+            fDeltaTime += Time.deltaTime;
             return;
         }
 
