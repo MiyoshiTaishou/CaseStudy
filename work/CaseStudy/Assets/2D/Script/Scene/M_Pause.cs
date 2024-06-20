@@ -24,6 +24,7 @@ public class M_Pause : MonoBehaviour
             return;
         }
 
+        Debug.Log("ポーズスクリプト" + M_GameMaster.GetGamePlay());
         foreach (var item in m_PauseList)
         {
             if (item.GetComponent<M_ImageEasing>())
@@ -43,7 +44,7 @@ public class M_Pause : MonoBehaviour
 
         if (Input.GetButtonDown("Pause") && !isStart)
         {
-            M_GameMaster.SetGamePlay(isPaused);           
+            //M_GameMaster.SetGamePlay(isPaused);           
 
             foreach (var item in m_PauseList)
             {
