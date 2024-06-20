@@ -358,14 +358,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592f74bbd251a844d8733ea8e2ff4397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fBoost: 10
+  fBoost: 1.2
   audioclip: {fileID: 8300000, guid: a7cec79ac3b51bb48bd4539366407033, type: 3}
-  fHitStop: 3
-  fLimitSpeedx: 35
+  fHitStop: 20
+  fLimitSpeedx: 200
   nGiantNum: 00000000
   fTime: 0.1
   Eff_ClashPrefab: {fileID: 817287823798157542, guid: b115bacd7a802cf499a6978aa4b07e06, type: 3}
   Eff_RollingPrefab: {fileID: 1666395933393332442, guid: 5c2f5cc16750a7245af89109cdb92132, type: 3}
+  isBall: 0
+  isPushing: 0
+  fStickCnt: 0
 --- !u!114 &1050243765183906609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,7 +697,10 @@ MonoBehaviour:
   Parent: {fileID: 0}
   EnemySprite: {fileID: 0}
   animator: {fileID: 0}
-  EnemyBall: {fileID: 0}
+  EnemyMove: {fileID: 0}
+  ManagerName: 
+  isFallBall: 0
+  init: 0
 --- !u!1 &8406562785601237814
 GameObject:
   m_ObjectHideFlags: 0

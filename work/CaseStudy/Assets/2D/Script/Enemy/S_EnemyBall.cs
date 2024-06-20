@@ -227,6 +227,7 @@ public class S_EnemyBall : MonoBehaviour
 
                 if (fStickCnt == 0)
                 {
+                    Debug.Log("とぅるっるるる");
                     fStickCnt++;
                     transform.tag = "EnemyBall";
                 }
@@ -239,7 +240,6 @@ public class S_EnemyBall : MonoBehaviour
                 else if (colEnemyBall.GetisBall())
                 {
                     Debug.Log(fStickCnt + colEnemyBall.GetStickCount() + "=");
-
                     fStickCnt += colEnemyBall.GetStickCount();
 
                     Debug.Log(fStickCnt);
