@@ -68,6 +68,8 @@ public class N_EnemyManager : MonoBehaviour
     // 生成順
     private int GenerateNumber = 0;
 
+    public GameObject Parent;
+
     public int GetGenerateNumber()
     {
         return GenerateNumber;
@@ -134,6 +136,11 @@ public class N_EnemyManager : MonoBehaviour
         this.gameObject.name = this.gameObject.name + GenerateOrder.ToString();
         GenerateNumber = GenerateOrder;
         GenerateOrder++;
+
+        Parent = GameObject.Find("Enemy").gameObject;
+        if (Parent == null) {
+            Debug.Log("EnemyManagerまとめてるオブジェクトの名前をEnemyにして～");
+        }
 
         if (!isClone)
         {
@@ -212,9 +219,15 @@ public class N_EnemyManager : MonoBehaviour
         {
             return;
         }
+
+        if(Parent == null)
+        {
+            return;
+        }
+
         // マネージャー生成
         GameObject manager = new GameObject();
-        manager.transform.parent = thisTrans.parent.gameObject.transform;
+        manager.transform.parent = Parent.transform;
         manager.name = "EnemyManager";
         N_EnemyManager sc_mana = manager.AddComponent<N_EnemyManager>();
         sc_mana.SetMoveStatus(managerStatus);
@@ -227,7 +240,7 @@ public class N_EnemyManager : MonoBehaviour
         {
             if (IsMemberWarped() == null || (IsMemberWarped()!=null &&  IsMemberWarped() == obj))
             {
-                Debug.Log("こいつううう～" + obj.name+"なんでや！？"+obj.GetComponent<SEnemyMove>().GetIsWarped());
+                //Debug.Log("こいつううう～" + obj.name+"なんでや！？"+obj.GetComponent<SEnemyMove>().GetIsWarped());
                 // 最初の敵のY座標を元にする
                 if (order == 0)
                 {
@@ -240,7 +253,7 @@ public class N_EnemyManager : MonoBehaviour
 
                     if (obj.GetComponent<SEnemyMove>().GetWarp() && IsReflectionX == obj.GetComponent<SEnemyMove>().GetWarp().GetiswarpRight())
                     {
-                        Debug.Log("通っててくれ～" + obj.name + "なんでや！？" + obj.GetComponent<SEnemyMove>().GetIsWarped());
+                        //Debug.Log("通っててくれ～" + obj.name + "なんでや！？" + obj.GetComponent<SEnemyMove>().GetIsWarped());
                         sc_mana.IsReflectionX = !IsReflectionX;
 
                         sc_mana.managerState = ManagerState.Warped;
@@ -268,7 +281,7 @@ public class N_EnemyManager : MonoBehaviour
                     }
                     // 新チームに移動
                     sc_mana.TeamAddEnemy(obj);
-                    Debug.Log("高さの違う新チーム");
+                    //Debug.Log("高さの違う新チーム");
                 }
 
                 order++;
@@ -375,12 +388,12 @@ public class N_EnemyManager : MonoBehaviour
             {
                 flg = true;
                 //obj.GetComponent<SEnemyMove>().SetisWarped(false);
-                Debug.Log("あああ遠田");
+                //Debug.Log("あああ遠田");
             }
         }
         if(!flg) 
         {
-            Debug.Log("やべえっす！");
+            //Debug.Log("やべえっす！");
             managerState = ManagerState.WAIT;
         }
         else
