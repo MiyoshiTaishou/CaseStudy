@@ -303,7 +303,7 @@ public class M_PlayerPush : MonoBehaviour
                 N_PlayerSearch search = push.gameObject.transform.GetChild(0).gameObject.GetComponent<N_PlayerSearch>();
                 if (!search.GetIsSearch())
                 {
-                    Debug.Log("押した");
+                    //Debug.Log("押した");
                     StartCoroutine(HitStop(push));
                     StartCoroutine(M_Utility.GamePadMotor(fTime));
                 }
@@ -349,7 +349,7 @@ public class M_PlayerPush : MonoBehaviour
         }
         else if (PlayerObj.transform.eulerAngles.y <= 60.0f)
         {
-            Debug.Log(PlayerObj.transform.eulerAngles);
+            //Debug.Log(PlayerObj.transform.eulerAngles);
             dir = transform.right;
         }
         //audioSource.PlayOneShot(ac);
