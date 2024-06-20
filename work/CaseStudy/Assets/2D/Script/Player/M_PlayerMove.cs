@@ -114,7 +114,7 @@ public class M_PlayerMove : MonoBehaviour
     private Animator animator;
 
     private float fDeltaTime;
-    [Header("’x‰„"), SerializeField]
+    
     private float fDelay = 0.01f;
 
     // Start is called before the first frame update
