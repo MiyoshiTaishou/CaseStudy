@@ -219,7 +219,7 @@ public class N_EnemyManager : MonoBehaviour
         {
             if (IsMemberWarped() == null || (IsMemberWarped()!=null &&  IsMemberWarped() == obj))
             {
-                //Debug.Log("こいつううう～" + obj.name+"なんでや！？"+obj.GetComponent<SEnemyMove>().GetIsWarped());
+                Debug.Log("こいつううう～" + obj.name+"なんでや！？"+obj.GetComponent<SEnemyMove>().GetIsWarped());
                 // 最初の敵のY座標を元にする
                 if (order == 0)
                 {
@@ -258,7 +258,7 @@ public class N_EnemyManager : MonoBehaviour
                     }
                     // 新チームに移動
                     sc_mana.TeamAddEnemy(obj);
-                    //Debug.Log("高さの違う新チーム");
+                    Debug.Log("高さの違う新チーム");
                 }
 
                 order++;
@@ -365,12 +365,12 @@ public class N_EnemyManager : MonoBehaviour
             {
                 flg = true;
                 //obj.GetComponent<SEnemyMove>().SetisWarped(false);
-                //Debug.Log("あああ遠田");
+                Debug.Log("あああ遠田");
             }
         }
         if(!flg) 
         {
-            //Debug.Log("やべえっす！");
+            Debug.Log("やべえっす！");
             managerState = ManagerState.WAIT;
         }
         else
