@@ -100,7 +100,7 @@ public class M_ResultSelect : MonoBehaviour
     {
         tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
 
-        if (currentIndex == 0)
+        if (currentIndex == 1)
         {
             tran.GetComponent<M_TransitionList>().SetRe(true);
         }
