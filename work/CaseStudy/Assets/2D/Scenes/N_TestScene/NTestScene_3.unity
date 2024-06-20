@@ -2372,11 +2372,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6372921232022759937, guid: c793d23110b397448b2ff7991f372973, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51.17
+      value: 61.4
       objectReference: {fileID: 0}
     - target: {fileID: 6372921232022759937, guid: c793d23110b397448b2ff7991f372973, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.41
+      value: 18.4
       objectReference: {fileID: 0}
     - target: {fileID: 6372921232022759937, guid: c793d23110b397448b2ff7991f372973, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3419,6 +3419,10 @@ PrefabInstance:
       propertyPath: img
       value: 
       objectReference: {fileID: 1340318112}
+    - target: {fileID: 7711531143181206814, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
+      propertyPath: fPower
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8752830900292939282, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: acHit
       value: 
@@ -4197,8 +4201,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fBoost
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
       propertyPath: fHitStop
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695652855729107494, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
+      propertyPath: fLimitSpeedx
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8195446832618010569, guid: 3c0a1f3219ee2624195f6af16bca62f7, type: 3}
       propertyPath: m_Size.x

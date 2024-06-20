@@ -121,9 +121,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  fPower: 30
+  fPower: 25
   fTime: 0.5
   fDlayAnim: 1
+  fHitStop: 10
+  ac: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &-8878303779200289823
 BoxCollider2D:
   m_ObjectHideFlags: 0
