@@ -113,6 +113,10 @@ public class M_PlayerMove : MonoBehaviour
     /// </summary>
     private Animator animator;
 
+    private float fDeltaTime;
+    [Header("遅延"), SerializeField]
+    private float fDelay = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -133,6 +137,7 @@ public class M_PlayerMove : MonoBehaviour
         Debug.Log(animator);
 
         M_GameMaster.SetGameClear(false);
+        fDeltaTime = 0.0f;
     }
 
     // Update is called once per frame
@@ -209,11 +214,23 @@ public class M_PlayerMove : MonoBehaviour
 
             if (vecDir.x > 0)
             {
-                PlayerTrans.position += new Vector3(moveDis, 0.0f, 0.0f);
+                if (fDeltaTime > fDelay)
+                {
+                    PlayerTrans.position += new Vector3(moveDis, 0.0f, 0.0f);
+                    fDeltaTime = 0.0f;
+                }
             }
             else if (vecDir.x < 0)
             {
-                PlayerTrans.position -= new Vector3(moveDis, 0.0f, 0.0f);
+                if (fDeltaTime > fDelay)
+                {
+                    PlayerTrans.position -= new Vector3(moveDis, 0.0f, 0.0f);
+                    fDeltaTime = 0.0f;
+                }
+            }
+            else
+            {
+                fDeltaTime += Time.deltaTime;
             }
 
             NowTeleportFlame++;
@@ -244,6 +261,10 @@ public class M_PlayerMove : MonoBehaviour
                 vecDir = new Vector3(-1.0f,0.0f,0.0f);
                 transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
             }
+            else
+            {
+                fDeltaTime += Time.deltaTime;
+            }
         }
     }
 
@@ -256,17 +277,29 @@ public class M_PlayerMove : MonoBehaviour
                     
             // 入力に基づいて移動する
             Vector2 vecMoveDirection = new Vector2(_forizontal * fDashSpeed, rbPlayer.velocity.y);
-            rbPlayer.velocity = vecMoveDirection;            
+            rbPlayer.velocity = vecMoveDirection;
 
             if (_forizontal > 0.1f)
             {
-                vecDir = transform.right;
-                transform.eulerAngles = Vector3.zero;
+                if (fDeltaTime > fDelay)
+                {
+                    vecDir = transform.right;
+                    transform.eulerAngles = Vector3.zero;
+                    fDeltaTime = 0.0f;
+                }
             }
             else if (_forizontal < -0.1f)
             {
-                vecDir = -transform.right;
-                transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+                if (fDeltaTime > fDelay)
+                {
+                    vecDir = -transform.right;
+                    transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+                    fDeltaTime = 0.0f;
+                }
+            }
+            else
+            {
+                fDeltaTime += Time.deltaTime;
             }
 
             //移動している場合はスタミナを消費する
@@ -296,13 +329,25 @@ public class M_PlayerMove : MonoBehaviour
 
             if (_forizontal > 0.1f)
             {
-                vecDir = transform.right;
-                transform.eulerAngles = Vector3.zero;
+                if (fDeltaTime > fDelay)
+                {
+                    vecDir = transform.right;
+                    transform.eulerAngles = Vector3.zero;
+                    fDeltaTime = 0.0f;
+                }
             }
             else if (_forizontal < -0.1f)
             {
-                vecDir = -transform.right;
-                transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+                if (fDeltaTime > fDelay)
+                {
+                    vecDir = -transform.right;
+                    transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+                    fDeltaTime = 0.0f;
+                }
+            }
+            else
+            {
+                fDeltaTime += Time.deltaTime;
             }
 
             //使いきったか待機しているか歩いているかで回復速度を変える

@@ -45950,6 +45950,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1061781000752379445, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
+      propertyPath: fDelay
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1061781000752379446, guid: 401a965f987f3ee49be98f3179d05a4e, type: 3}
       propertyPath: m_RootOrder
       value: 9
