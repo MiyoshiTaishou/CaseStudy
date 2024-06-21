@@ -19,6 +19,8 @@ public class N_HoloPlayerDestroy : MonoBehaviour
 
     private BoxCollider2D boxCol;
 
+    private M_PlayerPush playerPush;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class N_HoloPlayerDestroy : MonoBehaviour
             spriteRenderer = transform.GetChild(3).GetComponent<SpriteRenderer>();
             projectHologram = gameObject.transform.parent.GetComponent<N_ProjectHologram>();
             boxCol = gameObject.GetComponent<BoxCollider2D>();
+            playerPush = transform.GetChild(0).GetComponent<M_PlayerPush>();
 
             init = true;
         }
@@ -46,6 +49,10 @@ public class N_HoloPlayerDestroy : MonoBehaviour
         {
             Color color = spriteRenderer.color;
 
+            if(color.a == 1.0f)
+            {
+                playerPush.enabled = false;
+            }
 
             if (color.a > 0.0f)
             {
@@ -78,6 +85,7 @@ public class N_HoloPlayerDestroy : MonoBehaviour
     {
         if (spriteRenderer != null)
         {
+            playerPush.enabled = true;
             boxCol.enabled = true;
             Color color = spriteRenderer.color;
 
