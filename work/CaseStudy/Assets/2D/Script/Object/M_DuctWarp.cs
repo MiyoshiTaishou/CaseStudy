@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 //ダクトの移動処理
 public class M_DuctWarp : MonoBehaviour
@@ -68,6 +70,13 @@ public class M_DuctWarp : MonoBehaviour
     /// </summary>
     private N_TrackingPlayer trackingPlayer;
 
+    private bool isReverse = false;
+
+    private float fTime;
+
+    [Header("Animation Duration")]
+    [SerializeField] private float duration = 0.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +117,8 @@ public class M_DuctWarp : MonoBehaviour
         //ダクト移動中は処理しない
         if (DuctManager.GetComponent<M_DuctManager>().GetIsMove() || trackingPlayer.GetisWarp())
         {
+            // アニメーション完了後、元のスケールに戻す
+            transform.localScale = saveScale;
             return;
         }
 
@@ -151,6 +162,33 @@ public class M_DuctWarp : MonoBehaviour
     void InDuctMove()
     {
         Debug.Log(gameObject);
+
+        var func = M_Easing.GetEasingMethod(easeStart);
+
+        if (isReverse)
+        {
+            fTime -= Time.deltaTime;
+        }
+        else
+        {
+            fTime += Time.deltaTime;
+        }
+
+        if (fTime > duration)
+        {
+            fTime = duration;
+            isReverse = true;
+        }
+        else if (fTime < 0.0f)
+        {
+            fTime = 0.0f;
+            isReverse = false;
+        }
+
+        float t = Mathf.Clamp01(fTime / duration);
+
+        // アニメーションを適用
+        this.gameObject.transform.localScale = saveScale + animScale * func(t);
 
         // キーボード入力を受け取る
         float fHorizontalInput = Input.GetAxis("Horizontal");
