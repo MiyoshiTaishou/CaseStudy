@@ -358,10 +358,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 592f74bbd251a844d8733ea8e2ff4397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fBoost: 1.2
+  fBoost: 10
   audioclip: {fileID: 8300000, guid: a7cec79ac3b51bb48bd4539366407033, type: 3}
   fHitStop: 20
-  fLimitSpeedx: 200
+  fLimitSpeedx: 30
   nGiantNum: 00000000
   fTime: 0.1
   Eff_ClashPrefab: {fileID: 817287823798157542, guid: b115bacd7a802cf499a6978aa4b07e06, type: 3}
