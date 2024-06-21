@@ -27,13 +27,19 @@ public class M_PauseButtonSelect : MonoBehaviour
         if (M_GameMaster.GetGamePlay())
         {
             // ポーズ画面が表示されていない場合はEventSystemを無効化
-            eventSystem.enabled = false;
+            if (eventSystem)
+            {
+                eventSystem.enabled = false;
+            }
             return;
         }
         else
         {
             // ポーズ画面が表示されている場合はEventSystemを有効化
-            eventSystem.enabled = true;
+            if (eventSystem)
+            {
+                eventSystem.enabled = true;
+            }
         }
 
         Debug.Log("ポーズボタンセレクト" + M_GameMaster.GetGamePlay());
