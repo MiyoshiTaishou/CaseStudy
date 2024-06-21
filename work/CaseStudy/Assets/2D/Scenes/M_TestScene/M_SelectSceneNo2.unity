@@ -8711,16 +8711,37 @@ MonoBehaviour:
     - "TS_Stage_1_\u30C1\u30E5\u30FC\u30C8\u30EA\u30A2\u30EB"
     - SNTestScene_8
     - SNTestScene_9
+    - SNTestScene_13
+    - SNTestScene_14
+    - SNTestScene_8
+  - scenes:
     - SNTestScene_7
+    - SNTestScene_15
     - SNTestScene_6
+    - SNTestScene_12
+    - TS_Stage_4
+    - SNTestScene_8
+  - scenes:
+    - SNTestScene_16
     - SNTestScene_10
+    - SNTestScene_8
+    - SNTestScene_8
+    - SNTestScene_8
+    - SNTestScene_8
   - scenes:
     - SNTestScene_11
-    - SNTestScene_12
-    - 
-    - 
-    - 
-    - 
+    - SNTestScene_8
+    - SNTestScene_8
+    - SNTestScene_8
+    - SNTestScene_8
+    - SNTestScene_8
+  - scenes:
+    - TS_Stage_5
+    - SNTestScene_8
+    - SNTestScene_8
+    - SNTestScene_8
+    - SNTestScene_8
+    - SNTestScene_8
   duration: 1
 --- !u!1 &1610166604
 GameObject:
