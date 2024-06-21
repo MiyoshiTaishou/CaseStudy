@@ -561,6 +561,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 83da09905f0e75d409a10fbdd1c4f1d4, type: 3}
     - target: {fileID: 7310569821080857450, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
+      propertyPath: fPower
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7310569821080857450, guid: 66dbb2f8cfed78c4ca7d8b7ad066fb04, type: 3}
       propertyPath: fDlayAnim
       value: 0.15
       objectReference: {fileID: 0}
