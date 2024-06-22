@@ -8,6 +8,10 @@ public class N_EnemyFallHit : MonoBehaviour
     public GameObject EnemySprite;
     public Animator animator;
     public SEnemyMove EnemyMove;
+    public N_EnemyManager EnemyMana;
+
+    // 新チーム発足後結合可能までの時間
+    private float IntavalTime = 1.0f;
 
     public string ManagerName = "";
 
@@ -17,12 +21,12 @@ public class N_EnemyFallHit : MonoBehaviour
 
     public string GetManagerName()
     {
-        N_EnemyManager mana = EnemyMove.GetManager();
-        if(mana == null)
+        EnemyMana = EnemyMove.GetManager();
+        if(EnemyMana == null)
         {
             return "ManagerNull";
         }
-        ManagerName = mana.name;
+        ManagerName = EnemyMana.name;
         return ManagerName;
     }
 
@@ -35,7 +39,8 @@ public class N_EnemyFallHit : MonoBehaviour
             EnemySprite = Parent.transform.GetChild(2).gameObject;
             animator = EnemySprite.GetComponent<Animator>();
             EnemyMove = Parent.GetComponent<SEnemyMove>();
-            ManagerName = EnemyMove.GetManager().name;
+            EnemyMana = EnemyMove.GetManager();
+            //ManagerName =EnemyMana.name;
 
             init = true;
         }
@@ -55,6 +60,12 @@ public class N_EnemyFallHit : MonoBehaviour
 
         // 同じ名前のマネージャーに所属していたら合体しない
         if (hostName == guestName || hostName == "ManagerNull" || guestName == "ManagerNull")
+        {
+            return;
+        }
+
+        // 新チーム発足後インターバルを設ける
+        if (EnemyMana.GetNewTeamIntavalTime() <= IntavalTime || collision.GetComponent<N_EnemyFallHit>().GetNewTeamIntavalTime() <= IntavalTime)
         {
             return;
         }
@@ -85,6 +96,12 @@ public class N_EnemyFallHit : MonoBehaviour
             return;
         }
 
+        // 新チーム発足後インターバルを設ける
+        if (EnemyMana.GetNewTeamIntavalTime() <= IntavalTime || collision.GetComponent<N_EnemyFallHit>().GetNewTeamIntavalTime() <= IntavalTime)
+        {
+            return;
+        }
+
         if (animator.GetBool("fall"))
         {
             Debug.Log("玉合体");
@@ -92,5 +109,10 @@ public class N_EnemyFallHit : MonoBehaviour
             
             collision.gameObject.transform.parent.gameObject.GetComponent<S_EnemyBall>().SetFallHitChangeBall(Parent);
         }
+    }
+
+    private float GetNewTeamIntavalTime()
+    {
+        return EnemyMana.GetNewTeamIntavalTime();
     }
 }
