@@ -71,6 +71,9 @@ public class M_TransitionList : MonoBehaviour
     void Start()
     {
         Animator = GetComponent<Animator>();
+
+        sceneIndex = M_GameMaster.GetSceneIndex();
+        index = M_GameMaster.GetCurrentIndex();
     }
 
     // Update is called once per frame

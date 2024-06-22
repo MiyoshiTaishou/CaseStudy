@@ -39,20 +39,32 @@ public class M_ImageSelect : MonoBehaviour
     //画像を拡大しているか
     private bool isUp = false;
 
+    [Header("移動用のオブジェクト")]
+    public GameObject list;
+
     private void Start()
     {
         slideIndex = sceneImages.Count - 1;
 
         // 元の位置を保存
-        foreach (var scene in sceneImages)
-        {
-            foreach (var image in scene.images)
-            {
-                originalSiblingIndices[image] = image.transform.GetSiblingIndex();
-            }
-        }
+        //foreach (var scene in sceneImages)
+        //{
+        //    foreach (var image in scene.images)
+        //    {
+        //        originalSiblingIndices[image] = image.transform.GetSiblingIndex();
+        //    }
+        //}
 
         M_GameMaster.SetGameClear(false);
+
+        if(M_GameMaster.GetSelectPos().y == 0.0f)
+        {
+            Debug.LogWarning(M_GameMaster.GetSelectPos());
+            list.GetComponent<RectTransform>().anchoredPosition = M_GameMaster.GetSelectPos();            
+        }
+        currentIndex = M_GameMaster.GetCurrentIndex();
+        sceneIndex = M_GameMaster.GetSceneIndex();
+        slideIndex = M_GameMaster.GetSlideIndex();
     }
 
     void Update()
@@ -252,8 +264,14 @@ public class M_ImageSelect : MonoBehaviour
 
     void PressSelectedButton()
     {
+        Debug.Log(currentIndex + "どのステージか");
+        Debug.Log(sceneIndex + "どの面か");
         tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
         M_GameMaster.SetAferScene(tran.GetComponent<M_TransitionList>().GetScene());
+        M_GameMaster.SetSelectPos(list.GetComponent<RectTransform>().anchoredPosition);
+        M_GameMaster.SetCurrentIndex(currentIndex);
+        M_GameMaster.SetSceneIndex(sceneIndex);
+        M_GameMaster.SetSlideIndex(slideIndex);
         tran.GetComponent<M_TransitionList>().LoadScene();
     }
 
