@@ -52,10 +52,10 @@ public class N_EnemyManager : MonoBehaviour
     [Header("おーるどたいむ"),SerializeField]
     private float OldWaitTime=0.2f;
     // 経過時間
-    private float ElapsedTime = 0.0f;
-    private float ElapsedWaitTime = 0.0f;
-    private float ElapsedFoundTime = 0.0f;
-    private float ElapsedLostSightTime = 0.0f;
+    public float ElapsedTime = 0.0f;
+    public float ElapsedWaitTime = 0.0f;
+    public float ElapsedFoundTime = 0.0f;
+    public float ElapsedLostSightTime = 0.0f;
 
     private bool IsDitection = false;
 
@@ -69,6 +69,8 @@ public class N_EnemyManager : MonoBehaviour
     private int GenerateNumber = 0;
 
     public GameObject Parent;
+
+    private float NewTeamIntaval = 0.0f;
 
     public int GetGenerateNumber()
     {
@@ -210,6 +212,8 @@ public class N_EnemyManager : MonoBehaviour
                 Warped();
                 break;
         }
+
+        NewTeamIntaval += Time.deltaTime;
     }
 
     // 高さが一定以上離れたらチームを分ける
@@ -232,6 +236,7 @@ public class N_EnemyManager : MonoBehaviour
         N_EnemyManager sc_mana = manager.AddComponent<N_EnemyManager>();
         sc_mana.SetMoveStatus(managerStatus);
         sc_mana.ChangeManagerState(ManagerState.PATOROL);
+        NewTeamIntaval = 0.0f;
 
         Vector3 pos = Vector3.zero;
         int order = 0;
@@ -262,6 +267,8 @@ public class N_EnemyManager : MonoBehaviour
 
                     if (obj.GetComponent<SEnemyMove>().GetIsWarped() == true)
                     {
+                        //Debug.Log("おおおおおおおお" + obj.GetComponent<SEnemyMove>().GetWarp());
+                        //Debug.Log("こいつか？？？？？");
                         sc_mana.isClone = true;
                         sc_mana.OldWaitTime = OldWaitTime;
                         //sc_mana.managerStatus.WaitTime = 0.001f;
@@ -394,7 +401,7 @@ public class N_EnemyManager : MonoBehaviour
         if(!flg) 
         {
             //Debug.Log("やべえっす！");
-            managerState = ManagerState.WAIT;
+            //managerState = ManagerState.WAIT;
         }
         else
         {
@@ -476,6 +483,7 @@ public class N_EnemyManager : MonoBehaviour
         // 一定時間経過
         if (ElapsedTime >= managerStatus.MoveTime)
         {
+            //Debug.Log("wait");
             ElapsedTime = 0.0f;
             // 待ち状態に遷移
             managerState = ManagerState.WAIT;
@@ -918,5 +926,10 @@ public class N_EnemyManager : MonoBehaviour
             }
         }
         return null; 
+    }
+
+    public float GetNewTeamIntavalTime()
+    {
+        return NewTeamIntaval;
     }
 }
