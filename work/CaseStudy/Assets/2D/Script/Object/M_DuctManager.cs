@@ -77,6 +77,32 @@ public class M_DuctManager : MonoBehaviour
         {
             renderers.Add(spriteRenderer);
         }
+
+        // 辞書のキーのコレクションを取得
+        var keys = new List<GameObject>(ductDictionary.Keys);
+
+        // キーのコレクション上で反復処理を行い、値を変更
+        foreach (var key in keys)
+        {
+            ductDictionary[key] = false;
+        }
+
+        // ダクトから出たらプレイヤーの元のレイヤーに戻す
+        PlayerObj.layer = LayerMask.NameToLayer("PlayerLayer");
+
+        //見えるようにする
+        for (int i = 0; i < renderers.Count; i++)
+        {
+            renderers[i].enabled = true;
+        }
+        PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
+        //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
+        PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
+        PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
+        PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+        PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
+
+        isNowDuct = false;
     }
 
     private void Update()
