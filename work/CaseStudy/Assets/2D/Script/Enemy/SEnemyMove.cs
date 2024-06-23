@@ -111,7 +111,7 @@ public class SEnemyMove : MonoBehaviour
     {
         return enemyManager;
     }
-
+    int Wait = 0;//スタート関数の度にリセットされる。開始直後に隊列が分かれるのを防ぐための対策変数
     //ワープしたかどうか
     private bool isWarped = false;
     public bool OldisWarped = false;
@@ -130,9 +130,10 @@ public class SEnemyMove : MonoBehaviour
     private Vector2 defaultScale= Vector2.zero;
     void Start()
     {
+        Wait = 0;
         //defaultPos = transform.position;
         //GallPos = defaultPos + MoveDistance;
-        rb= GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         if(!rb)
         {
             Debug.LogError("RigidBody2Dがありません");
@@ -337,6 +338,8 @@ public class SEnemyMove : MonoBehaviour
             }
         }
 
+        Wait++;
+
         // 空中から地面に接地したなら
         if(isGroundNow == true && isGroundOld == false && Time.time >= 0.5f)
         {
@@ -354,7 +357,7 @@ public class SEnemyMove : MonoBehaviour
                 Eff_FallObj.SetActive(false);
             }
 
-            if (enemyManager != null)
+            if (enemyManager != null && Wait > 60)
             {
                 Debug.Log("隊列組みなおし");
                 enemyManager.PartitionTeamHeight();
