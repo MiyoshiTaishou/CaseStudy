@@ -58,10 +58,13 @@ public class S_Respawn : MonoBehaviour
 
     AudioSource audiosource=null;
 
+    private static bool IsFounded = false;
+    public static void SetIsFounded(bool _IsFounded) { IsFounded = _IsFounded; }
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        IsFounded = false;
     }
 
     public void Retry()
@@ -149,7 +152,19 @@ public class S_Respawn : MonoBehaviour
     {
         //当たったのが敵なら復活
         if (collision.transform.CompareTag("Enemy") &&  //タグチェック
-            isCoroutine == false)                       //コルーチン中かチェック
+            isCoroutine == false&&
+            IsFounded)                       //コルーチン中かチェック
+        {
+            StartCoroutine(HitStop());
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //当たったのが敵なら復活
+        if (collision.transform.CompareTag("Enemy") &&  //タグチェック
+            isCoroutine == false &&
+            IsFounded)                       //コルーチン中かチェック
         {
             StartCoroutine(HitStop());
         }
