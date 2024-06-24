@@ -189,6 +189,16 @@ public class N_PlayerSearch : MonoBehaviour
                 isSearch = true;
                 enemyManager.SetTarget(Target);
                 //isRaycast = false;
+                if(hit.collider.gameObject.CompareTag("Player"))
+                {
+                    S_Respawn.SetIsFounded(true);
+                    Debug.Log("‚Ý‚Â‚©‚Á‚½");
+                }
+                else
+                {
+                    S_Respawn.SetIsFounded(false);
+                    Debug.Log("‚Ý‚Â‚©‚Á‚Ä‚È‚¢");
+                }
             }
             else if(hit.collider.gameObject.CompareTag("Ground"))
             {
@@ -196,6 +206,8 @@ public class N_PlayerSearch : MonoBehaviour
 
                 isSearch = false;
                 //isRaycast = false;
+                S_Respawn.SetIsFounded(false);
+                Debug.Log("‚Ý‚Â‚©‚Á‚Ä‚È‚¢");
             }
             else
             {
