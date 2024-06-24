@@ -55,7 +55,10 @@ public class N_ProjectHologram : MonoBehaviour
     private AudioClip audioclip;
 
     [Header("壁の根元スプライト"), SerializeField]
-    private Sprite rootSprite;
+    private Sprite rootSprite_1;
+
+    [Header("壁の根元スプライト"), SerializeField]
+    private Sprite rootSprite_2;
 
     //[Header("プロジェクター起動時に出す演出"), SerializeField]
     //private GameObject projectionUI;
@@ -307,27 +310,30 @@ public class N_ProjectHologram : MonoBehaviour
             
         }
 
-        // 壁の場合根元だけスプライト変更
-        //SpriteRenderer renderer;
-        //switch (mode)
-        //{
-        //    case HOLOGRAM_MODE.WALL:
-        //        switch (HoloDirection)
-        //        {
-        //            case HOLOGRAM_DIRECTION.UP:
-        //                renderer = Hologram[0].GetComponent<SpriteRenderer>();
-        //                renderer.sprite = rootSprite;
+        //壁の場合根元だけスプライト変更
+        SpriteRenderer renderer;
+        switch (mode)
+        {
+            case HOLOGRAM_MODE.WALL:
+                switch (HoloDirection)
+                {
+                    case HOLOGRAM_DIRECTION.UP:
+                        renderer = Hologram[0].GetComponent<SpriteRenderer>();
+                        renderer.sprite = rootSprite_1;
+                        renderer = Hologram[1].GetComponent<SpriteRenderer>();
+                        renderer.sprite = rootSprite_2;
+                        break;
 
-        //                break;
+                    case HOLOGRAM_DIRECTION.DOWN:
+                        renderer = Hologram[iHowMany].GetComponent<SpriteRenderer>();
+                        renderer.sprite = rootSprite_1;
+                        renderer = Hologram[iHowMany - 1].GetComponent<SpriteRenderer>();
+                        renderer.sprite = rootSprite_2;
 
-        //            case HOLOGRAM_DIRECTION.DOWN:
-        //                renderer = Hologram[iHowMany].GetComponent<SpriteRenderer>();
-        //                renderer.sprite = rootSprite;
-
-        //                break;
-        //        }
-        //        break;
-        //}
+                        break;
+                }
+                break;
+        }
 
         // 当たり判定系
         Vector2 offset = Vector2.zero;

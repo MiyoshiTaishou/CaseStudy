@@ -195,12 +195,14 @@ public class S_Respawn : MonoBehaviour
         //transform.root.GetComponent<M_PlayerPush>().enabled = false;
         //transform.root.GetComponent<N_ProjecterSympathy>().enabled = false;
         transform.root.GetComponent<BoxCollider2D>().enabled = false;
+        transform.root.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
         
         //指定のフレーム待つ
         yield return new WaitForSeconds(nHitStop / 60);
 
-        transform.root.GetComponent<BoxCollider2D>().enabled = true;
-        transform.root.GetComponent<M_PlayerMove>().enabled = true;
+        //transform.root.GetComponent<BoxCollider2D>().enabled = true;
+        //transform.root.GetComponent<M_PlayerMove>().enabled = true;
 
         M_GameMaster.SetDethCount(1);
 
