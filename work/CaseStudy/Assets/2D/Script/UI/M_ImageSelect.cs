@@ -42,6 +42,9 @@ public class M_ImageSelect : MonoBehaviour
     [Header("移動用のオブジェクト")]
     public GameObject list;
 
+    [Header("左右のLR画像"), SerializeField]
+    private GameObject[] LRObject;
+
     private void Start()
     {
         slideIndex = sceneImages.Count - 1;
@@ -69,6 +72,25 @@ public class M_ImageSelect : MonoBehaviour
 
     void Update()
     {
+        //左端まで来たらオブジェクトを消す
+        if (sceneIndex == 0)
+        {
+            LRObject[0].SetActive(false);
+        }
+        else
+        {
+            LRObject[0].SetActive(true);
+        }
+
+        if (sceneIndex == sceneImages.Count - 1)
+        {
+            LRObject[1].SetActive(false);
+        }
+        else
+        {
+            LRObject[1].SetActive(true);
+        }
+
         if (isUp)
         {
             UpUpdate();
@@ -96,7 +118,7 @@ public class M_ImageSelect : MonoBehaviour
             UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(true);
             UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
             isUp = false;
-        }
+        }       
     }
 
     void ChallengeUpdate()
