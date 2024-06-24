@@ -1190,6 +1190,9 @@ MonoBehaviour:
   tran: {fileID: 1591469084}
   sla: {fileID: 400247757}
   list: {fileID: 400247757}
+  LRObject:
+  - {fileID: 746283693}
+  - {fileID: 910973591}
 --- !u!1 &189389909
 GameObject:
   m_ObjectHideFlags: 0
