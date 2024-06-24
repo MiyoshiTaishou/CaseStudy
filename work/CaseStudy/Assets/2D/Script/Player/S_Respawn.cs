@@ -43,6 +43,8 @@ public class S_Respawn : MonoBehaviour
 
     private Animator TransitionAnimator;
 
+    private int DeadCount = 0;//死ぬまでのカウント
+
     //コルーチン中かどうか
     bool isCoroutine = false;
 
@@ -132,7 +134,6 @@ public class S_Respawn : MonoBehaviour
 
             if(ElapsedRespawnTime >= RespwanTime)
             {
-                Debug.Log("リスポオオオオオオオオオオオオオオオオオオオオオオオオオオオオん");
                 // 現在のSceneを取得
                 Scene loadScene = SceneManager.GetActiveScene();
                 // 現在のシーンを再読み込みする
@@ -167,6 +168,24 @@ public class S_Respawn : MonoBehaviour
             IsFounded)                       //コルーチン中かチェック
         {
             StartCoroutine(HitStop());
+        }
+        else if (collision.transform.CompareTag("Enemy") &&  //タグチェック
+            isCoroutine == false &&
+            !IsFounded)                       //コルーチン中かチェック
+        {
+            DeadCount++;
+            if (DeadCount > 30)
+            {
+                StartCoroutine(HitStop());
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.collider.CompareTag("Enemy"))
+        {
+            DeadCount = 0;
         }
     }
 
