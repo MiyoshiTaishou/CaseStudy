@@ -74,8 +74,25 @@ public class M_DuctWarp : MonoBehaviour
 
     private float fTime;
 
+    public bool isRock = false;
+
     [Header("Animation Duration")]
     [SerializeField] private float duration = 0.5f;
+
+    [Header("ダクトに重なる壊れるブロックあれば")]
+    [SerializeField] private GameObject RockObj;
+
+    private bool init = false;
+
+    public bool GetisRock()
+    {
+        return isRock;
+    }
+
+    public void SetisRock(bool _rock)
+    {
+        isRock = _rock;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +131,26 @@ public class M_DuctWarp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!init)
+        {
+            // ロックオブジェクトが設定されていたら
+            if (RockObj)
+            {
+                isRock = true;
+            }
+            init = true;
+        }
+
+        // ロック中に手前にあるオブジェクトがなくなったら
+        if (isRock)
+        {
+            if(RockObj == null)
+            {
+                // ロック解除
+                isRock = false;
+            }
+        }
+
         //ダクト移動中は処理しない
         if (DuctManager.GetComponent<M_DuctManager>().GetIsMove() || trackingPlayer.GetisWarp())
         {
@@ -144,16 +181,17 @@ public class M_DuctWarp : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isTouch = true;
-
             UIObj.SetActive(true);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag("Player"))
         {
             isTouch = false;
+
             UIObj.SetActive(false);
         }
     }
