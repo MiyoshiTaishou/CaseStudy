@@ -80,9 +80,17 @@ public class M_DuctManager : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
+        GameObject ductObj = GetObjectInDictionary();
+        bool isRockDuct = false;
+        if (GetObjectInDictionary() != null)
+        {
+            Debug.Log("nullじゃない");
+            isRockDuct = ductObj.GetComponent<M_DuctWarp>().GetisRock();
 
-        if(ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct") && !isMove && !isDuctIn)
+        }
+
+        if (ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct") && !isMove && !isDuctIn && !isRockDuct)
         {           
             Debug.Log("ダクトを出た");
 
@@ -208,6 +216,26 @@ public class M_DuctManager : MonoBehaviour
             isNowDuct = false;
         }
     }
+
+    // trueになっているダクトのオブジェクトを返す
+    public GameObject GetObjectInDictionary()
+    {
+        // ダクト辞書からtrueになっているオブジェクトを探して返す
+        foreach(var obj in ductDictionary)
+        {
+            // boolを取得
+            bool InDuct = obj.Value;
+
+            // キーを取得
+            if (InDuct)
+            {
+                return obj.Key;
+            }
+        }
+
+        return null;
+    }
+
 
     // 辞書内に true の値が存在するかを確認するメソッド
     public bool ContainsTrueValue()

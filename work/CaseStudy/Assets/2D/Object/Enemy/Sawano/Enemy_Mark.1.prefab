@@ -242,7 +242,7 @@ MonoBehaviour:
   TeamNumber: 0
   layerMask_Wall:
     serializedVersion: 2
-    m_Bits: 321
+    m_Bits: 320
   layerMask_Ground:
     serializedVersion: 2
     m_Bits: 321
@@ -698,6 +698,7 @@ MonoBehaviour:
   EnemySprite: {fileID: 0}
   animator: {fileID: 0}
   EnemyMove: {fileID: 0}
+  EnemyMana: {fileID: 0}
   ManagerName: 
   isFallBall: 0
   init: 0
