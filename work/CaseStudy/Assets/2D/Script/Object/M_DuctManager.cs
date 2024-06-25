@@ -45,6 +45,9 @@ public class M_DuctManager : MonoBehaviour
     /// </summary>
     private List<SpriteRenderer> renderers = new List<SpriteRenderer>();
 
+    private Animator animator;
+    private bool init = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -107,11 +110,18 @@ public class M_DuctManager : MonoBehaviour
 
     private void Update()
     {
+        if (!init)
+        {
+            animator = PlayerObj.transform.GetChild(3).GetComponent<Animator>();
+
+            init = false;
+        }
+
         GameObject ductObj = GetObjectInDictionary();
         bool isRockDuct = false;
         if (GetObjectInDictionary() != null)
         {
-            Debug.Log("nullじゃない");
+            //Debug.Log("nullじゃない");
             isRockDuct = ductObj.GetComponent<M_DuctWarp>().GetisRock();
 
         }
@@ -146,19 +156,37 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
 
+            animator.SetBool("duct", true);
+
             isNowDuct = false;
+
+        }
+
+        // ダクトがロックされていたら
+        if (ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct") && !isMove && !isDuctIn && !isRockDuct)
+        {
+            // se再生
 
         }
 
         if (ductDictionary.ContainsValue(true))
         {
             // ダクトに入ったらプレイヤーのレイヤーを変更
-            PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");         
+            PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");
 
-            //見えないようにする
-            for (int i = 0; i < renderers.Count; i++)
+            if (isDuctIn)
             {
-                renderers[i].enabled = false;
+                animator.SetBool("duct", true);
+
+            }
+
+            if (!animator.GetBool("duct") && !isDuctIn)
+            {
+                //見えないようにする
+                for (int i = 0; i < renderers.Count; i++)
+                {
+                    renderers[i].enabled = false;
+                }
             }
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
             PlayerObj.GetComponent<M_PlayerMove>().SetIsNowDahs(false);
@@ -167,6 +195,7 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<BoxCollider2D>().enabled = false;
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = false;
+
         }
 
         isDuctIn = false;
@@ -200,11 +229,11 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.transform.position = new Vector3(vecPos.x, vecPos.y, -1.0f);
             PlayerObj.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
 
-            //見えないようにする
-            for (int i = 0; i < renderers.Count; i++)
-            {
-                renderers[i].enabled = false;
-            }
+            ////見えないようにする
+            //for (int i = 0; i < renderers.Count; i++)
+            //{
+            //    renderers[i].enabled = false;
+            //}
             PlayerObj.GetComponent<M_PlayerMove>().FullStamina();
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
             PlayerObj.GetComponent<M_PlayerMove>().SetIsNowDahs(false);
@@ -214,8 +243,7 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = false;
 
-
-            Debug.Log(PlayerObj.GetComponent<M_PlayerMove>().GetIsMove());
+            //Debug.Log(PlayerObj.GetComponent<M_PlayerMove>().GetIsMove());
 
             isNowDuct = true;
             isDuctIn = true;
