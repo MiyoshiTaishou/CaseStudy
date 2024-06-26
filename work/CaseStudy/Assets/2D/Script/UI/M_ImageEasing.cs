@@ -144,4 +144,9 @@ public class M_ImageEasing : MonoBehaviour
         image.transform.rotation = Quaternion.Euler(saveRot);
         isEasing = false;
     }
+
+    public bool GetIsEasing()
+    {
+        return isEasing;
+    }
 }
