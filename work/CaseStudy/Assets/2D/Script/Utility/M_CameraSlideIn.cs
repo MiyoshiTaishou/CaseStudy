@@ -91,6 +91,9 @@ public class M_CameraSlideIn : MonoBehaviour
                     M_GameMaster.SetGamePlay(true);
                 }
                 isOnce2 = true;
+
+                GetComponent<M_CameraSlideIn>().enabled = false;
+
             }
 
             EasingMove();
@@ -109,6 +112,8 @@ public class M_CameraSlideIn : MonoBehaviour
                 GetComponent<N_TrackingPlayer>().enabled = true;
                 M_GameMaster.SetGamePlay(true);
                 isOnce = true;
+
+                GetComponent<M_CameraSlideIn>().enabled = false;
 
                 Debug.Log("ç°Ç∂Ç·ÅI");
             }
