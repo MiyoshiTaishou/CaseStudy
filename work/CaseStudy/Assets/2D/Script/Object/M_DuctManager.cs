@@ -47,7 +47,7 @@ public class M_DuctManager : MonoBehaviour
 
     private Animator animator;
     private bool init = false;
-
+    private bool warp = false;
 
     // Start is called before the first frame update
     void Start()
@@ -156,7 +156,7 @@ public class M_DuctManager : MonoBehaviour
             PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
             PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
 
-            animator.SetBool("duct", true);
+            animator.SetBool("ductFinish", true);
 
             isNowDuct = false;
 
@@ -174,7 +174,7 @@ public class M_DuctManager : MonoBehaviour
             // ダクトに入ったらプレイヤーのレイヤーを変更
             PlayerObj.layer = LayerMask.NameToLayer("Ignore Raycast");
 
-            if (isDuctIn)
+            if (isDuctIn && !warp)
             {
                 animator.SetBool("duct", true);
 
@@ -198,12 +198,15 @@ public class M_DuctManager : MonoBehaviour
 
         }
 
+        warp = false;
         isDuctIn = false;
     }
     //M_DuctWarpから呼ばれて指定したところまでプレイヤーを飛ばす
     public void DuctWarp(GameObject _duct1, GameObject _duct2)
     {
         PlayerObj.transform.position = _duct1.transform.position;
+
+        warp = true;
 
         // _duct1 を true に、_duct2 を false に設定
         SetContains(_duct2, false);
@@ -246,28 +249,29 @@ public class M_DuctManager : MonoBehaviour
             //Debug.Log(PlayerObj.GetComponent<M_PlayerMove>().GetIsMove());
 
             isNowDuct = true;
+
             isDuctIn = true;
         }
         else
         {
-            Debug.Log("ダクトを出た");
+            //Debug.Log("ダクトを出た");
 
-            // ダクトから出たらプレイヤーの元のレイヤーに戻す
-            PlayerObj.layer = LayerMask.NameToLayer("PlayerLayer");            
+            //// ダクトから出たらプレイヤーの元のレイヤーに戻す
+            //PlayerObj.layer = LayerMask.NameToLayer("PlayerLayer");            
 
-            //見えるようにする
-            for (int i = 0; i < renderers.Count; i++)
-            {
-                renderers[i].enabled = true;
-            }
-            PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
-            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
-            PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
-            PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
-            PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
-            PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
+            ////見えるようにする
+            //for (int i = 0; i < renderers.Count; i++)
+            //{
+            //    renderers[i].enabled = true;
+            //}
+            //PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
+            ////PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(true);
+            //PlayerObj.GetComponent<N_ProjecterSympathy>().SetIsPossible(true);
+            //PlayerObj.GetComponent<BoxCollider2D>().enabled = true;
+            //PlayerObj.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+            //PlayerRes.GetComponent<BoxCollider2D>().enabled = true;
 
-            isNowDuct = false;
+            //isNowDuct = false;
         }
     }
 
