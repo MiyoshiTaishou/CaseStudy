@@ -44,6 +44,8 @@ public class M_TimeContoroller : MonoBehaviour
 
     private bool isFinish = false;
 
+    private bool wasPushButtonPressed = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,7 @@ public class M_TimeContoroller : MonoBehaviour
 
             init = true;
         }
+        bool isPushButtonPressed = Input.GetAxis(actionName) > 0.5f;
 
         if (!isFinish && isTouch)
         {
@@ -84,7 +87,7 @@ public class M_TimeContoroller : MonoBehaviour
             }
 
             //“Á’è‚Ìs“®‚ð‚µ‚½‚Æ‚«‚ÉÁ‚·
-            if (Input.GetAxis(actionName) > 0.5 && isTouch && pushOK)
+            if (isPushButtonPressed && !wasPushButtonPressed && isTouch && pushOK)
             {
                 Time.timeScale = 1.0f;
                 isReverse = true;
@@ -101,7 +104,7 @@ public class M_TimeContoroller : MonoBehaviour
                 //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
                 PlayerObj.GetComponent<N_ProjecterSympathy>().enabled = true;
 
-                //Destroy(this.gameObject);            
+                isFinish = true;           
             }
         }
 
@@ -133,6 +136,9 @@ public class M_TimeContoroller : MonoBehaviour
             cameraCom.orthographicSize = cameraCom.orthographicSize + Time.deltaTime * zoomRatio;
             time += Time.deltaTime;
         }
+
+        wasPushButtonPressed = isPushButtonPressed;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

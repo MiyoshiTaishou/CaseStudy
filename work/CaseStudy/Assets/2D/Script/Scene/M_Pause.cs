@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class M_Pause : MonoBehaviour
 {
-    private bool isPaused = false;
+    public bool isPaused = false;
 
     /// <summary>
     /// ƒ|[ƒY‚ğ‰Ÿ‚¹‚é‚©‚Ç‚¤‚©
