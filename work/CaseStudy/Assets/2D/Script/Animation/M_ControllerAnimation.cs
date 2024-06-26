@@ -46,4 +46,14 @@ public class M_ControllerAnimation : MonoBehaviour
     {
         animator.SetBool("push", _push);
     }
+
+    private void FinishStartPush()
+    {
+        animator.SetBool("startPush", true);
+    }
+
+    public bool GetStartPush()
+    {
+        return animator.GetBool("startPush");
+    }
 }
