@@ -29,4 +29,5 @@ public class TutoAnim_SetBool : MonoBehaviour
     {
         animator.SetBool("LeftStick", true);
     }
+
 }

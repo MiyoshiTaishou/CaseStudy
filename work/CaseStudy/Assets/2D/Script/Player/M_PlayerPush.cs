@@ -79,6 +79,13 @@ public class M_PlayerPush : MonoBehaviour
 
     private bool isSearch = false;
 
+    private bool isTutoPushOK = true;
+
+    public void SetOKPush(bool _push)
+    {
+        isTutoPushOK = _push;
+    }
+
     [Header("レイヤーマスク設定"), SerializeField]
     private LayerMask layerMask;
 
@@ -117,7 +124,12 @@ public class M_PlayerPush : MonoBehaviour
             RayCastCheck();
         }
 
-        if (isPushButtonPressed && !wasPushButtonPressed && isPush && PushObj && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
+        // プッシュボタンが押されたフレームである
+        // 押せる状態である
+        // 押すオブジェクトがnullでない
+        // 押したときのアニメーションの再生中でない
+        // チュートリアルがあるとき、押してもいい状態である
+        if (isPushButtonPressed && !wasPushButtonPressed && isPush && PushObj && !animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01") && isTutoPushOK)
         {
             float Distance = 100.0f;
             Vector3 pos = PlayerObj.transform.position;
@@ -137,13 +149,16 @@ public class M_PlayerPush : MonoBehaviour
             Push(PushObj);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) || (isPushButtonPressed && !wasPushButtonPressed))
+        if (isTutoPushOK)
         {
-            // 風のアニメーションが再生中で鳴ければ風を起こす
-            if (!isWindAnim)
+            if (Input.GetKeyDown(KeyCode.Return) || (isPushButtonPressed && !wasPushButtonPressed))
             {
-                StartCoroutine(IEAnimDlay(fDlayAnim));
-                audioSource.PlayOneShot(ac);
+                // 風のアニメーションが再生中で鳴ければ風を起こす
+                if (!isWindAnim)
+                {
+                    StartCoroutine(IEAnimDlay(fDlayAnim));
+                    audioSource.PlayOneShot(ac);
+                }
             }
         }
 

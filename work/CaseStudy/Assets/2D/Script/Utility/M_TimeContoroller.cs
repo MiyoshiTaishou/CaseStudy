@@ -42,6 +42,8 @@ public class M_TimeContoroller : MonoBehaviour
 
     private bool isFunction = true;
 
+    private bool isFinish = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -63,31 +65,44 @@ public class M_TimeContoroller : MonoBehaviour
             initZoom = cameraCom.orthographicSize;
 
             PlayerObj = GameObject.Find("Player");
+            PlayerObj.transform.GetChild(0).GetComponent<M_PlayerPush>().SetOKPush(false);
 
             gameObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 
             init = true;
         }
 
-        //特定の行動をしたときに消す
-        if(Input.GetAxis(actionName) > 0.5 && isTouch)
+        if (!isFinish && isTouch)
         {
-            Time.timeScale = 1.0f;
-            isReverse = true;
-            time = 0.0f;
+            bool pushOK = panel.GetComponent<M_ControllerAnimation>().GetStartPush();
 
-            isTouch = false;
-            // スロウの機能をoffにする
-            isFunction = false;
+            // チュートリアルのパネルがloopになっているか
+            if (pushOK)
+            {
+                // 風を生み出せるようにする
+                PlayerObj.transform.GetChild(0).GetComponent<M_PlayerPush>().SetOKPush(true);
+            }
 
-            panel.GetComponent<M_ControllerAnimation>().SetPushBool(true);
-            isReverse = true;
+            //特定の行動をしたときに消す
+            if (Input.GetAxis(actionName) > 0.5 && isTouch && pushOK)
+            {
+                Time.timeScale = 1.0f;
+                isReverse = true;
+                time = 0.0f;
 
-            PlayerObj.GetComponent<M_PlayerMove>().enabled = true;
-            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
-            PlayerObj.GetComponent<N_ProjecterSympathy>().enabled = true;
+                isTouch = false;
+                // スロウの機能をoffにする
+                isFunction = false;
 
-            //Destroy(this.gameObject);            
+                panel.GetComponent<M_ControllerAnimation>().SetPushBool(true);
+                isReverse = true;
+
+                PlayerObj.GetComponent<M_PlayerMove>().enabled = true;
+                //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+                PlayerObj.GetComponent<N_ProjecterSympathy>().enabled = true;
+
+                //Destroy(this.gameObject);            
+            }
         }
 
         //ズーム処理
