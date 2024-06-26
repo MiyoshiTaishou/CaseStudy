@@ -1,98 +1,121 @@
-#if UNITY_EDITOR
-using UnityEditor.Rendering.LookDev;
-#endif
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class M_PauseButtonSelect : MonoBehaviour
 {
-    public Button[] buttons; // UIボタンの配列
+    [Header("シーンごとに表示する画像")]
+    public GameObject[] sceneImages; // シーンごとのボタンのリスト
+
     private int currentIndex = 0; // 現在選択中のボタンのインデックス
+
+    [Header("トランジション"), SerializeField]
+    private GameObject tran;
+
     private bool stickMoved = false; // スティックが動いたかどうかのフラグ
-    private EventSystem eventSystem; // EventSystemの参照
 
-    private void Start()
+    [Header("オンオフの画像を入れる"), SerializeField]
+    private Sprite[] OnOff;
+
+    bool isOnce = false;   
+
+    // Start is called before the first frame update
+    void Start()
     {
-        // EventSystemの参照を取得
-        eventSystem = EventSystem.current;
+        //M_GameMaster.SetGameClear(false);
+        //M_GameMaster.SetGamePlay(false);
 
-        // 新しいボタンを選択       
-        buttons[currentIndex].Select();
-        buttons[currentIndex].image.color = Color.green; // 新しいボタンの色を変更
+        sceneImages[0].GetComponent<Image>().sprite = OnOff[1];
     }
 
+    // Update is called once per frame
     void Update()
     {
         if (M_GameMaster.GetGamePlay())
         {
-            // ポーズ画面が表示されていない場合はEventSystemを無効化
-            if (eventSystem)
-            {
-                eventSystem.enabled = false;
-            }
             return;
         }
-        else
+
+            //int count = 0;
+
+            //foreach (var scene in sceneImages)
+            //{
+            //    if (currentIndex != count)
+            //    {
+            //        scene.GetComponent<M_ImageEasing>().Resset();
+            //    }
+            //    count++;
+            //}
+
+        float verticlainput = Input.GetAxisRaw("Vertical"); // 縦方向のスティック入力を取得
+
+        if (verticlainput > 0.5f && !stickMoved)
         {
-            // ポーズ画面が表示されている場合はEventSystemを有効化
-            if (eventSystem)
-            {
-                eventSystem.enabled = true;
-            }
+            Debug.Log("傾けた");
+            SelectImage(currentIndex - 1); // 右方向に移動したら次のボタンを選択
+            stickMoved = true; // スティックが動いたフラグを立てる
+        }
+        else if (verticlainput < -0.5f && !stickMoved)
+        {
+            SelectImage(currentIndex + 1); // 左方向に移動したら前のボタンを選択
+            stickMoved = true; // スティックが動いたフラグを立てる
+        }
+        else if (verticlainput == 0)
+        {
+            stickMoved = false; // スティックが中立位置に戻ったらフラグをリセット
         }
 
-        Debug.Log("ポーズボタンセレクト" + M_GameMaster.GetGamePlay());
-        if (!M_GameMaster.GetGamePlay())
+        if (Input.GetButtonDown("SympathyButton"))
         {
-            float verticalInput = Input.GetAxisRaw("Horizontal"); // 横方向のスティック入力を取得
-
-            if (verticalInput > 0.5f && !stickMoved)
-            {
-                SelectButton(currentIndex + 1); // 右方向に移動したら前のボタンを選択
-                stickMoved = true; // スティックが動いたフラグを立てる
-            }
-            else if (verticalInput < -0.5f && !stickMoved)
-            {
-                SelectButton(currentIndex - 1); // 左方向に移動したら次のボタンを選択
-                stickMoved = true; // スティックが動いたフラグを立てる
-            }
-            else if (verticalInput == 0)
-            {
-                stickMoved = false; // スティックが中立位置に戻ったらフラグをリセット
-            }
-
-            if (Input.GetButtonDown("SympathyButton"))
-            {
-                Debug.Log("ボタン押したよ");
-                PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
-            }
+            PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
         }
     }
 
-    void SelectButton(int newIndex)
+    void SelectImage(int newIndex)
     {
         // インデックスが範囲外の場合はインデックスをループさせる
         if (newIndex < 0)
         {
-            newIndex = buttons.Length - 1;
+            return;
         }
-        else if (newIndex >= buttons.Length)
+        else if (newIndex >= sceneImages.Length)
         {
-            newIndex = 0;
+            return;
         }
 
         // 現在のボタンの選択を解除
-        buttons[currentIndex].image.color = Color.white; // 現在のボタンの色を元に戻す
+        //sceneImages[currentIndex].GetComponent<M_ImageEasing>().Resset();
+        sceneImages[currentIndex].GetComponent<Image>().sprite = OnOff[currentIndex * 2];
 
         // 新しいボタンを選択
         currentIndex = newIndex;
-        buttons[currentIndex].Select();
-        buttons[currentIndex].image.color = Color.green; // 新しいボタンの色を変更
+
+        //sceneImages[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+        //sceneImages[currentIndex].GetComponent<M_OutLine>().OutLineOn();
+        sceneImages[currentIndex].GetComponent<Image>().sprite = OnOff[currentIndex * 2 + 1];
     }
 
     void PressSelectedButton()
     {
-        buttons[currentIndex].onClick.Invoke(); // 選択中のボタンを押す
+        switch (currentIndex)
+        {
+            case 0:
+                this.GetComponent<M_Pause>().PauseOnOff();
+                break;
+
+            case 1:
+                tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
+                tran.GetComponent<M_TransitionList>().SetRe(true);
+                tran.GetComponent<M_TransitionList>().LoadScene();
+                break;
+            case 2:
+                tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);                
+                tran.GetComponent<M_TransitionList>().LoadScene();
+                break;
+            case 3:
+                //オプションのやつ
+                break;
+        }      
     }
 }

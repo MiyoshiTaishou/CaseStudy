@@ -81,4 +81,41 @@ public class M_Pause : MonoBehaviour
             M_GameMaster.SetGamePlay(!isPaused);
         }
     }
+
+    public void PauseOnOff()
+    {
+        foreach (var item in m_PauseList)
+        {
+            if (item.GetComponent<M_ImageEasing>())
+            {
+                if (isPaused)
+                {
+                    item.GetComponent<M_ImageEasing>().SetReverse(true);
+                }
+                else
+                {
+                    item.GetComponent<M_ImageEasing>().SetReverse(false);
+                }
+
+                item.GetComponent<M_ImageEasing>().EasingOnOff();
+            }
+            else
+            {
+                if (isPaused)
+                {
+                    item.GetComponent<M_ObjectEasing>().SetReverse(true);
+                }
+                else
+                {
+                    item.GetComponent<M_ObjectEasing>().SetReverse(false);
+                }
+
+                item.GetComponent<M_ObjectEasing>().EasingOnOff();
+            }
+        }
+
+        isPaused = !isPaused;
+
+        M_GameMaster.SetGamePlay(!isPaused);
+    }
 }
