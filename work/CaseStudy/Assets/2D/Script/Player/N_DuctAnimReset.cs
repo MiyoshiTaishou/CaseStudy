@@ -25,8 +25,13 @@ public class N_DuctAnimReset : MonoBehaviour
         }
     }
 
-    private void ResetAnim()
+    private void ResetDuctIn()
     {
         animator.SetBool("duct", false);
+    }
+
+    private void ResetDuctLeave()
+    {
+        animator.SetBool("ductFinish", false);
     }
 }
