@@ -77,6 +77,11 @@ public class M_PauseButtonSelect : MonoBehaviour
         {
             PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
         }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            this.GetComponent<M_Pause>().PauseOnOff();
+        }
     }
 
     void SelectImage(int newIndex)
