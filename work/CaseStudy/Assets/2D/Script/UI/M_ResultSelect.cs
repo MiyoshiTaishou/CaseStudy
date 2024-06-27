@@ -19,6 +19,8 @@ public class M_ResultSelect : MonoBehaviour
     private Sprite[] OnOff;
 
     bool isOnce = false;
+
+    private N_PlaySound sound;
   
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,9 @@ public class M_ResultSelect : MonoBehaviour
         {
             sceneImages[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
             sceneImages[currentIndex].GetComponent<M_OutLine>().OutLineOn();
+
+            sound = GameObject.Find("Sound").GetComponent<N_PlaySound>();
+
 
             isOnce = true;
         }
@@ -64,6 +69,11 @@ public class M_ResultSelect : MonoBehaviour
         else if (horizontalInput == 0)
         {
             stickMoved = false; // スティックが中立位置に戻ったらフラグをリセット
+        }
+
+        if (horizontalInput != 0 && !stickMoved)
+        {
+            sound.PlaySound(N_PlaySound.SEName.CursorMove);
         }
 
         if (Input.GetButtonDown("SympathyButton"))

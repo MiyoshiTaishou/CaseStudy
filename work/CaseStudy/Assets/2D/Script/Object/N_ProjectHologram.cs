@@ -234,7 +234,7 @@ public class N_ProjectHologram : MonoBehaviour
                 }
                 if (MeowingPrefab)
                 {
-                    MeowingObj = Instantiate(MeowingPrefab, transform.position, Quaternion.identity);
+                    MeowingObj = Instantiate(MeowingPrefab, Sprite.transform.position, Quaternion.identity);
                 }
                 if (audioclip)
                 {

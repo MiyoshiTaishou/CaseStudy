@@ -75,6 +75,11 @@ public class N_PostProcess : MonoBehaviour
 
     private void Vignette()
     {
+        if(EnemyRoot == null)
+        {
+            return;
+        }
+
         int searchNum = 0;
         // 子オブジェクト（エネミーマネージャー）の状態を見る
         foreach(Transform child in EnemyRoot.transform)

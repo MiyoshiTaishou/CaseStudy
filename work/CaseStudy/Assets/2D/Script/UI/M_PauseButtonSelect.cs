@@ -22,6 +22,9 @@ public class M_PauseButtonSelect : MonoBehaviour
 
     private GameObject Player;
 
+    private N_PlaySound sound;
+    private bool init = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,13 @@ public class M_PauseButtonSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!init)
+        {
+            sound = GameObject.Find("Sound").GetComponent<N_PlaySound>();
+
+            init = true;
+        }
+
         if (M_GameMaster.GetGamePlay())
         {
             Player.GetComponent<N_ProjecterSympathy>().enabled = true;
@@ -73,6 +83,11 @@ public class M_PauseButtonSelect : MonoBehaviour
             stickMoved = false; // スティックが中立位置に戻ったらフラグをリセット
         }
 
+        if(verticlainput != 0 && !stickMoved)
+        {
+            sound.PlaySound(N_PlaySound.SEName.CursorMove);
+        }
+
         if (Input.GetButtonDown("SympathyButton"))
         {
             PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
@@ -80,6 +95,7 @@ public class M_PauseButtonSelect : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel"))
         {
+            sound.PlaySound(N_PlaySound.SEName.Cansel);
             this.GetComponent<M_Pause>().PauseOnOff();
         }
     }
@@ -114,6 +130,7 @@ public class M_PauseButtonSelect : MonoBehaviour
         {
             case 0:
                 this.GetComponent<M_Pause>().PauseOnOff();
+                sound.PlaySound(N_PlaySound.SEName.Decide);
                 break;
 
             case 1:
