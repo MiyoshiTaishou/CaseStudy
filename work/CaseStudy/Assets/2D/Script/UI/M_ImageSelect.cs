@@ -27,6 +27,9 @@ public class M_ImageSelect : MonoBehaviour
     [Header("トランジション"), SerializeField]
     private GameObject tran;
 
+    [Header("タイトルトランジション"), SerializeField]
+    private GameObject tranT;
+
     [Header("スライド"), SerializeField]
     private GameObject sla;
 
@@ -198,6 +201,14 @@ public class M_ImageSelect : MonoBehaviour
 
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(false);
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Debug.Log(currentIndex + "どのステージか");
+            Debug.Log(sceneIndex + "どの面か");
+            tranT.GetComponent<M_TransitionList>().SetIndex(0);                                 
+            tranT.GetComponent<M_TransitionList>().LoadScene();
         }
 
         if (Input.GetButtonDown("RButton"))
