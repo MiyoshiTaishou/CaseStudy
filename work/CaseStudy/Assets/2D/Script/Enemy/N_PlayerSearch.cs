@@ -41,7 +41,6 @@ public class N_PlayerSearch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!init)
         {
             // 親オブジェクト取得
@@ -192,12 +191,12 @@ public class N_PlayerSearch : MonoBehaviour
                 if(hit.collider.gameObject.CompareTag("Player"))
                 {
                     S_Respawn.SetIsFounded(true);
-                    Debug.Log("みつかった");
+                    //Debug.Log("みつかった");
                 }
                 else
                 {
                     S_Respawn.SetIsFounded(false);
-                    Debug.Log("みつかってない");
+                    //Debug.Log("みつかってない");
                 }
             }
             else if(hit.collider.gameObject.CompareTag("Ground"))
@@ -207,7 +206,7 @@ public class N_PlayerSearch : MonoBehaviour
                 isSearch = false;
                 //isRaycast = false;
                 S_Respawn.SetIsFounded(false);
-                Debug.Log("みつかってない");
+                //Debug.Log("みつかってない");
             }
             else
             {
