@@ -344,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 1396957527884846907, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
       propertyPath: buttons.Array.data[1]
       value: 
-      objectReference: {fileID: 43340531}
+      objectReference: {fileID: 0}
     - target: {fileID: 1396957527884846909, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -457,28 +457,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1396957527884846909, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
   m_PrefabInstance: {fileID: 43340529}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &43340531 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1396957527290944527, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
-  m_PrefabInstance: {fileID: 43340529}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &43340532 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1396957528364440041, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
-  m_PrefabInstance: {fileID: 43340529}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &43340533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,9 +469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec943e7749ca13b439a30692d4547a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 43340532}
-  - {fileID: 43340531}
+  sceneImages: []
+  tran: {fileID: 0}
+  OnOff: []
 --- !u!224 &43340534 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1396957527884846906, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
@@ -3426,6 +3404,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1431353920}
     - target: {fileID: 7306978478793255908, guid: 67313088727ece947ba09eac521086e9, type: 3}
+      propertyPath: tilemap
+      value: 
+      objectReference: {fileID: 143135408}
+    - target: {fileID: 7306978478793255908, guid: 67313088727ece947ba09eac521086e9, type: 3}
       propertyPath: StartObj
       value: 
       objectReference: {fileID: 1334504115}
@@ -5630,6 +5612,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1449033580}
     m_Modifications:
+    - target: {fileID: 4537308620011867318, guid: 7c95b1b7069c66341bc26ebe5b2d0f2c, type: 3}
+      propertyPath: EnemyRoot
+      value: 
+      objectReference: {fileID: 486586977}
     - target: {fileID: 7461009736470124189, guid: 7c95b1b7069c66341bc26ebe5b2d0f2c, type: 3}
       propertyPath: m_RootOrder
       value: 7
