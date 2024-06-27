@@ -226,6 +226,7 @@ public class N_EnemyManager : MonoBehaviour
 
         if(Parent == null)
         {
+            Debug.Log("おやおおおおおおおおおおおおおおおおお");
             return;
         }
 
@@ -596,9 +597,6 @@ public class N_EnemyManager : MonoBehaviour
 
     private void ChaseInit()
     {
-        Debug.Log("Add");
-        postProcess.AddSerachNum();
-
         managerState = ManagerState.CHASE;
     }
 
@@ -672,9 +670,6 @@ public class N_EnemyManager : MonoBehaviour
             Target = null;
             managerState = ManagerState.PATOROL;
             ElapsedLostSightTime = 0.0f;
-            Debug.Log("Sub");
-
-            postProcess.SubSerachNum();
 
             // クエスチョンマーク非表示
             foreach (var obj in TeamMembers)
@@ -717,6 +712,11 @@ public class N_EnemyManager : MonoBehaviour
             TargetTrans = Target.GetComponent<Transform>();
             managerState = ManagerState.FOUND;
         }
+    }
+
+    public N_EnemyManager.ManagerState GetManagerState()
+    {
+        return managerState;
     }
 
     // 除名
