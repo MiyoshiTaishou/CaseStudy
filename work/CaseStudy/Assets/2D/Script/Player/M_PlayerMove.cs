@@ -101,6 +101,8 @@ public class M_PlayerMove : MonoBehaviour
 
     private GameObject staminacanvas;
 
+    private GameObject DuctMana;
+
     //スタミナを全回復する関数
     public void FullStamina() 
     {
