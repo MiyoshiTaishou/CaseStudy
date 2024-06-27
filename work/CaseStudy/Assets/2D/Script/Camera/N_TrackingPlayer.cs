@@ -121,9 +121,8 @@ public class N_TrackingPlayer : MonoBehaviour
     }
 
     // =================================================================================
-
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         // カメラコンポーネント取得
         MainCamera = this.gameObject.GetComponent<Camera>();
