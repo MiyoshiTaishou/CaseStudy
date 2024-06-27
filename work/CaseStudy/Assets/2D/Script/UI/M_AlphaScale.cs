@@ -22,6 +22,9 @@ public class M_AlphaScale : MonoBehaviour
 
     private bool isStart = false;
 
+    [Header("ハンコの音鳴らす用"), SerializeField]
+    private N_PlaySound sound;
+
     private void Start()
     {
         image = GetComponent<Image>();
@@ -30,7 +33,8 @@ public class M_AlphaScale : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+
         if(!isStart)
         {
             StartCoroutine(Wait());
@@ -64,6 +68,7 @@ public class M_AlphaScale : MonoBehaviour
         Debug.Log("待機中");
         // 指定秒数待機
         yield return new WaitForSeconds(m_Scale);
+        sound.PlaySound(N_PlaySound.SEName.Stamp);
 
         Debug.Log("待機終了");
         isStart = true;

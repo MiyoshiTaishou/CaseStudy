@@ -67,6 +67,8 @@ public class M_TransitionList : MonoBehaviour
 
     public void SetRe(bool _isRe) {  isRe = _isRe; }
 
+    public N_PlaySound sound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +81,7 @@ public class M_TransitionList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (isTransition)
         {
             if (pause)
@@ -106,6 +109,8 @@ public class M_TransitionList : MonoBehaviour
         if (!once)
         {
             isTransition = true;
+            sound.PlaySound(N_PlaySound.SEName.Transition);
+
             M_GameMaster.SetGamePlay(true);
 
             fTime = 0.0f;
