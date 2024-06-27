@@ -18,7 +18,9 @@ public class M_PauseButtonSelect : MonoBehaviour
     [Header("オンオフの画像を入れる"), SerializeField]
     private Sprite[] OnOff;
 
-    bool isOnce = false;   
+    bool isOnce = false;
+
+    private GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,8 @@ public class M_PauseButtonSelect : MonoBehaviour
         //M_GameMaster.SetGamePlay(false);
 
         sceneImages[0].GetComponent<Image>().sprite = OnOff[1];
+
+        Player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -34,19 +38,22 @@ public class M_PauseButtonSelect : MonoBehaviour
     {
         if (M_GameMaster.GetGamePlay())
         {
+            Player.GetComponent<N_ProjecterSympathy>().enabled = true;
             return;
         }
 
-            //int count = 0;
+        //int count = 0;
 
-            //foreach (var scene in sceneImages)
-            //{
-            //    if (currentIndex != count)
-            //    {
-            //        scene.GetComponent<M_ImageEasing>().Resset();
-            //    }
-            //    count++;
-            //}
+        //foreach (var scene in sceneImages)
+        //{
+        //    if (currentIndex != count)
+        //    {
+        //        scene.GetComponent<M_ImageEasing>().Resset();
+        //    }
+        //    count++;
+        //}
+
+        Player.GetComponent<N_ProjecterSympathy>().enabled = false;
 
         float verticlainput = Input.GetAxisRaw("Vertical"); // 縦方向のスティック入力を取得
 
