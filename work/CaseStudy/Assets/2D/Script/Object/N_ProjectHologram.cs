@@ -60,6 +60,15 @@ public class N_ProjectHologram : MonoBehaviour
     [Header("壁の根元スプライト"), SerializeField]
     private Sprite rootSprite_2;
 
+    [Header("プレイヤーブラベリスプライト"), SerializeField]
+    private Sprite PlayerSprite;
+
+    [Header("壁ブラベリスプライト"), SerializeField]
+    private Sprite WallSprite;
+
+    [Header("床ブラベリスプライト"), SerializeField]
+    private Sprite FloorSprite;
+
     //[Header("プロジェクター起動時に出す演出"), SerializeField]
     //private GameObject projectionUI;
 
@@ -88,6 +97,10 @@ public class N_ProjectHologram : MonoBehaviour
 
     //プレイヤーホログラム初期位置
     Vector2 InitHoloPos;
+
+    private GameObject Sprite;
+
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -119,6 +132,9 @@ public class N_ProjectHologram : MonoBehaviour
         // 初期化されてなければ
         if (!isInit)
         {
+            Sprite = transform.GetChild(0).gameObject;
+            spriteRenderer = Sprite.GetComponent<SpriteRenderer>();
+
             // インスペクターでマスに合わせると指定した時
             if (AutoCombine)
             {
@@ -138,16 +154,6 @@ public class N_ProjectHologram : MonoBehaviour
 
             //Debug.Log("プロジェクター初期化");
         }
-        //if (gameObject.name == "Projecter (8)")
-        //{
-        //    if (Input.GetKeyDown(KeyCode.L))
-        //    {
-        //        //N_DebugDisplay.pos = sc_col.transform.position;
-        //        //N_DebugDisplay.size = size;
-        //        GenerateHologram();
-        //        //N_DebugDisplay.offset = offset;
-        //    }
-        //}
 
         if (isReset)
         {
@@ -163,6 +169,7 @@ public class N_ProjectHologram : MonoBehaviour
 
             // ホログラム生成
             GenerateHologram();
+
 
             isActive = false;
             isReset = false;
@@ -191,7 +198,7 @@ public class N_ProjectHologram : MonoBehaviour
 
                 if (MeowingPrefab)
                 {
-                    MeowingObj = Instantiate(MeowingPrefab, transform.position, Quaternion.identity);
+                    MeowingObj = Instantiate(MeowingPrefab, Sprite.transform.position, Quaternion.identity);
                 }
                 if (audioclip)
                 {
@@ -249,9 +256,8 @@ public class N_ProjectHologram : MonoBehaviour
         float dirX = 1.0f;
         float dirY = 1.0f;
 
-        Vector3 sca = Prefab.transform.localScale;
-        
-        
+        Vector3 sca = Prefab.transform.localScale;    
+
         // ホログラムの開始地点調整
         switch (HoloDirection)
         {
@@ -307,6 +313,7 @@ public class N_ProjectHologram : MonoBehaviour
             InitHoloPos = obj.transform.position;
             // リスト追加
             Hologram.Add(obj);
+
             
         }
 
@@ -325,9 +332,9 @@ public class N_ProjectHologram : MonoBehaviour
                         break;
 
                     case HOLOGRAM_DIRECTION.DOWN:
-                        renderer = Hologram[iHowMany].GetComponent<SpriteRenderer>();
+                        renderer = Hologram[iHowMany-1].GetComponent<SpriteRenderer>();
                         renderer.sprite = rootSprite_1;
-                        renderer = Hologram[iHowMany - 1].GetComponent<SpriteRenderer>();
+                        renderer = Hologram[iHowMany - 2].GetComponent<SpriteRenderer>();
                         renderer.sprite = rootSprite_2;
 
                         break;
@@ -407,14 +414,23 @@ public class N_ProjectHologram : MonoBehaviour
                 iHowMany = 1;
                 // 当たり判定が必要か
                 sc_col.SetIsColliding(false);
+                // プレイヤーのスプライトにする
+                spriteRenderer.sprite = PlayerSprite;
+                Sprite.transform.localPosition = new Vector3(0.0f, -0.8f, 0.0f);
                 break;
 
             case HOLOGRAM_MODE.WALL:
                 sc_col.SetIsColliding(true);
+                // 壁用のスプライトにする
+                spriteRenderer.sprite = WallSprite;
+                Sprite.transform.localPosition = new Vector3(0.0f, -0.8f, 0.0f);
                 break;
 
             case HOLOGRAM_MODE.FLOOR:
                 sc_col.SetIsColliding(true);
+                // 床用のスプライトにする
+                spriteRenderer.sprite = FloorSprite;
+                Sprite.transform.localPosition = new Vector3(0.55f, 0.3f, 0.0f);
                 break;
 
             case HOLOGRAM_MODE.TRANS:
@@ -430,10 +446,12 @@ public class N_ProjectHologram : MonoBehaviour
         {
             case HOLOGRAM_DIRECTION.LEFT:
                 trans_Projecter.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+                spriteRenderer.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
                 break;
 
             case HOLOGRAM_DIRECTION.RIGHT:
                 trans_Projecter.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+                spriteRenderer.transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
                 break;
         }
     }
