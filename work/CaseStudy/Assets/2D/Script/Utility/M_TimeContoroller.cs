@@ -126,15 +126,14 @@ public class M_TimeContoroller : MonoBehaviour
         //”½“]ˆ—
         if(isReverse)
         {
+            cameraCom.orthographicSize = cameraCom.orthographicSize + Time.deltaTime * zoomRatio;
+            time += Time.deltaTime;
             if (time > camZoom)
             {
                 time = 0.0f;
-                isReverse = false;
                 cameraCom.orthographicSize = initZoom;
+                isReverse = false;
             }
-
-            cameraCom.orthographicSize = cameraCom.orthographicSize + Time.deltaTime * zoomRatio;
-            time += Time.deltaTime;
         }
 
         wasPushButtonPressed = isPushButtonPressed;
