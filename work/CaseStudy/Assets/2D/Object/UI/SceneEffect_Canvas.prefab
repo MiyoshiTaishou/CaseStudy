@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 2828518647509115732}
   - component: {fileID: 2828518647509115735}
   - component: {fileID: 2828518647509115734}
+  - component: {fileID: 6220436715783058090}
   m_Layer: 5
   m_Name: SceneEffect_Panel
   m_TagString: Untagged
@@ -200,6 +201,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6220436715783058090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828518647509115728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea97962b07628954ca79208a49d682e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ease: 0
+  isInOut: 1
+  sceneName:
+  - scenes:
+    - M_ResultScene
+    - 
+    - M_SelectSceneNo2
+  duration: 1
+  sound: {fileID: 0}
 --- !u!1 &2828518648377193337
 GameObject:
   m_ObjectHideFlags: 0

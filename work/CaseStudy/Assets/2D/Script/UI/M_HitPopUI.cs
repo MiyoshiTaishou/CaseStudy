@@ -19,7 +19,7 @@ public class M_HitPopUI : MonoBehaviour
     {
         hitPopUI.SetActive(false);
 
-        ClearUI = GameObject.Find("TransitionClear");
+        ClearUI = GameObject.Find("SceneEffect_Panel");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,6 +52,7 @@ public class M_HitPopUI : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
 
         // シーンをロード
-        ClearUI.GetComponent<M_Transition>().LoadScene();
+        ClearUI.GetComponent<M_TransitionList>().SetIndex(0);
+        ClearUI.GetComponent<M_TransitionList>().LoadScene();
     }
 }

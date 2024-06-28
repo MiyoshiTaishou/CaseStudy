@@ -134,11 +134,14 @@ public class M_PlayerMove : MonoBehaviour
         fStamina = fStaminaMax;
 
         //UIを探す
-        StaminaImage = GameObject.Find("StaminaBar").GetComponent<Image>();
-        StaminaColor = StaminaImage.color;
+        GameObject obj = GameObject.Find("StaminaBar");        
+        if (obj)
+        {
+            StaminaImage = obj.GetComponent<Image>();
+            StaminaColor = StaminaImage.color;
+        }
 
-        staminacanvas = GameObject.Find("StaminaBarBack");
-
+        staminacanvas = GameObject.Find("StaminaBarBack");        
         // 子オブジェクトの中から、アニメーターを取得
         animator = gameObject.transform.GetChild(3).GetComponent<Animator>();
         Debug.Log(animator);
@@ -317,8 +320,11 @@ public class M_PlayerMove : MonoBehaviour
                 isNowDash = true;
                 animator.SetBool("glider", true);
                 animator.SetBool("run", false);
-                StaminaImage.gameObject.SetActive(true);
-                staminacanvas.SetActive(true);
+                if (StaminaImage)
+                {
+                    StaminaImage.gameObject.SetActive(true);
+                    staminacanvas.SetActive(true);
+                }
             }
             else
             {
@@ -387,8 +393,11 @@ public class M_PlayerMove : MonoBehaviour
         {
             fStamina = fStaminaMax;
             isStamina = true;
-            StaminaImage.gameObject.SetActive(false);
-            staminacanvas.SetActive(false);
+            if (StaminaImage)
+            {
+                StaminaImage.gameObject.SetActive(false);
+                staminacanvas.SetActive(false);
+            }
         }
 
         //スタミナを使い切ったか
@@ -407,6 +416,11 @@ public class M_PlayerMove : MonoBehaviour
     //UI関連の処理をする
     private void StaminaUIUpdate()
     {
+        if(!StaminaImage)
+        {
+            return;
+        }
+
         //UIの伸びを計算
         StaminaImage.fillAmount = fStamina / fStaminaMax;
 

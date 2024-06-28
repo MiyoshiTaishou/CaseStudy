@@ -99,6 +99,11 @@ public class M_TransitionList : MonoBehaviour
                     SceneManager.LoadScene(M_GameMaster.GetAfetrScene());
                     return;
                 }
+
+                if(sceneName.Count == 1)
+                {
+                    sceneIndex = 0;
+                }
                 SceneManager.LoadScene(sceneName[sceneIndex].scenes[index]);
             }           
         }       
