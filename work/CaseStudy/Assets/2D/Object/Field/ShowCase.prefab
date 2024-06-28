@@ -133,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPopUI: {fileID: 1105851647839387378}
   waitTime: 2
+  IsDisappear: 0
 --- !u!114 &5667778652657883682
 MonoBehaviour:
   m_ObjectHideFlags: 0
