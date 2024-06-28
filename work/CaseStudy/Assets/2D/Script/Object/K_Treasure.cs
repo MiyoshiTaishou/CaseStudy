@@ -34,6 +34,25 @@ public class K_Treasure : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // プレイヤーがぶつかってきたら
+        if (collision.transform.CompareTag("Player"))
+        {
+            //音鳴らす
+            if (audioclip)
+            {
+                Debug.Log("ちりんちりん");
+                AudioSource.PlayClipAtPoint(audioclip, transform.position);
+            }
+
+            Debug.Log("ぶつかってきた");
+
+            M_GameMaster.SetGameClear(true);
+            //Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // プレイヤーがぶつかってきたら
@@ -42,10 +61,13 @@ public class K_Treasure : MonoBehaviour
             //音鳴らす
             if (audioclip)
             {
+                Debug.Log("ちりんちりん");
                 AudioSource.PlayClipAtPoint(audioclip, transform.position);
             }
 
-            M_GameMaster.SetGameClear(true);            
+            Debug.Log("ぶつかってきた");
+
+            M_GameMaster.SetGameClear(true);
             Destroy(gameObject);
         }
     }

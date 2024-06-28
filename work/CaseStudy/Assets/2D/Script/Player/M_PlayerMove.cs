@@ -122,6 +122,9 @@ public class M_PlayerMove : MonoBehaviour
     
     private float fDelay = 0.01f;
 
+    private N_PlaySound sound;
+    private bool init = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -152,7 +155,14 @@ public class M_PlayerMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        if (!init)
+        {
+            sound = transform.GetChild(1).GetComponent<N_PlaySound>();
+
+            init = true;
+        }
+
         if(M_GameMaster.GetGameClear())
         {
             Vector2 vec = rbPlayer.velocity;
@@ -183,15 +193,19 @@ public class M_PlayerMove : MonoBehaviour
         //if(Input.GetButton("DashButton"))
         if(Input.GetAxis("DashButton") < 0)
         {
+            if (!isDash && fHorizontalInput != 0 && isStamina)
+            {
+                sound.PlaySound(N_PlaySound.SEName.Dash);
+                // ダッシュ用変数
+                isDash = true;
+            }
+
             if (!isNowTeleport && !ButtonTrigger)
             {
                 // テレポート用変数
                 isNowTeleport = true;
                 ButtonTrigger = true;
             }
-
-            // ダッシュ用変数
-            isDash = true;
         }
         else
         {
@@ -332,7 +346,6 @@ public class M_PlayerMove : MonoBehaviour
                 isNowDash = false;
                 animator.SetBool("glider", false);
                 animator.SetBool("run", false);
-
             }
         }
         else
@@ -405,6 +418,7 @@ public class M_PlayerMove : MonoBehaviour
         {
             fStamina = 0;
             isStamina = false;
+            isDash = false;
         }
 
         if (_forizontal == 0.0f && Input.GetAxis("DashButton") == 0)
