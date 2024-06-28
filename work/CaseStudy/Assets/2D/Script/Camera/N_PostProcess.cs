@@ -49,6 +49,8 @@ public class N_PostProcess : MonoBehaviour
 
         vignette.intensity.value = 0.0f;
 
+        EnemyRoot = GameObject.Find("Enemy");
+
         isInit = true;
     }
 

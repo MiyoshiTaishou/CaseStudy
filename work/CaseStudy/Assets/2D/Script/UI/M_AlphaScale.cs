@@ -21,6 +21,7 @@ public class M_AlphaScale : MonoBehaviour
     private Image image;
 
     private bool isStart = false;
+    private bool isSound = false;
 
     [Header("ハンコの音鳴らす用"), SerializeField]
     private N_PlaySound sound;
@@ -41,7 +42,7 @@ public class M_AlphaScale : MonoBehaviour
             return;
         }
 
-        Debug.Log(fTime);
+        //Debug.Log(fTime);
         if (fTime > fAlphaTime)
         {
             fTime = fAlphaTime;           
@@ -58,7 +59,7 @@ public class M_AlphaScale : MonoBehaviour
         float t = fTime / fAlphaTime;
         float easedValue = M_Easing.GetEasingMethod(ease)(t);
 
-        Debug.Log(easedValue + "透過度");
+        //Debug.Log(easedValue + "透過度");
 
         image.color = new Color(image.color.r, image.color.g, image.color.b, easedValue);
     }
@@ -68,8 +69,12 @@ public class M_AlphaScale : MonoBehaviour
         Debug.Log("待機中");
         // 指定秒数待機
         yield return new WaitForSeconds(m_Scale);
-        sound.PlaySound(N_PlaySound.SEName.Stamp);
 
+        if (!isSound)
+        {
+            isSound = true;
+            sound.PlaySound(N_PlaySound.SEName.Stamp);
+        }
         Debug.Log("待機終了");
         isStart = true;
     }
