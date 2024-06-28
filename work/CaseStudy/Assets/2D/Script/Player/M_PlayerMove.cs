@@ -122,6 +122,7 @@ public class M_PlayerMove : MonoBehaviour
     
     private float fDelay = 0.01f;
 
+    [Header("ƒTƒEƒ“ƒh"), SerializeField]
     private N_PlaySound sound;
     private bool init = false;
 
@@ -158,8 +159,10 @@ public class M_PlayerMove : MonoBehaviour
     {
         if (!init)
         {
-            sound = transform.GetChild(1).GetComponent<N_PlaySound>();
-
+            if (sound == null)
+            {
+                sound = transform.GetChild(1).GetComponent<N_PlaySound>();
+            }
             init = true;
         }
 
