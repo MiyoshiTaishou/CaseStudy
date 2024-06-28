@@ -18,6 +18,7 @@ public class N_SetColliderOffSet : MonoBehaviour
     void Start()
     {
         BoxCol = ColObj.GetComponent<BoxCollider2D>();
+        BoxCol.tag = "Hologram";
     }
 
     // Update is called once per frame
