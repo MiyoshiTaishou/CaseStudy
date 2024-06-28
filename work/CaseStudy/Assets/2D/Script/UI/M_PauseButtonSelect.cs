@@ -10,7 +10,7 @@ public class M_PauseButtonSelect : MonoBehaviour
 
     private int currentIndex = 0; // 現在選択中のボタンのインデックス
 
-    [Header("トランジション"), SerializeField]
+    //[Header("トランジション"), SerializeField]
     private GameObject tran;
 
     private bool stickMoved = false; // スティックが動いたかどうかのフラグ
@@ -32,6 +32,8 @@ public class M_PauseButtonSelect : MonoBehaviour
         //M_GameMaster.SetGamePlay(false);
 
         sceneImages[0].GetComponent<Image>().sprite = OnOff[1];
+
+        tran = GameObject.Find("SceneEffect_Panel");
 
         Player = GameObject.Find("Player");
     }
