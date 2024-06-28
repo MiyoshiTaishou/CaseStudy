@@ -120,6 +120,8 @@ public class N_TrackingPlayer : MonoBehaviour
         return isWarp;
     }
 
+    public Tilemap GetTilemap() { return tilemap; }
+
     // =================================================================================
     // Start is called before the first frame update
     void OnEnable()
