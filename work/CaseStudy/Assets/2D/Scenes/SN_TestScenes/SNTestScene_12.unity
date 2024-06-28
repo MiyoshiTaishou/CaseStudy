@@ -1441,7 +1441,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[2].Array.data[2].x
-      value: 30
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[2].Array.data[2].y
@@ -1449,7 +1449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[2].Array.data[3].x
-      value: 30.000029
+      value: 29.000029
       objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_CompositePaths.m_Paths.Array.data[2].Array.data[3].y
@@ -2645,7 +2645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[2].Array.data[1].X
-      value: 300000000
+      value: 290000000
       objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[2].Array.data[1].Y
@@ -2653,7 +2653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[2].Array.data[2].X
-      value: 300000000
+      value: 290000000
       objectReference: {fileID: 0}
     - target: {fileID: 2773838742743219094, guid: 2a5518e067140c8409204defa0e93aa5, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[2].Array.data[2].Y
@@ -38400,6 +38400,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6220436715783058090, guid: 9475ca8365bd28b47aec08c10a477ebe, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 1163743845}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9475ca8365bd28b47aec08c10a477ebe, type: 3}
 --- !u!1 &626399034
@@ -40043,6 +40047,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
+--- !u!114 &1163743845 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4180283516749858400, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
+  m_PrefabInstance: {fileID: 1163743844}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78ca7d6cefb8854892c4b75671625a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1200584154 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 346455752079443109, guid: a134b1118bb701140a06a5805f0ca398, type: 3}

@@ -37371,6 +37371,7 @@ MonoBehaviour:
   easeCamOut: 0
   outDis: -6
   durationOut: 0.8
+  tilemap: {fileID: 0}
 --- !u!1001 &402292253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38333,6 +38334,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimationName: enemy_walk
+--- !u!114 &527536430 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4180283516749858400, guid: b40c85a2aafddac4fbb5d52c0f907d0b, type: 3}
+  m_PrefabInstance: {fileID: 724977821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78ca7d6cefb8854892c4b75671625a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &536520455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39365,6 +39377,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6220436715783058090, guid: 9475ca8365bd28b47aec08c10a477ebe, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 527536430}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9475ca8365bd28b47aec08c10a477ebe, type: 3}
 --- !u!1001 &894604182
