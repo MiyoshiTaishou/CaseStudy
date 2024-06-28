@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
-
+using UnityEngine.Tilemaps;
 public class M_CameraSlideIn : MonoBehaviour
 {
     [Header("カメラ移動のイージング関数"),SerializeField]
@@ -54,7 +54,18 @@ public class M_CameraSlideIn : MonoBehaviour
 
     private bool isOnce = false;
     private bool isOnce2 = false;
-   
+
+    [Header("タイルマップ"), SerializeField]
+    public Tilemap tilemap; // タイルマップ
+
+    private Vector2 minBounds;
+    private Vector2 maxBounds;
+    private float camHalfHeight;
+    private float camHalfWidth;
+
+    Vector3 startPos;
+    Vector3 endPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,9 +75,19 @@ public class M_CameraSlideIn : MonoBehaviour
         cam = GetComponent<Camera>();
         camZoom = cam.orthographicSize;
 
-        this.transform.position = new Vector3(StartObj.transform.position.x, StartObj.transform.position.y, camPosZ);
-
         M_GameMaster.SetGamePlay(false);
+
+
+        if (tilemap)
+        {
+            // タイルマップの範囲を計算
+            CalculateBounds();
+        }
+
+        startPos = new Vector3(StartObj.transform.position.x, StartObj.transform.position.y, camPosZ);
+        endPos = new Vector3(EndObj.transform.position.x, EndObj.transform.position.y, camPosZ);
+
+        this.transform.position = startPos;
     }
 
     // Update is called once per frame
@@ -91,6 +112,9 @@ public class M_CameraSlideIn : MonoBehaviour
                     M_GameMaster.SetGamePlay(true);
                 }
                 isOnce2 = true;
+
+                GetComponent<M_CameraSlideIn>().enabled = false;
+
             }
 
             EasingMove();
@@ -109,9 +133,28 @@ public class M_CameraSlideIn : MonoBehaviour
                 GetComponent<N_TrackingPlayer>().enabled = true;
                 M_GameMaster.SetGamePlay(true);
                 isOnce = true;
-
+                //cam.orthographicSize = camZoom;
+                GetComponent<M_CameraSlideIn>().enabled = false;
+                cam.orthographicSize = camZoom;
                 Debug.Log("今じゃ！");
             }
+        }
+        if(camZoom < cam.orthographicSize)
+        {
+            cam.orthographicSize = camZoom;
+        }
+
+        if (tilemap)
+        {
+            camHalfHeight = Camera.main.orthographicSize;
+            camHalfWidth = camHalfHeight * Camera.main.aspect;
+            if (this.transform.position.y <= minBounds.y + camHalfHeight)
+            {
+                this.transform.position = new Vector3(this.transform.position.x, minBounds.y + camHalfHeight, this.transform.position.z);
+            }
+            Vector3 newPosition = this.transform.position;
+            float clampedX = Mathf.Clamp(newPosition.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
+            this.transform.position = new Vector3(clampedX, this.transform.position.y, this.transform.position.z);
         }
     }
 
@@ -122,8 +165,9 @@ public class M_CameraSlideIn : MonoBehaviour
              
         var func = M_Easing.GetEasingMethod(easeCamMove);
 
-        Vector3 startPos = new Vector3(StartObj.transform.position.x, StartObj.transform.position.y, camPosZ);
-        Vector3 endPos = new Vector3(EndObj.transform.position.x, EndObj.transform.position.y, camPosZ);
+        //Vector3 startPos = new Vector3(StartObj.transform.position.x, StartObj.transform.position.y, camPosZ);
+        //Vector3 endPos = new Vector3(EndObj.transform.position.x, EndObj.transform.position.y, camPosZ);
+
         this.transform.position = startPos + (endPos - startPos) * func(t);
     }
 
@@ -135,5 +179,35 @@ public class M_CameraSlideIn : MonoBehaviour
         var func = M_Easing.GetEasingMethod(easeCamOut);
 
         cam.orthographicSize = camZoom - outDis * func(t);
+    }
+
+    void CalculateBounds()
+    {
+        // 初期値を非常に大きな/小さな値に設定
+        Vector3Int minCell = new Vector3Int(int.MaxValue, int.MaxValue, int.MaxValue);
+        Vector3Int maxCell = new Vector3Int(int.MinValue, int.MinValue, int.MinValue);
+
+        // タイルマップのすべてのセルをチェック
+        foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+        {
+            if (tilemap.HasTile(pos))
+            {
+                if (pos.x < minCell.x) minCell.x = pos.x;
+                if (pos.y < minCell.y) minCell.y = pos.y;
+                if (pos.z < minCell.z) minCell.z = pos.z;
+
+                if (pos.x > maxCell.x) maxCell.x = pos.x;
+                if (pos.y > maxCell.y) maxCell.y = pos.y;
+                if (pos.z > maxCell.z) maxCell.z = pos.z;
+            }
+        }
+
+        // タイルマップの左下端と右上端のワールド座標を計算
+        Vector3 minWorld = tilemap.CellToWorld(minCell);
+        Vector3 maxWorld = tilemap.CellToWorld(maxCell) + tilemap.cellSize;
+
+        // オフセットを追加してカメラがステージ外を映さないようにする
+        minBounds = new Vector2(minWorld.x, minWorld.y);
+        maxBounds = new Vector2(maxWorld.x, maxWorld.y);
     }
 }

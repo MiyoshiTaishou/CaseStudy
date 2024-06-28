@@ -130,6 +130,7 @@ MonoBehaviour:
   UpDownSpeed: 5
   fShakingRange: 3
   IsDisplayBreakNum: 1
+  TextOffset: {x: 0, y: 0}
   Eff_Explosion: {fileID: 8111725552830047418, guid: 8d36c3d409370a8439501b8136e2785c, type: 3}
   Eff_BrokenPiece: {fileID: 3817280387306558789, guid: 0df61ab047c28cf4fab24e547f14bc94, type: 3}
   GenerateNum: 30
@@ -193,7 +194,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -100
   m_TargetDisplay: 0
 --- !u!114 &5446433195462574661
 MonoBehaviour:

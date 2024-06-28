@@ -17,6 +17,9 @@ public class N_PostProcess : MonoBehaviour
     [Header("何秒かけて最大値まで行くか"), SerializeField]
     private float VignetteTime = 1.0f;
 
+    [Header("マネージャーを束ねるオブジェクト"), SerializeField]
+    private GameObject EnemyRoot;
+
     private bool AddVignette = true;
 
     private Volume postVolume;
@@ -72,7 +75,31 @@ public class N_PostProcess : MonoBehaviour
 
     private void Vignette()
     {
-        if (SearchManagerNum > 0)
+        if(EnemyRoot == null)
+        {
+            return;
+        }
+
+        int searchNum = 0;
+        // 子オブジェクト（エネミーマネージャー）の状態を見る
+        foreach(Transform child in EnemyRoot.transform)
+        {
+            GameObject obj = child.gameObject;
+            N_EnemyManager mana = obj.GetComponent<N_EnemyManager>();
+            if (mana == null)
+            {
+                continue;
+            }
+            N_EnemyManager.ManagerState state = mana.GetManagerState();
+
+            if (state == N_EnemyManager.ManagerState.CHASEINIT ||
+                state == N_EnemyManager.ManagerState.CHASE)
+            {
+                searchNum++;
+            }
+        }
+
+        if (searchNum > 0)
         {
             // 追跡状態なので画面にエフェクトをかける
             if (AddVignette)

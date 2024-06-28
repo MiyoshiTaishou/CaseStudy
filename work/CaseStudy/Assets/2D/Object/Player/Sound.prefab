@@ -143,5 +143,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SEInfo:
   - seName: 0
-    SEPlayTime: 2.2
+    SEPlayTime: 1
     audioClip: {fileID: 8300000, guid: e748f2f7229dc4142aa39f3cbd0c2601, type: 3}
+  - seName: 1
+    SEPlayTime: 0.5
+    audioClip: {fileID: 8300000, guid: d3312882a1b6cef47a738bb523626e59, type: 3}
+  - seName: 2
+    SEPlayTime: 0.15
+    audioClip: {fileID: 8300000, guid: e075f2a90eeec3e45a6d369b2b90dd62, type: 3}
+  - seName: 3
+    SEPlayTime: 0.7
+    audioClip: {fileID: 8300000, guid: 417f1fd65a8ab7342911c36c952384c2, type: 3}
+  - seName: 4
+    SEPlayTime: 3
+    audioClip: {fileID: 8300000, guid: c1c71554465bc1144a8b7e8a827a853e, type: 3}
+  - seName: 5
+    SEPlayTime: 0.5
+    audioClip: {fileID: 8300000, guid: e6453d096933fda42a0fae912ae4c20c, type: 3}
+  - seName: 6
+    SEPlayTime: 0.5
+    audioClip: {fileID: 8300000, guid: 469e747c0990fb045ba977b49599ef34, type: 3}

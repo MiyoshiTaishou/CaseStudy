@@ -15,10 +15,13 @@ public class M_TimeContoroller : MonoBehaviour
 
     private GameObject panel;
 
-    [Header("カメラのズーム距離"), SerializeField]
+    [Header("カメラのズーム時間"), SerializeField]
     private float camZoom = 1.0f;
 
-    private float time = 0.0f;
+    [Header("ズーム倍率"), SerializeField]
+    private float zoomRatio = 1.0f;
+
+    public float time = 0.0f;
 
     //ズームするかフラグ
     private bool isZoom = false;
@@ -28,77 +31,122 @@ public class M_TimeContoroller : MonoBehaviour
     private bool isTouch = false;
 
     //初期カメラズーム距離
-    private float initZoom;
+    public float initZoom;
 
     /// <summary>
     /// プレイヤー
     /// </summary>
     private GameObject PlayerObj;
 
+    private bool init = false;
+
+    private bool isFunction = true;
+
+    private bool isFinish = false;
+
+    private bool wasPushButtonPressed = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.FindWithTag("MainCamera"); 
-        cameraCom = camera.GetComponent<Camera>();
-
-        panel = GameObject.Find("Tutorial_Panel");
-
-        time = 0.0f;
-
-        initZoom = cameraCom.orthographicSize;
-
-        PlayerObj = GameObject.Find("Player");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //特定の行動をしたときに消す
-        if(Input.GetAxis(actionName) > 0.5 && isTouch)
+        if (!init)
         {
-            Time.timeScale = 1.0f;
+            camera = GameObject.FindWithTag("MainCamera");
+            cameraCom = camera.GetComponent<Camera>();
+
+            panel = GameObject.Find("Tutorial_Panel");
+
             time = 0.0f;
 
-            panel.GetComponent<M_ControllerAnimation>().SetPushBool(true);
-            isReverse = true;
+            initZoom = cameraCom.orthographicSize;
 
-            PlayerObj.GetComponent<M_PlayerMove>().enabled = true;
-            //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
-            PlayerObj.GetComponent<N_ProjecterSympathy>().enabled = true;
+            PlayerObj = GameObject.Find("Player");
+            PlayerObj.transform.GetChild(0).GetComponent<M_PlayerPush>().SetOKPush(false);
 
-            Destroy(this.gameObject);            
+            gameObject.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+
+            init = true;
+        }
+        bool isPushButtonPressed = Input.GetAxis(actionName) > 0.5f;
+
+        if (!isFinish && isTouch)
+        {
+            bool pushOK = panel.GetComponent<M_ControllerAnimation>().GetStartPush();
+
+            // チュートリアルのパネルがloopになっているか
+            if (pushOK)
+            {
+                // 風を生み出せるようにする
+                PlayerObj.transform.GetChild(0).GetComponent<M_PlayerPush>().SetOKPush(true);
+            }
+
+            //特定の行動をしたときに消す
+            if (isPushButtonPressed && !wasPushButtonPressed && isTouch && pushOK)
+            {
+                Time.timeScale = 1.0f;
+                isReverse = true;
+                time = 0.0f;
+
+                isTouch = false;
+                // スロウの機能をoffにする
+                isFunction = false;
+
+                panel.GetComponent<M_ControllerAnimation>().SetPushBool(true);
+                isReverse = true;
+
+                PlayerObj.GetComponent<M_PlayerMove>().enabled = true;
+                //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
+                PlayerObj.GetComponent<N_ProjecterSympathy>().enabled = true;
+
+                isFinish = true;           
+            }
         }
 
         //ズーム処理
         if(isZoom)
         {
-            if (camZoom < time)
+            if (time > camZoom)
             {
-                time = camZoom;
+                time = 0.0f;
+
+                //cameraCom.orthographicSize = initZoom - camZoom;
                 isZoom = false;                 
             }
 
-            cameraCom.orthographicSize = cameraCom.orthographicSize - time;
-            time += Time.deltaTime;            
+            cameraCom.orthographicSize = cameraCom.orthographicSize - Time.deltaTime * zoomRatio;
+            time += Time.deltaTime;
         }       
 
         //反転処理
         if(isReverse)
         {
-            if (camZoom < time || initZoom > cameraCom.orthographicSize)
-            {
-                time = camZoom;
-                isReverse = false;
-                cameraCom.orthographicSize = initZoom;
-            }
-
-            cameraCom.orthographicSize = cameraCom.orthographicSize + time;
+            cameraCom.orthographicSize = cameraCom.orthographicSize + Time.deltaTime * zoomRatio;
             time += Time.deltaTime;
+            if (time > camZoom)
+            {
+                time = 0.0f;
+                cameraCom.orthographicSize = initZoom;
+                isReverse = false;
+            }
         }
+
+        wasPushButtonPressed = isPushButtonPressed;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!isFunction)
+        {
+            return;
+        }
+
         if (collision.CompareTag("Player"))
         {
             Time.timeScale = slowTime;                               
@@ -109,20 +157,10 @@ public class M_TimeContoroller : MonoBehaviour
             initZoom = cameraCom.orthographicSize;
 
             panel.GetComponent<M_ControllerAnimation>().SetPushBool(false);
-
+            PlayerObj.GetComponent<Rigidbody2D>().velocity = Vector3.zero;  // 動きとめる
             PlayerObj.GetComponent<M_PlayerMove>().enabled = false;
             //PlayerObj.GetComponent<M_PlayerThrow>().SetIsThrow(false);
             PlayerObj.GetComponent<N_ProjecterSympathy>().enabled = false;
-        }
-    }
-   
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Time.timeScale = 1.0f;
-            isReverse = true;
-            time = 0.0f;
         }
     }
 }

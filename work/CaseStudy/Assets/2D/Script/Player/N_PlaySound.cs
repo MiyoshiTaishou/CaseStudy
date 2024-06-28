@@ -9,6 +9,12 @@ public class N_PlaySound : MonoBehaviour
     public enum SEName
     {
         CrowCry,
+        Decide,
+        CursorMove,
+        OpenLetter,
+        Transition,
+        Cansel,
+        Stamp,
     };
 
     // seèÓïÒ
@@ -30,6 +36,8 @@ public class N_PlaySound : MonoBehaviour
 
     private AudioSource audioSource;
 
+    private bool isPlaying = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,12 +46,16 @@ public class N_PlaySound : MonoBehaviour
 
     public void PlaySound(SEName _name)
     {
+        if (isPlaying)
+        {
+            return;
+        }
         StartCoroutine(Play(_name));
     }
 
     public bool GetIsPlaying()
     {
-        return audioSource.isPlaying;
+        return isPlaying;/*audioSource.isPlaying;*/
     }
 
     IEnumerator Play(SEName _name)
@@ -64,10 +76,12 @@ public class N_PlaySound : MonoBehaviour
 
         // SEçƒê∂
         audioSource.PlayOneShot(SEInfo[num].audioClip);
+        isPlaying = true;
 
         yield return new WaitForSeconds(SEInfo[num].SEPlayTime);
 
         audioSource.Stop();
+        isPlaying = false;
         //Debug.Log("í‚é~");
     }
 }

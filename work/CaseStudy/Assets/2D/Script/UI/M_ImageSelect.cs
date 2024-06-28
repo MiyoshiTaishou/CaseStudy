@@ -27,6 +27,9 @@ public class M_ImageSelect : MonoBehaviour
     [Header("トランジション"), SerializeField]
     private GameObject tran;
 
+    [Header("タイトルトランジション"), SerializeField]
+    private GameObject tranT;
+
     [Header("スライド"), SerializeField]
     private GameObject sla;
 
@@ -44,6 +47,9 @@ public class M_ImageSelect : MonoBehaviour
 
     [Header("左右のLR画像"), SerializeField]
     private GameObject[] LRObject;
+
+    private bool init = false;
+    private N_PlaySound sound;
 
     private void Start()
     {
@@ -72,6 +78,14 @@ public class M_ImageSelect : MonoBehaviour
 
     void Update()
     {
+        // 初期化
+        if (!init)
+        {
+            sound = GameObject.Find("Sound").GetComponent<N_PlaySound>();
+
+            init = true;
+        }
+
         //左端まで来たらオブジェクトを消す
         if (sceneIndex == 0)
         {
@@ -131,14 +145,18 @@ public class M_ImageSelect : MonoBehaviour
         if (Input.GetButtonDown("SympathyButton"))
         {
             PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
+
+            //sound.PlaySound(N_PlaySound.SEName.Decide);
+
         }
 
-        if(Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
         {
             Debug.Log("挑戦状閉じる");
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(true);
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();           
             isChallenge = false;
+            sound.PlaySound(N_PlaySound.SEName.OpenLetter);
         }
 
         if (Input.GetButtonDown("Zoom"))
@@ -192,12 +210,28 @@ public class M_ImageSelect : MonoBehaviour
             stickMoved = false; // スティックが中立位置に戻ったらフラグをリセット
         }
 
+        if((horizontalInput != 0 || verticalInput != 0) && !stickMoved)
+        {
+            // カーソル移動SE
+            sound.PlaySound(N_PlaySound.SEName.CursorMove);
+        }
+
         if (Input.GetButtonDown("SympathyButton"))
         {
            isChallenge = true;
 
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(false);
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
+
+            sound.PlaySound(N_PlaySound.SEName.OpenLetter);
+        }
+
+        if (Input.GetButtonDown("Cancel"))
+        {
+            Debug.Log(currentIndex + "どのステージか");
+            Debug.Log(sceneIndex + "どの面か");
+            tranT.GetComponent<M_TransitionList>().SetIndex(0);                                 
+            tranT.GetComponent<M_TransitionList>().LoadScene();
         }
 
         if (Input.GetButtonDown("RButton"))
