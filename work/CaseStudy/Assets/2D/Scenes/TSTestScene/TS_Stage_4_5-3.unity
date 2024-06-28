@@ -190,6 +190,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Duct (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
 --- !u!4 &51606116 stripped
@@ -757,6 +769,7 @@ MonoBehaviour:
   easeCamOut: 0
   outDis: -3
   durationOut: 0.8
+  tilemap: {fileID: 0}
 --- !u!1001 &402292253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1420,6 +1433,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Duct (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
 --- !u!4 &440743535 stripped
@@ -1882,6 +1907,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Duct (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.r
+      value: 0.065951824
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
 --- !u!1 &789061745 stripped
@@ -1960,6 +1997,18 @@ PrefabInstance:
     - target: {fileID: 743277363613326453, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
       propertyPath: m_Name
       value: Duct (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
@@ -3617,6 +3666,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Duct (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
 --- !u!1 &1515227239 stripped
@@ -4504,6 +4565,18 @@ PrefabInstance:
     - target: {fileID: 743277363613326453, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
       propertyPath: m_Name
       value: Duct (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5923115337101464910, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9865e6f34cd3e142a99ced1e07092cd, type: 3}
