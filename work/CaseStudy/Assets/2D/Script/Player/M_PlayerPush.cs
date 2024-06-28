@@ -165,11 +165,13 @@ public class M_PlayerPush : MonoBehaviour
         //アニメーション再生中は動かないようにする
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("kaze01"))
         {
+            isWindAnim = true;
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(false);
             animator.SetBool("run", false);
         }
         else
         {
+            isWindAnim = false;
             PlayerObj.GetComponent<M_PlayerMove>().SetIsMove(true);
         }
 
