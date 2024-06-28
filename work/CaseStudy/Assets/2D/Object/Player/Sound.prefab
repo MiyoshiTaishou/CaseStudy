@@ -144,7 +144,7 @@ MonoBehaviour:
   SEInfo:
   - seName: 0
     SEPlayTime: 1
-    audioClip: {fileID: 8300000, guid: e748f2f7229dc4142aa39f3cbd0c2601, type: 3}
+    audioClip: {fileID: 8300000, guid: c5fa9a5d443d5524e840edb9628aac3a, type: 3}
   - seName: 1
     SEPlayTime: 0.5
     audioClip: {fileID: 8300000, guid: d3312882a1b6cef47a738bb523626e59, type: 3}
@@ -163,3 +163,6 @@ MonoBehaviour:
   - seName: 6
     SEPlayTime: 0.5
     audioClip: {fileID: 8300000, guid: 469e747c0990fb045ba977b49599ef34, type: 3}
+  - seName: 7
+    SEPlayTime: 0.9
+    audioClip: {fileID: 8300000, guid: 66c67c26ba29940499e07634faed294c, type: 3}
