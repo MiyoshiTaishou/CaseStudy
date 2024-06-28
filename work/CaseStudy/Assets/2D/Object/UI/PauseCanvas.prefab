@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3c5a9b68a1448854caebdb467c6ecca1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 728ee425717b3dd49be34195e0c9a9fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -250,11 +250,11 @@ MonoBehaviour:
   - {fileID: 2045366816213262844}
   OnOff:
   - {fileID: 21300000, guid: 858a058ff0835834ba91bac08416ed1b, type: 3}
-  - {fileID: 21300000, guid: 4e21bad6ae36fa34ea31ff98a2248ac8, type: 3}
+  - {fileID: 21300000, guid: cd3f1bdc537cb8149b0c9093723868ce, type: 3}
   - {fileID: 21300000, guid: 5c09098fa9080314bab166d0384aad9f, type: 3}
-  - {fileID: 21300000, guid: 67fb65ab11a60204a9bf349fcd6c8f71, type: 3}
+  - {fileID: 21300000, guid: 470638bc29142bd4e8d182be461e8d67, type: 3}
   - {fileID: 21300000, guid: ebc6945cdc6364842875d43c3e048852, type: 3}
-  - {fileID: 21300000, guid: 70f0e049ad278064fa34311aaba1511a, type: 3}
+  - {fileID: 21300000, guid: 78c362882e4bd3242a6df9690ebe1351, type: 3}
 --- !u!1 &2045366816213262844
 GameObject:
   m_ObjectHideFlags: 0
