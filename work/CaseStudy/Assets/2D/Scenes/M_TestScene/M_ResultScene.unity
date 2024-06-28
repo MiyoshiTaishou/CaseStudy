@@ -958,7 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1b49b58f6bc00429525f242ba0611c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Scale: 1
+  m_Scale: 1.25
   fAlphaTime: 1
   ease: 2
   sound: {fileID: 958718226}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc1b49b58f6bc00429525f242ba0611c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Scale: 1
+  m_Scale: 1.5
   fAlphaTime: 1
   ease: 2
   sound: {fileID: 1376695307}
