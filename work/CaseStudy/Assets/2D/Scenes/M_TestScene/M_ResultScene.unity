@@ -721,8 +721,7 @@ PrefabInstance:
       propertyPath: sound
       value: 
       objectReference: {fileID: 21651651}
-    m_RemovedComponents:
-    - {fileID: 6220436715783058090, guid: 9475ca8365bd28b47aec08c10a477ebe, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9475ca8365bd28b47aec08c10a477ebe, type: 3}
 --- !u!114 &1376695307 stripped
 MonoBehaviour:
