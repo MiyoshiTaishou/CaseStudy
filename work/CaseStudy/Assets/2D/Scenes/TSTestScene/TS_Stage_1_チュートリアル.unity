@@ -470,7 +470,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneImages: []
-  tran: {fileID: 0}
   OnOff: []
 --- !u!224 &43340534 stripped
 RectTransform:
@@ -5058,7 +5057,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 35.2, y: -51.6}
+  m_AnchoredPosition: {x: 35.19995, y: -51.599976}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1401353734
@@ -42630,6 +42629,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 996140984}
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_Pitch
       value: 0.8
       objectReference: {fileID: 0}
@@ -42640,7 +42643,11 @@ PrefabInstance:
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a92f0b44e9352474e8ce58edadda217f, type: 3}
+      objectReference: {fileID: 8300000, guid: f4e44509f4c70a84a8f099c057f5191e, type: 3}
+    - target: {fileID: 7487603992331043584, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7487603992331043584, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_Pitch
       value: 1.1
