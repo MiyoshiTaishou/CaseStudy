@@ -10,6 +10,9 @@ public class M_HitPopUI : MonoBehaviour
     [Header("‰æ–Ê‘JˆÚ‚ÌŠÔ"), SerializeField]
     private float waitTime = 2.0f;
 
+    [Header("—£‚ê‚½‚çÁ‚¦‚é‚©"), SerializeField]
+    private bool IsDisappear = true;
+
     /// <summary>
     /// ƒNƒŠƒAUI
     /// </summary>
@@ -32,14 +35,13 @@ public class M_HitPopUI : MonoBehaviour
 
             M_GameMaster.SetGamePlay(false);
             M_GameMaster.SetGameClear(true);
-
             StartCoroutine(WaitAndLoadScene());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && IsDisappear)
         {
             hitPopUI.GetComponent <M_ObjectEasing>().SetReverse(true);
             hitPopUI.GetComponent<M_ObjectEasing>().EasingOnOff();

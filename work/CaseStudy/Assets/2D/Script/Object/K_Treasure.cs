@@ -47,9 +47,27 @@ public class K_Treasure : MonoBehaviour
             }
 
             Debug.Log("‚Ô‚Â‚©‚Á‚Ä‚«‚½");
+            M_GameMaster.SetGameClear(true);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        // ƒvƒŒƒCƒ„[‚ª‚Ô‚Â‚©‚Á‚Ä‚«‚½‚ç
+        if (collision.transform.CompareTag("Player"))
+        {
+            //‰¹–Â‚ç‚·
+            if (audioclip)
+            {
+                Debug.Log("‚¿‚è‚ñ‚¿‚è‚ñ");
+                AudioSource.PlayClipAtPoint(audioclip, transform.position);
+            }
+
+            Debug.Log("‚Ô‚Â‚©‚Á‚Ä‚«‚½");
 
             M_GameMaster.SetGameClear(true);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -82,6 +100,7 @@ public class K_Treasure : MonoBehaviour
             {
                 AudioSource.PlayClipAtPoint(audioclip, transform.position);
             }
+            M_GameMaster.SetGameClear(true);
             Destroy(gameObject);
         }
     }
