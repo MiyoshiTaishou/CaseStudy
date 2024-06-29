@@ -42,7 +42,7 @@ public class M_Pause : MonoBehaviour
             }
         }        
 
-        if (Input.GetButtonDown("Pause") && !isStart)
+        if (Input.GetButtonDown("Pause") && !isStart && !m_PauseList[0].GetComponent<M_ImageEasing>().GetEasing())
         {
             //M_GameMaster.SetGamePlay(isPaused);           
 
@@ -82,8 +82,13 @@ public class M_Pause : MonoBehaviour
         }
     }
 
-    public void PauseOnOff()
+    public bool PauseOnOff()
     {
+        if(m_PauseList[0].GetComponent<M_ImageEasing>().GetEasing())
+        {
+            return false;
+        }
+
         foreach (var item in m_PauseList)
         {
             if (item.GetComponent<M_ImageEasing>())
@@ -117,5 +122,7 @@ public class M_Pause : MonoBehaviour
         isPaused = !isPaused;
 
         M_GameMaster.SetGamePlay(!isPaused);
+
+        return true;
     }
 }
