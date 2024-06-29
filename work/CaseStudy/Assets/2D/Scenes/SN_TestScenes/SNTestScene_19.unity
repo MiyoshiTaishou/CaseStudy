@@ -46336,6 +46336,10 @@ PrefabInstance:
       value: SwitchBGM
       objectReference: {fileID: 0}
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_Pitch
       value: 0.8
       objectReference: {fileID: 0}

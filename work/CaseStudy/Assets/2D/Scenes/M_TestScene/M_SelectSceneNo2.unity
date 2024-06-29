@@ -6952,6 +6952,10 @@ PrefabInstance:
       value: SwitchBGM
       objectReference: {fileID: 0}
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 428f73fbf73b67e4688bb550c228ee8c, type: 3}

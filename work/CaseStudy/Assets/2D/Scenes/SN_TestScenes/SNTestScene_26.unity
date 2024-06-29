@@ -48254,6 +48254,10 @@ PrefabInstance:
       value: SwitchBGM
       objectReference: {fileID: 0}
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_Pitch
       value: 0.8
       objectReference: {fileID: 0}
@@ -48264,7 +48268,7 @@ PrefabInstance:
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: a92f0b44e9352474e8ce58edadda217f, type: 3}
+      objectReference: {fileID: 8300000, guid: 23ecce347ce02e34f996d51b41bb3250, type: 3}
     - target: {fileID: 7487603992331043584, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_Pitch
       value: 1.1
