@@ -37670,6 +37670,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4953543047537782089, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
+      propertyPath: iBreakNum
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6139527433605741638, guid: 15800f9f6b319e848925f188d396e7e1, type: 3}
       propertyPath: iBreakNum
       value: 2
