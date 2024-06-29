@@ -94,7 +94,8 @@ public class M_TransitionList : MonoBehaviour
             // アニメーションが終了したかどうかをチェック
             if (stateInfo.normalizedTime >= 1.0f && stateInfo.IsName("SceneEnd"))
             {
-                if(isRe)
+                M_GameMaster.SetGamePlay(true);
+                if (isRe)
                 {
                     SceneManager.LoadScene(M_GameMaster.GetAfetrScene());
                     return;
@@ -114,9 +115,7 @@ public class M_TransitionList : MonoBehaviour
         if (!once)
         {
             isTransition = true;
-            sound.PlaySound(N_PlaySound.SEName.Transition);
-
-            M_GameMaster.SetGamePlay(true);
+            sound.PlaySound(N_PlaySound.SEName.Transition);         
 
             fTime = 0.0f;
 

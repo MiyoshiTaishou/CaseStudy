@@ -140,6 +140,7 @@ public class M_PauseButtonSelect : MonoBehaviour
                 break;
 
             case 1:
+                M_GameMaster.SetGamePlay(false);
                 tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
                 tran.GetComponent<M_TransitionList>().SetRe(true);
                 tran.GetComponent<M_TransitionList>().LoadScene();
