@@ -241,6 +241,8 @@ public class M_ImageSelect : MonoBehaviour
                 sla.GetComponent<M_SelectSlide>().Sub();
                 SelectScene(sceneIndex + 1); // Lボタンでシーンインデックスを減少
                 slideIndex--;
+                sound.PlaySound(N_PlaySound.SEName.StageChange);
+
             }
         }
 
@@ -251,6 +253,8 @@ public class M_ImageSelect : MonoBehaviour
                 sla.GetComponent<M_SelectSlide>().Add();
                 SelectScene(sceneIndex - 1); // Rボタンでシーンインデックスを増加
                 slideIndex++;
+                sound.PlaySound(N_PlaySound.SEName.StageChange);
+
             }
         }
 
