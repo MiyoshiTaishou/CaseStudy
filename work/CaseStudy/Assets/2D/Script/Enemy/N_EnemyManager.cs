@@ -98,7 +98,7 @@ public class N_EnemyManager : MonoBehaviour
     private ManagerState managerState = ManagerState.PATOROL;
 
     // 追跡対象の座標
-    private GameObject Target;
+    public GameObject Target;
     private Transform TargetTrans;
 
     private N_PostProcess postProcess;
@@ -469,6 +469,7 @@ public class N_EnemyManager : MonoBehaviour
                 obj.GetComponent<K_EnemyReaction>().AllSetFalse();
                 obj.transform.GetChild(2).GetComponent<Animator>().SetBool("dash", true);
             }
+            Target = null;
         }
 
         float dir = 1.0f;

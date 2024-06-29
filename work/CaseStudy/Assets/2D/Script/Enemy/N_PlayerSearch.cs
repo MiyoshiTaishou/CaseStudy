@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class N_PlayerSearch : MonoBehaviour
 {
-    private N_EnemyManager enemyManager;
+    public N_EnemyManager enemyManager;
     private SEnemyMove enemyMove;
     private S_EnemyBall enemyBall;
 
@@ -87,6 +87,7 @@ public class N_PlayerSearch : MonoBehaviour
                     isSearch = false;
                     isRaycast = false;
                     elapsedTime = 0.0f;
+                    Debug.Log("gomi");
                 }
 
                 if(Target.GetComponent<BoxCollider2D>().enabled == false)
@@ -95,6 +96,7 @@ public class N_PlayerSearch : MonoBehaviour
                     isRaycast = false;
                     elapsedTime = 0.0f;
                     isCheck = false;
+                    Debug.Log("kuso");
 
                 }
             }
@@ -178,13 +180,13 @@ public class N_PlayerSearch : MonoBehaviour
         // ï«Ç…ìñÇΩÇ¡ÇΩÇÁÇ»Ç…Ç‡Ç»Çµ
         if (hit.collider != null)
         {
-            //Debug.Log("ÉqÉbÉgÇµÇΩ");
+            Debug.Log("ÉqÉbÉgÇµÇΩ");
             elapsedTime = 0.0f;
             isCheck = true;
 
             if (hit.collider.gameObject.CompareTag("Player") || hit.collider.gameObject.CompareTag("Decoy"))
             {
-                //Debug.Log("ê⁄ìG");
+                Debug.Log("ê⁄ìG");
                 isSearch = true;
                 enemyManager.SetTarget(Target);
                 //isRaycast = false;
@@ -201,7 +203,7 @@ public class N_PlayerSearch : MonoBehaviour
             }
             else if(hit.collider.gameObject.CompareTag("Ground"))
             {
-                //Debug.Log("ï«åüím");
+                Debug.Log("ï«åüím");
 
                 isSearch = false;
                 //isRaycast = false;
@@ -210,12 +212,12 @@ public class N_PlayerSearch : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Ç»ÇÒÇ©à·Ç§Ç‡ÇÃ");
+                Debug.Log("Ç»ÇÒÇ©à·Ç§Ç‡ÇÃ");
             }
         }
         else
         {
-            //Debug.Log("ÉqÉbÉgÇ»Çµ");
+            Debug.Log("ÉqÉbÉgÇ»Çµ");
         }
     }
 
