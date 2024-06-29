@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 743277363613326346}
   - component: {fileID: 5628304561405529198}
   - component: {fileID: 5807493894746300693}
+  - component: {fileID: 2717864705592719590}
   m_Layer: 0
   m_Name: Duct
   m_TagString: Duct
@@ -178,7 +179,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 71a799312591f6942b070650cafb9a55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -435,6 +436,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2717864705592719590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743277363613326453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec58c00135f3a7c4395467843a530d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: -2
 --- !u!1 &3491355737713928790
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5835073747872285594}
   - component: {fileID: 5923115337101464910}
+  - component: {fileID: 8582297204546597777}
   m_Layer: 0
   m_Name: duct_ink
   m_TagString: Untagged
@@ -507,7 +522,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 0d1ef405206ebf241a353644739c44a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -519,3 +534,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8582297204546597777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3491355737713928790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec58c00135f3a7c4395467843a530d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: -1
