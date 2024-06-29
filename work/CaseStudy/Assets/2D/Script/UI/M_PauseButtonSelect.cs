@@ -97,8 +97,10 @@ public class M_PauseButtonSelect : MonoBehaviour
 
         if (Input.GetButtonDown("Cancel"))
         {
-            sound.PlaySound(N_PlaySound.SEName.Cansel);
-            this.GetComponent<M_Pause>().PauseOnOff();
+            if (this.GetComponent<M_Pause>().PauseOnOff())
+            {
+                sound.PlaySound(N_PlaySound.SEName.Cansel);
+            }
         }
     }
 
@@ -131,8 +133,10 @@ public class M_PauseButtonSelect : MonoBehaviour
         switch (currentIndex)
         {
             case 0:
-                this.GetComponent<M_Pause>().PauseOnOff();
-                sound.PlaySound(N_PlaySound.SEName.Decide);
+                if (this.GetComponent<M_Pause>().PauseOnOff())
+                {
+                    sound.PlaySound(N_PlaySound.SEName.Decide);
+                }
                 break;
 
             case 1:
