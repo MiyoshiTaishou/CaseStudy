@@ -14,7 +14,14 @@ public class M_Pause : MonoBehaviour
 
     [Header("ポーズ中に出すものを全てここに入れる"), SerializeField]
     private List<GameObject> m_PauseList = new List<GameObject>();
-   
+
+    private GameObject sound;
+
+    private void Start()
+    {
+        sound = GameObject.Find("Sound");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -79,6 +86,8 @@ public class M_Pause : MonoBehaviour
             isPaused = !isPaused;
 
             M_GameMaster.SetGamePlay(!isPaused);
+
+            sound.GetComponent<N_PlaySound>().PlaySound(N_PlaySound.SEName.OpenLetter);
         }
     }
 
@@ -122,6 +131,8 @@ public class M_Pause : MonoBehaviour
         isPaused = !isPaused;
 
         M_GameMaster.SetGamePlay(!isPaused);
+
+        sound.GetComponent<N_PlaySound>().PlaySound(N_PlaySound.SEName.OpenLetter);
 
         return true;
     }
