@@ -67,6 +67,10 @@ public class M_TransitionList : MonoBehaviour
 
     public void SetRe(bool _isRe) {  isRe = _isRe; }
 
+    private bool isEnd = false;
+
+    public void SetEnd(bool _isEnd) { isEnd = _isEnd; }
+
     public N_PlaySound sound;
 
     // Start is called before the first frame update
@@ -101,7 +105,16 @@ public class M_TransitionList : MonoBehaviour
                     return;
                 }
 
-                if(sceneName.Count == 1)
+                if(isEnd)
+                {
+#if UNITY_EDITOR
+                    UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+                    Application.Quit();//ゲームプレイ終了
+#endif
+                }
+
+                if (sceneName.Count == 1)
                 {
                     sceneIndex = 0;
                 }
