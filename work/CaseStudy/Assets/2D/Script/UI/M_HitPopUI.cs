@@ -35,7 +35,7 @@ public class M_HitPopUI : MonoBehaviour
 
             M_GameMaster.SetGamePlay(false);
             M_GameMaster.SetGameClear(true);
-            StartCoroutine(WaitAndLoadScene());
+            hitPopUI.GetComponent<LoadScript>().LoadScene();
         }
     }
 
@@ -45,13 +45,18 @@ public class M_HitPopUI : MonoBehaviour
         {
             hitPopUI.GetComponent <M_ObjectEasing>().SetReverse(true);
             hitPopUI.GetComponent<M_ObjectEasing>().EasingOnOff();
+            hitPopUI.GetComponent<LoadScript>().LoadScene();
         }
     }
 
     private IEnumerator WaitAndLoadScene()
     {
+        Debug.Log("ロード待ちです");
+
         // 指定秒数待機
         yield return new WaitForSeconds(waitTime);
+
+        Debug.Log("ロード完了");
 
         // シーンをロード
         ClearUI.GetComponent<M_TransitionList>().SetIndex(0);
