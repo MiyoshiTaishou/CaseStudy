@@ -79,7 +79,7 @@ public class SEnemyMove : MonoBehaviour
     // 隊列内での番号
     public int TeamNumber = 0;
 
-    private N_EnemyManager enemyManager;
+    public N_EnemyManager enemyManager;
 
     private Transform thisTrans;
 
