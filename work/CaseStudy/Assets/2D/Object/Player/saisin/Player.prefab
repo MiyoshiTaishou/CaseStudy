@@ -141,6 +141,7 @@ MonoBehaviour:
   CautionParcent: 40
   WarningColor: {r: 1, g: 0, b: 0, a: 1}
   WarningParcent: 20
+  sound: {fileID: 0}
 --- !u!114 &6035749312733321631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,6 +214,7 @@ GameObject:
   - component: {fileID: 220188541720041789}
   - component: {fileID: 5834728553195089092}
   - component: {fileID: 8814114799591839925}
+  - component: {fileID: 8965246913228575515}
   m_Layer: 0
   m_Name: T_idol_1
   m_TagString: Untagged
@@ -320,6 +322,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47e3d4a4643c16c4c83122413edb7869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8965246913228575515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5265588556653879650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec58c00135f3a7c4395467843a530d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer: 1
 --- !u!1 &6268105327750159728
 GameObject:
   m_ObjectHideFlags: 0
