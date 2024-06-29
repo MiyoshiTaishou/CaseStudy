@@ -22,11 +22,6 @@ public class N_TrackingPlayer : MonoBehaviour
     [Header("カメラの描画範囲"), SerializeField]
     private float fViewSize = 5;
 
-    /// <summary>
-    /// カメラの描画範囲
-    /// </summary>
-    [Header("エリアチェックするか"), SerializeField]
-    private bool isAreaCheck = true;
 
     /// <summary>
     /// カメラコンポーネント
@@ -179,24 +174,6 @@ public class N_TrackingPlayer : MonoBehaviour
                 WarpTracking();
                 break;
         }
-
-        //Debug.Log(_trackingmethod);
-
-        // 画面端が両方セットされていたら
-        if (bSet_LeftUp && bSet_RightDown && isAreaCheck)
-        {
-            // 範囲チェック
-            AreaCheck();
-        }
-
-        //// カメラが追従する対象の位置を取得
-        //Vector3 newPosition = trans_Target.position;
-        //
-        //// カメラの位置をステージの範囲内に制限
-        //float clampedX = Mathf.Clamp(newPosition.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
-        //float clampedY = Mathf.Clamp(newPosition.y, minBounds.y + camHalfHeight, maxBounds.y + camHalfHeight);
-        //
-        //CameraTransform.position = new Vector3(clampedX, clampedY, CameraTransform.position.z);
     }
 
     // 通常時の対象追跡
@@ -204,7 +181,6 @@ public class N_TrackingPlayer : MonoBehaviour
     {
         // 追跡対象の座標をカメラにセット
         CameraTransform.position = new Vector3(trans_Target.position.x, trans_Target.position.y, CameraTransform.position.z);
-
         if (tilemap)
         {
             if(CameraTransform.position.y<= minBounds.y + camHalfHeight)
@@ -249,6 +225,7 @@ public class N_TrackingPlayer : MonoBehaviour
         {
             if (CameraTransform.position.y <= minBounds.y + camHalfHeight)
             {
+                Debug.Log("caaaaaaaaaaaaaaaaaaaamy"+(minBounds.y + camHalfHeight));
                 CameraTransform.position = new Vector3(CameraTransform.position.x, minBounds.y + camHalfHeight, CameraTransform.position.z);
             }
             Vector3 newPosition = CameraTransform.position;
@@ -268,6 +245,7 @@ public class N_TrackingPlayer : MonoBehaviour
             BeforeWarpPos = Vector2.zero;
             isWarp = false;
         }
+        Debug.Log("caaaaaaaaaaaaaaaaaaaampos" + CameraTransform.position);
     }
 
     // 外部からワープ追跡時に必要なオブジェクトをセット
