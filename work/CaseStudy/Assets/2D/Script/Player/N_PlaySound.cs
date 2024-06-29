@@ -16,6 +16,7 @@ public class N_PlaySound : MonoBehaviour
         Cansel,
         Stamp,
         Dash,
+        StageChange,
     };
 
     // seî•ñ
