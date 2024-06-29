@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6699901702288102104}
   - component: {fileID: 6699901702288102106}
   - component: {fileID: 485637127620016124}
+  - component: {fileID: 476430486140449190}
   m_Layer: 0
   m_Name: StageClear
   m_TagString: Untagged
@@ -129,3 +130,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac84752e89e4c4247b4bff21cd86290a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &476430486140449190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6699901702288102105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c2528463511e14a8abe115544aa765, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 2
