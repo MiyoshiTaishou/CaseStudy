@@ -54,6 +54,11 @@ public class M_PauseButtonSelect : MonoBehaviour
             return;
         }
 
+        if(M_GameMaster.GetGameClear())
+        {
+            return;
+        }
+
         //int count = 0;
 
         //foreach (var scene in sceneImages)
