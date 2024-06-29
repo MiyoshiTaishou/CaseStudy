@@ -13,7 +13,7 @@ public class M_TitleButtonPopUp : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_Title.GetComponent<M_ButtonSelect>().enabled = false;
+        m_Title.GetComponent<M_TitleSelect>().enabled = false;
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class M_TitleButtonPopUp : MonoBehaviour
                 button.SetActive(true);
             }
 
-            m_Title.GetComponent<M_ButtonSelect>().enabled = true;
+            m_Title.GetComponent<M_TitleSelect>().enabled = true;
 
             this.gameObject.SetActive(false);
         }
