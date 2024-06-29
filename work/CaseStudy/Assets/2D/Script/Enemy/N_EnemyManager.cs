@@ -641,12 +641,16 @@ public class N_EnemyManager : MonoBehaviour
             TeamMembers[iMemberNum - 1].transform.GetChild(0).GetComponent<N_PlayerSearch>().GetIsSearch() == false)
         {
             managerState = ManagerState.LOSTSIGHT;
+            Debug.Log("こっち？");
         }
 
-        // プレイヤーがダクトに入ったら状態遷移
-        if (ductManager.GetNowDuct())
+        if (Target.name == "Player")
         {
-            managerState = ManagerState.LOSTSIGHT;
+            // プレイヤーがダクトに入ったら状態遷移
+            if (ductManager.GetNowDuct())
+            {
+                managerState = ManagerState.LOSTSIGHT;
+            }
         }
     }
 

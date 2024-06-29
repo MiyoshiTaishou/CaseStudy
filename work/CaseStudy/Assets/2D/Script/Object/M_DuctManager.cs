@@ -126,7 +126,7 @@ public class M_DuctManager : MonoBehaviour
 
         }
 
-        if (ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct") && !isMove && !isDuctIn && !isRockDuct)
+        if (ductDictionary.ContainsValue(true) && Input.GetButtonDown("Duct") && !isMove && !isDuctIn && !isRockDuct && !animator.GetBool("duct"))
         {           
             Debug.Log("ダクトを出た");
 

@@ -84,6 +84,8 @@ public class M_DuctWarp : MonoBehaviour
 
     private bool init = false;
 
+    private Animator animator;
+
     public bool GetisRock()
     {
         return isRock;
@@ -138,6 +140,9 @@ public class M_DuctWarp : MonoBehaviour
             {
                 isRock = true;
             }
+
+            animator = GameObject.Find("Player").transform.GetChild(3).GetComponent<Animator>();
+
             init = true;
         }
 
@@ -160,7 +165,7 @@ public class M_DuctWarp : MonoBehaviour
         }
 
         //入る処理
-        if (Input.GetButtonDown("Duct") && isTouch && M_GameMaster.GetGamePlay())
+        if (Input.GetButtonDown("Duct") && isTouch && M_GameMaster.GetGamePlay() && !animator.GetBool("ductFinish"))
         {
             //マネージャに自身のダクトにプレイヤーが入ったことを知らせる
             DuctManager.GetComponent<M_DuctManager>().SetContains(this.gameObject, true);
