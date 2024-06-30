@@ -24,7 +24,15 @@ public class M_CameraShake : MonoBehaviour
 
     private void Start()
     {
-        tilemap = GetComponent<N_TrackingPlayer>().GetTilemap();
+        if(GetComponent<N_TrackingPlayer>())
+        {
+            tilemap = GetComponent<N_TrackingPlayer>().GetTilemap();
+        }
+        else if(GetComponent<K_5_4Camera>())
+        {
+            tilemap = GetComponent<K_5_4Camera>().GetTilemap();
+        }
+
         if(tilemap)
         {
             CalculateBounds();

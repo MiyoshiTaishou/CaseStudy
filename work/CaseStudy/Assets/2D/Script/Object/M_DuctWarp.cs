@@ -68,7 +68,9 @@ public class M_DuctWarp : MonoBehaviour
     /// <summary>
     /// 対象追跡カメラスクリプト
     /// </summary>
-    private N_TrackingPlayer trackingPlayer;
+    private N_TrackingPlayer trackingPlayer=null;
+
+    private K_5_4Camera trackingPlayer2=null;
 
     private bool isReverse = false;
 
@@ -125,7 +127,23 @@ public class M_DuctWarp : MonoBehaviour
         UIObj.SetActive(false);
 
         // 20240407 二宮追記
-        trackingPlayer = GameObject.Find("Main Camera").GetComponent<N_TrackingPlayer>();
+        if (GameObject.Find("Main Camera").GetComponent<N_TrackingPlayer>())
+        {
+            trackingPlayer = GameObject.Find("Main Camera").GetComponent<N_TrackingPlayer>();
+        }
+        if(GameObject.Find("Main Camera").GetComponent<K_5_4Camera>())
+        {
+            trackingPlayer2 = GameObject.Find("Main Camera").GetComponent<K_5_4Camera>();
+        }
+
+        if (!trackingPlayer)
+        {
+            Debug.Log("NUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUL");
+        }
+        if (!trackingPlayer2)
+        {
+            Debug.Log("NUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUL");
+        }
 
         saveScale = transform.localScale;
     }
@@ -157,7 +175,14 @@ public class M_DuctWarp : MonoBehaviour
         }
 
         //ダクト移動中は処理しない
-        if (DuctManager.GetComponent<M_DuctManager>().GetIsMove() || trackingPlayer.GetisWarp())
+        if (trackingPlayer&&(DuctManager.GetComponent<M_DuctManager>().GetIsMove() || trackingPlayer.GetisWarp()))
+        {
+            // アニメーション完了後、元のスケールに戻す
+            transform.localScale = saveScale;
+            return;
+        }
+
+        if(trackingPlayer2&&(DuctManager.GetComponent<M_DuctManager>().GetIsMove() || trackingPlayer2.GetisWarp()))
         {
             // アニメーション完了後、元のスケールに戻す
             transform.localScale = saveScale;
@@ -268,7 +293,15 @@ public class M_DuctWarp : MonoBehaviour
         DuctManager.GetComponent<M_DuctManager>().SetIsMove(true);
 
         // 20240407 二宮追記
-        trackingPlayer.SetWarpInfo(_waitTime, _obj);
+        if(trackingPlayer)
+        {
+            trackingPlayer.SetWarpInfo(_waitTime, _obj);
+        }
+        else if (trackingPlayer2)
+        {
+            trackingPlayer2.SetWarpInfo(_waitTime, _obj);
+        }
+
 
         // 待機時間
         yield return new WaitForSeconds(_waitTime);
