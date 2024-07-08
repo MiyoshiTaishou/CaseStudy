@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.SceneManagement;
 
 public class K_BreakObject : MonoBehaviour
 {
@@ -125,6 +126,13 @@ public class K_BreakObject : MonoBehaviour
                 }
                 if (audioclip)
                 {
+                    // 新しい空のゲームオブジェクトを作成
+                    Debug.Log("再生オブジェクトを、生成ーッ!");
+                    GameObject newGameObject = new GameObject("BreakObbbj");
+                    // 位置を設定
+                    newGameObject.transform.position = transform.position;
+                    newGameObject.AddComponent<AudioSource>();
+                    newGameObject.GetComponent<AudioSource>().PlayOneShot(audioclip);
                     AudioSource.PlayClipAtPoint(audioclip, transform.position);
                 }
                 // 破片エフェクト生成
@@ -162,6 +170,13 @@ public class K_BreakObject : MonoBehaviour
                 }
                 if (audioclip)
                 {
+                    // 新しい空のゲームオブジェクトを作成
+                    Debug.Log("再生オブジェクトを、生成ーッ!");
+                    GameObject newGameObject = new GameObject("BreakObbbj");
+                    // 位置を設定
+                    newGameObject.transform.position = transform.position;
+                    newGameObject.AddComponent<AudioSource>();
+                    newGameObject.GetComponent<AudioSource>().PlayOneShot(audioclip);
                     AudioSource.PlayClipAtPoint(audioclip, transform.position);
                 }
                 // 破片エフェクト生成

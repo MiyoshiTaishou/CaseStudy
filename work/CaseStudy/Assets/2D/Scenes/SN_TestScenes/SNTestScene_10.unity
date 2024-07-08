@@ -40251,6 +40251,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 646626202}
     m_Modifications:
     - target: {fileID: -8649466034749069963, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
+      propertyPath: audioclip
+      value: 
+      objectReference: {fileID: 8300000, guid: cc1da36e7f603a547b36f09deec263cd, type: 3}
+    - target: {fileID: -8649466034749069963, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
       propertyPath: iBreakNum
       value: 6
       objectReference: {fileID: 0}
@@ -40272,7 +40276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1497359285853439718, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1497359285853439718, guid: ebfb7cf9a2f7e654aa4600c7080c0fcc, type: 3}
       propertyPath: m_LocalScale.x
