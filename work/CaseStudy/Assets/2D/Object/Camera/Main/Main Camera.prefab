@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 352634689714422694}
   - component: {fileID: 352634689714422697}
   - component: {fileID: 4672309635694192071}
+  - component: {fileID: 84624083799770887}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -137,7 +138,6 @@ MonoBehaviour:
   RightDpwn: {fileID: 0}
   Target: {fileID: 0}
   fViewSize: 5
-  isAreaCheck: 1
   warpTrackTime: 1.05
   tilemap: {fileID: 0}
 --- !u!114 &352634689714422697
@@ -165,3 +165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e9d68bb2591aa40b88e898c6a31969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showLogInGame: 0
+--- !u!114 &84624083799770887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352634689714422691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5745177349fb774c88427937bebd599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsMovableRStick: 1
