@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 0
-  duration: 1.2
+  duration: 0.8
   pos:
     isApply: 1
     ease: 23
@@ -388,7 +388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1800, y: -200}
+  m_AnchoredPosition: {x: 2500, y: -200}
   m_SizeDelta: {x: 663, y: 685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4991257140023841849
@@ -442,11 +442,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 0
-  duration: 0.6
+  duration: 0.78
   pos:
     isApply: 1
     ease: 23
-    amount: {x: -1400, y: 0, z: 0}
+    amount: {x: -2100, y: 0, z: 0}
   rot:
     isApply: 0
     ease: 0
@@ -568,7 +568,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1800, y: 200}
+  m_AnchoredPosition: {x: 2500, y: 200}
   m_SizeDelta: {x: 663, y: 685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6862284046320130385
@@ -622,11 +622,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 0
-  duration: 1
+  duration: 0.74
   pos:
     isApply: 1
     ease: 23
-    amount: {x: -1400, y: 0, z: 0}
+    amount: {x: -2100, y: 0, z: 0}
   rot:
     isApply: 0
     ease: 0
@@ -672,7 +672,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1800, y: 0}
+  m_AnchoredPosition: {x: 2500, y: 0}
   m_SizeDelta: {x: 663, y: 685}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5372402796092688783
@@ -726,11 +726,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLoop: 0
-  duration: 0.8
+  duration: 0.76
   pos:
     isApply: 1
     ease: 23
-    amount: {x: -1400, y: 0, z: 0}
+    amount: {x: -2100, y: 0, z: 0}
   rot:
     isApply: 0
     ease: 0
