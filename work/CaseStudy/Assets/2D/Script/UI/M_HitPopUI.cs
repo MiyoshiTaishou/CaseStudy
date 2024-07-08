@@ -41,12 +41,12 @@ public class M_HitPopUI : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && IsDisappear)
-        {
-            hitPopUI.GetComponent <M_ObjectEasing>().SetReverse(true);
-            hitPopUI.GetComponent<M_ObjectEasing>().EasingOnOff();
-            hitPopUI.GetComponent<LoadScript>().LoadScene();
-        }
+        //if (collision.CompareTag("Player") && IsDisappear)
+        //{
+        //    hitPopUI.GetComponent <M_ObjectEasing>().SetReverse(true);
+        //    hitPopUI.GetComponent<M_ObjectEasing>().EasingOnOff();
+        //    hitPopUI.GetComponent<LoadScript>().LoadScene();
+        //}
     }
 
     private IEnumerator WaitAndLoadScene()
