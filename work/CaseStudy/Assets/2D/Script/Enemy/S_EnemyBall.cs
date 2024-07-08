@@ -390,12 +390,35 @@ public class S_EnemyBall : MonoBehaviour
                 isBall = true;
 
                 //Destroy(GetComponent<N_PlayerSearch>());
-                fStickCnt++;
-                if (fStickCnt == 1)
+                //fStickCnt++;
+                //if (fStickCnt == 1)
+                //{
+                //    fStickCnt++;
+                //    transform.tag = "EnemyBall";
+                //}
+
+                if (fStickCnt == 0)
                 {
                     fStickCnt++;
                     transform.tag = "EnemyBall";
                 }
+
+                if (!colEnemyBall.GetisBall())
+                {
+                    Debug.Log("相手が玉ちゃう");
+
+                    fStickCnt++;
+                }
+                else if (colEnemyBall.GetisBall())
+                {
+                    Debug.Log(fStickCnt.ToString() + colEnemyBall.GetStickCount().ToString() + "=");
+
+                    fStickCnt += colEnemyBall.GetStickCount();
+
+                    Debug.Log(fStickCnt);
+
+                }
+
                 //吸収した敵の数に応じて巨大化
                 Vector3 nextScale = defaultScale;
                 float GiantLv = (float)GetGiantLv();
