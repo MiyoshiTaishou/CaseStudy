@@ -1586,11 +1586,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7487603991789896488, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.829956
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7487603991789896488, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2799683
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7487603991789896488, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1627,6 +1627,10 @@ PrefabInstance:
     - target: {fileID: 7487603991789896490, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_Name
       value: SwitchBGM
+      objectReference: {fileID: 0}
+    - target: {fileID: 7487603991789896491, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
+      propertyPath: fVolume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7487603991845837627, guid: ab3a700d949cf5c4c8b54611be3570ed, type: 3}
       propertyPath: m_audioClip
