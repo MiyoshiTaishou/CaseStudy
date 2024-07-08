@@ -287,7 +287,26 @@ public class S_EnemyBall : MonoBehaviour
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
         if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
-            if (!colEnemyBall.GetisPushing() ||
+            if (colEnemyBall.GetisPushing() && fStickCnt == colEnemyBall.GetStickCount()&&
+                transform.position.y>ColObject.transform.position.y)
+            {
+                fStickCnt += fStickCnt;
+                // 隊列から除名
+                colEnemyBall.DeleteMember();
+
+                Destroy(ColObject);
+                rb.AddForce(vel * fBoost, ForceMode2D.Impulse);
+                GetComponent<AudioSource>().PlayOneShot(audioclip);
+                GetComponent<AudioSource>().pitch += 0.2f;
+
+                StartCoroutine(HitStop());
+                StartCoroutine(M_Utility.GamePadMotor(fTime));
+                if (Eff_ClashPrefab != null)
+                {
+                    Eff_ClashObj = Instantiate(Eff_ClashPrefab, transform.position, Quaternion.identity);
+                }
+            }
+            else if (!colEnemyBall.GetisPushing() ||
                 (colEnemyBall.GetisPushing() && fStickCnt > colEnemyBall.GetStickCount()))
             {
                 if (Eff_RollingObj)
