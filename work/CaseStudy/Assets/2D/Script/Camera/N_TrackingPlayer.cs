@@ -115,6 +115,14 @@ public class N_TrackingPlayer : MonoBehaviour
         return isWarp;
     }
 
+    //プレイヤー追従？
+    private bool IsTrackingPlayer;
+    public void SetIsTrackingPlayer(bool _Flg) { IsTrackingPlayer = _Flg; }
+
+    //カメラ位置(プレイヤー追従)
+    private Vector3 TrackngCamPos;
+    public Vector3 GetTrackngCamPos() { return TrackngCamPos; }
+
     public Tilemap GetTilemap() { return tilemap; }
 
     // =================================================================================
@@ -157,7 +165,7 @@ public class N_TrackingPlayer : MonoBehaviour
             // タイルマップの範囲を計算
             CalculateBounds();
         }
-
+        IsTrackingPlayer = true;
     }
 
     // Update is called once per frame
@@ -174,22 +182,26 @@ public class N_TrackingPlayer : MonoBehaviour
                 WarpTracking();
                 break;
         }
+        if(IsTrackingPlayer)
+        {
+            CameraTransform.position = TrackngCamPos;
+        }
     }
 
     // 通常時の対象追跡
     private void NormalTracking()
     {
         // 追跡対象の座標をカメラにセット
-        CameraTransform.position = new Vector3(trans_Target.position.x, trans_Target.position.y, CameraTransform.position.z);
+        TrackngCamPos = new Vector3(trans_Target.position.x, trans_Target.position.y, CameraTransform.position.z);
         if (tilemap)
         {
-            if(CameraTransform.position.y<= minBounds.y + camHalfHeight)
+            if(TrackngCamPos.y<= minBounds.y + camHalfHeight)
             {
-                CameraTransform.position = new Vector3(CameraTransform.position.x, minBounds.y + camHalfHeight, CameraTransform.position.z);
+                TrackngCamPos = new Vector3(TrackngCamPos.x, minBounds.y + camHalfHeight, TrackngCamPos.z);
             }
-            Vector3 newPosition = CameraTransform.position;
+            Vector3 newPosition = TrackngCamPos;
             float clampedX = Mathf.Clamp(newPosition.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
-            CameraTransform.position = new Vector3(clampedX, CameraTransform.position.y, CameraTransform.position.z);
+            TrackngCamPos = new Vector3(clampedX, TrackngCamPos.y, TrackngCamPos.z);
         }
     }
 
@@ -216,21 +228,20 @@ public class N_TrackingPlayer : MonoBehaviour
         Vector2 moveVec = WarpTargetVec * warpElapsedTime / warpTrackTime;
 
         // カメラの移動
-        CameraTransform.position = new Vector3(
+        TrackngCamPos = new Vector3(
             BeforeWarpPos.x + moveVec.x,
             BeforeWarpPos.y + moveVec.y,
-            CameraTransform.position.z);
+            TrackngCamPos.z);
 
         if (tilemap)
         {
-            if (CameraTransform.position.y <= minBounds.y + camHalfHeight)
+            if (TrackngCamPos.y <= minBounds.y + camHalfHeight)
             {
-                Debug.Log("caaaaaaaaaaaaaaaaaaaamy"+(minBounds.y + camHalfHeight));
-                CameraTransform.position = new Vector3(CameraTransform.position.x, minBounds.y + camHalfHeight, CameraTransform.position.z);
+                TrackngCamPos = new Vector3(TrackngCamPos.x, minBounds.y + camHalfHeight, TrackngCamPos.z);
             }
-            Vector3 newPosition = CameraTransform.position;
+            Vector3 newPosition = TrackngCamPos;
             float clampedX = Mathf.Clamp(newPosition.x, minBounds.x + camHalfWidth, maxBounds.x - camHalfWidth);
-            CameraTransform.position = new Vector3(clampedX, CameraTransform.position.y, CameraTransform.position.z);
+            TrackngCamPos = new Vector3(clampedX, TrackngCamPos.y, TrackngCamPos.z);
         }
         // 終了処理
         if (warpElapsedTime >= warpTrackTime)
@@ -245,7 +256,6 @@ public class N_TrackingPlayer : MonoBehaviour
             BeforeWarpPos = Vector2.zero;
             isWarp = false;
         }
-        Debug.Log("caaaaaaaaaaaaaaaaaaaampos" + CameraTransform.position);
     }
 
     // 外部からワープ追跡時に必要なオブジェクトをセット
