@@ -329,7 +329,7 @@ public class M_ImageSelect : MonoBehaviour
 
     void PressSelectedButton()
     {
-        SEList[1].PlaySoundEffect(currentIndex + (sceneIndex * 6));
+        SEList[0].PlaySoundEffect(currentIndex + (sceneIndex * 6));
         Debug.Log(currentIndex + "どのステージか");
         Debug.Log(sceneIndex + "どの面か");
         tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
