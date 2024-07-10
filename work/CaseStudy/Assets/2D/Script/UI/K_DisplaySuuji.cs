@@ -14,12 +14,17 @@ public class K_DisplaySuuji : MonoBehaviour
     [Header("サイズ"), SerializeField]
     private float Size = 1;
 
-    public void SetSize(int _Size) { this.gameObject.transform.localScale *= Size; }
+    public void SetSize(int _Size) { Size = _Size; }
+
+    private int ChildCount;
+    private Vector3 InitSize;
 
     // Start is called before the first frame update
     void Start()
     {
         //コメント無くてごめんねー
+        ChildCount = 0;
+        InitSize = this.gameObject.transform.localScale;
         int num = Num;
         for(int i=0; num!=0; i++)
         {
@@ -29,15 +34,16 @@ public class K_DisplaySuuji : MonoBehaviour
             obj.name = i.ToString();
             obj.AddComponent<SpriteRenderer>();
             obj.GetComponent<SpriteRenderer>().sprite = Tex[num % 10];
+            ChildCount++;
             if (num/10 == 0)
             {
                 if(i==0)
                 {
-                    this.gameObject.transform.localScale *= Size;
+                    this.gameObject.transform.localScale = InitSize * Size;
                 }
                 else
                 {
-                    this.gameObject.transform.localScale = new Vector3(this.gameObject.transform.localScale.x * Size * 0.7f, this.gameObject.transform.localScale.y * Size, this.gameObject.transform.localScale.z * Size);
+                    this.gameObject.transform.localScale = new Vector3(InitSize.x * Size * 0.7f, InitSize.y * Size, InitSize.z * Size);
                 }
                 break;
             }
@@ -51,13 +57,31 @@ public class K_DisplaySuuji : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int ActiveNumCount = 0;
         int num = Num;
-        int ObjCount = this.transform.childCount;
-        for (int i = 0; i< ObjCount; i++)
+        for (int i = 0; i< ChildCount; i++)
         {
             GameObject obj = transform.GetChild(i).gameObject;
             obj.GetComponent<SpriteRenderer>().sprite = Tex[num % 10];
+            if(num<=0)
+            {
+                obj.SetActive(false);
+            }
+            else
+            {
+                ActiveNumCount++;
+                obj.SetActive(true);
+            }
             num = num / 10;
+        }
+
+        if(ActiveNumCount <= 1)
+        {
+            this.gameObject.transform.localScale = InitSize * Size;
+        }
+        else
+        {
+            this.gameObject.transform.localScale = new Vector3(InitSize.x * Size * 0.7f, InitSize.y * Size, InitSize.z * Size);
         }
     }
 }
