@@ -130,6 +130,7 @@ MonoBehaviour:
   UpDownSpeed: 1
   fShakingRange: 1
   IsDisplayBreakNum: 1
+  TextOffset: {x: 0, y: 0}
   Eff_Explosion: {fileID: 8111725552830047418, guid: 8d36c3d409370a8439501b8136e2785c, type: 3}
   Eff_BrokenPiece: {fileID: 0}
   GenerateNum: 30
@@ -267,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPopUI: {fileID: 5091131871375038105}
   waitTime: 2
+  IsDisappear: 1
 --- !u!114 &5424574020227745408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +668,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6699901702288102105, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
   m_PrefabInstance: {fileID: 1899815833309299776}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1633447328586832578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091131871375038105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000285e3aef214b43abaad6d49a0a460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - clip: {fileID: 8300000, guid: 388dfce8aef40b347ac0f534e8669d1b, type: 3}
+    probability: 100
 --- !u!224 &5290939224303020284 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5994486123124190396, guid: d72da451d37061447a74ec6cad6d8bcd, type: 3}
