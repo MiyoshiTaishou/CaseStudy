@@ -51,6 +51,8 @@ public class M_ImageSelect : MonoBehaviour
     private bool init = false;
     private N_PlaySound sound;
 
+    private M_SEPlay[] SEList;
+
     private void Start()
     {
         slideIndex = sceneImages.Count - 1;
@@ -74,6 +76,8 @@ public class M_ImageSelect : MonoBehaviour
         currentIndex = M_GameMaster.GetCurrentIndex();
         sceneIndex = M_GameMaster.GetSceneIndex();
         slideIndex = M_GameMaster.GetSlideIndex();
+
+        SEList=GetComponents<M_SEPlay>();
     }
 
     void Update()
@@ -318,12 +322,14 @@ public class M_ImageSelect : MonoBehaviour
         sceneImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
         sceneImages[sceneIndex].images[currentIndex].GetComponent<M_OutLine>().OutLineOn();
         MoveToFront(sceneImages[sceneIndex].images[currentIndex]);
+        SEList[1].PlaySoundEffect(sceneIndex);
 
         tran.GetComponent<M_TransitionList>().SetSceneIndex(sceneIndex);
     }
 
     void PressSelectedButton()
     {
+        SEList[1].PlaySoundEffect(currentIndex + (sceneIndex * 6));
         Debug.Log(currentIndex + "どのステージか");
         Debug.Log(sceneIndex + "どの面か");
         tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
