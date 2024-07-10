@@ -252,6 +252,26 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 34, y: -23, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 608
+      m_TileSpriteIndex: 608
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 35, y: -23, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 609
+      m_TileSpriteIndex: 609
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 37, y: -23, z: 0}
     second:
       serializedVersion: 2
@@ -7340,6 +7360,10 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 073aa439860947340be9bad88e695b92, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: c3d6218471680024aacb03b127d3e4ee, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: c6963807ad799f14c88ccf704036ea04, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 9b7b1042dd74a554eb9fd9af0227da7b, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: d85785795b737254a8cf2a4a96d58381, type: 3}
@@ -8557,8 +8581,12 @@ Tilemap:
     m_Data: {fileID: -500732433, guid: 629fbef8f1e1a7f479aa6ef002866477, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1354234601, guid: 629fbef8f1e1a7f479aa6ef002866477, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -1848936112, guid: d99632a365a8f2940a1aa3385c988429, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 725267133, guid: 5eb4f4135e46cd748830110a22effbb4, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 608
+  - m_RefCount: 610
     m_Data:
       e00: 1
       e01: 0
@@ -8577,7 +8605,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 608
+  - m_RefCount: 610
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
@@ -8705,7 +8733,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &574778877640815038
+--- !u!114 &5954677219950510133
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
