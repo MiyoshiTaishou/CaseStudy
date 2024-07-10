@@ -21,6 +21,7 @@ public class LoadScript : MonoBehaviour
     public void LoadScene()
     {
         StartCoroutine(WaitAndLoadScene());
+        GetComponent<M_RandomSEPlay>().PlayRandomSoundEffect();
     }
 
     private IEnumerator WaitAndLoadScene()
