@@ -41,8 +41,12 @@ public class M_RandomSEPlay : MonoBehaviour
         foreach (SoundEffect se in soundEffects)
         {
             cumulativeProbability += se.probability;
+
+            Debug.Log("ランダム値" + randomValue + "閾値" + cumulativeProbability);
+
             if (randomValue < cumulativeProbability)
             {
+                Debug.Log("ランダム再生");
                 audioSource.PlayOneShot(se.clip);
                 return;
             }

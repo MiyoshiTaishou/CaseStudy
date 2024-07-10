@@ -53,6 +53,9 @@ public class M_ImageSelect : MonoBehaviour
 
     private M_SEPlay[] SEList;
 
+    //ロード開始したらもう押せない
+    private bool LoadStart = false;
+
     private void Start()
     {
         slideIndex = sceneImages.Count - 1;
@@ -146,9 +149,10 @@ public class M_ImageSelect : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("SympathyButton"))
+        if (Input.GetButtonDown("SympathyButton") && !LoadStart)
         {
             PressSelectedButton(); // ボタンを押すボタンが押されたら選択中のボタンを押す
+            LoadStart = true;
 
             //sound.PlaySound(N_PlaySound.SEName.Decide);
 
