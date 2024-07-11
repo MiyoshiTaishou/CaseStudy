@@ -67,7 +67,9 @@ public class N_EnemyManager : MonoBehaviour
 
     // マネージャーの生成順
     private static int GenerateOrder = 0;
+
     // 生成順
+    [Header("生成順"),SerializeField]
     private int GenerateNumber = 0;
 
     public GameObject Parent;
@@ -448,11 +450,7 @@ public class N_EnemyManager : MonoBehaviour
             managerStatus.WaitTime = OldWaitTime;
         }
         IsRef = true;
-        if(isisWarped) //やばかったら消すシリーズ//////////////////////////////////////////////////////////////////////////////
-        {
-            managerState= _manager.managerState;
-            ElapsedTime=_manager.ElapsedTime;
-        }
+
         // 敵のいなくなったマネージャー削除
         Destroy(_manager.gameObject);
     }

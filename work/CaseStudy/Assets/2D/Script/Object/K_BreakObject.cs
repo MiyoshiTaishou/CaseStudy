@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEditor.SceneManagement;
 
 public class K_BreakObject : MonoBehaviour
 {
