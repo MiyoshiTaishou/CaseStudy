@@ -1617,8 +1617,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - clip: {fileID: 8300000, guid: 4b2954bcdd19d4848a8da7494e204094, type: 3}
   - clip: {fileID: 8300000, guid: 63327d4cbc42c34468a6b89af6c362d8, type: 3}
+  - clip: {fileID: 8300000, guid: 4b2954bcdd19d4848a8da7494e204094, type: 3}
 --- !u!1001 &2023779663
 PrefabInstance:
   m_ObjectHideFlags: 0
