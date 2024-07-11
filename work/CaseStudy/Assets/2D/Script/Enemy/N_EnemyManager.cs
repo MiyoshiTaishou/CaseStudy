@@ -237,15 +237,40 @@ public class N_EnemyManager : MonoBehaviour
         N_EnemyManager sc_mana = manager.AddComponent<N_EnemyManager>();
         sc_mana.SetMoveStatus(managerStatus);
         sc_mana.ChangeManagerState(ManagerState.PATOROL);
-        NewTeamIntaval = 0.0f;
 
-        Vector3 pos = Vector3.zero;
+        float compareFallTime = 0.0f;
+        foreach (var obj in TeamMembers)
+        {
+            // 隊列内の敵の落下時間を取得する
+            float time = obj.transform.GetChild(1).GetComponent<N_GroundCheck>().GetFallTime();
+            // 取得した時間が大きいものを保存する
+            if (time > compareFallTime)
+            {
+                compareFallTime = time;
+            }
+        }
+
+        if(compareFallTime >= 1.0f)
+        {
+            NewTeamIntaval = 0.0f;
+        }
+
+            Vector3 pos = Vector3.zero;
         int order = 0;
         // 敵の高さを取得
         foreach(var obj in TeamMembers)
         {
+            // 隊列内の敵の落下時間を取得する
+            float time = obj.transform.GetChild(1).GetComponent<N_GroundCheck>().GetFallTime();
+            // 取得した時間が大きいものを保存する
+            if (time > compareFallTime)
+            {
+                compareFallTime = time;
+            }
+
             if (IsMemberWarped() == null || (IsMemberWarped()!=null &&  IsMemberWarped() == obj))
             {
+
                 //Debug.Log("こいつううう～" + obj.name+"なんでや！？"+obj.GetComponent<SEnemyMove>().GetIsWarped());
                 // 最初の敵のY座標を元にする
                 if (order == 0)
@@ -275,12 +300,14 @@ public class N_EnemyManager : MonoBehaviour
                         //sc_mana.managerStatus.WaitTime = 0.001f;
                         sc_mana.managerStatus.WaitTime = OldWaitTime;
                     }
+
                     return;
                 }
 
                 // ある程度の範囲内の敵はチームに追加
                 if (obj.transform.position.y <= pos.y + 0.1f && obj.transform.position.y >= pos.y - 0.1f)
                 {
+
                     EcpulsionMember(obj.GetComponent<SEnemyMove>().GetTeamNumber(), managerState);
                     if (IsReflectionX == obj.GetComponent<SEnemyMove>().GetWarp().GetiswarpRight())
                     {
