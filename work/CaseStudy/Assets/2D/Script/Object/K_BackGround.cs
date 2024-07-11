@@ -31,7 +31,7 @@ public class K_BackGround : MonoBehaviour
         // カメラの半分の高さと幅を計算
         camHalfHeight = fViewSize;
         camHalfWidth = camHalfHeight * Camera.main.aspect;
-        Debug.Log(Camera.main.orthographicSize * Camera.main.aspect);
+        //Debug.Log(Camera.main.orthographicSize * Camera.main.aspect);
         if (tilemap)
         {
             // タイルマップの範囲を計算

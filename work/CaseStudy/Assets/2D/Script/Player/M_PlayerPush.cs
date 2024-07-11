@@ -232,14 +232,14 @@ public class M_PlayerPush : MonoBehaviour
             }
             else if (hit.collider.gameObject.CompareTag("Ground") /*|| hit.collider.gameObject.CompareTag("EnemyBall")*/)
             {
-                Debug.Log("壁検知");
+                //Debug.Log("壁検知");
 
                 isSearch = false;
                 isRaycast = false;
             }
             else
             {
-                Debug.Log("なんか違うもの");
+                //Debug.Log("なんか違うもの");
             }
         }
         else
@@ -321,7 +321,7 @@ public class M_PlayerPush : MonoBehaviour
                 N_PlayerSearch search = push.gameObject.transform.GetChild(0).gameObject.GetComponent<N_PlayerSearch>();
                 if (!search.GetIsSearch())
                 {
-                    Debug.Log("押した");
+                    //Debug.Log("押した");
                     StartCoroutine(HitStop(push));
                     StartCoroutine(M_Utility.GamePadMotor(fTime));
                 }

@@ -110,7 +110,7 @@ public class S_EnemyBall : MonoBehaviour
         BocCol2D = this.GetComponent<BoxCollider2D>();
         ColliderSize = BocCol2D.size / this.transform.localScale;
         ColliderOffset = BocCol2D.offset;
-        Debug.Log(ColliderSize);
+        //Debug.Log(ColliderSize);
     }
 
     // Update is called once per frame
@@ -227,7 +227,7 @@ public class S_EnemyBall : MonoBehaviour
 
                 if (fStickCnt == 0)
                 {
-                    Debug.Log("とぅるっるるる");
+                    //Debug.Log("とぅるっるるる");
                     fStickCnt++;
                     transform.tag = "EnemyBall";
                 }
@@ -235,7 +235,7 @@ public class S_EnemyBall : MonoBehaviour
                 if (!colEnemyBall.GetisBall())
                 {
                     fStickCnt++;
-                    Debug.Log("相手が玉ちゃう");
+                    Debug.Log("落下相手が玉ちゃう");
                 }
                 else if (colEnemyBall.GetisBall())
                 {

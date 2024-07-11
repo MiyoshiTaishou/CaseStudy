@@ -16,12 +16,12 @@ public class K_Treasure : MonoBehaviour
         if(CaseObj)
         {
             this.GetComponent<CircleCollider2D>().enabled = false;
-            Debug.Log("ケース発見");
+            //Debug.Log("ケース発見");
         }
         else
         {
             this.GetComponent<CircleCollider2D>().enabled = true;
-            Debug.Log("ケースない");
+            //Debug.Log("ケースない");
         }
     }
 
@@ -30,7 +30,7 @@ public class K_Treasure : MonoBehaviour
         if (!CaseObj)
         {
             this.GetComponent<CircleCollider2D>().enabled = true;
-            Debug.Log("宝判定有効化");
+            //Debug.Log("宝判定有効化");
         }
     }
 
@@ -42,11 +42,11 @@ public class K_Treasure : MonoBehaviour
             //音鳴らす
             if (audioclip)
             {
-                Debug.Log("ちりんちりん");
+                //Debug.Log("ちりんちりん");
                 AudioSource.PlayClipAtPoint(audioclip, transform.position);
             }
 
-            Debug.Log("ぶつかってきた");
+            //Debug.Log("ぶつかってきた");
             M_GameMaster.SetGameClear(true);
             Destroy(gameObject);
         }
@@ -60,11 +60,11 @@ public class K_Treasure : MonoBehaviour
             //音鳴らす
             if (audioclip)
             {
-                Debug.Log("ちりんちりん");
+                //Debug.Log("ちりんちりん");
                 AudioSource.PlayClipAtPoint(audioclip, transform.position);
             }
 
-            Debug.Log("ぶつかってきた");
+            //Debug.Log("ぶつかってきた");
 
             M_GameMaster.SetGameClear(true);
             Destroy(gameObject);
@@ -79,11 +79,11 @@ public class K_Treasure : MonoBehaviour
             //音鳴らす
             if (audioclip)
             {
-                Debug.Log("ちりんちりん");
+                //Debug.Log("ちりんちりん");
                 AudioSource.PlayClipAtPoint(audioclip, transform.position);
             }
 
-            Debug.Log("ぶつかってきた");
+            //Debug.Log("ぶつかってきた");
 
             M_GameMaster.SetGameClear(true);
             Destroy(gameObject);

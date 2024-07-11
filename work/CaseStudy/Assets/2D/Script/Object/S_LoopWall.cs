@@ -143,7 +143,7 @@ public class S_LoopWall : MonoBehaviour
         warpObj.GetComponent<S_LoopWall>().isWarped = true;
         //指定のフレーム待つ
         yield return new WaitForSecondsRealtime(0.2f);
-        Debug.Log("ああああ");
+        //Debug.Log("ああああ");
         isWarped = false;
         warpObj.GetComponent<S_LoopWall>().isWarped = false;
         //if(ColObject.CompareTag("EnemyBall"))

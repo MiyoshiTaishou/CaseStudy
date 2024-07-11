@@ -19,6 +19,28 @@ public class N_EnemyFallHit : MonoBehaviour
 
     public bool init = false;
 
+    private bool isUnion = false;
+
+    public void SetUnion(bool _union)
+    {
+        isUnion = _union;
+    }
+
+    public bool GetUnion()
+    {
+        return isUnion;
+    }
+
+    public void SetFallBall(bool _fallball)
+    {
+        isFallBall = _fallball;
+    }
+
+    public bool GetFallBall()
+    {
+        return isFallBall;
+    }
+
     public string GetManagerName()
     {
         EnemyMana = EnemyMove.GetManager();
@@ -44,8 +66,6 @@ public class N_EnemyFallHit : MonoBehaviour
 
             init = true;
         }
-
-        //Debug.Log(animator.GetBool("fall"));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,26 +76,43 @@ public class N_EnemyFallHit : MonoBehaviour
         }
 
         string hostName = GetManagerName();
-        string guestName = collision.GetComponent<N_EnemyFallHit>().GetManagerName();
+        N_EnemyFallHit colFallHit = collision.GetComponent<N_EnemyFallHit>();
+        string guestName = colFallHit.GetManagerName();
 
         // 同じ名前のマネージャーに所属していたら合体しない
         if (hostName == guestName || hostName == "ManagerNull" || guestName == "ManagerNull")
         {
+            if(guestName == "ManagerNull")
+            {
+                if (animator.GetBool("fall"))
+                {
+                    Debug.Log("玉合体エントリー");
+                    isFallBall = true;
+
+                    colFallHit.SetFallBall(true);
+                    collision.gameObject.transform.parent.gameObject.GetComponent<S_EnemyBall>().SetFallHitChangeBall(Parent);
+                }
+            }
             return;
         }
 
         // 新チーム発足後インターバルを設ける
         if (EnemyMana.GetNewTeamIntavalTime() <= IntavalTime || collision.GetComponent<N_EnemyFallHit>().GetNewTeamIntavalTime() <= IntavalTime)
         {
-            return;
+            // どちらもインターバル中なら抜けずに合体
+            if (!(EnemyMana.GetNewTeamIntavalTime() > 0.0f && collision.GetComponent<N_EnemyFallHit>().GetNewTeamIntavalTime() > 0.0f))
+            {
+                return;
+            }
         }
 
         Debug.Log("FallHit");
         if (animator.GetBool("fall"))
         {
-            Debug.Log("玉合体");
+            Debug.Log("玉合体エントリー");
             isFallBall = true;
 
+            colFallHit.SetFallBall(true);
             collision.gameObject.transform.parent.gameObject.GetComponent<S_EnemyBall>().SetFallHitChangeBall(Parent);
         }
     }
@@ -88,25 +125,42 @@ public class N_EnemyFallHit : MonoBehaviour
         }
 
         string hostName = GetManagerName();
-        string guestName = collision.GetComponent<N_EnemyFallHit>().GetManagerName();
+        N_EnemyFallHit colFallHit = collision.GetComponent<N_EnemyFallHit>();
+        string guestName = colFallHit.GetManagerName();
 
         // 同じ名前のマネージャーに所属していたら合体しない
         if (hostName == guestName || hostName == "ManagerNull" || guestName == "ManagerNull")
         {
+            if (guestName == "ManagerNull")
+            {
+                if (animator.GetBool("fall"))
+                {
+                    Debug.Log("玉合体エントリー");
+                    isFallBall = true;
+
+                    colFallHit.SetFallBall(true);
+                    collision.gameObject.transform.parent.gameObject.GetComponent<S_EnemyBall>().SetFallHitChangeBall(Parent);
+                }
+            }
             return;
         }
 
         // 新チーム発足後インターバルを設ける
         if (EnemyMana.GetNewTeamIntavalTime() <= IntavalTime || collision.GetComponent<N_EnemyFallHit>().GetNewTeamIntavalTime() <= IntavalTime)
         {
-            return;
+            // どちらもインターバル中なら抜けずに合体
+            if (!(EnemyMana.GetNewTeamIntavalTime() > 0.0f && collision.GetComponent<N_EnemyFallHit>().GetNewTeamIntavalTime() > 0.0f))
+            {
+                return;
+            }
         }
 
         if (animator.GetBool("fall"))
         {
-            Debug.Log("玉合体");
+            Debug.Log("玉合体ステイ");
             isFallBall = true;
-            
+
+            colFallHit.SetFallBall(true);
             collision.gameObject.transform.parent.gameObject.GetComponent<S_EnemyBall>().SetFallHitChangeBall(Parent);
         }
     }

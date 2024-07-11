@@ -148,7 +148,7 @@ public class M_PlayerMove : MonoBehaviour
         staminacanvas = GameObject.Find("StaminaBarBack");        
         // 子オブジェクトの中から、アニメーターを取得
         animator = gameObject.transform.GetChild(3).GetComponent<Animator>();
-        Debug.Log(animator);
+        //Debug.Log(animator);
 
         M_GameMaster.SetGameClear(false);
         fDeltaTime = 0.0f;
