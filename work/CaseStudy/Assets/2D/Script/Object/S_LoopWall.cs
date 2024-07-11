@@ -78,6 +78,7 @@ public class S_LoopWall : MonoBehaviour
             {
                 newpos.x -= 2.0f;
             }
+            newpos.y -= 1.0f;
             audioSource.PlayOneShot(audioclip);
             //ワープ
             collision.gameObject.transform.position = newpos;
