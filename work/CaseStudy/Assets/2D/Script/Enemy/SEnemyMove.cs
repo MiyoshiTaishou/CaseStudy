@@ -414,6 +414,19 @@ public class SEnemyMove : MonoBehaviour
 
                     }
                 }
+                //ワープ直後の合体なら
+                else if(colManager.isisWarped)
+                {
+
+                    // 生成順が速い方に合体
+                    if (this.enemyManager.GetGenerateNumber() < colManager.GetGenerateNumber())
+                    {
+                        // 合体
+                        enemyManager.UnionTeam(colManager);
+                        //Debug.Log("合体");
+
+                    }
+                }
                 // 同じ方向に進んでいるなら
                 else
                 {
