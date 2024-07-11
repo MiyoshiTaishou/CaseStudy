@@ -37,6 +37,8 @@ public class S_Respawn : MonoBehaviour
 
     public bool isRespawn = false;
 
+    public bool GetRespawn() { return isRespawn; }
+
     private GameObject smoke;
 
     private bool Init = false;

@@ -16,17 +16,19 @@ public class M_Pause : MonoBehaviour
     private List<GameObject> m_PauseList = new List<GameObject>();
 
     private GameObject sound;
+    private GameObject player;
 
     private void Start()
     {
         sound = GameObject.Find("Sound");
+        player = GameObject.Find("PlayerRespawn");
     }
 
     // Update is called once per frame
     void Update()
     {
         //ƒNƒŠƒAŽž‚Í‰Ÿ‚¹‚È‚¢‚æ‚¤‚É‚·‚é
-        if(M_GameMaster.GetGameClear())
+        if(M_GameMaster.GetGameClear() || player.GetComponent<S_Respawn>().GetRespawn())
         {            
             return;
         }
