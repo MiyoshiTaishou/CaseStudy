@@ -9,6 +9,14 @@ public class N_GroundCheck : MonoBehaviour
 
     public List<GameObject> colList = new List<GameObject>();
 
+    private float fallTime = 0.0f;
+    private float OldFallTime = 0.0f;
+
+    public float GetFallTime()
+    {
+        return OldFallTime;
+    }
+
     public bool GroundCheck()
     {
         return isGround;
@@ -22,30 +30,22 @@ public class N_GroundCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGround)
-        {
-            //Debug.Log("当たり" + gameObject.transform.parent.gameObject.name);
-        }
-        else
-        {
-            //Debug.Log("はずれ" + gameObject.transform.parent.gameObject.name);
-
-        }
-
         // コライダーリストの要素が何かしらあれば地面と接触していることになる
         if(colList.Count > 0)
         {
             isGround = true;
+
+            if(fallTime != 0.0f)
+            {
+                OldFallTime = fallTime;
+            }
+
+            fallTime = 0.0f;
         }
         else
         {
             isGround = false;
-        }
-
-        foreach(var a in colList)
-        {
-            //Debug.Log(a.name);
-
+            fallTime += Time.deltaTime;
         }
     }
 
