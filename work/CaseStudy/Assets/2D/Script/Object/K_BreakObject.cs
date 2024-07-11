@@ -51,9 +51,7 @@ public class K_BreakObject : MonoBehaviour
     {
         if(IsDisplayBreakNum == true)
         {
-            //ƒvƒŒƒnƒuŽÀ‘Ì‰»
-            GameObject cd = transform.GetChild(0).gameObject; ;
-            GameObject gcd = cd.GetComponent<Transform>().transform.GetChild(0).gameObject;
+
         }
 
         if (Eff_BrokenPiece) {
