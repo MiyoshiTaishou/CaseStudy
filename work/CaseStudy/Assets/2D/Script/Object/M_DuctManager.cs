@@ -135,10 +135,15 @@ public class M_DuctManager : MonoBehaviour
             // 辞書のキーのコレクションを取得
             var keys = new List<GameObject>(ductDictionary.Keys);
 
+            foreach (var item in ductDictionary)
+            {
+                item.Key.GetComponent<M_DuctWarp>().RessetSize();
+            }
+
             // キーのコレクション上で反復処理を行い、値を変更
             foreach (var key in keys)
             {
-                ductDictionary[key] = false;
+                ductDictionary[key] = false;                
             }
 
             // ダクトから出たらプレイヤーの元のレイヤーに戻す

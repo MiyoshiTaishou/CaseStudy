@@ -307,6 +307,8 @@ public class M_DuctWarp : MonoBehaviour
         yield return new WaitForSeconds(_waitTime);
 
         //ダクトマネージャのワープ処理を呼ぶ
+        // アニメーション完了後、元のスケールに戻す
+        transform.localScale = saveScale;
         DuctManager.GetComponent<M_DuctManager>().DuctWarp(_obj, this.gameObject);
 
         DuctManager.GetComponent<M_DuctManager>().SetIsMove(false);
@@ -354,6 +356,12 @@ public class M_DuctWarp : MonoBehaviour
         }
 
         // アニメーション完了後、元のスケールに戻す
+        transform.localScale = saveScale;
+    }
+
+    public void RessetSize()
+    {
+        //元のスケールに戻す
         transform.localScale = saveScale;
     }
 }
