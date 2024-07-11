@@ -454,8 +454,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - clip: {fileID: 8300000, guid: 388dfce8aef40b347ac0f534e8669d1b, type: 3}
-    probability: 100
+  - clip: {fileID: 8300000, guid: 96f960636830f2344a01fe965d99f1f5, type: 3}
+    probability: 25
+  - clip: {fileID: 8300000, guid: 525b40ce094a3a44f8a44d8d8b7d965d, type: 3}
+    probability: 25
+  - clip: {fileID: 8300000, guid: 47aa2c29ff8e6ba43af45e07ff597504, type: 3}
+    probability: 25
+  - clip: {fileID: 8300000, guid: 5200b39b8fe89e64b9a7e65fe2f54f7f, type: 3}
+    probability: 25
 --- !u!1001 &6325535926778217426
 PrefabInstance:
   m_ObjectHideFlags: 0

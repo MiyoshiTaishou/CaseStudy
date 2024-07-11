@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6035749312733321631}
   - component: {fileID: 6434554067274879322}
   - component: {fileID: 6883019623941804465}
+  - component: {fileID: 8260955197190970938}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -202,6 +203,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.65}
   m_EdgeRadius: 0
+--- !u!114 &8260955197190970938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061781001127465577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000285e3aef214b43abaad6d49a0a460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - clip: {fileID: 8300000, guid: 9982eeb48189810418dc257770045711, type: 3}
+    probability: 50
+  - clip: {fileID: 8300000, guid: e5d0b6d825759d24a9f5111661ff3e5d, type: 3}
+    probability: 50
 --- !u!1 &5265588556653879650
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +365,7 @@ GameObject:
   - component: {fileID: 5851278424805232882}
   - component: {fileID: 8752830900292939282}
   - component: {fileID: 2382190773623950448}
+  - component: {fileID: 3874412077613819933}
   m_Layer: 0
   m_Name: PlayerRespawn
   m_TagString: Player
@@ -513,6 +532,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3874412077613819933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6268105327750159728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000285e3aef214b43abaad6d49a0a460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - clip: {fileID: 8300000, guid: bde0a274a68b8ad4ab0334841039d87f, type: 3}
+    probability: 33
+  - clip: {fileID: 8300000, guid: fd13b878f52bd554a8f85cab9089d55a, type: 3}
+    probability: 33
+  - clip: {fileID: 8300000, guid: eb23aec299113a5429083dcb6d6065a2, type: 3}
+    probability: 33
 --- !u!1001 &1040472472410566260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -725,10 +763,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - clip: {fileID: 8300000, guid: 71c8a4759ada90743a96d793fc2656de, type: 3}
-    probability: 70
-  - clip: {fileID: 8300000, guid: 975ed76c3a02a214da29ac62c08cafd7, type: 3}
-    probability: 30
+  - clip: {fileID: 8300000, guid: 4d825811a01963345966ee9e8961cbdf, type: 3}
+    probability: 20
+  - clip: {fileID: 8300000, guid: 01d31d3c33566c94ba672b74ff82349c, type: 3}
+    probability: 20
+  - clip: {fileID: 8300000, guid: 959d2b1393e20264c8bd4aa94d40e002, type: 3}
+    probability: 20
+  - clip: {fileID: 8300000, guid: 0a60f931d481fb24ba1f35de2fa5859d, type: 3}
+    probability: 20
+  - clip: {fileID: 8300000, guid: 89fb261356cd5c846a24cd8554d73f18, type: 3}
+    probability: 20
 --- !u!1001 &6434554067445495289
 PrefabInstance:
   m_ObjectHideFlags: 0
