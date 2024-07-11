@@ -16,15 +16,13 @@ public class K_BreakObject : MonoBehaviour
     private float UpDownSpeed = 1.0f;
 
     [Header("テキストの揺れ幅"), SerializeField]
-    private float fShakingRange = 1.0f;
+    private float fShakingRange = 0.1f;
 
     [Header("耐久値を表示するか?"), SerializeField]
     private bool IsDisplayBreakNum = true;
 
     [Header("耐久値表示の座標"), SerializeField]
     private Vector2Int TextOffset;
-
-    private TextMeshProUGUI TextEndurance;
 
     [Header("破壊時のエフェクト"), SerializeField]
     private GameObject Eff_Explosion;
@@ -42,6 +40,9 @@ public class K_BreakObject : MonoBehaviour
 
     private bool isQuitting;
 
+    private GameObject DisplayNumObj;
+    Vector3 InitTransForm;
+
     /// <summary>
     /// 三好大翔追記カメラオブジェクト
     /// </summary>
@@ -54,9 +55,6 @@ public class K_BreakObject : MonoBehaviour
             //プレハブ実体化
             GameObject cd = transform.GetChild(0).gameObject; ;
             GameObject gcd = cd.GetComponent<Transform>().transform.GetChild(0).gameObject;
-            TextEndurance = gcd.GetComponent<TextMeshProUGUI>();
-            TextEndurance.text = iBreakNum.ToString();
-            TextEndurance.fontSize = iTexSize;
         }
 
         if (Eff_BrokenPiece) {
@@ -71,24 +69,43 @@ public class K_BreakObject : MonoBehaviour
         {
             Debug.Log("カメラが見つかりません");
         }
+        
+        //数字表示オブジェクト探す
+        for(int i=0;i< transform.childCount;i++)
+        {
+            GameObject obj = transform.GetChild(i).gameObject;
+            if(obj.name== "K_Suuji")
+            {
+                DisplayNumObj = obj;
+            }
+        }
 
+        if(!DisplayNumObj)
+        {
+            Debug.Log("このオブジェクト怪しいぞ");
+        }
+        else
+        {
+            DisplayNumObj.GetComponent<K_DisplaySuuji>().SetNum((int)iBreakNum);
+            InitTransForm = DisplayNumObj.gameObject.transform.position;
+        }
     }
 
     private void Update()
     {
-        if (this.gameObject == null)
-        {
-            TextEndurance.text = null;
-        }
-        else
-        {
-           if (IsDisplayBreakNum == true)
-           {
-                // オブジェクト位置にテキスト要素を追従させる
-                Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-                TextEndurance.transform.position = new Vector3(screenPos.x + TextOffset.x, screenPos.y + Mathf.PingPong(Time.time * UpDownSpeed, fShakingRange) + TextOffset.y, screenPos.z); // 適切なオフセットを持たせる
-            }
-        }
+        //if (this.gameObject == null)
+        //{
+        //}
+        //else
+        //{
+        //   if (IsDisplayBreakNum == true)
+        //   {
+        //        // オブジェクト位置にテキスト要素を追従させる
+        //        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        //        TextEndurance.transform.position = new Vector3(screenPos.x + TextOffset.x, screenPos.y + Mathf.PingPong(Time.time * UpDownSpeed, fShakingRange) + TextOffset.y, screenPos.z); // 適切なオフセットを持たせる
+        //    }
+        //}
+        DisplayNumObj.transform.position= new Vector3(InitTransForm.x, InitTransForm.y + Mathf.PingPong(Time.time * UpDownSpeed, fShakingRange), InitTransForm.z);
     }
 
     public uint GetBreakNum()

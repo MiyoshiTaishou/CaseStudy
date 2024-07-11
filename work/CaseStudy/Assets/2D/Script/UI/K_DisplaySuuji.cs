@@ -16,39 +16,52 @@ public class K_DisplaySuuji : MonoBehaviour
 
     public void SetSize(int _Size) { Size = _Size; }
 
+    //子オブジェクト数
     private int ChildCount;
+
+    //初期サイズ
     private Vector3 InitSize;
 
     // Start is called before the first frame update
     void Start()
     {
-        //コメント無くてごめんねー
+        //初期情報保存
         ChildCount = 0;
         InitSize = this.gameObject.transform.localScale;
-        int num = Num;
+        //最大まで子オブジェクトを生成する
+        int num = 2147483647;
         for(int i=0; num!=0; i++)
         {
+            //桁毎の子オブジェクトを生成
             GameObject obj = new GameObject();
             obj.transform.parent = this.transform;
             obj.transform.position = new Vector3(this.transform.position.x - i, this.transform.position.y, this.transform.position.z) ;
+            obj.layer = 5;
+            //名前変更
             obj.name = i.ToString();
+            //スプライトレンダラー追加
             obj.AddComponent<SpriteRenderer>();
+            //桁毎の数を割り振る
             obj.GetComponent<SpriteRenderer>().sprite = Tex[num % 10];
+            obj.GetComponent<SpriteRenderer>().sortingOrder = 20;
+            //子オブジェクトの数+1
             ChildCount++;
+            //最大桁か判断する
             if (num/10 == 0)
-            {
+            {//最大桁だったら
+                //桁数に応じてサイズ変える
                 if(i==0)
-                {
+                {//一桁だったら
                     this.gameObject.transform.localScale = InitSize * Size;
                 }
                 else
-                {
+                {//二桁以上だったら
                     this.gameObject.transform.localScale = new Vector3(InitSize.x * Size * 0.7f, InitSize.y * Size, InitSize.z * Size);
                 }
                 break;
             }
             else
-            {
+            {//次の桁の計算に
                 num = num / 10;
             }
         }
@@ -57,6 +70,7 @@ public class K_DisplaySuuji : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //数字を更新する
         int ActiveNumCount = 0;
         int num = Num;
         for (int i = 0; i< ChildCount; i++)
@@ -75,6 +89,8 @@ public class K_DisplaySuuji : MonoBehaviour
             num = num / 10;
         }
 
+
+        //桁数に応じてサイズ変える
         if(ActiveNumCount <= 1)
         {
             this.gameObject.transform.localScale = InitSize * Size;
@@ -82,6 +98,27 @@ public class K_DisplaySuuji : MonoBehaviour
         else
         {
             this.gameObject.transform.localScale = new Vector3(InitSize.x * Size * 0.7f, InitSize.y * Size, InitSize.z * Size);
+        }
+
+        //位置調整
+        float Mediannum = 0;
+        if(ActiveNumCount % 2==0)
+        {
+            Mediannum = ActiveNumCount / 2 + 0.5f;
+            for (int i = 1; i <= ActiveNumCount; i++)
+            {
+                GameObject obj = transform.GetChild(i-1).gameObject;
+                obj.transform.position = new Vector3(this.transform.position.x + (Mediannum - i) * Size * 0.65f, this.transform.position.y, this.transform.position.z);
+            }
+        }
+        else
+        {
+            Mediannum = ActiveNumCount / 2 + 1;
+            for (int i = 1; i <= ActiveNumCount; i++)
+            {
+                GameObject obj = transform.GetChild(i-1).gameObject;
+                obj.transform.position = new Vector3(this.transform.position.x + (Mediannum - i) * Size * 0.65f, this.transform.position.y, this.transform.position.z);
+            }
         }
     }
 }
