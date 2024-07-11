@@ -26,7 +26,7 @@ public class M_ResultSelect : MonoBehaviour
     void Start()
     {       
         M_GameMaster.SetGameClear(false);
-        M_GameMaster.SetGamePlay(false);
+        M_GameMaster.SetGamePlay(false);        
     }
 
     // Update is called once per frame
@@ -38,7 +38,7 @@ public class M_ResultSelect : MonoBehaviour
             sceneImages[currentIndex].GetComponent<M_OutLine>().OutLineOn();
 
             sound = GameObject.Find("Sound").GetComponent<N_PlaySound>();
-
+            GetComponent<M_RandomSEPlay>().PlayRandomSoundEffect();
 
             isOnce = true;
         }
@@ -112,9 +112,10 @@ public class M_ResultSelect : MonoBehaviour
 
         if (currentIndex == 1)
         {
-            tran.GetComponent<M_TransitionList>().SetRe(true);
+            tran.GetComponent<M_TransitionList>().SetRe(true);            
         }
 
+        GetComponent<M_SEPlay>().PlaySoundEffect(currentIndex);
         tran.GetComponent<M_TransitionList>().LoadScene();
     }
 }

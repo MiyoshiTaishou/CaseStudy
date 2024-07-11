@@ -149,10 +149,12 @@ public class M_PauseButtonSelect : MonoBehaviour
                 tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
                 tran.GetComponent<M_TransitionList>().SetRe(true);
                 tran.GetComponent<M_TransitionList>().LoadScene();
+                GetComponent<M_SEPlay>().PlaySoundEffect(0);
                 break;
             case 2:
                 tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);                
                 tran.GetComponent<M_TransitionList>().LoadScene();
+                GetComponent<M_SEPlay>().PlaySoundEffect(1);
                 break;
             case 3:
                 //ƒIƒvƒVƒ‡ƒ“‚Ì‚â‚Â
