@@ -22,9 +22,13 @@ public class K_DisplaySuuji : MonoBehaviour
     //初期サイズ
     private Vector3 InitSize;
 
+    //親オブジェクトが反転した場合に逆にならないようにする
+    bool IsRefrectionX;
+
     // Start is called before the first frame update
     void Start()
     {
+        IsRefrectionX = false;
         //初期情報保存
         ChildCount = 0;
         InitSize = this.gameObject.transform.localScale;
@@ -89,15 +93,31 @@ public class K_DisplaySuuji : MonoBehaviour
             num = num / 10;
         }
 
+        //親オブジェクトが反転してるか調べるよ
+        Transform parentTransform = transform.parent;
+        if (parentTransform != null)
+        {
+            Vector3 parentScale = parentTransform.localScale;
+            if (parentScale.x < 0)
+            {
+                IsRefrectionX = true;
+            }
+            else
+            {
+                IsRefrectionX = false;
+            }
+
+        }
 
         //桁数に応じてサイズ変える
-        if(ActiveNumCount <= 1)
+        int coef = IsRefrectionX ? -1 : 1;
+        if (ActiveNumCount <= 1)
         {
-            this.gameObject.transform.localScale = InitSize * Size;
+            this.gameObject.transform.localScale = new Vector3(InitSize.x * Size * coef, InitSize.y * Size, InitSize.z * Size);
         }
         else
         {
-            this.gameObject.transform.localScale = new Vector3(InitSize.x * Size * 0.7f, InitSize.y * Size, InitSize.z * Size);
+            this.gameObject.transform.localScale = new Vector3(InitSize.x * Size * 0.7f * coef, InitSize.y * Size, InitSize.z * Size);
         }
 
         //位置調整
