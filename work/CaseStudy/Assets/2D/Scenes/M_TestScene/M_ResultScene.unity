@@ -1395,6 +1395,8 @@ GameObject:
   - component: {fileID: 1957957583}
   - component: {fileID: 1957957584}
   - component: {fileID: 1957957585}
+  - component: {fileID: 1957957586}
+  - component: {fileID: 1957957587}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1581,6 +1583,42 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3e913c0d8b72c764ab3e6f107946cffb, type: 3}
   BG: {fileID: 2067656265}
   Letter: {fileID: 1391850970}
+--- !u!114 &1957957586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957957577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 000285e3aef214b43abaad6d49a0a460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - clip: {fileID: 8300000, guid: f74800be6fc50e549a992c8e5151e9f2, type: 3}
+    probability: 25
+  - clip: {fileID: 8300000, guid: beeea72b84d93284f8da29abfd4104df, type: 3}
+    probability: 25
+  - clip: {fileID: 8300000, guid: fd94833800156e046a9376283b1d706a, type: 3}
+    probability: 25
+  - clip: {fileID: 8300000, guid: d572456165121d147be6389db6f687ca, type: 3}
+    probability: 25
+--- !u!114 &1957957587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957957577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd541d770bdb25f40aa492104b8d169d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - clip: {fileID: 8300000, guid: 4b2954bcdd19d4848a8da7494e204094, type: 3}
+  - clip: {fileID: 8300000, guid: 63327d4cbc42c34468a6b89af6c362d8, type: 3}
 --- !u!1001 &2023779663
 PrefabInstance:
   m_ObjectHideFlags: 0

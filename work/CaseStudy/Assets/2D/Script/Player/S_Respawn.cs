@@ -118,6 +118,7 @@ public class S_Respawn : MonoBehaviour
                 smoke.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
                 audiosource.PlayOneShot(acSmokeScreen);
+                GetComponent<M_RandomSEPlay>().PlayRandomSoundEffect();
             }
 
             if (ElapsedRespawnTime > RespwanTime / 3.0f)

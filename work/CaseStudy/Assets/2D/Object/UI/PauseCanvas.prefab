@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 1396957527884846910}
   - component: {fileID: 2124194346}
   - component: {fileID: 5755953733833022627}
+  - component: {fileID: 5999484061096420698}
   m_Layer: 5
   m_Name: PauseCanvas
   m_TagString: Untagged
@@ -352,6 +353,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5999484061096420698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396957527884846909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd541d770bdb25f40aa492104b8d169d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects:
+  - clip: {fileID: 8300000, guid: 4b2954bcdd19d4848a8da7494e204094, type: 3}
+  - clip: {fileID: 8300000, guid: 63327d4cbc42c34468a6b89af6c362d8, type: 3}
 --- !u!1 &2045366816213262844
 GameObject:
   m_ObjectHideFlags: 0
