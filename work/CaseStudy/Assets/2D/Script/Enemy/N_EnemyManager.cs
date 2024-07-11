@@ -21,6 +21,8 @@ public class N_EnemyManager : MonoBehaviour
 
     public List<SEnemyMove> sEnemyMoves = new List<SEnemyMove>();
 
+    public bool isisWarped=false;
+
     [System.Serializable]
     struct ManagerMoveStatus
     {
@@ -286,9 +288,11 @@ public class N_EnemyManager : MonoBehaviour
                     {
                         //Debug.Log("通っててくれ～" + obj.name + "なんでや！？" + obj.GetComponent<SEnemyMove>().GetIsWarped());
                         sc_mana.IsReflectionX = !IsReflectionX;
-
+                        sc_mana.isisWarped= true;
                         sc_mana.managerState = ManagerState.Warped;
                         managerState = ManagerState.Warped;
+                        isisWarped = true;
+
                     }
 
                     if (obj.GetComponent<SEnemyMove>().GetIsWarped() == true)
@@ -299,6 +303,14 @@ public class N_EnemyManager : MonoBehaviour
                         sc_mana.OldWaitTime = OldWaitTime;
                         //sc_mana.managerStatus.WaitTime = 0.001f;
                         sc_mana.managerStatus.WaitTime = OldWaitTime;
+                        sc_mana.isisWarped = true;
+                        isisWarped = true;
+                    }
+
+                    if(isisWarped== true)
+                    {
+                        sc_mana.isisWarped = true;
+                        Debug.Log("とおれーーーーっ");
                     }
 
                     return;
@@ -436,7 +448,11 @@ public class N_EnemyManager : MonoBehaviour
             managerStatus.WaitTime = OldWaitTime;
         }
         IsRef = true;
-
+        if(isisWarped) //やばかったら消すシリーズ//////////////////////////////////////////////////////////////////////////////
+        {
+            managerState= _manager.managerState;
+            ElapsedTime=_manager.ElapsedTime;
+        }
         // 敵のいなくなったマネージャー削除
         Destroy(_manager.gameObject);
     }
@@ -538,8 +554,8 @@ public class N_EnemyManager : MonoBehaviour
             }
         }
 
-
-        ElapsedTime = 0.0f;
+       
+            ElapsedTime = 0.0f;
         ElapsedWaitTime += Time.deltaTime;
         //Debug.Log(ElapsedWaitTime);
 
@@ -555,6 +571,11 @@ public class N_EnemyManager : MonoBehaviour
         // 待つ
         if (ElapsedWaitTime >= managerStatus.WaitTime)
         {
+            if(isisWarped)
+            {
+                IsReflectionX= !IsReflectionX;
+                isisWarped = false;
+            }
             ElapsedWaitTime = 0.0f;
             // 巡回状態
             managerState = ManagerState.PATOROL;
@@ -870,9 +891,11 @@ public class N_EnemyManager : MonoBehaviour
         //{
         //    managerState = ManagerState.WAIT;
         //}
+        
         managerState = ManagerState.WAIT;
+        
 
-    }
+    } 
 
     // ホログラムの壁を検知した時呼び出し
     public void DetectionHologram(int _number)
