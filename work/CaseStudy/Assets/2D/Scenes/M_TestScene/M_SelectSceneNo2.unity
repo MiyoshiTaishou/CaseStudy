@@ -1208,36 +1208,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: fd29c5547837a844d8cb0089b0c76510, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
+  - clip: {fileID: 8300000, guid: 47f83b434e0613b45992f815f8235ebf, type: 3}
+  - clip: {fileID: 8300000, guid: 7af6cf9b867c8b540b04d4d210397529, type: 3}
+  - clip: {fileID: 8300000, guid: 29948c188ff3dcf4f9f862556b7fef4b, type: 3}
+  - clip: {fileID: 8300000, guid: d2179a8e46bf4e04898ea9a35326ba6c, type: 3}
+  - clip: {fileID: 8300000, guid: 479eeccfa3e69a148a87a03cd4755d2c, type: 3}
+  - clip: {fileID: 8300000, guid: 9c9e0c0d00cf92748b2255a1d5a20e78, type: 3}
+  - clip: {fileID: 8300000, guid: f17b3cfae1857194ca9817feebf4ab94, type: 3}
+  - clip: {fileID: 8300000, guid: a6b8e37768ca94945af95862cce49318, type: 3}
+  - clip: {fileID: 8300000, guid: 21276f89e24271345b6fc56dc694c594, type: 3}
+  - clip: {fileID: 8300000, guid: 01f989109ff08df48bbf889a978ec744, type: 3}
+  - clip: {fileID: 8300000, guid: eff7de6181f137743abe789a2a8fe4d8, type: 3}
+  - clip: {fileID: 8300000, guid: 8e8b193b71d11d44b937f3f1719d703e, type: 3}
+  - clip: {fileID: 8300000, guid: 39ab666a484769240b36e4dbc6a76381, type: 3}
+  - clip: {fileID: 8300000, guid: 4a387f5831f110c4283234f691f2ab91, type: 3}
+  - clip: {fileID: 8300000, guid: a50d1880ab68efb45b9e42e0c10ea53d, type: 3}
+  - clip: {fileID: 8300000, guid: 9398d72d60c4d1542a0e79618945127f, type: 3}
+  - clip: {fileID: 8300000, guid: 5136cc4f79cc9eb4c8c6af3bb750aa4b, type: 3}
+  - clip: {fileID: 8300000, guid: b4299dab0a1671642a962c49633254ac, type: 3}
+  - clip: {fileID: 8300000, guid: c18bab65486f9d247a2a393c1d72d426, type: 3}
+  - clip: {fileID: 8300000, guid: eedc7f302afed704fa7cf06ff2ea505d, type: 3}
+  - clip: {fileID: 8300000, guid: d2b7a433cce8d10439cab19934d9cdd2, type: 3}
+  - clip: {fileID: 8300000, guid: c78503acce19245409106566b48a276a, type: 3}
+  - clip: {fileID: 8300000, guid: bffe23e7172236740ae6def56384f97a, type: 3}
+  - clip: {fileID: 8300000, guid: 6dc03a9c02b621e44b45e6028453a7e6, type: 3}
+  - clip: {fileID: 8300000, guid: d163cbdc41096a74c956a87b6bbb0cfa, type: 3}
+  - clip: {fileID: 8300000, guid: ac74f1973a0a01b4d96b306f064a36ad, type: 3}
+  - clip: {fileID: 8300000, guid: d3ca1af16e30b6641ab545b2f93a404d, type: 3}
+  - clip: {fileID: 8300000, guid: eb26b67afb8d99e4886fd6ec3453320b, type: 3}
+  - clip: {fileID: 8300000, guid: 4b7dd9954bfba684d88888d3859ce510, type: 3}
+  - clip: {fileID: 8300000, guid: ff6888fc73f6750479e784372211c286, type: 3}
+  - clip: {fileID: 8300000, guid: 12161ba53cdf75a4baafc4eb0966e461, type: 3}
 --- !u!114 &135326783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1251,11 +1252,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects:
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
-  - clip: {fileID: 8300000, guid: 563655569d139894c89398f3047e86c1, type: 3}
+  - clip: {fileID: 8300000, guid: 4889197a2d158f94586e0e2afe9b872c, type: 3}
+  - clip: {fileID: 8300000, guid: 16e60cecf2f5aff4b9b9b090700ece4c, type: 3}
+  - clip: {fileID: 8300000, guid: 90cd29a30b9020a47b936bec7fe1fe57, type: 3}
+  - clip: {fileID: 8300000, guid: e7cdae6baa6c952418a30e5e219318b6, type: 3}
+  - clip: {fileID: 8300000, guid: 0ab920701a7792a4e9034e59ac7a812f, type: 3}
 --- !u!1 &189389909
 GameObject:
   m_ObjectHideFlags: 0
@@ -9079,8 +9080,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -50}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchoredPosition: {x: 260, y: -50}
+  m_SizeDelta: {x: 480, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1583266554
 MonoBehaviour:
@@ -9099,7 +9100,7 @@ MonoBehaviour:
   pos:
     isApply: 1
     ease: 2
-    amount: {x: -300, y: 50, z: 0}
+    amount: {x: -260, y: 50, z: 0}
   rot:
     isApply: 0
     ease: 0
@@ -9129,7 +9130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f67bdf6fd79efa4abe78acf251a1db4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e8a5d0c3b0f6784f821d377cc647a06, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -232,6 +232,8 @@ public class M_ImageSelect : MonoBehaviour
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().EasingOnOff();
 
             sound.PlaySound(N_PlaySound.SEName.OpenLetter);
+
+            SEList[0].PlaySoundEffect(currentIndex + (sceneIndex * 6));
         }
 
         if (Input.GetButtonDown("Cancel"))
@@ -332,8 +334,8 @@ public class M_ImageSelect : MonoBehaviour
     }
 
     void PressSelectedButton()
-    {
-        SEList[0].PlaySoundEffect(currentIndex + (sceneIndex * 6));
+    {        
+        SEList[0].PlaySoundEffect(30);
         Debug.Log(currentIndex + "どのステージか");
         Debug.Log(sceneIndex + "どの面か");
         tran.GetComponent<M_TransitionList>().SetIndex(currentIndex);
