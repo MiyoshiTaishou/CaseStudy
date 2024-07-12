@@ -497,6 +497,31 @@ public class N_EnemyManager : MonoBehaviour
     public void ChangeManagerState(ManagerState _state)
     {
         managerState = _state;
+        foreach (var obj in TeamMembers)
+        {
+            switch (managerState)
+            {
+                case ManagerState.WAIT:
+                    obj.transform.GetChild(2).GetComponent<Animator>().SetBool("Idle", true);
+                    break;
+
+                case ManagerState.FOUND:
+                    obj.transform.GetChild(2).GetComponent<Animator>().SetBool("sight", true);
+                    obj.transform.GetChild(2).GetComponent<Animator>().SetBool("Idle", false);
+                    break;
+
+                case ManagerState.LOSTSIGHT:
+                    obj.transform.GetChild(2).GetComponent<Animator>().SetBool("sight", true);
+                    obj.transform.GetChild(2).GetComponent<Animator>().SetBool("Idle", false);
+                    break;
+
+                case ManagerState.PATOROL:
+                    obj.transform.GetChild(2).GetComponent<Animator>().SetBool("dash", true);
+                    obj.transform.GetChild(2).GetComponent<Animator>().SetBool("Idle", false);
+                    break;
+
+            }
+        }
     }
 
     private void Patrol()
@@ -547,12 +572,12 @@ public class N_EnemyManager : MonoBehaviour
             foreach (var obj in TeamMembers)
             {
                 obj.GetComponent<K_EnemyReaction>().AllSetFalse();
-                //obj.transform.GetChild(2).GetComponent<Animator>().SetBool("dash", true);
+                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("Idle", true);
             }
         }
 
        
-            ElapsedTime = 0.0f;
+        ElapsedTime = 0.0f;
         ElapsedWaitTime += Time.deltaTime;
         //Debug.Log(ElapsedWaitTime);
 
@@ -577,6 +602,10 @@ public class N_EnemyManager : MonoBehaviour
             // 巡回状態
             managerState = ManagerState.PATOROL;
             IsRef = false;
+            foreach (var obj in TeamMembers)
+            {
+                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("Idle", false);
+            }
 
             foreach (var obj in TeamMembers)
             {
@@ -619,6 +648,7 @@ public class N_EnemyManager : MonoBehaviour
             {
                 obj.GetComponent<K_EnemyReaction>().SetIsSearchTarget(true);
                 obj.transform.GetChild(2).GetComponent<Animator>().SetTrigger("sight");
+                obj.transform.GetChild(2).GetComponent<Animator>().SetBool("Idle",false);
             }
         }
 
@@ -760,7 +790,7 @@ public class N_EnemyManager : MonoBehaviour
             }
             Target = _obj;
             TargetTrans = Target.GetComponent<Transform>();
-            managerState = ManagerState.FOUND;
+            ChangeManagerState(ManagerState.FOUND);
         }
     }
 

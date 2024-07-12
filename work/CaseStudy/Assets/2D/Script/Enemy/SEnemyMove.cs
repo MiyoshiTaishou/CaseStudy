@@ -327,6 +327,7 @@ public class SEnemyMove : MonoBehaviour
         if(isGroundNow == false && Time.time >= 0.5f)
         {
             animator.SetBool("fall", true);
+            animator.SetBool("Idle", false);
 
             if (Eff_FallObj)
             {
