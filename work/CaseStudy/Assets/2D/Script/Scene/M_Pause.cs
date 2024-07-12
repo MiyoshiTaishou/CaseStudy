@@ -33,7 +33,7 @@ public class M_Pause : MonoBehaviour
             return;
         }
 
-        Debug.Log("ポーズスクリプト" + M_GameMaster.GetGamePlay());
+        //Debug.Log("ポーズスクリプト" + M_GameMaster.GetGamePlay());
         foreach (var item in m_PauseList)
         {
             if (item.GetComponent<M_ImageEasing>())

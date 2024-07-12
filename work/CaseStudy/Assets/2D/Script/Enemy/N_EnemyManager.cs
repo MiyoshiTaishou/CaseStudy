@@ -151,7 +151,7 @@ public class N_EnemyManager : MonoBehaviour
         if (!isClone)
         {
             OldWaitTime = managerStatus.WaitTime;
-            Debug.Log("オールドタイム" + OldWaitTime);
+            //Debug.Log("オールドタイム" + OldWaitTime);
         }
     }
 
@@ -230,7 +230,6 @@ public class N_EnemyManager : MonoBehaviour
 
         if(Parent == null)
         {
-            Debug.Log("おやおおおおおおおおおおおおおおおおお");
             return;
         }
 
