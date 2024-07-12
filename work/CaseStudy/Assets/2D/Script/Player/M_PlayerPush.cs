@@ -73,11 +73,11 @@ public class M_PlayerPush : MonoBehaviour
 
     private float ElapsedRayTime = 0.0f;
 
-    private bool isCheck = false;
+    public bool isCheck = false;
 
-    private bool isRaycast = false;
+    public bool isRaycast = false;
 
-    private bool isSearch = false;
+    public bool isSearch = false;
 
     private bool isTutoPushOK = true;
 
@@ -228,14 +228,14 @@ public class M_PlayerPush : MonoBehaviour
                 //Debug.Log("押せる");
                 isSearch = true;
 
-                isRaycast = false;
+                //isRaycast = false;
             }
             else if (hit.collider.gameObject.CompareTag("Ground") /*|| hit.collider.gameObject.CompareTag("EnemyBall")*/)
             {
                 //Debug.Log("壁検知");
 
                 isSearch = false;
-                isRaycast = false;
+                //isRaycast = false;
             }
             else
             {
@@ -250,6 +250,11 @@ public class M_PlayerPush : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (!isSearch)
+        {
+            return;
+        }
+
         if (!collision.isTrigger)
         {
             if (collision.tag == "Enemy" || collision.tag == "EnemyBall")
