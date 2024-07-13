@@ -80,7 +80,7 @@ public class M_ImageSelect : MonoBehaviour
         sceneIndex = M_GameMaster.GetSceneIndex();
         slideIndex = M_GameMaster.GetSlideIndex();
 
-        SEList=GetComponents<M_SEPlay>();
+        SEList=GetComponents<M_SEPlay>();        
     }
 
     void Update()
@@ -89,8 +89,13 @@ public class M_ImageSelect : MonoBehaviour
         if (!init)
         {
             sound = GameObject.Find("Sound").GetComponent<N_PlaySound>();
-
+            SEList[1].PlaySoundEffect(0);
             init = true;
+        }
+
+        if(LoadStart)
+        {
+            return;
         }
 
         //左端まで来たらオブジェクトを消す
@@ -158,7 +163,7 @@ public class M_ImageSelect : MonoBehaviour
 
         }
 
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") && !ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().GetEasing())
         {
             Debug.Log("挑戦状閉じる");
             ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().SetReverse(true);
@@ -167,7 +172,7 @@ public class M_ImageSelect : MonoBehaviour
             sound.PlaySound(N_PlaySound.SEName.OpenLetter);
         }
 
-        if (Input.GetButtonDown("Zoom"))
+        if (Input.GetButtonDown("Zoom") && !UpImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().GetEasing())
         {
             isUp = true;
 
@@ -224,7 +229,7 @@ public class M_ImageSelect : MonoBehaviour
             sound.PlaySound(N_PlaySound.SEName.CursorMove);
         }
 
-        if (Input.GetButtonDown("SympathyButton"))
+        if (Input.GetButtonDown("SympathyButton") && !ChallengeImages[sceneIndex].images[currentIndex].GetComponent<M_ImageEasing>().GetEasing())
         {
            isChallenge = true;
 
@@ -236,12 +241,13 @@ public class M_ImageSelect : MonoBehaviour
             SEList[0].PlaySoundEffect(currentIndex + (sceneIndex * 6));
         }
 
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") && !LoadStart)
         {
             Debug.Log(currentIndex + "どのステージか");
             Debug.Log(sceneIndex + "どの面か");
             tranT.GetComponent<M_TransitionList>().SetIndex(0);                                 
             tranT.GetComponent<M_TransitionList>().LoadScene();
+            LoadStart = true;
         }
 
         if (Input.GetButtonDown("RButton"))
