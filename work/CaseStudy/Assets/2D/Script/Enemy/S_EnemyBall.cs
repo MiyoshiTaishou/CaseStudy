@@ -79,7 +79,17 @@ public class S_EnemyBall : MonoBehaviour
     private Vector3 ColliderSize;
     private Vector3 ColliderOffset;
 
-    private Animator animator;
+    private bool isUnion = false;
+
+    public bool GetEnemyBallisUnion()
+    {
+        return isUnion;
+    }
+
+    public void SetEnemyBallisUnion(bool _union)
+    {
+        isUnion = _union;
+    }
 
     public void SetEffectActivation(bool flg)
     {
@@ -211,11 +221,19 @@ public class S_EnemyBall : MonoBehaviour
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject = _obj.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
+        
+
         if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
+
+            if (colEnemyBall.GetEnemyBallisUnion())
+            {
+                return;
+            }
             if (!colEnemyBall.GetisPushing() ||
                 fStickCnt > colEnemyBall.GetStickCount())
             {
+                colEnemyBall.SetEnemyBallisUnion(true);
                 if (Eff_RollingObj)
                 {
                     Eff_RollingObj.SetActive(true);
@@ -285,8 +303,15 @@ public class S_EnemyBall : MonoBehaviour
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject = _collision.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
+
+        
         if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
+            if (colEnemyBall.GetEnemyBallisUnion())
+            {
+                return;
+            }
+
             if (colEnemyBall.GetisPushing() && fStickCnt == colEnemyBall.GetStickCount()&&
                 transform.position.y>ColObject.transform.position.y)
             {
@@ -309,6 +334,9 @@ public class S_EnemyBall : MonoBehaviour
             else if (!colEnemyBall.GetisPushing() ||
                 (colEnemyBall.GetisPushing() && fStickCnt > colEnemyBall.GetStickCount()))
             {
+
+                colEnemyBall.SetEnemyBallisUnion(true);
+
                 if (Eff_RollingObj)
                 {
                     Eff_RollingObj.SetActive(true);
@@ -377,11 +405,21 @@ public class S_EnemyBall : MonoBehaviour
         //あたったオブジェクトが敵かつ押されていなければ吸収
         ColObject = _collision.gameObject;
         S_EnemyBall colEnemyBall = ColObject.GetComponent<S_EnemyBall>();
+
+        
         if (ColObject.CompareTag("Enemy") || ColObject.CompareTag("EnemyBall"))
         {
+            if (colEnemyBall.GetEnemyBallisUnion())
+            {
+                return;
+            }
+
             if (!colEnemyBall.GetisPushing() ||
                 (colEnemyBall.GetisPushing() && fStickCnt > colEnemyBall.GetStickCount()))
             {
+                colEnemyBall.SetEnemyBallisUnion(true);
+
+
                 if (Eff_RollingObj)
                 {
                     Eff_RollingObj.SetActive(true);
@@ -405,7 +443,7 @@ public class S_EnemyBall : MonoBehaviour
 
                 if (!colEnemyBall.GetisBall())
                 {
-                    Debug.Log("相手が玉ちゃう");
+                    Debug.Log("自分" + gameObject.name  + "相手" + colEnemyBall.name + "相手が玉ちゃう");
 
                     fStickCnt++;
                 }
