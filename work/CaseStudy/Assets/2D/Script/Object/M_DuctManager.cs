@@ -117,6 +117,8 @@ public class M_DuctManager : MonoBehaviour
             init = false;
         }
 
+        CleanUpDuctDictionary();
+
         GameObject ductObj = GetObjectInDictionary();
         bool isRockDuct = false;
         if (GetObjectInDictionary() != null)
@@ -137,7 +139,10 @@ public class M_DuctManager : MonoBehaviour
 
             foreach (var item in ductDictionary)
             {
-                item.Key.GetComponent<M_DuctWarp>().RessetSize();
+                if (item.Key.GetComponent<M_DuctWarp>())
+                {
+                    item.Key.GetComponent<M_DuctWarp>().RessetSize();
+                }
             }
 
             // キーのコレクション上で反復処理を行い、値を変更
@@ -316,4 +321,26 @@ public class M_DuctManager : MonoBehaviour
     {
         return isDuctIn;
     }
+
+    private void CleanUpDuctDictionary()
+    {
+        // 辞書のクリーンアップリスト
+        List<GameObject> keysToRemove = new List<GameObject>();
+
+        foreach (var item in ductDictionary)
+        {
+            // Keyがnullかどうかチェック
+            if (item.Key == null)
+            {
+                keysToRemove.Add(item.Key);
+            }
+        }
+
+        // nullのキーを辞書から削除
+        foreach (var key in keysToRemove)
+        {
+            ductDictionary.Remove(key);
+        }
+    }
+
 }
