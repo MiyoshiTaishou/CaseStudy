@@ -158,7 +158,10 @@ public class M_PlayerPush : MonoBehaviour
                 {
                     StartCoroutine(IEAnimDlay(fDlayAnim));
                     audioSource.PlayOneShot(ac);
-                    GetComponent<M_RandomSEPlay>().PlayRandomSoundEffect();
+                    if (GetComponent<M_RandomSEPlay>())
+                    {
+                        GetComponent<M_RandomSEPlay>().PlayRandomSoundEffect();
+                    }
                 }
             }
         }

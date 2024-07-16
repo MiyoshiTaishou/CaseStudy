@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class M_ResultSelect : MonoBehaviour
@@ -113,6 +114,12 @@ public class M_ResultSelect : MonoBehaviour
         if (currentIndex == 1)
         {
             tran.GetComponent<M_TransitionList>().SetRe(true);            
+        }
+
+        if(M_GameMaster.GetSceneIndex() == 4 && M_GameMaster.GetCurrentIndex() == 5)
+        {
+            GetComponent<M_SEPlay>().PlaySoundEffect(currentIndex);
+            SceneManager.LoadScene("M_EndingScene");
         }
 
         GetComponent<M_SEPlay>().PlaySoundEffect(currentIndex);
