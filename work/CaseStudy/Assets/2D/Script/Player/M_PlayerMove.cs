@@ -199,7 +199,10 @@ public class M_PlayerMove : MonoBehaviour
             if (!isDash && fHorizontalInput != 0 && isStamina)
             {
                 sound.PlaySound(N_PlaySound.SEName.Dash);
-                GetComponent<M_RandomSEPlay>().PlayRandomSoundEffect();
+                if (GetComponent<M_RandomSEPlay>())
+                {
+                    GetComponent<M_RandomSEPlay>().PlayRandomSoundEffect();
+                }
                 // ダッシュ用変数
                 isDash = true;
             }
