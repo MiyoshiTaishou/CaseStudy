@@ -96,7 +96,7 @@ public class M_PlayerPush : MonoBehaviour
 
         PlayerMove = PlayerObj.GetComponent<M_PlayerMove>();
 
-        AnimBonePlayer = GameObject.Find("T_idol_1");
+        AnimBonePlayer = transform.parent.GetChild(3).gameObject;
 
         DuctManager = GameObject.Find("DuctManager");
 
