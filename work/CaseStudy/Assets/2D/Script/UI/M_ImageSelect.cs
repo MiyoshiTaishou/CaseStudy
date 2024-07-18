@@ -89,7 +89,7 @@ public class M_ImageSelect : MonoBehaviour
         if (!init)
         {
             sound = GameObject.Find("Sound").GetComponent<N_PlaySound>();
-            SEList[1].PlaySoundEffect(0);
+            SEList[1].PlaySoundEffect(sceneIndex);
             init = true;
         }
 
