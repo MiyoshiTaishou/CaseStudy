@@ -655,7 +655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f6a6164815df14eb6df4c8b4489b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextPrefab: {fileID: 346455752079443112, guid: a134b1118bb701140a06a5805f0ca398, type: 3}
 --- !u!1 &224510877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1222617881103884951, guid: 8f6496a0a5aa5284ca1aab711d93a9ae, type: 3}
@@ -45072,15 +45071,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2616354074196645167, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.48731
+      value: 0.487
       objectReference: {fileID: 0}
     - target: {fileID: 2616354074196645167, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.48731
+      value: 0.487
       objectReference: {fileID: 0}
     - target: {fileID: 2616354074196645167, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.48731
+      value: 0.487
       objectReference: {fileID: 0}
     - target: {fileID: 2616354074196645167, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -45090,25 +45089,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 167
       objectReference: {fileID: 0}
-    - target: {fileID: 4710352879525001109, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 232e28c31361f08489171dc14cca708e, type: 3}
     - target: {fileID: 4949195513069361086, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.48731
+      value: 0.487
       objectReference: {fileID: 0}
     - target: {fileID: 4949195513069361086, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.48731
+      value: 0.487
       objectReference: {fileID: 0}
     - target: {fileID: 4949195513069361086, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.48731
+      value: 0.487
       objectReference: {fileID: 0}
     - target: {fileID: 4949195513069361086, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 231.99998
+      value: 232
       objectReference: {fileID: 0}
     - target: {fileID: 4949195513069361086, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -45117,10 +45112,6 @@ PrefabInstance:
     - target: {fileID: 5976270959728335183, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_Name
       value: StaminaCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 5976270959728335183, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8397811821379498078, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
       propertyPath: m_Pivot.x
@@ -45206,10 +45197,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9110667384382846691, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e085b30ef7724444882303611c91b71b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f6ffd903b5192248a60453eb05120dc, type: 3}
 --- !u!1 &1927147963 stripped
